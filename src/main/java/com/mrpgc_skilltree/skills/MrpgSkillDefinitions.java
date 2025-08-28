@@ -1,7 +1,9 @@
 package com.mrpgc_skilltree.skills;
 
+import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.custom.MoreSpellSchools;
@@ -9,6 +11,7 @@ import net.more_rpg_classes.entity.attribute.MRPGCEntityAttributes;
 import net.puffish.skillsmod.common.IconType;
 import net.spell_engine.api.spell.container.SpellContainer;
 import net.spell_engine.api.spell.container.SpellContainerHelper;
+import net.spell_power.api.SpellSchools;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -161,7 +164,7 @@ public class MrpgSkillDefinitions {
             Entry.attribute("water_root",
                     "Path of Water",
                     null,
-                    Icon.item("elemental_wizards_rpg:water_spell_book"),
+                    Icon.item("elemental_wizards_rpg:aqua_spell_book"),
                     MoreSpellSchools.WATER.attributeEntry,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
@@ -171,17 +174,17 @@ public class MrpgSkillDefinitions {
             Entry.attribute("water_boost",
                     "Water Attunement",
                     null,
-                    Icon.item("elemental_wizards:wand_water"),
+                    Icon.item("elemental_wizards:wand_aqua"),
                     WATER_ROOT.attributeReward())
     );
-    public static final Entry WATER_SPEC_A_MODIFIER_1 = add(modifierSpell());
-    public static final Entry WATER_SPEC_B_MODIFIER_1 = add(modifierSpell());
-    public static final Entry WATER_SPEC_A_MODIFIER_2 = add(modifierSpell());
-    public static final Entry WATER_SPEC_B_MODIFIER_2 = add(modifierSpell());
-    public static final Entry WATER_SPEC_A_MODIFIER_3 = add(modifierSpell());
-    public static final Entry WATER_SPEC_B_MODIFIER_3 = add(modifierSpell());
-    public static final Entry WATER_SPEC_A_MODIFIER_4 = add(modifierSpell());
-    public static final Entry WATER_SPEC_B_MODIFIER_4 = add(modifierSpell());
+    public static final Entry WATER_SPEC_A_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.water_spec_a_modifier_1));
+    public static final Entry WATER_SPEC_B_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.water_spec_b_modifier_1));
+    public static final Entry WATER_SPEC_A_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.water_spec_a_modifier_2));
+    public static final Entry WATER_SPEC_B_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.water_spec_b_modifier_2));
+    public static final Entry WATER_SPEC_A_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.water_spec_a_modifier_3));
+    public static final Entry WATER_SPEC_B_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.water_spec_b_modifier_3));
+    public static final Entry WATER_SPEC_A_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.water_spec_a_modifier_4));
+    public static final Entry WATER_SPEC_B_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.water_spec_b_modifier_4));
     public static final Entry WATER_SPEC_A_PASSIVE_1 = add(modifierSpell());
     public static final Entry WATER_SPEC_B_PASSIVE_1 = add(modifierSpell());
     public static final Entry WATER_SPEC_A_PASSIVE_2 = add(modifierSpell());
@@ -203,17 +206,17 @@ public class MrpgSkillDefinitions {
             Entry.attribute("berserker_boost",
                     "Path of the Berserker",
                     null,
-                    Icon.item("berserker_rpg:"),
+                    Icon.item("berserker_rpg:iron_berserker_axe"),
                     BERSERKER_ROOT.attributeReward())
     );
-    public static final Entry BERSERKER_SPEC_A_MODIFIER_1 = add(modifierSpell());
-    public static final Entry BERSERKER_SPEC_B_MODIFIER_1 = add(modifierSpell());
-    public static final Entry BERSERKER_SPEC_A_MODIFIER_2 = add(modifierSpell());
-    public static final Entry BERSERKER_SPEC_B_MODIFIER_2 = add(modifierSpell());
-    public static final Entry BERSERKER_SPEC_A_MODIFIER_3 = add(modifierSpell());
-    public static final Entry BERSERKER_SPEC_B_MODIFIER_3 = add(modifierSpell());
-    public static final Entry BERSERKER_SPEC_A_MODIFIER_4 = add(modifierSpell());
-    public static final Entry BERSERKER_SPEC_B_MODIFIER_4 = add(modifierSpell());
+    public static final Entry BERSERKER_SPEC_A_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.berserker_spec_a_modifier_1));
+    public static final Entry BERSERKER_SPEC_B_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.berserker_spec_b_modifier_1));
+    public static final Entry BERSERKER_SPEC_A_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.berserker_spec_a_modifier_2));
+    public static final Entry BERSERKER_SPEC_B_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.berserker_spec_b_modifier_2));
+    public static final Entry BERSERKER_SPEC_A_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.berserker_spec_a_modifier_3));
+    public static final Entry BERSERKER_SPEC_B_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.berserker_spec_b_modifier_3));
+    public static final Entry BERSERKER_SPEC_A_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.berserker_spec_a_modifier_4));
+    public static final Entry BERSERKER_SPEC_B_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.berserker_spec_b_modifier_4));
     public static final Entry BERSERKER_SPEC_A_PASSIVE_1 = add(modifierSpell());
     public static final Entry BERSERKER_SPEC_B_PASSIVE_1 = add(modifierSpell());
     public static final Entry BERSERKER_SPEC_A_PASSIVE_2 = add(modifierSpell());
@@ -224,19 +227,19 @@ public class MrpgSkillDefinitions {
     ///FORCEMASTER
     public static final Entry FORCEMASTER_ROOT = add(
             Entry.attribute("forcemaster_root",
-                    "Path of Forcemaster",
+                    "Path of the Forcemaster",
                     null,
-                    Icon.item("elemental_wizards_rpg:forcemaster_spell_book"),
-                    MoreSpellSchools.FORCEMASTER.attributeEntry,
+                    Icon.item("forcemaster_rpg:forcemaster_spell_book"),
+                    EntityAttributes.GENERIC_ATTACK_SPEED,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
             )
     );
     public static final Entry FORCEMASTER_BOOST = add(
             Entry.attribute("forcemaster_boost",
-                    "Forcemaster Attunement",
+                    "Forcemaster Empowerment",
                     null,
-                    Icon.item("elemental_wizards:wand_forcemaster"),
+                    Icon.item("forcemaster_rpg:iron_knuckle"),
                     FORCEMASTER_ROOT.attributeReward())
     );
     public static final Entry FORCEMASTER_SPEC_A_MODIFIER_1 = add(modifierSpell());
@@ -256,19 +259,19 @@ public class MrpgSkillDefinitions {
     ///WAR ARCHER
     public static final Entry WAR_ARCHER_ROOT = add(
             Entry.attribute("war_archer_root",
-                    "Path of War Archer",
+                    "Path of the War Archer",
                     null,
-                    Icon.item("elemental_wizards_rpg:war_archer_spell_book"),
-                    MoreSpellSchools.WAR_ARCHER.attributeEntry,
+                    Icon.item("archers_expansion:war_archer_spell_book"),
+                    EntityAttributes_RangedWeapon.DAMAGE.entry,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
             )
     );
     public static final Entry WAR_ARCHER_BOOST = add(
             Entry.attribute("war_archer_boost",
-                    "War Archer Attunement",
+                    "War Archer Empowerment",
                     null,
-                    Icon.item("elemental_wizards:wand_war_archer"),
+                    Icon.item("archers:heavy_crossbow_standby"),
                     WAR_ARCHER_ROOT.attributeReward())
     );
     public static final Entry WAR_ARCHER_SPEC_A_MODIFIER_1 = add(modifierSpell());
@@ -288,19 +291,19 @@ public class MrpgSkillDefinitions {
     ///DEADEYE
     public static final Entry DEADEYE_ROOT = add(
             Entry.attribute("deadeye_root",
-                    "Path of Deadeye",
+                    "Path of the Deadeye",
                     null,
-                    Icon.item("elemental_wizards_rpg:deadeye_spell_book"),
-                    MoreSpellSchools.DEADEYE.attributeEntry,
+                    Icon.item("archers_expansion:deadeye_spell_book"),
+                    EntityAttributes_RangedWeapon.HASTE.entry,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
             )
     );
     public static final Entry DEADEYE_BOOST = add(
             Entry.attribute("deadeye_boost",
-                    "Deadeye Attunement",
+                    "Deadeye Empowerment",
                     null,
-                    Icon.item("elemental_wizards:wand_deadeye"),
+                    Icon.item("archers:mechanic_shortbow"),
                     DEADEYE_ROOT.attributeReward())
     );
     public static final Entry DEADEYE_SPEC_A_MODIFIER_1 = add(modifierSpell());
@@ -320,19 +323,19 @@ public class MrpgSkillDefinitions {
     ///TUNDRA HUNTER
     public static final Entry TUNDRA_HUNTER_ROOT = add(
             Entry.attribute("tundra_hunter_root",
-                    "Path of Tundra Hunter",
+                    "Path of the Tundra Hunter",
                     null,
-                    Icon.item("elemental_wizards_rpg:tundra_hunter_spell_book"),
-                    MoreSpellSchools.TUNDRA_HUNTER.attributeEntry,
-                    0.01,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                    Icon.item("archers_expansion:tundra_hunter_spell_book"),
+                    SpellSchools.FROST.attributeEntry,
+                    0.2,
+                    EntityAttributeModifier.Operation.ADD_VALUE
             )
     );
     public static final Entry TUNDRA_HUNTER_BOOST = add(
             Entry.attribute("tundra_hunter_boost",
-                    "Tundra Hunter Attunement",
+                    "Tundra Hunter Empowerment",
                     null,
-                    Icon.item("elemental_wizards:wand_tundra_hunter"),
+                    Icon.item("archers:rapid_crossbow_standby"),
                     TUNDRA_HUNTER_ROOT.attributeReward())
     );
     public static final Entry TUNDRA_HUNTER_SPEC_A_MODIFIER_1 = add(modifierSpell());
@@ -352,19 +355,19 @@ public class MrpgSkillDefinitions {
     ///WITCHER
     public static final Entry WITCHER_ROOT = add(
             Entry.attribute("witcher_root",
-                    "Path of Witcher",
+                    "Path of the Witcher",
                     null,
-                    Icon.item("elemental_wizards_rpg:witcher_spell_book"),
-                    MoreSpellSchools.WITCHER.attributeEntry,
+                    Icon.item("witcher_rpg:master_spell_book"),
+                    EntityAttributes.GENERIC_ATTACK_DAMAGE,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
             )
     );
     public static final Entry WITCHER_BOOST = add(
             Entry.attribute("witcher_boost",
-                    "Witcher Attunement",
+                    "Witcher Empowerment",
                     null,
-                    Icon.item("elemental_wizards:wand_witcher"),
+                    Icon.item("witcher_rpg:iron_witcher_sword"),
                     WITCHER_ROOT.attributeReward())
     );
     public static final Entry WITCHER_SPEC_A_MODIFIER_1 = add(modifierSpell());
@@ -381,5 +384,16 @@ public class MrpgSkillDefinitions {
     public static final Entry WITCHER_SPEC_B_PASSIVE_2 = add(modifierSpell());
     public static final Entry WITCHER_SPEC_A_PASSIVE_3 = add(modifierSpell());
     public static final Entry WITCHER_SPEC_B_PASSIVE_3 = add(modifierSpell());
+
+    /*
+    public static final Entry PRIEST_SPEC_A_PASSIVE_2 = add(
+            Entry.spell("priest_spec_a_passive_2",
+                    "Priest Spec A Passive 2",
+                    "Placeholder",
+                    Icon.spell(Identifier.of("paladins", "priest_spec_a_passive_2")),
+                    dummyContainer()
+            )
+    );
+     */
 
 }
