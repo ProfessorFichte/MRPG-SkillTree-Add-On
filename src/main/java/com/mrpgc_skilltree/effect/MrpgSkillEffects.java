@@ -172,6 +172,34 @@ public class MrpgSkillEffects {
                     )
             )
     ));
+    public static Effects.Entry CRYSTALLIZED_FISTS = add(new Effects.Entry(Identifier.of(MOD_ID, "crystallized_fists"),
+            "Crystallized Fists",
+            "Increases arcane spell power.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, SpellSchools.ARCANE.color),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellSchools.ARCANE.id,
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry PUMPED_UP = add(new Effects.Entry(Identifier.of(MOD_ID, "pumped_up"),
+            "Pumped Up",
+            "Increased Attack Damage",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
 
     public static void register(ConfigFile.Effects config) {
         for (var entry : entries) {

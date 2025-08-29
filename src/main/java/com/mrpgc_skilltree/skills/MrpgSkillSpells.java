@@ -2,7 +2,6 @@ package com.mrpgc_skilltree.skills;
 
 import com.mrpgc_skilltree.effect.MrpgSkillEffects;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.damage.DamageTypes;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.custom.MoreSpellSchools;
@@ -19,7 +18,7 @@ import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
 import net.spell_engine.internals.target.SpellTarget;
-import net.spell_power.api.SpellSchool;
+import net.spell_power.api.SpellSchools;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
@@ -69,7 +68,7 @@ public class MrpgSkillSpells {
         modifier.execute = TriState.ALLOW;
         impact.target_modifiers = List.of(modifier);
     }
-    private static SpellEntityPredicates.Entry HAS_BLEEDING = SpellEntityPredicates.hasEffectOptimized(Identifier.of("more_rpg_classes", "bleeding"));
+    private static final SpellEntityPredicates.Entry HAS_BLEEDING = SpellEntityPredicates.hasEffectOptimized(Identifier.of("more_rpg_classes", "bleeding"));
 
     ///AIR MODIFIERS
     public static final Entry air_spec_a_modifier_1 = add(air_spec_a_modifier_1());
@@ -881,5 +880,226 @@ public class MrpgSkillSpells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.BERSERKER));
     }
     ///BERSERKER PASSIVES
+    //TO DO
+    ///FORCEMASTER MODIFIERS
+    public static final Entry forcemaster_spec_a_modifier_1 = add(forcemaster_spec_a_modifier_1());
+    private static Entry forcemaster_spec_a_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "forcemaster_spec_a_modifier_1");
+        var title = "Shattering Splitters";
+        var description = "Melee hits with Stonehand deals {damage} damage around the target.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
+        var radius = 3.0F;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "forcemaster_rpg:stonehand";
+
+        var impact = SpellBuilder.Impacts.damage(0.5F, 0);
+        impact.action.allow_on_center_target = false;
+
+
+        var area_impact = new Spell.AreaImpact();
+        area_impact.execute_action_type = Spell.Impact.Action.Type.DAMAGE;
+        area_impact.radius = radius;
+        area_impact.area = new Spell.Target.Area();
+        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+        area_impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        "more_rpg_classes:stone_particle",
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        5, 0.15F, 0.15F
+                )
+        };
+
+
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+        modifier.replacing_area_impact = area_impact;
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FORCEMASTER));
+    }
+    public static final Entry forcemaster_spec_b_modifier_1 = add(forcemaster_spec_b_modifier_1());
+    private static Entry forcemaster_spec_b_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "forcemaster_spec_b_modifier_1");
+        var title = "Crystallized Fists";
+        var description = "Stonehand grants you the Crystallized Fists effect, increasing your arcane spell power by {bonus} for {effect_duration} seconds.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.ARCANE;
+        var effect = MrpgSkillEffects.CRYSTALLIZED_FISTS;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var modifier = effect.config().firstModifier();
+            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+            return args.description()
+                    .replace("{bonus}", bonus);
+        };
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "forcemaster_rpg:stonehand";
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(),10,0);
+        impact.action.apply_to_caster = true;
+
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.FORCEMASTER));
+    }
+    public static final Entry forcemaster_spec_a_modifier_2 = add(forcemaster_spec_a_modifier_2());
+    private static Entry forcemaster_spec_a_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "forcemaster_spec_a_modifier_2");
+        var title = "Pumped Up";
+        var description = "Burstcrack increases your attack damage by {bonus} for {effect_duration} seconds.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        var effect = MrpgSkillEffects.PUMPED_UP;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var modifier = effect.config().firstModifier();
+            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+            return args.description()
+                    .replace("{bonus}", bonus);
+        };
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "forcemaster_rpg:burstcrack";
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(),8,0);
+        impact.action.apply_to_caster = true;
+
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.FORCEMASTER));
+    }
+    public static final Entry forcemaster_spec_b_modifier_2 = add(forcemaster_spec_b_modifier_2());
+    private static Entry forcemaster_spec_b_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "forcemaster_spec_b_modifier_2");
+        var title = "Powerful Burst";
+        var description = "Burst Crack deals {critical_chance_bonus} critical chance bonus.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.ARCANE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "forcemaster_rpg:burstcrack";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.power_modifier.critical_chance_bonus = 0.1F;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FORCEMASTER));
+    }
+    public static final Entry forcemaster_spec_a_modifier_3 = add(forcemaster_spec_a_modifier_3());
+    private static Entry forcemaster_spec_a_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "forcemaster_spec_a_modifier_3");
+        var title = "Powerful Belial Smashing";
+        var description = "Belial Smashing has {trigger_chance} chance to knock up the target.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.specificSpellHit("forcemaster_rpg:belial_smashing");
+        trigger.chance = 0.25F;
+        spell.passive.triggers = List.of(trigger);
+
+        var custom = new Spell.Impact();
+        custom.action = new Spell.Impact.Action();
+        custom.action.custom = new Spell.Impact.Action.Custom();
+        custom.action.type = Spell.Impact.Action.Type.CUSTOM;
+        custom.action.custom.intent = SpellTarget.Intent.HARMFUL;
+        custom.action.custom.handler = "more_rpg_classes:knock_up_fixed";
+        custom.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                SpellEngineParticles.smoke_medium.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.FEET,
+                        20, 0.1F, 0.3F)
+                        .extent(0.25F)
+                        .color(Color.WHITE.toRGBA()),
+        };
+
+        spell.impacts = List.of(custom);
+        SpellBuilder.Cost.cooldown(spell, 0.5F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FORCEMASTER));
+    }
+    public static final Entry forcemaster_spec_b_modifier_3 = add(forcemaster_spec_b_modifier_3());
+    private static Entry forcemaster_spec_b_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "forcemaster_spec_b_modifier_3");
+        var title = "Explosive Belial Smashing";
+        var description = "Belial Smashing has {trigger_chance} chance to knock up the target.";
+        var spell = createModifierAlikePassiveSpell();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
+        var radius = 5F;
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "forcemaster_rpg:belial_smashing";
+        var impact = SpellBuilder.Impacts.damage(0.7F, 0.5F);
+
+        var area_impact = new Spell.AreaImpact();
+        area_impact.execute_action_type = Spell.Impact.Action.Type.DAMAGE;
+        area_impact.radius = radius;
+        area_impact.area = new Spell.Target.Area();
+        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+        area_impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.ARCANE,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        25, 0.35F, 0.35F
+                ).color(Color.ARCANE.toRGBA()),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPELL,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        25, 0.5F, 0.5F
+                ).color(Color.ARCANE.toRGBA())
+        };
+
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+        modifier.replacing_area_impact = area_impact;
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FORCEMASTER));
+    }
+    public static final Entry forcemaster_spec_a_modifier_4 = add(forcemaster_spec_a_modifier_4());
+    private static Entry forcemaster_spec_a_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "forcemaster_spec_b_modifier_2");
+        var title = "Powerful Asalraalaikum";
+        var description = " Asalraalaikum damage increased by {power_multiplier}.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "forcemaster_rpg:asal";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.power_modifier.power_multiplier = 0.3F;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FORCEMASTER));
+    }
+    public static final Entry forcemaster_spec_b_modifier_4 = add(forcemaster_spec_b_modifier_4());
+    private static Entry forcemaster_spec_b_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "forcemaster_spec_b_modifier_4");
+        var title = "Arcane Regeneration";
+        var description = "Reduces the cooldown of Asalraalaikum  by {cooldown_duration_deduct} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = SpellSchools.ARCANE;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "forcemaster_rpg:asal";
+        modifier.cooldown_duration_deduct = 8;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FORCEMASTER));
+    }
+    ///FORCEMASTER PASSIVES
     //TO DO
 }

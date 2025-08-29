@@ -352,7 +352,10 @@ public class MrpgSkillDefinitions {
     public static final Entry TUNDRA_HUNTER_SPEC_B_PASSIVE_2 = add(modifierSpell());
     public static final Entry TUNDRA_HUNTER_SPEC_A_PASSIVE_3 = add(modifierSpell());
     public static final Entry TUNDRA_HUNTER_SPEC_B_PASSIVE_3 = add(modifierSpell());
+
+    /*
     ///WITCHER
+    /// TO DO WILL BE POSTPONED
     public static final Entry WITCHER_ROOT = add(
             Entry.attribute("witcher_root",
                     "Path of the Witcher",
@@ -386,11 +389,11 @@ public class MrpgSkillDefinitions {
     public static final Entry WITCHER_SPEC_B_PASSIVE_3 = add(modifierSpell());
 
     /*
-    public static final Entry PRIEST_SPEC_A_PASSIVE_2 = add(
-            Entry.spell("priest_spec_a_passive_2",
-                    "Priest Spec A Passive 2",
+    public static final Entry WITCHER_SPEC_A_PASSIVE_1 = add(
+            Entry.spell("witcher_spec_a_passive_1",
+                    "Witcher Spec A Passive 1",
                     "Placeholder",
-                    Icon.spell(Identifier.of("paladins", "priest_spec_a_passive_2")),
+                    Icon.spell(Identifier.of("witcher_rpg", "witcher_spec_a_passive_1")),
                     dummyContainer()
             )
     );
