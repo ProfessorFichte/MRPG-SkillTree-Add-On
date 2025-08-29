@@ -9,10 +9,8 @@ import net.more_rpg_classes.custom.MoreSpellSchools;
 import net.spell_engine.api.config.AttributeModifier;
 import net.spell_engine.api.config.ConfigFile;
 import net.spell_engine.api.config.EffectConfig;
-import net.spell_engine.api.effect.CustomStatusEffect;
-import net.spell_engine.api.effect.Effects;
-import net.spell_engine.api.effect.Protection;
-import net.spell_engine.api.effect.Synchronized;
+import net.spell_engine.api.effect.*;
+import net.spell_engine.api.entity.SpellEngineAttributes;
 import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_power.api.SpellSchools;
 
@@ -123,11 +121,91 @@ public class MrpgSkillEffects {
                     )
             )
     ));
+    public static Effects.Entry BLIND_WITH_RAGE = add(new Effects.Entry(Identifier.of(MOD_ID, "blind_with_rage"),
+            "Blind with Rage",
+            "Reduces Damage Taken",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellEngineAttributes.DAMAGE_TAKEN.id.toString(),
+                                    -0.15F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry BLOODFLOW = add(new Effects.Entry(Identifier.of(MOD_ID, "bloodflow"),
+            "Bloodflow",
+            "Increased Attack Damage",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry DEADLY_PRECISION = add(new Effects.Entry(Identifier.of(MOD_ID, "deadly_precision"),
+            "Deadly Precision",
+            "Deal additional damage according to the targets max health.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                    )
+            )
+    ));
+    public static Effects.Entry RECKLESS_RAGE = add(new Effects.Entry(Identifier.of(MOD_ID, "reckless_rage"),
+            "Reckless Rage",
+            "Absorbs damage.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
+                                    2,
+                                    EntityAttributeModifier.Operation.ADD_VALUE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry CRYSTALLIZED_FISTS = add(new Effects.Entry(Identifier.of(MOD_ID, "crystallized_fists"),
+            "Crystallized Fists",
+            "Increases arcane spell power.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, SpellSchools.ARCANE.color),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellSchools.ARCANE.id,
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry PUMPED_UP = add(new Effects.Entry(Identifier.of(MOD_ID, "pumped_up"),
+            "Pumped Up",
+            "Increased Attack Damage",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
 
     public static void register(ConfigFile.Effects config) {
         for (var entry : entries) {
             Synchronized.configure(entry.effect, true);
         }
+
         Effects.register(entries, config.effects);
 
         Protection.register(OBSIDIAN_SKIN.entry, new Protection.Pop(
