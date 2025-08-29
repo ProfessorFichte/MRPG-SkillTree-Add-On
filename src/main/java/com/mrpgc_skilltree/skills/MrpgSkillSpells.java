@@ -641,7 +641,7 @@ public class MrpgSkillSpells {
         trigger.chance = 0.3F;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.stun(2F);
+        var impact = SpellBuilder.Impacts.stun(3.5F);
         spell.impacts = List.of(impact);
         SpellBuilder.Cost.cooldown(spell, 1F);
 
@@ -1101,5 +1101,199 @@ public class MrpgSkillSpells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.FORCEMASTER));
     }
     ///FORCEMASTER PASSIVES
+    //TO DO
+    ///WAR ARCHER MODIFIERS
+    public static final Entry war_archer_spec_a_modifier_1 = add(war_archer_spec_a_modifier_1());
+    private static Entry war_archer_spec_a_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_a_modifier_1");
+        var title = "Expanded Smoldering Arrow";
+
+        var bonus = 0.5F;
+
+        var description = "Increases the area of effect of Smoldering Arrow by {bonus}.";
+        var mutator = new SpellTooltip.DescriptionMutator() {
+            @Override
+            public String mutate(Args args) {
+                return args.description().replace("{bonus}", SpellTooltip.percent(bonus));
+            }
+        };
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:smoldering_arrow";
+        var extendedRadius = 2.0F * (1F + bonus);
+        modifier.replacing_area_impact = new Spell.AreaImpact();
+        Spell.AreaImpact area_impact = new Spell.AreaImpact();
+        area_impact.radius = extendedRadius;
+        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+        area_impact.particles = new ParticleBatch[]{(new ParticleBatch("spell_engine:fire_explosion",
+                ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 1.0F, 0.0F, 0.0F)).scale(extendedRadius/2),
+               new ParticleBatch("spell_engine:flame_medium_b",
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 25.0F, 0.1F, 0.3F).preSpawnTravel(2),
+                new ParticleBatch("spell_engine:flame_medium_b",
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 25.0F, 0.2F, 0.4F).preSpawnTravel(4)
+        };
+        modifier.replacing_area_impact.sound = new Sound("entity.generic.explode");
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.WAR_ARCHER));
+    }
+    public static final Entry war_archer_spec_b_modifier_1 = add(war_archer_spec_b_modifier_1());
+    private static Entry war_archer_spec_b_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_b_modifier_1");
+        var title = "Explosive Push";
+        var description = "Increases the knockback of Smoldering Arrow by {knockback_multiply_base}.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var bonus = 0.5F;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:smoldering_arrow";
+        modifier.knockback_multiply_base = bonus;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
+    }
+    public static final Entry war_archer_spec_a_modifier_2 = add(war_archer_spec_a_modifier_2());
+    private static Entry war_archer_spec_a_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_a_modifier_2");
+        var title = "Flaming Double Shot";
+        var description = "Increases the knockback of Double Shot by {knockback_multiply_base}.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var bonus = 1.0F;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:dual_shot";
+        modifier.knockback_multiply_base = bonus;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
+    }
+    public static final Entry war_archer_spec_b_modifier_2 = add(war_archer_spec_b_modifier_2());
+    private static Entry war_archer_spec_b_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_b_modifier_2");
+        var title = "Heavy Arrow Tips";
+        var description = "Double Shot deals {power_multiplier} more damage and lights enemies on fire.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:dual_shot";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.power_modifier.power_multiplier = 0.1F;
+
+        var impact = SpellBuilder.Impacts.fire(2F);
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.flame_medium_a.id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        1, 0.1F, 0.2F),
+                new ParticleBatch(
+                        SpellEngineParticles.flame_medium_b.id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        1, 0.1F, 0.2F)
+        };
+        impact.sound = Sound.withVolume(SpellEngineSounds.GENERIC_FIRE_IGNITE.id(), 0.6F);
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
+    }
+    public static final Entry war_archer_spec_a_modifier_3 = add(war_archer_spec_a_modifier_3());
+    private static Entry war_archer_spec_a_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_a_modifier_3");
+        var title = "Explosive Point Blank Shot";
+        var description = "Damaging with Point Blank Shot causes small explosion, hitting enemies within {impact_range} blocks radius, dealing extra {damage} damage.";
+        var spell = createModifierAlikePassiveSpell();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var radius = 2F;
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:point_blank_shot";
+        var impact = SpellBuilder.Impacts.damage(0.5F, 0F);
+
+        var area_impact = new Spell.AreaImpact();
+        area_impact.execute_action_type = Spell.Impact.Action.Type.DAMAGE;
+        area_impact.radius = radius;
+        area_impact.area = new Spell.Target.Area();
+        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+        area_impact.particles = new ParticleBatch[]{(new ParticleBatch("spell_engine:fire_explosion",
+                ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 1.0F, 0.0F, 0.0F)).scale(2),
+                new ParticleBatch("spell_engine:flame_medium_b",
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 25.0F, 0.1F, 0.3F).preSpawnTravel(2).extent(2),
+                new ParticleBatch("spell_engine:flame_medium_b",
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 25.0F, 0.2F, 0.4F).preSpawnTravel(4).extent(4)
+        };
+
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.PREPEND;
+        modifier.impacts = List.of(impact);
+        modifier.replacing_area_impact = area_impact;
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
+    }
+    public static final Entry war_archer_spec_b_modifier_3 = add(war_archer_spec_b_modifier_3());
+    private static Entry war_archer_spec_b_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_b_modifier_3");
+        var title = "Heavy Point Blank Shot";
+        var description = "Point Blank Shot has {trigger_chance} chance to stun the target.";
+        var spell = createModifierAlikePassiveSpell();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.specificSpellHit("archers_expansion:point_blank_shot");
+        trigger.chance = 0.2F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.stun(3F);
+        spell.impacts = List.of(impact);
+        SpellBuilder.Cost.cooldown(spell, 1F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
+    }
+    public static final Entry war_archer_spec_a_modifier_4 = add(war_archer_spec_a_modifier_4());
+    private static Entry war_archer_spec_a_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_a_modifier_4");
+        var title = "Combustive Shot";
+        var description = "Pin Down leaves a burning area behind, dealing {damage} damage to enemies, for {cloud_duration} sec.";
+        var spell = createModifierAlikePassiveSpell();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.specificSpellCast("archers_expansion:pin_down");
+        spell.passive.triggers = List.of(trigger);
+
+        SpellBuilder.Complex.flameCloud(spell, 5.0F, 0.75F, 8, null);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
+    }
+    public static final Entry war_archer_spec_b_modifier_4 = add(war_archer_spec_b_modifier_4());
+    private static Entry war_archer_spec_b_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_b_modifier_4");
+        var title = "Increased Pin Down";
+        var description = "Increases the knockback of Double Shot by {knockback_multiply_base}.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:pin_down";
+        modifier.effect_duration_add = 3;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
+    }
+    ///WAR ARCHER PASSIVES
     //TO DO
 }
