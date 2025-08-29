@@ -6,6 +6,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.custom.MoreSpellSchools;
 import net.more_rpg_classes.effect.MRPGCEffects;
+import net.skill_tree_rpgs.skills.Spells;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.entity.SpellEntityPredicates;
 import net.spell_engine.api.spell.ExternalSpellSchools;
@@ -68,6 +69,11 @@ public class MrpgSkillSpells {
         modifier.execute = TriState.ALLOW;
         impact.target_modifiers = List.of(modifier);
     }
+    private static void poisonDeny(Spell.Impact impact) {
+        var modifier = createImpactModifier("#minecraft:ignores_poison_and_regen");
+        modifier.execute = TriState.DENY;
+        impact.target_modifiers = List.of(modifier);
+    }
     private static final SpellEntityPredicates.Entry HAS_BLEEDING = SpellEntityPredicates.hasEffectOptimized(Identifier.of("more_rpg_classes", "bleeding"));
 
     ///AIR MODIFIERS
@@ -121,7 +127,7 @@ public class MrpgSkillSpells {
         trigger.chance = 0.3F;
         spell.passive.triggers = List.of(trigger);
 
-        var debuff = SpellBuilder.Impacts.effectSet(StatusEffects.SLOW_FALLING.getIdAsString(), 2, 1);
+        var debuff = SpellBuilder.Impacts.effectSet(StatusEffects.SLOW_FALLING.getIdAsString(), 2, 0);
         debuff.action.status_effect.amplifier_power_multiplier = 0.2F;
         debuff.action.status_effect.refresh_duration = true;
         spell.impacts = List.of(debuff);
@@ -496,7 +502,7 @@ public class MrpgSkillSpells {
         trigger.chance = 0.15F;
         spell.passive.triggers = List.of(trigger);
 
-        var debuff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 5, 1);
+        var debuff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 5, 0);
         debuff.action.status_effect.refresh_duration = true;
         spell.impacts = List.of(debuff);
 
@@ -641,7 +647,7 @@ public class MrpgSkillSpells {
         trigger.chance = 0.3F;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.stun(2F);
+        var impact = SpellBuilder.Impacts.stun(3.5F);
         spell.impacts = List.of(impact);
         SpellBuilder.Cost.cooldown(spell, 1F);
 
@@ -1101,5 +1107,393 @@ public class MrpgSkillSpells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.FORCEMASTER));
     }
     ///FORCEMASTER PASSIVES
+    //TO DO
+    ///WAR ARCHER MODIFIERS
+    public static final Entry war_archer_spec_a_modifier_1 = add(war_archer_spec_a_modifier_1());
+    private static Entry war_archer_spec_a_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_a_modifier_1");
+        var title = "Expanded Smoldering Arrow";
+
+        var bonus = 0.5F;
+
+        var description = "Increases the area of effect of Smoldering Arrow by {bonus}.";
+        var mutator = new SpellTooltip.DescriptionMutator() {
+            @Override
+            public String mutate(Args args) {
+                return args.description().replace("{bonus}", SpellTooltip.percent(bonus));
+            }
+        };
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:smoldering_arrow";
+        var extendedRadius = 2.0F * (1F + bonus);
+        modifier.replacing_area_impact = new Spell.AreaImpact();
+        Spell.AreaImpact area_impact = new Spell.AreaImpact();
+        area_impact.radius = extendedRadius;
+        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+        area_impact.particles = new ParticleBatch[]{(new ParticleBatch("spell_engine:fire_explosion",
+                ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 1.0F, 0.0F, 0.0F)).scale(extendedRadius/2),
+               new ParticleBatch("spell_engine:flame_medium_b",
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 25.0F, 0.1F, 0.3F).preSpawnTravel(2),
+                new ParticleBatch("spell_engine:flame_medium_b",
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 25.0F, 0.2F, 0.4F).preSpawnTravel(4)
+        };
+        modifier.replacing_area_impact.sound = new Sound("entity.generic.explode");
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.WAR_ARCHER));
+    }
+    public static final Entry war_archer_spec_b_modifier_1 = add(war_archer_spec_b_modifier_1());
+    private static Entry war_archer_spec_b_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_b_modifier_1");
+        var title = "Explosive Push";
+        var description = "Increases the knockback of Smoldering Arrow by {knockback_multiply_base}.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var bonus = 0.5F;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:smoldering_arrow";
+        modifier.knockback_multiply_base = bonus;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
+    }
+    public static final Entry war_archer_spec_a_modifier_2 = add(war_archer_spec_a_modifier_2());
+    private static Entry war_archer_spec_a_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_a_modifier_2");
+        var title = "Flaming Double Shot";
+        var description = "Increases the knockback of Double Shot by {knockback_multiply_base}.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var bonus = 1.0F;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:dual_shot";
+        modifier.knockback_multiply_base = bonus;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
+    }
+    public static final Entry war_archer_spec_b_modifier_2 = add(war_archer_spec_b_modifier_2());
+    private static Entry war_archer_spec_b_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_b_modifier_2");
+        var title = "Heavy Arrow Tips";
+        var description = "Double Shot deals {power_multiplier} more damage and lights enemies on fire.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:dual_shot";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.power_modifier.power_multiplier = 0.1F;
+
+        var impact = SpellBuilder.Impacts.fire(2F);
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.flame_medium_a.id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        1, 0.1F, 0.2F),
+                new ParticleBatch(
+                        SpellEngineParticles.flame_medium_b.id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        1, 0.1F, 0.2F)
+        };
+        impact.sound = Sound.withVolume(SpellEngineSounds.GENERIC_FIRE_IGNITE.id(), 0.6F);
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
+    }
+    public static final Entry war_archer_spec_a_modifier_3 = add(war_archer_spec_a_modifier_3());
+    private static Entry war_archer_spec_a_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_a_modifier_3");
+        var title = "Explosive Point Blank Shot";
+        var description = "Damaging with Point Blank Shot causes small explosion, hitting enemies within {impact_range} blocks radius, dealing extra {damage} damage.";
+        var spell = createModifierAlikePassiveSpell();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var radius = 2F;
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:point_blank_shot";
+        var impact = SpellBuilder.Impacts.damage(0.5F, 0F);
+
+        var area_impact = new Spell.AreaImpact();
+        area_impact.execute_action_type = Spell.Impact.Action.Type.DAMAGE;
+        area_impact.radius = radius;
+        area_impact.area = new Spell.Target.Area();
+        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+        area_impact.particles = new ParticleBatch[]{(new ParticleBatch("spell_engine:fire_explosion",
+                ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 1.0F, 0.0F, 0.0F)).scale(2),
+                new ParticleBatch("spell_engine:flame_medium_b",
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 25.0F, 0.1F, 0.3F).preSpawnTravel(2).extent(2),
+                new ParticleBatch("spell_engine:flame_medium_b",
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 25.0F, 0.2F, 0.4F).preSpawnTravel(4).extent(4)
+        };
+
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.PREPEND;
+        modifier.impacts = List.of(impact);
+        modifier.replacing_area_impact = area_impact;
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
+    }
+    public static final Entry war_archer_spec_b_modifier_3 = add(war_archer_spec_b_modifier_3());
+    private static Entry war_archer_spec_b_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_b_modifier_3");
+        var title = "Heavy Point Blank Shot";
+        var description = "Point Blank Shot has {trigger_chance} chance to stun the target.";
+        var spell = createModifierAlikePassiveSpell();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.specificSpellHit("archers_expansion:point_blank_shot");
+        trigger.chance = 0.2F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.stun(3F);
+        spell.impacts = List.of(impact);
+        SpellBuilder.Cost.cooldown(spell, 1F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
+    }
+    public static final Entry war_archer_spec_a_modifier_4 = add(war_archer_spec_a_modifier_4());
+    private static Entry war_archer_spec_a_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_a_modifier_4");
+        var title = "Combustive Shot";
+        var description = "Pin Down leaves a burning area behind, dealing {damage} damage to enemies, for {cloud_duration} sec.";
+        var spell = createModifierAlikePassiveSpell();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.specificSpellCast("archers_expansion:pin_down");
+        spell.passive.triggers = List.of(trigger);
+
+        SpellBuilder.Complex.flameCloud(spell, 5.0F, 0.75F, 8, null);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
+    }
+    public static final Entry war_archer_spec_b_modifier_4 = add(war_archer_spec_b_modifier_4());
+    private static Entry war_archer_spec_b_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_b_modifier_4");
+        var title = "Increased Pin Down";
+        var description = "Increases the knockback of Double Shot by {knockback_multiply_base}.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:pin_down";
+        modifier.effect_duration_add = 3;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
+    }
+    ///WAR ARCHER PASSIVES
+    //TO DO
+    ///DEADEYE MODIFIERS
+    public static final Entry deadeye_spec_a_modifier_1 = add(deadeye_spec_a_modifier_1());
+    private static Entry deadeye_spec_a_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "deadeye_spec_a_modifier_1");
+        var title = "Poisonous Sting";
+        var description = "Fast Shot has {impact_chance} chance to apply stacking poison, lasting {effect_duration} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:fast_shot";
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.PREPEND;
+
+        var debuff = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 5, 1, 1);
+        debuff.chance = 0.4F;
+        debuff.action.status_effect.refresh_duration = true;
+        debuff.particles = new ParticleBatch[]{(new ParticleBatch(
+                SpellEngineParticles.MagicParticles.get(
+                        SpellEngineParticles.MagicParticles.Shape.SPARK,
+                        SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                10, 0.5F, 0.8F)
+                .color(Color.POISON_MID.toRGBA())),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        10, 0.5F, 0.8F)
+                        .color(Color.POISON_DARK.toRGBA()),
+        };
+        modifier.impacts = List.of(debuff);
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
+    }
+    public static final Entry deadeye_spec_b_modifier_1 = add(deadeye_spec_b_modifier_1());
+    private static Entry deadeye_spec_b_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "deadeye_spec_b_modifier_1");
+        var title = "Fast Hands";
+        var description = "Fast Shot applies {effect_amplifier_cap_add} additional Fast Shot stack.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:fast_shot";
+        modifier.effect_amplifier_cap_add = 1;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
+    }
+    public static final Entry deadeye_spec_a_modifier_2 = add(deadeye_spec_a_modifier_2());
+    private static Entry deadeye_spec_a_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "deadeye_spec_a_modifier_2");
+        var title = "Barbed Trick Arrows";
+        var description = "Trick Shot's bleeding effect lasts {effect_duration_add} sec longer.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:trick_shot";
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
+    }
+    public static final Entry deadeye_spec_b_modifier_2 = add(deadeye_spec_b_modifier_2());
+    private static Entry deadeye_spec_b_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "deadeye_spec_b_modifier_2");
+        var title = "Bouncing Trick Shots";
+        var description = "Trick Shot now ricochets {ricochet} times.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:trick_shot";
+        modifier.projectile_perks = Spell.ProjectileData.Perks.EMPTY();
+        modifier.projectile_perks.ricochet = 3;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
+    }
+    public static final Entry deadeye_spec_a_modifier_3 = add(deadeye_spec_a_modifier_3());
+    private static Entry deadeye_spec_a_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "deadeye_spec_a_modifier_3");
+        var title = "Wounding Shot";
+        var description = "If the target has a bad effect Disabling Shot inflicts grievous wounds for {effect_duration} sec.";
+        var spell = createModifierAlikePassiveSpell();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+        var trigger = SpellBuilder.Triggers.specificSpellHit("archers_expansion:disabling_shot");
+        var condition = new Spell.TargetCondition();
+        condition.entity_predicate_id = String.valueOf(SpellEntityPredicates.HAS_BAD_EFFECT);
+        trigger.target_conditions = List.of(condition);
+        spell.passive.triggers = List.of(trigger);
+
+        var debuff = SpellBuilder.Impacts.effectSet(MRPGCEffects.GRIEVOUS_WOUNDS.id.toString(), 6, 0);
+        debuff.action.status_effect.amplifier_power_multiplier = 0.25F;
+        debuff.action.status_effect.refresh_duration = true;
+        spell.impacts = List.of(debuff);
+
+        SpellBuilder.Cost.cooldown(spell, 0.5F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
+    }
+    public static final Entry deadeye_spec_b_modifier_3 = add(deadeye_spec_b_modifier_3());
+    private static Entry deadeye_spec_b_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "deadeye_spec_b_modifier_3");
+        var title = "Leaping Swiftness";
+        var description = "If the target has a bad effect Disabling Shot inflicts grievous wounds for {effect_duration} sec.";
+        var spell = createModifierAlikePassiveSpell();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+        var trigger = SpellBuilder.Triggers.specificSpellHit("archers_expansion:disabling_shot");
+        var condition = new Spell.TargetCondition();
+        condition.entity_predicate_id = String.valueOf(SpellEntityPredicates.HAS_BAD_EFFECT);
+        trigger.target_conditions = List.of(condition);
+        spell.passive.triggers = List.of(trigger);
+
+        var buff = SpellBuilder.Impacts.effectSet(MrpgSkillEffects.LEAPING_SWIFTNESS.toString(), 5, 0);
+        buff.action.status_effect.refresh_duration = true;
+        buff.action.apply_to_caster = true;
+        spell.impacts = List.of(buff);
+
+        SpellBuilder.Cost.cooldown(spell, 0.5F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
+    }
+    public static final Entry deadeye_spec_a_modifier_4 = add(deadeye_spec_a_modifier_4());
+    private static Entry deadeye_spec_a_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "deadeye_spec_a_modifier_4");
+        var title = "Persistent Gas Cloud";
+        var description = "Choking Gas leaves a gas cloud behind, poisoning and dealing {damage} damage to enemies for {cloud_duration} sec.";
+        var spell = createModifierAlikePassiveSpell();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.specificSpellCast("archers_expansion:choking_gas");
+        spell.passive.triggers = List.of(trigger);
+
+        spell.deliver.type = Spell.Delivery.Type.CLOUD;
+        spell.deliver.delay = 8;
+        Spell.Delivery.Cloud cloud = new Spell.Delivery.Cloud();
+        cloud.volume.radius = 5;
+        cloud.volume.area.vertical_range_multiplier = 0.3F;
+        cloud.volume.sound = new Sound(SpellEngineSounds.POISON_CLOUD_TICK.id().toString());
+        cloud.impact_tick_interval = 8;
+        cloud.time_to_live_seconds = 5;
+        cloud.spawn.sound = new Sound(SpellEngineSounds.POISON_CLOUD_SPAWN.id().toString());
+        cloud.client_data = new Spell.Delivery.Cloud.ClientData();
+        cloud.client_data.light_level = 0;
+        cloud.client_data.particles = new ParticleBatch[]{(new ParticleBatch(SpellEngineParticles.smoke_large.id().toString(), ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET, 1.0F, 0.01F, 0.02F)).color(2583652010L), (new ParticleBatch(SpellEngineParticles.smoke_large.id().toString(), ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET, 1.0F, 0.01F, 0.02F)).color(870134766L)};
+        spell.deliver.clouds = List.of(cloud);
+        Spell.Impact debuff = SpellBuilder.Impacts.effectSet("archers_expansion:choking_gas", 3, 0);
+        debuff.action.status_effect.amplifier_power_multiplier = 0.2F;
+        debuff.particles = new ParticleBatch[]{(new ParticleBatch(
+                SpellEngineParticles.smoke_large.id().toString(), ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                1.5F, 0.01F, 0.02F))
+                .color(Color.POISON_MID.toRGBA()),
+                new ParticleBatch(SpellEngineParticles.MagicParticles.get(SpellEngineParticles.MagicParticles.Shape.SKULL,
+                        SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(), ParticleBatch.Shape.SPHERE,
+                        ParticleBatch.Origin.CENTER, 3.0F, 0.1F, 0.2F)
+                        .color(Color.POISON_MID.toRGBA())};
+        poisonDeny(debuff);
+        var impact = SpellBuilder.Impacts.damage(0.25F, 0);
+        spell.impacts = List.of(debuff,impact);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
+    }
+    public static final Entry deadeye_spec_b_modifier_4 = add(deadeye_spec_b_modifier_4());
+    private static Entry deadeye_spec_b_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "deadeye_spec_b_modifier_4");
+        var title = "Bouncing Gas Arrow";
+        var description = "The Choking Gas Arrow now ricochets {ricochet} times.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:trick_shot";
+        modifier.projectile_perks = Spell.ProjectileData.Perks.EMPTY();
+        modifier.projectile_perks.ricochet_range = 10;
+        modifier.projectile_perks.ricochet = 3;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
+    }
+    ///DEADEYE PASSIVES
     //TO DO
 }
