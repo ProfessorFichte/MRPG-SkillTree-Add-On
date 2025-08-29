@@ -200,6 +200,20 @@ public class MrpgSkillEffects {
                     )
             )
     ));
+    public static Effects.Entry LEAPING_SWIFTNESS = add(new Effects.Entry(Identifier.of(MOD_ID, "leaping_swiftness"),
+            "Leaping Swiftness",
+            "Increased Movement Speed",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    0.15F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
 
     public static void register(ConfigFile.Effects config) {
         for (var entry : entries) {
