@@ -1413,10 +1413,17 @@ public class MrpgSkillSpells {
     private static Entry deadeye_spec_b_modifier_3() {
         var id = Identifier.of(NAMESPACE, "deadeye_spec_b_modifier_3");
         var title = "Leaping Swiftness";
-        var description = "If the target has a bad effect Disabling Shot inflicts grievous wounds for {effect_duration} sec.";
+        var description = "Disabling Shot increases movement speed by {bonus} for {effect_duration} secs.";
         var spell = createModifierAlikePassiveSpell();
         spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
         spell.range = 0;
+        var effect = MrpgSkillEffects.LEAPING_SWIFTNESS;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var modifier = effect.config().firstModifier();
+            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+            return args.description()
+                    .replace("{bonus}", bonus);
+        };
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
         var trigger = SpellBuilder.Triggers.specificSpellHit("archers_expansion:disabling_shot");
@@ -1425,14 +1432,14 @@ public class MrpgSkillSpells {
         trigger.target_conditions = List.of(condition);
         spell.passive.triggers = List.of(trigger);
 
-        var buff = SpellBuilder.Impacts.effectSet(MrpgSkillEffects.LEAPING_SWIFTNESS.toString(), 5, 0);
+        var buff = SpellBuilder.Impacts.effectSet(effect.toString(), 5, 0);
         buff.action.status_effect.refresh_duration = true;
         buff.action.apply_to_caster = true;
         spell.impacts = List.of(buff);
 
         SpellBuilder.Cost.cooldown(spell, 0.5F);
 
-        return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.DEADEYE));
     }
     public static final Entry deadeye_spec_a_modifier_4 = add(deadeye_spec_a_modifier_4());
     private static Entry deadeye_spec_a_modifier_4() {
@@ -1486,7 +1493,7 @@ public class MrpgSkillSpells {
         spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
 
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "archers_expansion:trick_shot";
+        modifier.spell_pattern = "archers_expansion:choking_gas";
         modifier.projectile_perks = Spell.ProjectileData.Perks.EMPTY();
         modifier.projectile_perks.ricochet_range = 10;
         modifier.projectile_perks.ricochet = 3;
@@ -1495,5 +1502,167 @@ public class MrpgSkillSpells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
     }
     ///DEADEYE PASSIVES
+    //TO DO
+    ///TUNDRA HUNTER MODIFIERS
+    public static final Entry tundra_hunter_spec_a_modifier_1 = add(tundra_hunter_spec_a_modifier_1());
+    private static Entry tundra_hunter_spec_a_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_a_modifier_1");
+        var title = "Additional Frozen Shots";
+        var description = "You gain {stash_amplifier_add} additional Frozen Shots.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:frozen_shot";
+        modifier.stash_amplifier_add = 2;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.TUNDRA_HUNTER));
+    }
+    public static final Entry tundra_hunter_spec_b_modifier_1 = add(tundra_hunter_spec_b_modifier_1());
+    private static Entry tundra_hunter_spec_b_modifier_1() {
+        var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_b_modifier_1");
+        var title = "Frost Stalker";
+        var description = "Increases the duration of Frosted by {effect_duration_add} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:frozen_shot";
+        modifier.effect_duration_add = 2;
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.TUNDRA_HUNTER));
+    }
+    public static final Entry tundra_hunter_spec_a_modifier_2 = add(tundra_hunter_spec_a_modifier_2());
+    private static Entry tundra_hunter_spec_a_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_a_modifier_2");
+        var title = "Extra Arctic Shots";
+        var description = "Arctic Volley shoots {extra_launch} additional arctic arrows.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:arctic_volley";
+
+        modifier.projectile_launch = Spell.LaunchProperties.EMPTY();
+        modifier.projectile_launch.extra_launch_count = 3;
+        modifier.projectile_launch.extra_launch_delay = 3;
+        modifier.power_modifier = new Spell.Impact.Modifier();
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.TUNDRA_HUNTER));
+    }
+    public static final Entry tundra_hunter_spec_b_modifier_2 = add(tundra_hunter_spec_b_modifier_2());
+    private static Entry tundra_hunter_spec_b_modifier_2() {
+        var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_b_modifier_2");
+        var title = "Arctic Blessing";
+        var description = "Reduces the cooldown of Arctic Volley by {cooldown_duration_deduct} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:arctic_volley";
+        modifier.cooldown_duration_deduct = 2;
+        modifier.power_modifier = new Spell.Impact.Modifier();
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.TUNDRA_HUNTER));
+    }
+    public static final Entry tundra_hunter_spec_a_modifier_3 = add(tundra_hunter_spec_a_modifier_3());
+    private static Entry tundra_hunter_spec_a_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_a_modifier_3");
+        var title = "Arctic Pact";
+        var description = "Frozen Pact has a {trigger_chance} chance to freeze targets solid.";
+        var spell = createModifierAlikePassiveSpell();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.specificSpellHit("archers_expansion:frozen_pact");
+        trigger.chance = 0.3F;
+        spell.passive.triggers = List.of(trigger);
+
+        var debuff = SpellBuilder.Impacts.effectSet(MRPGCEffects.FROZEN_SOLID.id.toString(), 2, 0);
+        spell.impacts = List.of(debuff);
+
+        SpellBuilder.Cost.cooldown(spell, 0.5F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.TUNDRA_HUNTER));
+    }
+    public static final Entry tundra_hunter_spec_b_modifier_3 = add(tundra_hunter_spec_b_modifier_3());
+    private static Entry tundra_hunter_spec_b_modifier_3() {
+        var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_b_modifier_3");
+        var title = "Hunting Instincts";
+        var description = "Frozen Pact increases Frost Power and Ranged Damage by {bonus} for {effect_duration} secs.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        var effect = MrpgSkillEffects.HUNTING_INSTINCTS;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var modifier = effect.config().firstModifier();
+            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+            return args.description()
+                    .replace("{bonus}", bonus);
+        };
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:frozen_pact";
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(),6,0);
+        impact.action.apply_to_caster = true;
+
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.TUNDRA_HUNTER));
+    }
+    public static final Entry tundra_hunter_spec_a_modifier_4 = add(tundra_hunter_spec_a_modifier_4());
+    private static Entry tundra_hunter_spec_a_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_a_modifier_4");
+        var title = "Earthen Blast";
+        var bonus = 2.5F;
+        var description = "Increases the area of effect of Enchanted Crystal Arrow by {bonus}.";
+        var mutator = new SpellTooltip.DescriptionMutator() {
+            @Override
+            public String mutate(Args args) {
+                return args.description().replace("{bonus}", SpellTooltip.percent(bonus));
+            }
+        };
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:enchanted_crystal_arrow";
+        var extendedRadius = 3.0F * (1F + bonus);
+        modifier.replacing_area_impact = new Spell.AreaImpact();
+        Spell.AreaImpact area_impact = new Spell.AreaImpact();
+        area_impact.radius = extendedRadius;
+        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.TUNDRA_HUNTER));
+    }
+    public static final Entry tundra_hunter_spec_b_modifier_4 = add(tundra_hunter_spec_b_modifier_4());
+    private static Entry tundra_hunter_spec_b_modifier_4() {
+        var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_b_modifier_4");
+        var title = "Whirlwind Mastery";
+        var description = "Enchanted Crystal Arrow deals {power_multiplier} more damage.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:enchanted_crystal_arrow";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.power_modifier.power_multiplier = 0.3F;
+
+        spell.modifiers = List.of(modifier);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.TUNDRA_HUNTER));
+    }
+    ///TUNDRA HUNTER PASSIVES
     //TO DO
 }

@@ -214,6 +214,26 @@ public class MrpgSkillEffects {
                     )
             )
     ));
+    public static Effects.Entry HUNTING_INSTINCTS = add(new Effects.Entry(Identifier.of(MOD_ID, "hunting_instincts"),
+            "Hunting Instincts",
+            "Increased Frost Spell Power and Ranged Damage",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellSchools.FROST.id,
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes_RangedWeapon.DAMAGE.id,
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+
+                    )
+            )
+    ));
 
     public static void register(ConfigFile.Effects config) {
         for (var entry : entries) {

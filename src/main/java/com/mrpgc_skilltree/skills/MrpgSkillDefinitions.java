@@ -338,14 +338,14 @@ public class MrpgSkillDefinitions {
                     Icon.item("archers:rapid_crossbow_standby"),
                     TUNDRA_HUNTER_ROOT.attributeReward())
     );
-    public static final Entry TUNDRA_HUNTER_SPEC_A_MODIFIER_1 = add(modifierSpell());
-    public static final Entry TUNDRA_HUNTER_SPEC_B_MODIFIER_1 = add(modifierSpell());
-    public static final Entry TUNDRA_HUNTER_SPEC_A_MODIFIER_2 = add(modifierSpell());
-    public static final Entry TUNDRA_HUNTER_SPEC_B_MODIFIER_2 = add(modifierSpell());
-    public static final Entry TUNDRA_HUNTER_SPEC_A_MODIFIER_3 = add(modifierSpell());
-    public static final Entry TUNDRA_HUNTER_SPEC_B_MODIFIER_3 = add(modifierSpell());
-    public static final Entry TUNDRA_HUNTER_SPEC_A_MODIFIER_4 = add(modifierSpell());
-    public static final Entry TUNDRA_HUNTER_SPEC_B_MODIFIER_4 = add(modifierSpell());
+    public static final Entry TUNDRA_HUNTER_SPEC_A_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.tundra_hunter_spec_a_modifier_1));
+    public static final Entry TUNDRA_HUNTER_SPEC_B_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.tundra_hunter_spec_b_modifier_1));
+    public static final Entry TUNDRA_HUNTER_SPEC_A_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.tundra_hunter_spec_a_modifier_2));
+    public static final Entry TUNDRA_HUNTER_SPEC_B_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.tundra_hunter_spec_b_modifier_2));
+    public static final Entry TUNDRA_HUNTER_SPEC_A_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.tundra_hunter_spec_a_modifier_3));
+    public static final Entry TUNDRA_HUNTER_SPEC_B_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.tundra_hunter_spec_b_modifier_3));
+    public static final Entry TUNDRA_HUNTER_SPEC_A_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.tundra_hunter_spec_a_modifier_4));
+    public static final Entry TUNDRA_HUNTER_SPEC_B_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.tundra_hunter_spec_b_modifier_4));
     public static final Entry TUNDRA_HUNTER_SPEC_A_PASSIVE_1 = add(modifierSpell());
     public static final Entry TUNDRA_HUNTER_SPEC_B_PASSIVE_1 = add(modifierSpell());
     public static final Entry TUNDRA_HUNTER_SPEC_A_PASSIVE_2 = add(modifierSpell());
