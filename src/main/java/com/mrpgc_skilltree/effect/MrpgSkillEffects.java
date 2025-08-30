@@ -161,7 +161,7 @@ public class MrpgSkillEffects {
     public static Effects.Entry RECKLESS_RAGE = add(new Effects.Entry(Identifier.of(MOD_ID, "reckless_rage"),
             "Reckless Rage",
             "Absorbs damage.",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
@@ -231,6 +231,39 @@ public class MrpgSkillEffects {
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
 
+                    )
+            )
+    ));
+    public static Effects.Entry WINTERS_CLOAK = add(new Effects.Entry(Identifier.of(MOD_ID, "winters_cloak"),
+            "Winters Cloak",
+            "Increased Frost Spell Power and Ranged Damage",
+            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
+                                    2,
+                                    EntityAttributeModifier.Operation.ADD_VALUE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry HUNTING_FEVER = add(new Effects.Entry(Identifier.of(MOD_ID, "hunting_fever"),
+            "Hunting Fever",
+            "Increased Frost Spell Power and Ranged Damage",
+            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    0.2F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes_RangedWeapon.HASTE.id.toString(),
+                                    0.2F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
                     )
             )
     ));

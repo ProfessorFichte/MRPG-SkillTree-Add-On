@@ -4,10 +4,10 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 
-public class RecklessRageAbsorptionEffect extends StatusEffect {
+public class AbsorptionEffect extends StatusEffect {
     private final int healthPerStack;
 
-    public RecklessRageAbsorptionEffect(StatusEffectCategory category, int color) {
+    public AbsorptionEffect(StatusEffectCategory category, int color) {
         super(category, color);
         this.healthPerStack = 2;
     }

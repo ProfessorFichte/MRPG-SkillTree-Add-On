@@ -1,15 +1,24 @@
 package com.mrpgc_skilltree;
 
 import com.mrpgc_skilltree.effect.MrpgSkillEffects;
+import com.mrpgc_skilltree.skills.MrpgSkillDefinitions;
 import com.mrpgc_skilltree.skills.MrpgSkillSpells;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.registry.RegistryWrapper;
+import net.minecraft.text.MutableText;
+import net.minecraft.text.Text;
+import net.puffish.skillsmod.reward.builtin.AttributeReward;
+import net.skill_tree_rpgs.data_gen.SkillDefinitionGenerator;
+import net.skill_tree_rpgs.node.SpellContainerReward;
+import net.skill_tree_rpgs.utils.ResolvableTextContent;
 import net.spell_engine.api.datagen.SpellGenerator;
 import net.spell_engine.client.gui.SpellTooltip;
 
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.concurrent.CompletableFuture;
 
 public class MRPGCSkillTreeAddOnDataGenerator implements DataGeneratorEntrypoint {
@@ -28,7 +37,7 @@ public class MRPGCSkillTreeAddOnDataGenerator implements DataGeneratorEntrypoint
 
 		@Override
 		public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
-			for (var skill: SkillDefinitions.ENTRIES) {
+			for (var skill: MrpgSkillDefinitions.ENTRIES) {
 				if (skill.title() != null && !skill.title().isEmpty()) {
 					translationBuilder.add(skill.titleTranslationKey(), skill.title());
 				}
@@ -57,6 +66,46 @@ public class MRPGCSkillTreeAddOnDataGenerator implements DataGeneratorEntrypoint
 			for (var entry : MrpgSkillSpells.all) {
 				builder.add(entry.id(), entry.spell());
 			}
+		}
+	}
+	public static class SkillDefinitionGen extends SkillDefinitionGenerator {
+		public SkillDefinitionGen(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+			super(dataOutput, registryLookup);
+		}
+
+		@Override
+		public void generate(Builder builder) {
+			LinkedHashMap<String, Format> skillDefinitions = new LinkedHashMap<>();
+			for (var skill : MrpgSkillDefinitions.ENTRIES) {
+				Translatable title = null;
+				if (skill.title() != null && !skill.title().isEmpty()) {
+					title = new Translatable(skill.titleTranslationKey());
+				}
+				Text description;
+				if (skill.description() != null && !skill.description().isEmpty()) {
+					description = Text.translatable(skill.descriptionTranslationKey());
+				} else {
+					description = MutableText.of(new ResolvableTextContent(skill.id()));
+				}
+
+				Icon icon = null;
+				switch (skill.icon().type()) {
+					case TEXTURE -> icon = Icon.texture(skill.icon().value());
+					case ITEM -> icon = Icon.item(skill.icon().value());
+					case EFFECT -> icon = Icon.effect(skill.icon().value());
+				}
+				ArrayList<Reward> rewards = new ArrayList<>();
+				if (skill.attributeReward() != null) {
+					var attribute = skill.attributeReward();
+					rewards.add(new Reward(AttributeReward.ID.toString(), RewardAttribute.from(attribute.attribute(),  attribute.modifier())));
+				}
+				if(skill.spellReward() != null) {
+					rewards.add(new Reward(SpellContainerReward.ID.toString(), new SpellContainerReward.DataStructure(skill.spellReward())));
+				}
+				var format = new Format(title, description, icon, rewards);
+				skillDefinitions.put(skill.id(), format);
+			}
+			builder.entries.add(new Entry(MrpgSkillDefinitions.CATEGORY_ID, skillDefinitions));
 		}
 	}
 }

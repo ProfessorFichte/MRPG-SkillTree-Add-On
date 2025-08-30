@@ -4,8 +4,10 @@ import com.mrpgc_skilltree.effect.MrpgSkillEffects;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
+import net.more_rpg_classes.client.particle.MoreParticles;
 import net.more_rpg_classes.custom.MoreSpellSchools;
 import net.more_rpg_classes.effect.MRPGCEffects;
+import net.skill_tree_rpgs.skills.SkillTreeSounds;
 import net.skill_tree_rpgs.skills.Spells;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.entity.SpellEntityPredicates;
@@ -74,8 +76,13 @@ public class MrpgSkillSpells {
         modifier.execute = TriState.DENY;
         impact.target_modifiers = List.of(modifier);
     }
+    private static void freezeImmuneDeny(Spell.Impact impact) {
+        var modifier = createImpactModifier("#minecraft:freeze_immune_entity_types");
+        modifier.execute = TriState.DENY;
+        impact.target_modifiers = List.of(modifier);
+    }
     private static final SpellEntityPredicates.Entry HAS_BLEEDING = SpellEntityPredicates.hasEffectOptimized(Identifier.of("more_rpg_classes", "bleeding"));
-
+    private static final SpellEntityPredicates.Entry HAS_FROSTED = SpellEntityPredicates.hasEffectOptimized(Identifier.of("more_rpg_classes", "frosted"));
     ///AIR MODIFIERS
     public static final Entry air_spec_a_modifier_1 = add(air_spec_a_modifier_1());
     private static Entry air_spec_a_modifier_1() {
@@ -156,6 +163,7 @@ public class MrpgSkillSpells {
         area_impact.radius = radius;
         area_impact.area = new Spell.Target.Area();
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+        ///TO DO ADD PARTICLES
 
 
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
@@ -1432,6 +1440,11 @@ public class MrpgSkillSpells {
         trigger.target_conditions = List.of(condition);
         spell.passive.triggers = List.of(trigger);
 
+        spell.release.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_speed.id(), Color.WHITE)
+        };
+        spell.release.sound = new Sound(SpellEngineSounds.SPEED_BOOST.id());
+
         var buff = SpellBuilder.Impacts.effectSet(effect.toString(), 5, 0);
         buff.action.status_effect.refresh_duration = true;
         buff.action.apply_to_caster = true;
@@ -1665,4 +1678,238 @@ public class MrpgSkillSpells {
     }
     ///TUNDRA HUNTER PASSIVES
     //TO DO
+    public static final Entry tundra_hunter_spec_a_passive_1 = add(tundra_hunter_spec_a_passive_1());
+    private static Entry tundra_hunter_spec_a_passive_1() {
+        var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_a_passive_1");
+        var title = "Hail";
+        var description = "On Arrow hit:{trigger_chance_1} chance to launch falling icicles dealing {damage} damage.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 30;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.activeSpellHit(0.2F, "frost_ranged");
+        var trigger2 = SpellBuilder.Triggers.arrowHit();
+        trigger2.chance = 0.2F;
+        spell.passive.triggers = List.of(trigger, trigger2);
+
+        spell.deliver.type = Spell.Delivery.Type.METEOR;
+        var meteor = new Spell.Delivery.Meteor();
+        meteor.launch_height = 10;
+        meteor.launch_radius = 1.0F;
+        meteor.launch_properties.velocity = 1.5F;
+        meteor.launch_properties.extra_launch_count = 4;
+        meteor.launch_properties.extra_launch_delay = 2;
+        var projectile = new Spell.ProjectileData();
+        projectile.divergence = 0;
+        projectile.client_data = new Spell.ProjectileData.Client();
+        projectile.client_data.light_level = 10;
+        projectile.client_data.travel_particles = new ParticleBatch[] {
+                new ParticleBatch(
+                        SpellEngineParticles.snowflake.id().toString(),
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.CENTER,
+                        ParticleBatch.Rotation.LOOK,
+                        3, 0, 0,0)
+
+        };
+        var model = new Spell.ProjectileModel();
+        model.model_id = "more_rpg_classes:projectile/falling_icicle";
+        model.scale = 0.75F;
+        projectile.client_data.model = model;
+
+        meteor.projectile = projectile;
+        spell.deliver.meteor = meteor;
+
+
+        var impact = SpellBuilder.Impacts.damage(0.35F, 0.5F);
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.FROST,
+                                SpellEngineParticles.MagicParticles.Motion.BURST
+                        ).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        25, 0.45F, 0.85F)
+                        .color(Color.from(SpellSchools.FROST.color).toRGBA()),
+        };
+        // CHANGE SOUND
+        impact.sound = new Sound("spell_engine:generic_frost_impact");
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 5F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.TUNDRA_HUNTER));
+    }
+    public static final Entry tundra_hunter_spec_b_passive_1 = add(tundra_hunter_spec_b_passive_1());
+    private static Entry tundra_hunter_spec_b_passive_1() {
+        var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_b_passive_1");
+        var title = "Frozen Prey";
+        var description = "If the target is frosted, you heal yourself for {heal}.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.arrowHit();
+        var condition = new Spell.TargetCondition();
+        condition.entity_predicate_id = HAS_FROSTED.id().toString();
+        trigger.target_conditions = List.of(condition);
+        spell.passive.triggers = List.of(trigger);
+
+
+        var impact = SpellBuilder.Impacts.heal(0.1F);
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.area_circle_1.id().toString(),
+                        ParticleBatch.Shape.LINE_VERTICAL, ParticleBatch.Origin.FEET,
+                        1, 0.2F, 0.2F)
+                        .followEntity(true)
+                        .scale(0.8F)
+                        .maxAge(0.8F)
+                        .color(Color.FROST.toRGBA()),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.HEAL,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        15, 0.2F, 0.25F)
+                        .color(Color.FROST.toRGBA()),
+        };
+        //CHANGE SOUND
+        impact.sound = new Sound("spell_engine:generic_healing_casting");
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 2F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.TUNDRA_HUNTER));
+    }
+    public static final Entry tundra_hunter_spec_a_passive_2 = add(tundra_hunter_spec_a_passive_2());
+    private static Entry tundra_hunter_spec_a_passive_2() {
+        var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_a_passive_2");
+        var title = "Winter's Cloak";
+        var description = "Upon rolling: {trigger_chance} chance to freeze enemies that hit you for {effect_duration} sec.";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        trigger.chance = 0.35F;
+        spell.passive.triggers = List.of(trigger);
+
+        var effect = MrpgSkillEffects.WINTERS_CLOAK;
+
+        var trigger_stash_damage_taken = new Spell.Trigger();
+        trigger_stash_damage_taken.type = Spell.Trigger.Type.DAMAGE_TAKEN;
+        spell.deliver.type = Spell.Delivery.Type.STASH_EFFECT;
+        spell.deliver.stash_effect = new Spell.Delivery.StashEffect();
+        spell.deliver.stash_effect.duration = 5;
+        spell.deliver.stash_effect.amplifier = 0;
+        spell.deliver.stash_effect.amplifier_power_multiplier = 0.2F;
+        spell.deliver.stash_effect.id = effect.id.toString();
+        spell.deliver.stash_effect.consume = 0;
+        spell.deliver.stash_effect.triggers = List.of(trigger_stash_damage_taken);
+
+        var impact = SpellBuilder.Impacts.effectAdd(MRPGCEffects.FROSTED.id.toString(), 7, 0,6);
+        freezeImmuneDeny(impact);
+        impact.action.status_effect.refresh_duration = true;
+        /// CHANGE SOUND & ADD PARTICLES?
+        impact.sound = new Sound(SpellEngineSounds.GENERIC_FROST_RELEASE.id());
+        spell.impacts = List.of(impact);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.TUNDRA_HUNTER));
+    }
+    /// TO DO (DONT KNOW WHAT THIS PASSIVE SHOULD DO)
+    public static final Entry tundra_hunter_spec_b_passive_2 = add(tundra_hunter_spec_b_passive_2());
+    private static Entry tundra_hunter_spec_b_passive_2() {
+        var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_b_passive_2");
+        var title = "";
+        var description = "";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        spell.passive.triggers = List.of(trigger);
+
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.TUNDRA_HUNTER));
+    }
+    public static final Entry tundra_hunter_spec_a_passive_3 = add(tundra_hunter_spec_a_passive_3());
+    private static Entry tundra_hunter_spec_a_passive_3() {
+        var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_a_passive_3");
+        var title = "Icy Rebirth";
+        var description = "On kill:{trigger_chance_1} chance to spawn icicles on the ground for {cloud_duration}, dealing {damage} damage.";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.rangedKill(false);
+        trigger.get(0).chance = 0.35F;
+        trigger.get(1).chance = 0.35F;
+
+
+        spell.deliver.type = Spell.Delivery.Type.CLOUD;
+        var cloud = new Spell.Delivery.Cloud();
+        cloud.volume.radius = 4.0F;
+        cloud.volume.area.vertical_range_multiplier = 0.3F;
+        cloud.volume.sound = new Sound(SpellEngineSounds.GENERIC_FROST_RELEASE.id());
+        cloud.impact_tick_interval = 10;
+        cloud.time_to_live_seconds = 5;
+        cloud.client_data = new Spell.Delivery.Cloud.ClientData();
+        cloud.client_data.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        MoreParticles.ICE_TRAP.toString(),
+                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET,
+                        4, 0, 0)
+        };
+        spell.deliver.clouds = List.of(cloud);
+
+        var impact = SpellBuilder.Impacts.effectAdd(MRPGCEffects.FROSTED.id.toString(), 7, 0,6);
+        freezeImmuneDeny(impact);
+        impact.action.status_effect.refresh_duration = true;
+        /// CHANGE SOUND & ADD PARTICLES?
+        var damage = SpellBuilder.Impacts.damage(0.4F, 0);
+        damage.sound = new Sound(SpellEngineSounds.GENERIC_FROST_IMPACT.id());
+        spell.impacts = List.of(impact,damage);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.TUNDRA_HUNTER));
+    }
+    public static final Entry tundra_hunter_spec_b_passive_3 = add(tundra_hunter_spec_b_passive_3());
+    private static Entry tundra_hunter_spec_b_passive_3() {
+        var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_b_passive_3");
+        var title = "Icy Rebirth";
+        final var healthThreshold = 0.5F;
+        var description = "Upon taking damage below {threshold} health you gain Hunting Fever effect, increasing your Movement Speed & Ranged Haste by {bonus} for {effect_duration} sec.";
+        var effect = MrpgSkillEffects.HUNTING_FEVER;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var threshold = SpellTooltip.percent(healthThreshold);
+            return args.description()
+                    .replace("{threshold}", threshold);
+        };
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.becomingLowHP(healthThreshold);
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+        var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 10, 2);
+        /// CHANGE SOUNDS & PARTICLES
+        //buff.sound = new Sound();
+        spell.impacts = List.of(buff);
+
+        SpellBuilder.Cost.cooldown(spell, 30F);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.TUNDRA_HUNTER));
+    }
 }
