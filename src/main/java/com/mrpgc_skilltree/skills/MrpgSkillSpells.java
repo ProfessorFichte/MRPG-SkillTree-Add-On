@@ -1822,17 +1822,33 @@ public class MrpgSkillSpells {
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.TUNDRA_HUNTER));
     }
-    /// TO DO (DONT KNOW WHAT THIS PASSIVE SHOULD DO)
     public static final Entry tundra_hunter_spec_b_passive_2 = add(tundra_hunter_spec_b_passive_2());
     private static Entry tundra_hunter_spec_b_passive_2() {
         var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_b_passive_2");
-        var title = "";
-        var description = "";
+        var title = "Terrain Mastery";
+        var description = "Upon rolling: {trigger_chance} to cleanse a negative effect.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
         spell.range = 0;
 
         var trigger = SpellBuilder.Triggers.roll();
+        trigger.chance = 0.5F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.effectCleanse();
+        /// CHANGE PARTICLES & ADD SOUND?
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.HEAL,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        20, 0.25F, 0.3F
+                ).color(Color.FROST.toRGBA())
+        };
+        spell.impacts = List.of(impact);
+
+
         spell.passive.triggers = List.of(trigger);
 
 
@@ -1858,6 +1874,7 @@ public class MrpgSkillSpells {
         var cloud = new Spell.Delivery.Cloud();
         cloud.volume.radius = 4.0F;
         cloud.volume.area.vertical_range_multiplier = 0.3F;
+        ///CHANGE CLOUD SOUND
         cloud.volume.sound = new Sound(SpellEngineSounds.GENERIC_FROST_RELEASE.id());
         cloud.impact_tick_interval = 10;
         cloud.time_to_live_seconds = 5;
@@ -1873,7 +1890,7 @@ public class MrpgSkillSpells {
         var impact = SpellBuilder.Impacts.effectAdd(MRPGCEffects.FROSTED.id.toString(), 7, 0,6);
         freezeImmuneDeny(impact);
         impact.action.status_effect.refresh_duration = true;
-        /// CHANGE SOUND & ADD PARTICLES?
+        /// CHANGE IMPACT SOUND & ADD PARTICLES?
         var damage = SpellBuilder.Impacts.damage(0.4F, 0);
         damage.sound = new Sound(SpellEngineSounds.GENERIC_FROST_IMPACT.id());
         spell.impacts = List.of(impact,damage);
