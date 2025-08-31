@@ -18,6 +18,9 @@
 		"main": [
 			"com.mrpgc_skilltree.MRPGCSkillTreeAddOn"
 		],
+		"client": [
+			"com.mrpgc_skilltree.client.MRPGCSkillTreeClient"
+		],
 		"fabric-datagen": [
 			"com.mrpgc_skilltree.MRPGCSkillTreeAddOnDataGenerator"
 		]

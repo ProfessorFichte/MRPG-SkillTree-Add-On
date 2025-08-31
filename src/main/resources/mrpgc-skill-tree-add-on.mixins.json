@@ -3,7 +3,7 @@
 	"package": "com.mrpgc_skilltree.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin"
+		"TrackTargetGoalStealth"
 	],
 	"injectors": {
 		"defaultRequire": 1

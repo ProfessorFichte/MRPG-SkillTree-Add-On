@@ -1515,7 +1515,259 @@ public class MrpgSkillSpells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
     }
     ///DEADEYE PASSIVES
-    //TO DO
+    public static final Entry deadeye_spec_a_passive_1 = add(deadeye_spec_a_passive_1());
+    private static Entry deadeye_spec_a_passive_1() {
+        var id = Identifier.of(NAMESPACE, "deadeye_spec_a_passive_1");
+        var title = "Barbed Arrows";
+        var description = "Arrows have {trigger_chance} chance, to stack bleeding to the target for {effect_duration} sec.";
+        var effect = MRPGCEffects.BLEEDING;
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.arrowHit();
+        trigger.chance = 0.4F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 7F, 0,6);
+        impact.action.status_effect.refresh_duration = true;
+        impact.particles = new ParticleBatch[]{
+                ///PARTICLE CHANGE
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_speed.id(), Color.WHITE)};
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 5F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
+    }
+    public static final Entry deadeye_spec_b_passive_1 = add(deadeye_spec_b_passive_1());
+    private static Entry deadeye_spec_b_passive_1() {
+        var id = Identifier.of(NAMESPACE, "deadeye_spec_b_passive_1");
+        var title = "Withdraw";
+        var description = "Arrows have {trigger_chance} chance, to cure a negative condition and heal for {heal} hearts.";
+        var effect = MRPGCEffects.BLEEDING;
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.arrowHit();
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        trigger.chance = 0.2F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.heal(0.025F);
+        impact.attribute = EntityAttributes.GENERIC_MAX_HEALTH.getIdAsString();
+        impact.attribute_from_target = true;
+        impact.action.apply_to_caster = true;
+        var cleanse = SpellBuilder.Impacts.effectCleanse();
+        impact.action.status_effect.refresh_duration = true;
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.HEAL,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        5, 0.25F, 0.3F
+                ).color(Color.POISON_DARK.toRGBA())
+        };
+        spell.impacts = List.of(impact,cleanse);
+
+        SpellBuilder.Cost.cooldown(spell, 15F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
+    }
+    public static final Entry deadeye_spec_a_passive_2 = add(deadeye_spec_a_passive_2());
+    private static Entry deadeye_spec_a_passive_2() {
+        var id = Identifier.of(NAMESPACE, "deadeye_spec_a_passive_2");
+        var title = "Poison Bomb";
+        var description = "{trigger_chance} chance upon rolling to leave behind Choking Gas for {cloud_duration} sec.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        trigger.chance = 0.5F;
+        spell.passive.triggers = List.of(trigger);
+
+        spell.deliver.type = Spell.Delivery.Type.CLOUD;
+        spell.deliver.delay = 5;
+        Spell.Delivery.Cloud cloud = new Spell.Delivery.Cloud();
+        cloud.volume.radius = 2.5F;
+        cloud.volume.area.vertical_range_multiplier = 0.3F;
+        cloud.volume.sound = new Sound(SpellEngineSounds.POISON_CLOUD_TICK.id().toString());
+        cloud.impact_tick_interval = 8;
+        cloud.time_to_live_seconds = 5;
+        cloud.spawn.sound = new Sound(SpellEngineSounds.POISON_CLOUD_SPAWN.id().toString());
+        cloud.client_data = new Spell.Delivery.Cloud.ClientData();
+        cloud.client_data.light_level = 0;
+        cloud.client_data.particles = new ParticleBatch[]{(new ParticleBatch(SpellEngineParticles.smoke_large.id().toString(), ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET, 1.0F, 0.01F, 0.02F)).color(2583652010L), (new ParticleBatch(SpellEngineParticles.smoke_large.id().toString(), ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET, 1.0F, 0.01F, 0.02F)).color(870134766L)};
+        spell.deliver.clouds = List.of(cloud);
+        Spell.Impact debuff = SpellBuilder.Impacts.effectSet("archers_expansion:choking_gas", 1, 0);
+        debuff.action.status_effect.amplifier_power_multiplier = 0.2F;
+        debuff.particles = new ParticleBatch[]{(new ParticleBatch(
+                SpellEngineParticles.smoke_large.id().toString(), ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                1.5F, 0.01F, 0.02F))
+                .color(Color.POISON_MID.toRGBA()),
+                new ParticleBatch(SpellEngineParticles.MagicParticles.get(SpellEngineParticles.MagicParticles.Shape.SKULL,
+                        SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(), ParticleBatch.Shape.SPHERE,
+                        ParticleBatch.Origin.CENTER, 3.0F, 0.1F, 0.2F)
+                        .color(Color.POISON_MID.toRGBA())};
+        poisonDeny(debuff);
+        spell.impacts = List.of(debuff);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
+    }
+    public static final Color SMOKE_BOMB_COLOR = Color.from(0x302c2c);
+    public static final Entry deadeye_spec_b_passive_2 = add(deadeye_spec_b_passive_2());
+    private static Entry deadeye_spec_b_passive_2() {
+        var id = Identifier.of(NAMESPACE, "deadeye_spec_b_passive_2");
+        var title = "Smoke Bomb";
+        var description = "{trigger_chance} chance upon rolling to leave behind a Smoke Bomb for {cloud_duration} sec. Blinding enemies and increasing Evasion for allies.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        trigger.chance = 0.5F;
+        spell.passive.triggers = List.of(trigger);
+
+        spell.deliver.type = Spell.Delivery.Type.CLOUD;
+        spell.deliver.delay = 5;
+        Spell.Delivery.Cloud cloud = new Spell.Delivery.Cloud();
+        cloud.volume.radius = 2.5F;
+        cloud.volume.area.vertical_range_multiplier = 0.3F;
+        cloud.volume.sound = new Sound(SpellEngineSounds.POISON_CLOUD_TICK.id().toString());
+        cloud.impact_tick_interval = 10;
+        cloud.time_to_live_seconds = 5;
+        cloud.spawn.sound = new Sound(SpellEngineSounds.POISON_CLOUD_SPAWN.id().toString());
+        cloud.client_data = new Spell.Delivery.Cloud.ClientData();
+        cloud.client_data.light_level = 0;
+        cloud.client_data.particles = new ParticleBatch[]{(new ParticleBatch(SpellEngineParticles.smoke_large.id().toString(),
+                ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET, 1.0F, 0.01F, 0.02F))
+                .color(SMOKE_BOMB_COLOR.toRGBA()),
+                (new ParticleBatch(SpellEngineParticles.smoke_large.id().toString(),
+                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET, 1.0F, 0.01F, 0.02F))
+                        .color(SMOKE_BOMB_COLOR.toRGBA())};
+        spell.deliver.clouds = List.of(cloud);
+        Spell.Impact debuff = SpellBuilder.Impacts.effectSet(MrpgSkillEffects.SMOKE_BOMB.toString(), 1, 0);
+        debuff.action.status_effect.refresh_duration = true;
+        Spell.Impact buff = SpellBuilder.Impacts.effectSet(MrpgSkillEffects.CAMOUFLAGED.toString(), 1, 0);
+        buff.action.status_effect.refresh_duration = true;
+        buff.action.apply_to_caster = true;
+        debuff.particles = new ParticleBatch[]{(
+                new ParticleBatch(
+                SpellEngineParticles.smoke_large.id().toString(), ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                5.0F, 0.001F, 0.001F))
+                .color(SMOKE_BOMB_COLOR.toRGBA()),
+                (new ParticleBatch(
+                        SpellEngineParticles.smoke_medium.id().toString(), ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        5.0F, 0.001F, 0.001F))
+                .color(SMOKE_BOMB_COLOR.toRGBA())
+        };
+
+        spell.impacts = List.of(debuff, buff);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
+    }
+    public static final Entry deadeye_spec_a_passive_3 = add(deadeye_spec_a_passive_3());
+    private static Entry deadeye_spec_a_passive_3() {
+        var id = Identifier.of(NAMESPACE, "deadeye_spec_a_passive_3");
+        var title = "Heartseeker";
+        var description = "Arrows have {trigger_chance} chance, to deal more damage the less health the target has.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.arrowHit();
+        trigger.chance = 0.2F;
+        spell.passive.triggers = List.of(trigger);
+
+        var custom = new Spell.Impact();
+        custom.action = new Spell.Impact.Action();
+        custom.action.custom = new Spell.Impact.Action.Custom();
+        custom.action.type = Spell.Impact.Action.Type.CUSTOM;
+        custom.action.custom.intent = SpellTarget.Intent.HARMFUL;
+        custom.action.custom.handler = "more_rpg_classes:damage_according_to_missing_health";
+        custom.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.dripping_blood.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        35, 0.4F, 1.0F)
+        };
+
+        spell.impacts = List.of();
+
+        SpellBuilder.Cost.cooldown(spell, 20F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
+    }
+    public static final Entry deadeye_spec_b_passive_3 = add(deadeye_spec_b_passive_3());
+    private static Entry deadeye_spec_b_passive_3() {
+        var id = Identifier.of(NAMESPACE, "deadeye_spec_b_passive_3");
+        var title = "Shadow Refuge";
+        final var healthThreshold = 0.35F;
+        var description = "Upon taking damage below {threshold} health you create a area that heals you for {heal} hearts and gives you invisibility for {effect_duration} secs.";
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var threshold = SpellTooltip.percent(healthThreshold);
+            return args.description()
+                    .replace("{threshold}", threshold);
+        };
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.becomingLowHP(healthThreshold);
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+
+        float radius =5.0F;
+        spell.deliver.type = Spell.Delivery.Type.CLOUD;
+        spell.deliver.delay = 5;
+        Spell.Delivery.Cloud cloud = new Spell.Delivery.Cloud();
+        cloud.volume.radius = radius;
+        cloud.volume.area.vertical_range_multiplier = 0.3F;
+        ///IMPROVE SHADOW REFUGE SOUNDS
+        cloud.volume.sound = new Sound(SpellEngineSounds.POISON_CLOUD_TICK.id().toString());
+        cloud.impact_tick_interval = 10;
+        cloud.time_to_live_seconds = 5;
+        cloud.spawn.sound = new Sound(SpellEngineSounds.POISON_CLOUD_SPAWN.id().toString());
+        cloud.client_data = new Spell.Delivery.Cloud.ClientData();
+        cloud.client_data.light_level = 0;
+        cloud.client_data.interval_particles = new ParticleBatch[] {
+                new ParticleBatch(
+                        SpellEngineParticles.area_effect_715.id().toString(),
+                        ParticleBatch.Shape.LINE, ParticleBatch.Origin.GROUND,
+                        1, 0F, 0F)
+                        .scale(radius * 1.5F)
+                        .color(SMOKE_BOMB_COLOR.toRGBA())
+        };
+        spell.deliver.clouds = List.of(cloud);
+
+        /// TOO DO SOUND AND PARTICLES
+        var heal = SpellBuilder.Impacts.heal(0.05F);
+        heal.attribute = EntityAttributes.GENERIC_MAX_HEALTH.getIdAsString();
+        heal.attribute_from_target = true;
+        heal.action.apply_to_caster = true;
+        var buff = SpellBuilder.Impacts.effectSet("archers_expansion:infiltrators_arrow", 2, 0);
+
+        spell.impacts = List.of(heal,buff);
+
+        SpellBuilder.Cost.cooldown(spell, 40F);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.DEADEYE));
+    }
     ///TUNDRA HUNTER MODIFIERS
     public static final Entry tundra_hunter_spec_a_modifier_1 = add(tundra_hunter_spec_a_modifier_1());
     private static Entry tundra_hunter_spec_a_modifier_1() {
@@ -1677,12 +1929,11 @@ public class MrpgSkillSpells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.TUNDRA_HUNTER));
     }
     ///TUNDRA HUNTER PASSIVES
-    //TO DO
     public static final Entry tundra_hunter_spec_a_passive_1 = add(tundra_hunter_spec_a_passive_1());
     private static Entry tundra_hunter_spec_a_passive_1() {
         var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_a_passive_1");
         var title = "Hail";
-        var description = "On Arrow hit:{trigger_chance_1} chance to launch falling icicles dealing {damage} damage.";
+        var description = "Arrows have a {trigger_chance} chance to launch falling icicles dealing {damage} damage.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
@@ -1690,10 +1941,9 @@ public class MrpgSkillSpells {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var trigger = SpellBuilder.Triggers.activeSpellHit(0.2F, "frost_ranged");
-        var trigger2 = SpellBuilder.Triggers.arrowHit();
-        trigger2.chance = 0.2F;
-        spell.passive.triggers = List.of(trigger, trigger2);
+        var trigger = SpellBuilder.Triggers.arrowHit();
+        trigger.chance = 0.2F;
+        spell.passive.triggers = List.of(trigger);
 
         spell.deliver.type = Spell.Delivery.Type.METEOR;
         var meteor = new Spell.Delivery.Meteor();
@@ -1900,7 +2150,7 @@ public class MrpgSkillSpells {
     public static final Entry tundra_hunter_spec_b_passive_3 = add(tundra_hunter_spec_b_passive_3());
     private static Entry tundra_hunter_spec_b_passive_3() {
         var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_b_passive_3");
-        var title = "Icy Rebirth";
+        var title = "Hunting Fever";
         final var healthThreshold = 0.5F;
         var description = "Upon taking damage below {threshold} health you gain Hunting Fever effect, increasing your Movement Speed & Ranged Haste by {bonus} for {effect_duration} sec.";
         var effect = MrpgSkillEffects.HUNTING_FEVER;

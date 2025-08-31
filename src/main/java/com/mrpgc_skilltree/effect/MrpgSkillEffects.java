@@ -1,6 +1,9 @@
 package com.mrpgc_skilltree.effect;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectCategory;
@@ -267,15 +270,43 @@ public class MrpgSkillEffects {
                     )
             )
     ));
+    public static Effects.Entry SMOKE_BOMB = add(new Effects.Entry(Identifier.of(MOD_ID, "smoke_bomb"),
+            "Smoke Bomb",
+            "Blindness and reduced Movement speed",
+            new AbsorptionEffect(StatusEffectCategory.HARMFUL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    -0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry CAMOUFLAGED = add(new Effects.Entry(Identifier.of(MOD_ID, "camouflaged"),
+            "Camouflaged",
+            "Increased Evasion",
+            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellEngineAttributes.EVASION_CHANCE.id.toString(),
+                                    0.25F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
 
     public static void register(ConfigFile.Effects config) {
         for (var entry : entries) {
             Synchronized.configure(entry.effect, true);
         }
-
         Effects.register(entries, config.effects);
 
         Protection.register(OBSIDIAN_SKIN.entry, new Protection.Pop(
+                /// IMPROVE SFX & VFX
                 null,
                 null));
     }
