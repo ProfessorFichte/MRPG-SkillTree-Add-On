@@ -21,6 +21,7 @@ import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
 import net.spell_engine.internals.target.SpellTarget;
+import net.spell_power.api.SpellSchool;
 import net.spell_power.api.SpellSchools;
 import org.jetbrains.annotations.Nullable;
 
@@ -83,6 +84,16 @@ public class MrpgSkillSpells {
     }
     private static final SpellEntityPredicates.Entry HAS_BLEEDING = SpellEntityPredicates.hasEffectOptimized(Identifier.of("more_rpg_classes", "bleeding"));
     private static final SpellEntityPredicates.Entry HAS_FROSTED = SpellEntityPredicates.hasEffectOptimized(Identifier.of("more_rpg_classes", "frosted"));
+
+    public static final SpellSchool airWizardSchool = MoreSpellSchools.AIR;
+    public static final SpellSchool earthWizardSchool = MoreSpellSchools.EARTH;
+    public static final SpellSchool waterWizardSchool = MoreSpellSchools.WATER;
+    public static final SpellSchool berserkerSchool = ExternalSpellSchools.PHYSICAL_MELEE;
+    public static final SpellSchool forcemasterFighterSchool = ExternalSpellSchools.PHYSICAL_MELEE;
+    public static final SpellSchool forcemasterCasterSchool = SpellSchools.ARCANE;
+    public static final SpellSchool warArcherSchool = ExternalSpellSchools.PHYSICAL_RANGED;
+    public static final SpellSchool deadeyeSchool = ExternalSpellSchools.PHYSICAL_RANGED;
+    public static final SpellSchool tundraHunterSchool = ExternalSpellSchools.PHYSICAL_RANGED;
     ///AIR MODIFIERS
     public static final Entry air_spec_a_modifier_1 = add(air_spec_a_modifier_1());
     private static Entry air_spec_a_modifier_1() {
@@ -90,7 +101,7 @@ public class MrpgSkillSpells {
         var title = "Fast Winds";
         var description = "Increases the knockback of Air Cutter by {knockback_multiply_base}.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = MoreSpellSchools.AIR;
+        spell.school = airWizardSchool;
 
         var bonus = 0.5F;
 
@@ -107,7 +118,7 @@ public class MrpgSkillSpells {
         var title = "Air Cutting Pressure";
         var description = "Air Cutter deals deals {power_multiplier} more damage.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = MoreSpellSchools.AIR;
+        spell.school = airWizardSchool;
 
         var bonus = 0.2F;
 
@@ -125,7 +136,7 @@ public class MrpgSkillSpells {
         var title = "Slow Fall";
         var description = "Aeroblast has a {trigger_chance} to apply slow falling.";
         var spell = createModifierAlikePassiveSpell();
-        spell.school = MoreSpellSchools.AIR;
+        spell.school = airWizardSchool;
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
@@ -149,7 +160,7 @@ public class MrpgSkillSpells {
         var title = "Aeroblast Field";
         var description = "Aeroblast now deals {damage} damage around the target.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = MoreSpellSchools.AIR;
+        spell.school = airWizardSchool;
 
         var radius = 2.0F;
 
@@ -178,7 +189,7 @@ public class MrpgSkillSpells {
         var title = "Aerial Swiftness";
         var description = "Reduces the cooldown of Updraft by {cooldown_duration_deduct} sec.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = MoreSpellSchools.AIR;
+        spell.school = airWizardSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "elemental_wizards_rpg:wind_updraft";
@@ -193,7 +204,7 @@ public class MrpgSkillSpells {
         var title = "Aerial Precision";
         var description = "Updraft deals {critical_damage_bonus} critical damage bonus.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = MoreSpellSchools.AIR;
+        spell.school = airWizardSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "elemental_wizards_rpg:wind_updraft";
@@ -209,7 +220,7 @@ public class MrpgSkillSpells {
         var title = "Wind shear";
         var description = "Increases the duration of Tornado by {spawn_duration_add} sec.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = MoreSpellSchools.AIR;
+        spell.school = airWizardSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "elemental_wizards_rpg:wind_tornado";
@@ -224,7 +235,7 @@ public class MrpgSkillSpells {
         var title = "Negative Pressure";
         var description = "Tornado deals {power_multiplier} more damage.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = MoreSpellSchools.AIR;
+        spell.school = airWizardSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "elemental_wizards_rpg:wind_tornado";
@@ -243,7 +254,7 @@ public class MrpgSkillSpells {
         var title = "Sharpened Stone Spears";
         var description = "Increases the duration of Bleeding by {effect_duration_add} sec.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = MoreSpellSchools.EARTH;
+        spell.school = earthWizardSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "elemental_wizards_rpg:terra_stone_spear";
@@ -1132,7 +1143,7 @@ public class MrpgSkillSpells {
             }
         };
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = warArcherSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:smoldering_arrow";
@@ -1160,7 +1171,7 @@ public class MrpgSkillSpells {
         var title = "Explosive Push";
         var description = "Increases the knockback of Smoldering Arrow by {knockback_multiply_base}.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = warArcherSchool;
 
         var bonus = 0.5F;
 
@@ -1177,7 +1188,7 @@ public class MrpgSkillSpells {
         var title = "Flaming Double Shot";
         var description = "Increases the knockback of Double Shot by {knockback_multiply_base}.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = warArcherSchool;
 
         var bonus = 1.0F;
 
@@ -1194,7 +1205,7 @@ public class MrpgSkillSpells {
         var title = "Heavy Arrow Tips";
         var description = "Double Shot deals {power_multiplier} more damage and lights enemies on fire.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = warArcherSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:dual_shot";
@@ -1226,7 +1237,7 @@ public class MrpgSkillSpells {
         var title = "Explosive Point Blank Shot";
         var description = "Damaging with Point Blank Shot causes small explosion, hitting enemies within {impact_range} blocks radius, dealing extra {damage} damage.";
         var spell = createModifierAlikePassiveSpell();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = warArcherSchool;
 
         var radius = 2F;
         var modifier = new Spell.Modifier();
@@ -1260,7 +1271,7 @@ public class MrpgSkillSpells {
         var title = "Heavy Point Blank Shot";
         var description = "Point Blank Shot has {trigger_chance} chance to stun the target.";
         var spell = createModifierAlikePassiveSpell();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = warArcherSchool;
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
@@ -1281,7 +1292,7 @@ public class MrpgSkillSpells {
         var title = "Combustive Shot";
         var description = "Pin Down leaves a burning area behind, dealing {damage} damage to enemies, for {cloud_duration} sec.";
         var spell = createModifierAlikePassiveSpell();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = warArcherSchool;
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
@@ -1299,7 +1310,7 @@ public class MrpgSkillSpells {
         var title = "Increased Pin Down";
         var description = "Increases the knockback of Double Shot by {knockback_multiply_base}.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = warArcherSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:pin_down";
@@ -1309,7 +1320,184 @@ public class MrpgSkillSpells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
     }
     ///WAR ARCHER PASSIVES
-    //TO DO
+    public static final Entry war_archer_spec_a_passive_1 = add(war_archer_spec_a_passive_1());
+    private static Entry war_archer_spec_a_passive_1() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_a_passive_1");
+        var title = "Bombardment";
+        var description = "If the target is on fire, create a explosion dealing {damage} damage.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = warArcherSchool;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.arrowHit();
+        var condition = new Spell.TargetCondition();
+        condition.entity_predicate_id = SpellEntityPredicates.IS_ON_FIRE.toString();
+        trigger.target_conditions = List.of(condition);
+        spell.passive.triggers = List.of(trigger);
+
+
+        var impact = SpellBuilder.Impacts.damage(0.35F, 0.75F);
+        /// IMPROVE PARTICLE AND SOUND
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        "explosion",
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        2, 0.2F, 0.25F)
+                        .scale(2.0F)
+        };
+        impact.sound = new Sound("entity.generic.explode");
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 5F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
+    }
+    public static final Entry war_archer_spec_b_passive_1 = add(war_archer_spec_b_passive_1());
+    private static Entry war_archer_spec_b_passive_1() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_b_passive_1");
+        var title = "Protector of the Tower";
+        var description = "Your arrow hits have {trigger_chance} to increase your armor and knockback resistance for {effect_duration} sec.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = warArcherSchool;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.arrowHit();
+        trigger.chance = 0.35F;
+        spell.passive.triggers = List.of(trigger);
+
+
+        var impact = SpellBuilder.Impacts.effectAdd(MrpgSkillEffects.TOWER_PROTECTOR.toString(), 8,0,5);
+        impact.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_shield.id(), Color.WHITE),
+        };
+
+        /// IMPROVE SOUND
+        impact.sound = new Sound("entity.generic.explode");
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 1F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
+    }
+    public static final Entry war_archer_spec_a_passive_2 = add(war_archer_spec_a_passive_2());
+    private static Entry war_archer_spec_a_passive_2() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_a_passive_2");
+        var title = "Reloading";
+        var description = "When roaling you recharge Smoldering Arrows, you can now stack up to {effect_amplifier_cap} times.";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = warArcherSchool;
+        spell.range = 0;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.effectAdd("archers_expansion:smoldering_arrows", 10, 0,4);
+        impact.action.status_effect.refresh_duration = true;
+        impact.sound = new Sound(SpellEngineSounds.GENERIC_FIRE_IGNITE.id());
+        spell.impacts = List.of(impact);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
+    }
+    public static final Entry war_archer_spec_b_passive_2 = add(war_archer_spec_b_passive_2());
+    private static Entry war_archer_spec_b_passive_2() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_b_passive_2");
+        var title = "Reposition";
+        var description = "Rolling has {trigger_chance} chance to clear 1 negative effect.";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = warArcherSchool;
+        spell.range = 0;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        trigger.chance = 0.5F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.effectCleanse();
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
+                        ParticleBatch.Shape.PIPE, ParticleBatch.Origin.CENTER,
+                        10, 0.2F, 0.4F)
+                        .color(Color.RAGE.toRGBA())
+        };
+        impact.sound = new Sound(SpellEngineSounds.GENERIC_DISPEL_1.id());
+        spell.impacts = List.of(impact);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
+    }
+    public static Entry war_archer_spec_a_passive_3 = add(war_archer_spec_a_passive_3());
+    private static Entry war_archer_spec_a_passive_3() {
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_a_passive_3");
+        var title = "Rapid Fire";
+        var description = "{trigger_chance} chance to shoot 4 additional arrows.";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school =warArcherSchool;
+
+        var trigger = new Spell.Trigger();
+        trigger.type = Spell.Trigger.Type.ARROW_SHOT;
+        trigger.chance = 0.2F;
+        spell.passive.triggers = List.of(trigger);
+
+        spell.release.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_arrow.id(), Color.RAGE),
+        };
+
+        spell.target.type = Spell.Target.Type.AIM;
+        spell.target.aim = new Spell.Target.Aim();
+
+        spell.deliver.type = Spell.Delivery.Type.SHOOT_ARROW;
+        spell.deliver.shoot_arrow = new Spell.Delivery.ShootArrow();
+        spell.deliver.shoot_arrow.launch_properties.velocity = 3.35F;
+        spell.deliver.delay = 3;
+        spell.deliver.shoot_arrow.launch_properties.extra_launch_count = 3;
+
+        spell.arrow_perks = new Spell.ArrowPerks();
+        spell.arrow_perks.damage_multiplier = 1F;
+        spell.arrow_perks.bypass_iframes = true;
+        spell.arrow_perks.knockback = 0.5F;
+
+        SpellBuilder.Cost.cooldown(spell, 20);
+
+        return new Entry(id, spell, title, description, null, Category.WAR_ARCHER);
+    }
+    public static final Entry war_archer_spec_b_passive_3 = add(war_archer_spec_b_passive_3());
+    private static Entry war_archer_spec_b_passive_3() {
+        var id = Identifier.of(NAMESPACE, "archer_spec_b_passive_3");
+        var title = "Last Stand";
+        final var healthThreshold = 0.3F;
+        var description = "Upon taking damage below {threshold} health you gain Last Stand effect, increasing your size, ranged haste & decreasing incoming damage for {effect_duration} sec.";
+        var effect = MrpgSkillEffects.LAST_STAND;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var threshold = SpellTooltip.percent(healthThreshold);
+            return args.description()
+                    .replace("{threshold}", threshold);
+        };
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = warArcherSchool;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.becomingLowHP(healthThreshold);
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+        var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 7, 0);
+        /// ADD SOUNDS AND PARTICLES
+        spell.impacts = List.of(buff);
+
+        SpellBuilder.Cost.cooldown(spell, 30F);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.WAR_ARCHER));
+    }
     ///DEADEYE MODIFIERS
     public static final Entry deadeye_spec_a_modifier_1 = add(deadeye_spec_a_modifier_1());
     private static Entry deadeye_spec_a_modifier_1() {
@@ -1317,7 +1505,7 @@ public class MrpgSkillSpells {
         var title = "Poisonous Sting";
         var description = "Fast Shot has {impact_chance} chance to apply stacking poison, lasting {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = deadeyeSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:fast_shot";
@@ -1353,7 +1541,7 @@ public class MrpgSkillSpells {
         var title = "Fast Hands";
         var description = "Fast Shot applies {effect_amplifier_cap_add} additional Fast Shot stack.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = deadeyeSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:fast_shot";
@@ -1368,7 +1556,7 @@ public class MrpgSkillSpells {
         var title = "Barbed Trick Arrows";
         var description = "Trick Shot's bleeding effect lasts {effect_duration_add} sec longer.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = deadeyeSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:trick_shot";
@@ -1382,7 +1570,7 @@ public class MrpgSkillSpells {
         var title = "Bouncing Trick Shots";
         var description = "Trick Shot now ricochets {ricochet} times.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = deadeyeSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:trick_shot";
@@ -1398,7 +1586,7 @@ public class MrpgSkillSpells {
         var title = "Wounding Shot";
         var description = "If the target has a bad effect Disabling Shot inflicts grievous wounds for {effect_duration} sec.";
         var spell = createModifierAlikePassiveSpell();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = deadeyeSchool;
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
@@ -1423,7 +1611,7 @@ public class MrpgSkillSpells {
         var title = "Leaping Swiftness";
         var description = "Disabling Shot increases movement speed by {bonus} for {effect_duration} secs.";
         var spell = createModifierAlikePassiveSpell();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = deadeyeSchool;
         spell.range = 0;
         var effect = MrpgSkillEffects.LEAPING_SWIFTNESS;
         SpellTooltip.DescriptionMutator mutator = (args) -> {
@@ -1460,7 +1648,7 @@ public class MrpgSkillSpells {
         var title = "Persistent Gas Cloud";
         var description = "Choking Gas leaves a gas cloud behind, poisoning and dealing {damage} damage to enemies for {cloud_duration} sec.";
         var spell = createModifierAlikePassiveSpell();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = deadeyeSchool;
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
@@ -1503,7 +1691,7 @@ public class MrpgSkillSpells {
         var title = "Bouncing Gas Arrow";
         var description = "The Choking Gas Arrow now ricochets {ricochet} times.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = deadeyeSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:choking_gas";
@@ -1523,7 +1711,7 @@ public class MrpgSkillSpells {
         var effect = MRPGCEffects.BLEEDING;
 
         var spell = SpellBuilder.createSpellPassive();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = deadeyeSchool;
         spell.range = 0;
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
@@ -1550,7 +1738,7 @@ public class MrpgSkillSpells {
         var effect = MRPGCEffects.BLEEDING;
 
         var spell = SpellBuilder.createSpellPassive();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = deadeyeSchool;
         spell.range = 0;
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
@@ -1587,7 +1775,7 @@ public class MrpgSkillSpells {
         var description = "{trigger_chance} chance upon rolling to leave behind Choking Gas for {cloud_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = deadeyeSchool;
         spell.range = 0;
 
         var trigger = SpellBuilder.Triggers.roll();
@@ -1630,7 +1818,7 @@ public class MrpgSkillSpells {
         var description = "{trigger_chance} chance upon rolling to leave behind a Smoke Bomb for {cloud_duration} sec. Blinding enemies and increasing Evasion for allies.";
 
         var spell = SpellBuilder.createSpellPassive();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = deadeyeSchool;
         spell.range = 0;
 
         var trigger = SpellBuilder.Triggers.roll();
@@ -1682,7 +1870,7 @@ public class MrpgSkillSpells {
         var description = "Arrows have {trigger_chance} chance, to deal more damage the less health the target has.";
 
         var spell = SpellBuilder.createSpellPassive();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = deadeyeSchool;
         spell.range = 0;
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
@@ -1722,7 +1910,7 @@ public class MrpgSkillSpells {
         };
 
         var spell = SpellBuilder.createSpellPassive();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = deadeyeSchool;
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
@@ -1775,7 +1963,7 @@ public class MrpgSkillSpells {
         var title = "Additional Frozen Shots";
         var description = "You gain {stash_amplifier_add} additional Frozen Shots.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = tundraHunterSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:frozen_shot";
@@ -1790,7 +1978,7 @@ public class MrpgSkillSpells {
         var title = "Frost Stalker";
         var description = "Increases the duration of Frosted by {effect_duration_add} sec.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = tundraHunterSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:frozen_shot";
@@ -1805,7 +1993,7 @@ public class MrpgSkillSpells {
         var title = "Extra Arctic Shots";
         var description = "Arctic Volley shoots {extra_launch} additional arctic arrows.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = tundraHunterSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:arctic_volley";
@@ -1825,7 +2013,7 @@ public class MrpgSkillSpells {
         var title = "Arctic Blessing";
         var description = "Reduces the cooldown of Arctic Volley by {cooldown_duration_deduct} sec.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = tundraHunterSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:arctic_volley";
@@ -1842,8 +2030,7 @@ public class MrpgSkillSpells {
         var title = "Arctic Pact";
         var description = "Frozen Pact has a {trigger_chance} chance to freeze targets solid.";
         var spell = createModifierAlikePassiveSpell();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
-
+        spell.school = tundraHunterSchool;
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
         var trigger = SpellBuilder.Triggers.specificSpellHit("archers_expansion:frozen_pact");
@@ -1863,7 +2050,7 @@ public class MrpgSkillSpells {
         var title = "Hunting Instincts";
         var description = "Frozen Pact increases Frost Power and Ranged Damage by {bonus} for {effect_duration} secs.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = tundraHunterSchool;
         var effect = MrpgSkillEffects.HUNTING_INSTINCTS;
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = effect.config().firstModifier();
@@ -1897,7 +2084,7 @@ public class MrpgSkillSpells {
             }
         };
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = tundraHunterSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:enchanted_crystal_arrow";
@@ -1917,7 +2104,7 @@ public class MrpgSkillSpells {
         var title = "Whirlwind Mastery";
         var description = "Enchanted Crystal Arrow deals {power_multiplier} more damage.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = tundraHunterSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:enchanted_crystal_arrow";
@@ -1936,7 +2123,7 @@ public class MrpgSkillSpells {
         var description = "Arrows have a {trigger_chance} chance to launch falling icicles dealing {damage} damage.";
 
         var spell = SpellBuilder.createSpellPassive();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = tundraHunterSchool;
         spell.range = 30;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
@@ -1999,7 +2186,7 @@ public class MrpgSkillSpells {
         var description = "If the target is frosted, you heal yourself for {heal}.";
 
         var spell = SpellBuilder.createSpellPassive();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = tundraHunterSchool;
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
@@ -2043,7 +2230,7 @@ public class MrpgSkillSpells {
         var title = "Winter's Cloak";
         var description = "Upon rolling: {trigger_chance} chance to freeze enemies that hit you for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = tundraHunterSchool;
         spell.range = 0;
 
         var trigger = SpellBuilder.Triggers.roll();
@@ -2078,7 +2265,7 @@ public class MrpgSkillSpells {
         var title = "Terrain Mastery";
         var description = "Upon rolling: {trigger_chance} to cleanse a negative effect.";
         var spell = SpellBuilder.createSpellPassive();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = tundraHunterSchool;
         spell.range = 0;
 
         var trigger = SpellBuilder.Triggers.roll();
@@ -2110,7 +2297,7 @@ public class MrpgSkillSpells {
         var title = "Icy Rebirth";
         var description = "On kill:{trigger_chance_1} chance to spawn icicles on the ground for {cloud_duration}, dealing {damage} damage.";
         var spell = SpellBuilder.createSpellPassive();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = tundraHunterSchool;
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
@@ -2161,7 +2348,7 @@ public class MrpgSkillSpells {
         };
 
         var spell = SpellBuilder.createSpellPassive();
-        spell.school = ExternalSpellSchools.PHYSICAL_RANGED;
+        spell.school = tundraHunterSchool;
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
