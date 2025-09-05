@@ -9,12 +9,14 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.custom.MoreSpellSchools;
+import net.more_rpg_classes.entity.attribute.MRPGCEntityAttributes;
 import net.spell_engine.api.config.AttributeModifier;
 import net.spell_engine.api.config.ConfigFile;
 import net.spell_engine.api.config.EffectConfig;
 import net.spell_engine.api.effect.*;
 import net.spell_engine.api.entity.SpellEngineAttributes;
 import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_power.api.SpellPowerMechanics;
 import net.spell_power.api.SpellSchools;
 
 import java.util.ArrayList;
@@ -254,7 +256,7 @@ public class MrpgSkillEffects {
     public static Effects.Entry HUNTING_FEVER = add(new Effects.Entry(Identifier.of(MOD_ID, "hunting_fever"),
             "Hunting Fever",
             "Increased Frost Spell Power and Ranged Damage",
-            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
@@ -273,7 +275,7 @@ public class MrpgSkillEffects {
     public static Effects.Entry SMOKE_BOMB = add(new Effects.Entry(Identifier.of(MOD_ID, "smoke_bomb"),
             "Smoke Bomb",
             "Blindness and reduced Movement speed",
-            new AbsorptionEffect(StatusEffectCategory.HARMFUL, 0x9999ff),
+            new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0x9999ff),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
@@ -287,7 +289,7 @@ public class MrpgSkillEffects {
     public static Effects.Entry CAMOUFLAGED = add(new Effects.Entry(Identifier.of(MOD_ID, "camouflaged"),
             "Camouflaged",
             "Increased Evasion",
-            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
@@ -301,7 +303,7 @@ public class MrpgSkillEffects {
     public static Effects.Entry TOWER_PROTECTOR = add(new Effects.Entry(Identifier.of(MOD_ID, "tower_protector"),
             "Protector of the Tower",
             "Increased Armor and Knockback Resistance",
-            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
@@ -320,7 +322,7 @@ public class MrpgSkillEffects {
     public static Effects.Entry LAST_STAND = add(new Effects.Entry(Identifier.of(MOD_ID, "last_stand"),
             "Last Stand",
             "Increases size",
-            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
@@ -336,6 +338,77 @@ public class MrpgSkillEffects {
                             new AttributeModifier(
                                     SpellEngineAttributes.DAMAGE_TAKEN.id.toString(),
                                     -0.25F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry FORCE_RELEASE = add(new Effects.Entry(Identifier.of(MOD_ID, "force_release"),
+            "Force Release",
+            "Increased Spell Haste & Spell Crit Chance",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellPowerMechanics.HASTE.id.toString(),
+                                    0.02F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    SpellPowerMechanics.CRITICAL_CHANCE.id.toString(),
+                                    0.02F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry FLYING_FISTS = add(new Effects.Entry(Identifier.of(MOD_ID, "flying_fists"),
+            "Flying Fists",
+            "Increased Attack Speed",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ATTACK_SPEED.getIdAsString(),
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry SURYS_TENACITY = add(new Effects.Entry(Identifier.of(MOD_ID, "surys_tenacity"),
+            "Sury's Tenacity",
+            "Increased Arcane Fuse, Attack and Movement Speed",
+            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ATTACK_SPEED.getIdAsString(),
+                                    0.2F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    0.2F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry SURYS_GRACE= add(new Effects.Entry(Identifier.of(MOD_ID, "surys_grace"),
+            "Sury's Grace",
+            "Increased Arcane Spell Power, Spell Haste & Spell Critical Damage",
+            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellSchools.ARCANE.id.toString(),
+                                    0.2F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    SpellPowerMechanics.HASTE.id.toString(),
+                                    0.2F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )

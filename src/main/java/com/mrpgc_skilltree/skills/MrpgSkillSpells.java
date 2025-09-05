@@ -913,7 +913,7 @@ public class MrpgSkillSpells {
         var title = "Shattering Splitters";
         var description = "Melee hits with Stonehand deals {damage} damage around the target.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        spell.school = forcemasterFighterSchool;
 
         var radius = 3.0F;
 
@@ -952,7 +952,7 @@ public class MrpgSkillSpells {
         var title = "Crystallized Fists";
         var description = "Stonehand grants you the Crystallized Fists effect, increasing your arcane spell power by {bonus} for {effect_duration} seconds.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = SpellSchools.ARCANE;
+        spell.school = forcemasterCasterSchool;
         var effect = MrpgSkillEffects.CRYSTALLIZED_FISTS;
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = effect.config().firstModifier();
@@ -979,7 +979,7 @@ public class MrpgSkillSpells {
         var title = "Pumped Up";
         var description = "Burstcrack increases your attack damage by {bonus} for {effect_duration} seconds.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        spell.school = forcemasterFighterSchool;
         var effect = MrpgSkillEffects.PUMPED_UP;
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = effect.config().firstModifier();
@@ -1006,7 +1006,7 @@ public class MrpgSkillSpells {
         var title = "Powerful Burst";
         var description = "Burst Crack deals {critical_chance_bonus} critical chance bonus.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = SpellSchools.ARCANE;
+        spell.school = forcemasterCasterSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "forcemaster_rpg:burstcrack";
@@ -1022,7 +1022,7 @@ public class MrpgSkillSpells {
         var title = "Powerful Belial Smashing";
         var description = "Belial Smashing has {trigger_chance} chance to knock up the target.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        spell.school = forcemasterFighterSchool;
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
@@ -1055,9 +1055,9 @@ public class MrpgSkillSpells {
     private static Entry forcemaster_spec_b_modifier_3() {
         var id = Identifier.of(NAMESPACE, "forcemaster_spec_b_modifier_3");
         var title = "Explosive Belial Smashing";
-        var description = "Belial Smashing has {trigger_chance} chance to knock up the target.";
+        var description = "Belial Smashing has {trigger_chance} chance create a arcane explosion, dealing {damage} damage.";
         var spell = createModifierAlikePassiveSpell();
-        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        spell.school = forcemasterCasterSchool;
 
         var radius = 5F;
         var modifier = new Spell.Modifier();
@@ -1100,7 +1100,7 @@ public class MrpgSkillSpells {
         var title = "Powerful Asalraalaikum";
         var description = " Asalraalaikum damage increased by {power_multiplier}.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
+        spell.school = forcemasterFighterSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "forcemaster_rpg:asal";
@@ -1116,7 +1116,7 @@ public class MrpgSkillSpells {
         var title = "Arcane Regeneration";
         var description = "Reduces the cooldown of Asalraalaikum  by {cooldown_duration_deduct} sec.";
         var spell = SpellBuilder.createSpellModifier();
-        spell.school = SpellSchools.ARCANE;
+        spell.school = forcemasterCasterSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "forcemaster_rpg:asal";
@@ -1126,7 +1126,187 @@ public class MrpgSkillSpells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.FORCEMASTER));
     }
     ///FORCEMASTER PASSIVES
-    //TO DO
+    public static final Entry forcemaster_spec_a_passive_1 = add(forcemaster_spec_a_passive_1());
+    private static Entry forcemaster_spec_a_passive_1() {
+        var id = Identifier.of(NAMESPACE, "forcemaster_spec_a_passive_1");
+        var title = "Blood Fists";
+        var description = "Your melee hits have {trigger_chance} chance, to stack bleeding on the target for {effect_duration} sec.";
+        var effect = MRPGCEffects.BLEEDING;
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = forcemasterFighterSchool;
+        spell.range = 0;
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.meleeAttack(false);
+        trigger.chance = 0.4F;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 7F, 0,6);
+        impact.action.status_effect.refresh_duration = true;
+        impact.particles = new ParticleBatch[]{
+                ///PARTICLE CHANGE
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_speed.id(), Color.WHITE)};
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 5F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FORCEMASTER));
+    }
+    public static final Entry forcemaster_spec_b_passive_1 = add(forcemaster_spec_b_passive_1());
+    private static Entry forcemaster_spec_b_passive_1() {
+        var id = Identifier.of(NAMESPACE, "forcemaster_spec_b_passive_1");
+        var title = "Force Release";
+        var description = "Forcemaster spell impacts have {trigger_chance} chance, to increase spell haste & critical chance by {bonus} for {effect_duration} sec.";
+        var effect = MrpgSkillEffects.FORCE_RELEASE;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var modifier = effect.config().firstModifier();
+            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+            return args.description()
+                    .replace("{bonus}", bonus);
+        };
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = forcemasterCasterSchool;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.activeSpellHit(0.25F, "forcemaster");
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 8F, 0,3);
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.area_circle_1.id().toString(),
+                        ParticleBatch.Shape.LINE_VERTICAL, ParticleBatch.Origin.FEET,
+                        1, 0.2F, 0.2F)
+                        .followEntity(true)
+                        .scale(0.8F)
+                        .maxAge(0.8F)
+                        .color(Color.ARCANE.toRGBA()),
+        };
+        impact.sound = new Sound(SkillTreeSounds.arcane_radiance.id());
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 1F);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.FORCEMASTER));
+    }
+    public static final Entry forcemaster_spec_a_passive_2 = add(forcemaster_spec_a_passive_2());
+    private static Entry forcemaster_spec_a_passive_2() {
+        var id = Identifier.of(NAMESPACE, "forcemaster_spec_a_passive_2");
+        var title = "Flying Fists";
+        var description = "Upon rolling, attack speed gets increased by {bonus} for {effect_duration} sec.";
+        var effect = MrpgSkillEffects.FLYING_FISTS;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var modifier = effect.config().firstModifier();
+            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+            return args.description()
+                    .replace("{bonus}", bonus);
+        };
+
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = forcemasterFighterSchool;
+        spell.range = 0;
+
+        spell.passive.triggers = List.of(SpellBuilder.Triggers.roll());
+
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 4, 0, 0);
+        /// ADD SOUNDS & PARTICLES
+        spell.impacts = List.of(impact);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.FORCEMASTER));
+    }
+    public static final Entry forcemaster_spec_b_passive_2 = add(forcemaster_spec_b_passive_2());
+    private static Entry forcemaster_spec_b_passive_2() {
+        var id = Identifier.of(NAMESPACE, "forcemaster_spec_b_passive_2");
+        var title = "Calm Mind";
+        var description = "Upon rolling, {trigger_chance} chance to slightly reduce active forcemaster cooldowns.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = forcemasterCasterSchool;
+        spell.range = 0;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        trigger.chance = 0.5F;
+        spell.passive.triggers = List.of(trigger);
+
+        Spell.Impact impact = new Spell.Impact();
+        impact.action = new Spell.Impact.Action();
+        impact.action.type = net.spell_engine.api.spell.Spell.Impact.Action.Type.COOLDOWN;
+        impact.action.cooldown = new Spell.Impact.Action.Cooldown();
+        impact.action.cooldown.actives = new Spell.Impact.Action.Cooldown.Modify();
+        impact.action.cooldown.actives.school = "forcemaster";
+        impact.action.cooldown.actives.duration_multiplier = 0.75F;
+        /// ADD SOUNDS & PARTICLES
+        spell.impacts = List.of(impact);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.FORCEMASTER));
+    }
+    public static final Entry forcemaster_spec_a_passive_3 = add(forcemaster_spec_a_passive_3());
+    private static Entry forcemaster_spec_a_passive_3() {
+        var id = Identifier.of(NAMESPACE, "forcemaster_spec_a_passive_3");
+        var title = "Sury's Tenacity";
+        final var healthThreshold = 0.3F;
+        var description = "When taking damage below {threshold}, attack & movement speed gets increased by {bonus} and the caster is immune to harmful effects for {effect_duration} sec.";
+        var effect = MrpgSkillEffects.SURYS_TENACITY;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var modifier = effect.config().firstModifier();
+            var threshold = SpellTooltip.percent(healthThreshold);
+            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+            return args.description()
+                    .replace("{bonus}", bonus)
+                    .replace("{threshold}", threshold);
+        };
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = forcemasterFighterSchool;
+        spell.range = 0;
+
+        var trigger = SpellBuilder.Triggers.becomingLowHP(healthThreshold);
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 5, 0, 0);
+        /// ADD SOUNDS & PARTICLES
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell,50);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.FORCEMASTER));
+    }
+    public static final Entry forcemaster_spec_b_passive_3 = add(forcemaster_spec_b_passive_3());
+    private static Entry forcemaster_spec_b_passive_3() {
+        var id = Identifier.of(NAMESPACE, "forcemaster_spec_b_passive_3");
+        var title = "Sury's Grace";
+        var description = "Casting Forcemaster Spells has a {trigger_chance} to increase arcane spell power & spell haste by {bonus} for {effect_duration} sec.";
+        var effect = MrpgSkillEffects.SURYS_GRACE;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var modifier = effect.config().firstModifier();
+            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+            return args.description()
+                    .replace("{bonus}", bonus);
+        };
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = forcemasterCasterSchool;
+        spell.range = 0;
+
+        var trigger = SpellBuilder.Triggers.activeSpellCast(forcemasterCasterSchool);
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 10, 0, 0);
+        /// ADD SOUNDS & PARTICLES
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell,50);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.FORCEMASTER));
+    }
     ///WAR ARCHER MODIFIERS
     public static final Entry war_archer_spec_a_modifier_1 = add(war_archer_spec_a_modifier_1());
     private static Entry war_archer_spec_a_modifier_1() {
