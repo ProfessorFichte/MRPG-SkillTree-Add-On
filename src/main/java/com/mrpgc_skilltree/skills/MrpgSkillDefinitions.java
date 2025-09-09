@@ -187,7 +187,7 @@ public class MrpgSkillDefinitions {
     public static final Entry WATER_SPEC_B_MODIFIER_3 = add(passiveSpell(MrpgSkillSpells.water_spec_b_modifier_3)
             .withIcon(Icon.spell(Identifier.of("elemental_wizards_rpg", "aqua_springwater"))));
     public static final Entry WATER_SPEC_A_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.water_spec_a_modifier_4));
-    public static final Entry WATER_SPEC_B_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.water_spec_b_modifier_4)
+    public static final Entry WATER_SPEC_B_MODIFIER_4 = add(passiveSpell(MrpgSkillSpells.water_spec_b_modifier_4)
             .withIcon(Icon.spell(Identifier.of("elemental_wizards_rpg", "aqua_hydro_beam"))));
     public static final Entry WATER_SPEC_A_PASSIVE_1 = add(passiveSpell());
     public static final Entry WATER_SPEC_B_PASSIVE_1 = add(passiveSpell());
