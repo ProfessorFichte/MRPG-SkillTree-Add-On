@@ -1,21 +1,16 @@
 package com.mrpgc_skilltree.effect;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.render.GameRenderer;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.custom.MoreSpellSchools;
-import net.more_rpg_classes.entity.attribute.MRPGCEntityAttributes;
 import net.spell_engine.api.config.AttributeModifier;
 import net.spell_engine.api.config.ConfigFile;
 import net.spell_engine.api.config.EffectConfig;
 import net.spell_engine.api.effect.*;
 import net.spell_engine.api.entity.SpellEngineAttributes;
-import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_power.api.SpellPowerMechanics;
 import net.spell_power.api.SpellSchools;
 
@@ -378,18 +373,18 @@ public class MrpgSkillEffects {
     ));
     public static Effects.Entry SURYS_TENACITY = add(new Effects.Entry(Identifier.of(MOD_ID, "surys_tenacity"),
             "Sury's Tenacity",
-            "Increased Arcane Fuse, Attack and Movement Speed",
-            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            "Increased Attack and Movement Speed, immune to harmful effects, but can't cast spells.",
+            new ImmuneToHarmfulEffectsStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
                                     EntityAttributes.GENERIC_ATTACK_SPEED.getIdAsString(),
-                                    0.2F,
+                                    0.1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             ),
                             new AttributeModifier(
                                     EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
-                                    0.2F,
+                                    0.1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )
@@ -398,7 +393,7 @@ public class MrpgSkillEffects {
     public static Effects.Entry SURYS_GRACE= add(new Effects.Entry(Identifier.of(MOD_ID, "surys_grace"),
             "Sury's Grace",
             "Increased Arcane Spell Power, Spell Haste & Spell Critical Damage",
-            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
@@ -414,16 +409,66 @@ public class MrpgSkillEffects {
                     )
             )
     ));
+    public static Effects.Entry SPINNING_SLASH = add(new Effects.Entry(Identifier.of(MOD_ID, "spinning_slash"),
+            "Spinning Slash",
+            "Damaging nearby enemies.",
+            new TickingStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff).interval(3),
+            new EffectConfig(
+                    List.of()
+            )
+    ));
+    public static Effects.Entry BURST_OF_AGGRESSION= add(new Effects.Entry(Identifier.of(MOD_ID, "burst_of_aggression"),
+            "Burst of Aggression",
+            "Increased Movement Speed",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    0.15F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry RAGNAROK = add(new Effects.Entry(Identifier.of(MOD_ID, "ragnarok"),
+            "Ragnarok",
+            "Increased Movement Speed and immune to harmful effects.",
+            new ImmuneToHarmfulEffectsStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry UNDYING_RAGE = add(new Effects.Entry(Identifier.of(MOD_ID, "undying_rage"),
+            "Undying Rage",
+            "Reduces damage taken.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellEngineAttributes.DAMAGE_TAKEN.id,
+                                    -1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
 
     public static void register(ConfigFile.Effects config) {
         for (var entry : entries) {
             Synchronized.configure(entry.effect, true);
         }
-        Effects.register(entries, config.effects);
-
+        ActionImpairing.configure(SURYS_TENACITY.effect, EntityActionsAllowed.SILENCE);
         Protection.register(OBSIDIAN_SKIN.entry, new Protection.Pop(
                 /// IMPROVE SFX & VFX
                 null,
                 null));
+        Effects.register(entries, config.effects);
     }
 }
