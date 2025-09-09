@@ -114,7 +114,8 @@ public class MrpgSkillDefinitions {
     );
     public static final Entry AIR_SPEC_A_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.air_spec_a_modifier_1));
     public static final Entry AIR_SPEC_B_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.air_spec_b_modifier_1));
-    public static final Entry AIR_SPEC_A_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.air_spec_a_modifier_2));
+    public static final Entry AIR_SPEC_A_MODIFIER_2 = add(passiveSpell(MrpgSkillSpells.air_spec_a_modifier_2)
+            .withIcon(Icon.spell(Identifier.of("elemental_wizards_rpg", "wind_aeroblast"))));
     public static final Entry AIR_SPEC_B_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.air_spec_b_modifier_2));
     public static final Entry AIR_SPEC_A_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.air_spec_a_modifier_3));
     public static final Entry AIR_SPEC_B_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.air_spec_b_modifier_3));
@@ -180,11 +181,14 @@ public class MrpgSkillDefinitions {
     public static final Entry WATER_SPEC_A_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.water_spec_a_modifier_1));
     public static final Entry WATER_SPEC_B_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.water_spec_b_modifier_1));
     public static final Entry WATER_SPEC_A_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.water_spec_a_modifier_2));
-    public static final Entry WATER_SPEC_B_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.water_spec_b_modifier_2));
+    public static final Entry WATER_SPEC_B_MODIFIER_2 = add(passiveSpell(MrpgSkillSpells.water_spec_b_modifier_2)
+            .withIcon(Icon.spell(Identifier.of("elemental_wizards_rpg", "aqua_bubble_beam"))));
     public static final Entry WATER_SPEC_A_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.water_spec_a_modifier_3));
-    public static final Entry WATER_SPEC_B_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.water_spec_b_modifier_3));
+    public static final Entry WATER_SPEC_B_MODIFIER_3 = add(passiveSpell(MrpgSkillSpells.water_spec_b_modifier_3)
+            .withIcon(Icon.spell(Identifier.of("elemental_wizards_rpg", "aqua_springwater"))));
     public static final Entry WATER_SPEC_A_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.water_spec_a_modifier_4));
-    public static final Entry WATER_SPEC_B_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.water_spec_b_modifier_4));
+    public static final Entry WATER_SPEC_B_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.water_spec_b_modifier_4)
+            .withIcon(Icon.spell(Identifier.of("elemental_wizards_rpg", "aqua_hydro_beam"))));
     public static final Entry WATER_SPEC_A_PASSIVE_1 = add(passiveSpell());
     public static final Entry WATER_SPEC_B_PASSIVE_1 = add(passiveSpell());
     public static final Entry WATER_SPEC_A_PASSIVE_2 = add(passiveSpell());
@@ -212,8 +216,10 @@ public class MrpgSkillDefinitions {
     public static final Entry BERSERKER_SPEC_A_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.berserker_spec_a_modifier_1));
     public static final Entry BERSERKER_SPEC_B_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.berserker_spec_b_modifier_1));
     public static final Entry BERSERKER_SPEC_A_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.berserker_spec_a_modifier_2));
-    public static final Entry BERSERKER_SPEC_B_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.berserker_spec_b_modifier_2));
-    public static final Entry BERSERKER_SPEC_A_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.berserker_spec_a_modifier_3));
+    public static final Entry BERSERKER_SPEC_B_MODIFIER_2 = add(passiveSpell(MrpgSkillSpells.berserker_spec_b_modifier_2)
+            .withIcon(Icon.spell(Identifier.of("berserker_rpg", "blood_reckoning"))));
+    public static final Entry BERSERKER_SPEC_A_MODIFIER_3 = add(passiveSpell(MrpgSkillSpells.berserker_spec_a_modifier_3)
+            .withIcon(Icon.spell(Identifier.of("berserker_rpg", "bloody_strike"))));
     public static final Entry BERSERKER_SPEC_B_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.berserker_spec_b_modifier_3));
     public static final Entry BERSERKER_SPEC_A_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.berserker_spec_a_modifier_4));
     public static final Entry BERSERKER_SPEC_B_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.berserker_spec_b_modifier_4));
@@ -247,7 +253,8 @@ public class MrpgSkillDefinitions {
     public static final Entry FORCEMASTER_SPEC_A_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.forcemaster_spec_a_modifier_2));
     public static final Entry FORCEMASTER_SPEC_B_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.forcemaster_spec_b_modifier_2));
     public static final Entry FORCEMASTER_SPEC_A_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.forcemaster_spec_a_modifier_3));
-    public static final Entry FORCEMASTER_SPEC_B_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.forcemaster_spec_b_modifier_3));
+    public static final Entry FORCEMASTER_SPEC_B_MODIFIER_3 = add(passiveSpell(MrpgSkillSpells.forcemaster_spec_b_modifier_3)
+            .withIcon(Icon.spell(Identifier.of("forcemaster_rpg", "belial_smashing"))));
     public static final Entry FORCEMASTER_SPEC_A_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.forcemaster_spec_a_modifier_4));
     public static final Entry FORCEMASTER_SPEC_B_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.forcemaster_spec_b_modifier_4));
     public static final Entry FORCEMASTER_SPEC_A_PASSIVE_1 = add(passiveSpell(MrpgSkillSpells.forcemaster_spec_a_passive_1));
@@ -278,9 +285,12 @@ public class MrpgSkillDefinitions {
     public static final Entry WAR_ARCHER_SPEC_B_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.war_archer_spec_b_modifier_1));
     public static final Entry WAR_ARCHER_SPEC_A_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.war_archer_spec_a_modifier_2));
     public static final Entry WAR_ARCHER_SPEC_B_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.war_archer_spec_b_modifier_2));
-    public static final Entry WAR_ARCHER_SPEC_A_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.war_archer_spec_a_modifier_3));
-    public static final Entry WAR_ARCHER_SPEC_B_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.war_archer_spec_b_modifier_3));
-    public static final Entry WAR_ARCHER_SPEC_A_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.war_archer_spec_a_modifier_4));
+    public static final Entry WAR_ARCHER_SPEC_A_MODIFIER_3 = add(passiveSpell(MrpgSkillSpells.war_archer_spec_a_modifier_3)
+            .withIcon(Icon.spell(Identifier.of("archers_expansion", "point_blank_shot"))));
+    public static final Entry WAR_ARCHER_SPEC_B_MODIFIER_3 = add(passiveSpell(MrpgSkillSpells.war_archer_spec_b_modifier_3)
+            .withIcon(Icon.spell(Identifier.of("archers_expansion", "point_blank_shot"))));
+    public static final Entry WAR_ARCHER_SPEC_A_MODIFIER_4 = add(passiveSpell(MrpgSkillSpells.war_archer_spec_a_modifier_4)
+            .withIcon(Icon.spell(Identifier.of("archers_expansion", "pin_down"))));
     public static final Entry WAR_ARCHER_SPEC_B_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.war_archer_spec_b_modifier_4));
     public static final Entry WAR_ARCHER_SPEC_A_PASSIVE_1 = add(passiveSpell(MrpgSkillSpells.war_archer_spec_a_passive_1));
     public static final Entry WAR_ARCHER_SPEC_B_PASSIVE_1 = add(passiveSpell(MrpgSkillSpells.war_archer_spec_b_passive_1));
@@ -310,9 +320,12 @@ public class MrpgSkillDefinitions {
     public static final Entry DEADEYE_SPEC_B_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.deadeye_spec_b_modifier_1));
     public static final Entry DEADEYE_SPEC_A_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.deadeye_spec_a_modifier_2));
     public static final Entry DEADEYE_SPEC_B_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.deadeye_spec_b_modifier_2));
-    public static final Entry DEADEYE_SPEC_A_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.deadeye_spec_a_modifier_3));
-    public static final Entry DEADEYE_SPEC_B_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.deadeye_spec_b_modifier_3));
-    public static final Entry DEADEYE_SPEC_A_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.deadeye_spec_a_modifier_4));
+    public static final Entry DEADEYE_SPEC_A_MODIFIER_3 = add(passiveSpell(MrpgSkillSpells.deadeye_spec_a_modifier_3)
+            .withIcon(Icon.spell(Identifier.of("archers_expansion", "disabling_shot"))));
+    public static final Entry DEADEYE_SPEC_B_MODIFIER_3 = add(passiveSpell(MrpgSkillSpells.deadeye_spec_b_modifier_3)
+            .withIcon(Icon.spell(Identifier.of("archers_expansion", "disabling_shot"))));
+    public static final Entry DEADEYE_SPEC_A_MODIFIER_4 = add(passiveSpell(MrpgSkillSpells.deadeye_spec_a_modifier_4)
+            .withIcon(Icon.spell(Identifier.of("archers_expansion", "choking_gas"))));
     public static final Entry DEADEYE_SPEC_B_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.deadeye_spec_b_modifier_4));
     public static final Entry DEADEYE_SPEC_A_PASSIVE_1 = add(passiveSpell(MrpgSkillSpells.deadeye_spec_a_passive_1));
     public static final Entry DEADEYE_SPEC_B_PASSIVE_1 = add(passiveSpell(MrpgSkillSpells.deadeye_spec_b_passive_1));
@@ -342,7 +355,8 @@ public class MrpgSkillDefinitions {
     public static final Entry TUNDRA_HUNTER_SPEC_B_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.tundra_hunter_spec_b_modifier_1));
     public static final Entry TUNDRA_HUNTER_SPEC_A_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.tundra_hunter_spec_a_modifier_2));
     public static final Entry TUNDRA_HUNTER_SPEC_B_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.tundra_hunter_spec_b_modifier_2));
-    public static final Entry TUNDRA_HUNTER_SPEC_A_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.tundra_hunter_spec_a_modifier_3));
+    public static final Entry TUNDRA_HUNTER_SPEC_A_MODIFIER_3 = add(passiveSpell(MrpgSkillSpells.tundra_hunter_spec_a_modifier_3)
+            .withIcon(Icon.spell(Identifier.of("archers_expansion", "frozen_pact"))));
     public static final Entry TUNDRA_HUNTER_SPEC_B_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.tundra_hunter_spec_b_modifier_3));
     public static final Entry TUNDRA_HUNTER_SPEC_A_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.tundra_hunter_spec_a_modifier_4));
     public static final Entry TUNDRA_HUNTER_SPEC_B_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.tundra_hunter_spec_b_modifier_4));
