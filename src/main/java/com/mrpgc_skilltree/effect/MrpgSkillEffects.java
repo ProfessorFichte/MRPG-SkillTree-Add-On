@@ -4,6 +4,7 @@ import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectCategory;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.custom.MoreSpellSchools;
 import net.spell_engine.api.config.AttributeModifier;
@@ -456,6 +457,52 @@ public class MrpgSkillEffects {
                                     -1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
+                    )
+            )
+    ));
+    public static Effects.Entry HYDRATION = add(new Effects.Entry(Identifier.of(MOD_ID, "hydration"),
+            "Hydration",
+            "Regenerates health overtime.",
+            new RegenerationStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.WATER.color),
+            new EffectConfig(
+                    List.of(
+                    )
+            )
+    ));
+    public static Effects.Entry SPLASHDOWN = add(new Effects.Entry(Identifier.of(MOD_ID, "splashdown"),
+            "Splashdown",
+            "Knocks targets back.",
+            new TickingStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.WATER.color).interval(3),
+            new EffectConfig(
+                    List.of()
+            )
+    ));
+    public static Effects.Entry CALMING_FLOW = add(new Effects.Entry(Identifier.of(MOD_ID, "calming_flow"),
+            "Calming Flow",
+            "Decreases Active Cooldowns of Water Spells",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.WATER.color),
+            new EffectConfig(
+                    List.of(
+                    )
+            )
+    ));
+    public static Effects.Entry TORRENT = add(new Effects.Entry(Identifier.of(MOD_ID, "torrent"),
+            "Torrent",
+            "Increases Water Spell Power and Spell Critical Chance",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.WATER.color),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    MoreSpellSchools.WATER.id,
+                                    0.2F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    SpellPowerMechanics.CRITICAL_CHANCE.id,
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+
                     )
             )
     ));
