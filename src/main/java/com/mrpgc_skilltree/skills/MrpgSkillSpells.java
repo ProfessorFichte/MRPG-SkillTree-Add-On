@@ -81,6 +81,11 @@ public class MrpgSkillSpells {
         modifier.execute = TriState.DENY;
         impact.target_modifiers = List.of(modifier);
     }
+    private static void bossImmuneDeny(Spell.Impact impact) {
+        var modifier = createImpactModifier("#c:bosses");
+        modifier.execute = TriState.DENY;
+        impact.target_modifiers = List.of(modifier);
+    }
     private static final SpellEntityPredicates.Entry HAS_BLEEDING = SpellEntityPredicates.hasEffectOptimized(Identifier.of("more_rpg_classes", "bleeding"));
     private static final SpellEntityPredicates.Entry HAS_FROSTED = SpellEntityPredicates.hasEffectOptimized(Identifier.of("more_rpg_classes", "frosted"));
     private static final SpellEntityPredicates.Entry HAS_RAGE = SpellEntityPredicates.hasEffectOptimized(Identifier.of("berserker_rpg", "rage"));
@@ -247,6 +252,7 @@ public class MrpgSkillSpells {
     }
     ///AIR PASSIVES
     //TO DO
+    public static final Color EARTH_SPELL_COLOR = new Color(255.0F, 165.0F, 0.0F);
     ///EARTH MODIFIERS
     public static final Entry earth_spec_a_modifier_1 = add(earth_spec_a_modifier_1());
     private static Entry earth_spec_a_modifier_1() {
@@ -296,14 +302,14 @@ public class MrpgSkillSpells {
     private static Entry earth_spec_a_modifier_2() {
         var id = Identifier.of(NAMESPACE, "earth_spec_a_modifier_2");
         var title = "Obsidian Skin";
-        var description = "Stone Flesh grants you Obsidian Skin, protecting your from {effect_amplifier} incoming attack for {effect_duration} sec.";
+        var description = "Stone Flesh grants you Obsidian Skin, protecting you from {effect_amplifier} incoming attack for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = earthWizardSchool;
         var effect = MrpgSkillEffects.OBSIDIAN_SKIN;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "elemental_wizards_rpg:terra_stone_flesh";
-        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(),5,2);
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(),5,1);
         impact.action.apply_to_caster = true;
 
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
@@ -421,7 +427,236 @@ public class MrpgSkillSpells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.EARTH));
     }
     ///EARTH PASSIVES
-    //TO DO
+    public static final Entry earth_spec_a_passive_1 = add(earth_spec_a_passive_1());
+    private static Entry earth_spec_a_passive_1() {
+        var id = Identifier.of(NAMESPACE, "earth_spec_a_passive_1");
+        var effect = MrpgSkillEffects.EARTHEN_BLESSING;
+        var title = effect.title;
+        var description = "Earth spell impacts have {trigger_chance} chance to apply Earthen Blessing effect."
+                + " Increasing armor by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var modifier = effect.config().firstModifier();
+            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+            return args.description()
+                    .replace("{bonus}", bonus);
+        };
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = earthWizardSchool;
+        spell.range = 0;
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.activeSpellHit(0.35F, "earth");
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 10, 0, 5);
+        /// IMPROVE SOUND & PARTICLE
+        impact.particles = new ParticleBatch[]{
+        };
+        impact.sound = new Sound();
+        spell.impacts = List.of(impact);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.EARTH));
+    }
+    public static final Entry earth_spec_b_passive_1 = add(earth_spec_b_passive_1());
+    private static Entry earth_spec_b_passive_1() {
+        var id = Identifier.of(NAMESPACE, "earth_spec_b_passive_1");
+        var title = "";
+        var description = "Earth spell impacts have {trigger_chance} chance to apply Earthen Blessing effect."
+                + " Increasing armor by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = earthWizardSchool;
+        spell.range = 0;
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.activeSpellHit(0.5F, "earth");
+        var condition = new Spell.TargetCondition();
+        condition.entity_predicate_id = SpellEntityPredicates.HAS_BAD_EFFECT.toString();
+        trigger.target_conditions = List.of(condition);
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.damage(0.3F,0.0F);
+        /// IMPROVE SOUND & PARTICLE
+        impact.particles = new ParticleBatch[]{
+        };
+        impact.sound = new Sound();
+        spell.impacts = List.of(impact);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.EARTH));
+    }
+    public static final Entry earth_spec_a_passive_2 = add(earth_spec_a_passive_2());
+    private static Entry earth_spec_a_passive_2() {
+        var id = Identifier.of(NAMESPACE, "earth_spec_a_passive_2");
+        var effect = MrpgSkillEffects.DIFFICULT_TERRAIN;
+        var title = "Difficult Terrain";
+        var description = "{trigger_chance} chance upon rolling to leave difficult terrain behind for {cloud_duration} sec, slowing for {effect_duration} sec and damaging enemies..";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = earthWizardSchool;
+        spell.range = 0;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        trigger.chance = 0.5F;
+        spell.passive.triggers = List.of(trigger);
+
+        spell.deliver.type = Spell.Delivery.Type.CLOUD;
+        spell.deliver.delay = 5;
+        Spell.Delivery.Cloud cloud = new Spell.Delivery.Cloud();
+        cloud.volume.radius = 2.5F;
+        cloud.volume.area.vertical_range_multiplier = 0.3F;
+        //IMRPOVE SOUND
+        cloud.volume.sound = new Sound();
+        cloud.impact_tick_interval = 20;
+        cloud.time_to_live_seconds = 5;
+        //IMRPOVE SOUND
+        cloud.spawn.sound = new Sound();
+        cloud.client_data = new Spell.Delivery.Cloud.ClientData();
+        cloud.client_data.light_level = 0;
+        cloud.client_data.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        MoreParticles.STONE_TRAP.toString(),
+                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET,
+                        4, 0, 0)
+        };
+        spell.deliver.clouds = List.of(cloud);
+        Spell.Impact debuff = SpellBuilder.Impacts.effectSet(effect.toString(),3,0);
+        Spell.Impact damage = SpellBuilder.Impacts.damage(0.1F,0.0F);
+        debuff.particles = new ParticleBatch[]{
+                /// ADD PARTICLES
+        };
+        spell.impacts = List.of(debuff, damage);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.EARTH));
+    }
+    public static final Entry earth_spec_b_passive_2 = add(earth_spec_b_passive_2());
+    private static Entry earth_spec_b_passive_2() {
+        var id = Identifier.of(NAMESPACE, "earth_spec_b_passive_2");
+        var title = "Seismic Entry";
+        var description = "{trigger_chance} chance while rolling, to deal {damage} damage and knock up nearby enemies.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = earthWizardSchool;
+        spell.range = 0;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        trigger.chance = 0.35F;
+        spell.passive.triggers = List.of(trigger);
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var stashEffect = MrpgSkillEffects.SEISMIC_ENTRY;
+        var stashTrigger = SpellBuilder.Triggers.effectTick(stashEffect.id.toString());
+        SpellBuilder.Deliver.stash(spell, stashEffect.id.toString(), 0.5F, List.of(stashTrigger));
+        spell.deliver.stash_effect.consume = 0;
+
+        var impact = SpellBuilder.Impacts.damage(0.2F, 0F);
+        var custom = new Spell.Impact();
+        bossImmuneDeny(custom);
+        custom.action = new Spell.Impact.Action();
+        custom.action.custom = new Spell.Impact.Action.Custom();
+        custom.action.type = Spell.Impact.Action.Type.CUSTOM;
+        custom.action.custom.intent = SpellTarget.Intent.HARMFUL;
+        custom.action.custom.handler = "more_rpg_classes:knock_up_fixed";
+        spell.impacts = List.of(impact);
+        var areaImpact = new Spell.AreaImpact();
+        areaImpact.radius = 2.5F;
+        areaImpact.force_indirect = true;
+        ///IMPROVE PARTICLES & SOUNDS
+        areaImpact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.smoke_medium.id().toString(),
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
+                        10, 0.3F, 0.3F)
+        };
+        areaImpact.sound = new Sound();
+        spell.area_impact = areaImpact;
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.EARTH));
+    }
+    public static final Entry earth_spec_a_passive_3 = add(earth_spec_a_passive_3());
+    private static Entry earth_spec_a_passive_3() {
+        var id = Identifier.of(NAMESPACE, "earth_spec_a_passive_3");
+        var title = "Stone Heart";
+        var description = "Taking damage has {trigger_chance} chance to absorb a huge amount of damage.";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = SpellSchools.FROST;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.damageTaken();
+        trigger.chance = 0.1F;
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+        var effect = MrpgSkillEffects.STONE_HEART;
+        var impact = SpellBuilder.Impacts.effectSet(effect.toString(),10,0);
+        impact.action.status_effect.amplifier_power_multiplier = 0.5F;
+        ///IMRPOVE SOUND & PARTICLES
+        impact.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_shield.id(), Color.fromRGBA(EARTH_SPELL_COLOR.toRGBA())),
+        };
+        impact.sound = new Sound();
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 45F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.EARTH));
+    }
+    public static final Entry earth_spec_b_passive_3 = add(earth_spec_b_passive_3());
+    private static Entry earth_spec_b_passive_3() {
+        var id = Identifier.of(NAMESPACE, "earth_spec_b_passive_3");
+        var title = "Aftershock";
+        float radius = 5F;
+        var description = "Taking damage has {trigger_chance} chance to deal {damage} to nearby targets.";
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = earthWizardSchool;
+        spell.range = radius;
+
+        spell.target.type = Spell.Target.Type.AREA;
+        spell.target.area = new Spell.Target.Area();
+
+        ///IMPROVE PARTICLES
+        spell.release.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        40, 0.6F, 0.8F),
+                new ParticleBatch(
+                        SpellEngineParticles.smoke_medium.id().toString(),
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
+                        20, 0.4F, 0.4F),
+                new ParticleBatch(
+                        SpellEngineParticles.smoke_medium.id().toString(),
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
+                        20, 0.6F, 0.6F),
+                SpellBuilder.Particles.area(SpellEngineParticles.area_effect_658.id())
+                        .scale(radius * 0.8F)
+                        .color(EARTH_SPELL_COLOR.toRGBA()),
+                SpellBuilder.Particles.area(SpellEngineParticles.area_effect_658.id())
+                        .scale(radius)
+                        .color(EARTH_SPELL_COLOR.toRGBA())
+        };
+        spell.release.sound = new Sound();
+
+        var trigger = SpellBuilder.Triggers.damageTaken();
+        trigger.chance = 0.25F;
+        trigger.aoe_source_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+        var damage = SpellBuilder.Impacts.damage(0.5F,0.2F);
+        damage.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.smoke_medium.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        20, 0.2F, 0.3F)
+        };
+        spell.impacts = List.of(damage);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.EARTH));
+    }
     ///WATER MODIFIER
     public static final Color WATER_SPELL_COLOR = Color.from(0x4a8bff);
     public static final Entry water_spec_a_modifier_1 = add(water_spec_a_modifier_1());
@@ -809,7 +1044,7 @@ public class MrpgSkillSpells {
         var id = Identifier.of(NAMESPACE, "water_spec_a_passive_3");
         var effect = MrpgSkillEffects.CALMING_FLOW;
         var title = "Calming Flow";
-        var description = "Water Spell Hits and heals have {trigger_chance_0} chance to reduce active water spell cooldowns per hit for {effect_duration} sec..";
+        var description = "Water Spell Hits and heals have {trigger_chance_1} chance to reduce active water spell cooldowns per hit for {effect_duration} sec..";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = waterWizardSchool;
@@ -824,7 +1059,7 @@ public class MrpgSkillSpells {
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         spell.passive.triggers = List.of(trigger, trigger2);
 
-        SpellBuilder.Deliver.stash(spell, effect.id.toString(), 8, SpellBuilder.Triggers.activeSpellHit(1.0f,"water"));
+        SpellBuilder.Deliver.stash(spell, effect.id.toString(), 5, SpellBuilder.Triggers.activeSpellHit(1.0f,"water"));
         spell.deliver.stash_effect.consume = 0;
 
         Spell.Impact impact = new Spell.Impact();
@@ -833,7 +1068,7 @@ public class MrpgSkillSpells {
         impact.action.cooldown = new Spell.Impact.Action.Cooldown();
         impact.action.cooldown.actives = new Spell.Impact.Action.Cooldown.Modify();
         impact.action.cooldown.actives.school = "water";
-        impact.action.cooldown.actives.duration_multiplier = 0.65F;
+        impact.action.cooldown.actives.duration_multiplier = 0.8F;
         /// ADD SOUNDS & PARTICLES
         impact.particles = new ParticleBatch[]{
         };
@@ -2663,7 +2898,7 @@ public class MrpgSkillSpells {
     public static final Entry tundra_hunter_spec_a_modifier_4 = add(tundra_hunter_spec_a_modifier_4());
     private static Entry tundra_hunter_spec_a_modifier_4() {
         var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_a_modifier_4");
-        var title = "Earthen Blast";
+        var title = "Icicle Crystals";
         var bonus = 2.5F;
         var description = "Increases the area of effect of Enchanted Crystal Arrow by {bonus}.";
         var mutator = new SpellTooltip.DescriptionMutator() {

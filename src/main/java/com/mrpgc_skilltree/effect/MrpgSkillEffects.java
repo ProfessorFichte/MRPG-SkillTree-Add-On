@@ -237,7 +237,7 @@ public class MrpgSkillEffects {
     ));
     public static Effects.Entry WINTERS_CLOAK = add(new Effects.Entry(Identifier.of(MOD_ID, "winters_cloak"),
             "Winters Cloak",
-            "Increased Frost Spell Power and Ranged Damage",
+            "Absorbs damage.",
             new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
             new EffectConfig(
                     List.of(
@@ -503,6 +503,56 @@ public class MrpgSkillEffects {
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
 
+                    )
+            )
+    ));
+    public static Effects.Entry EARTHEN_BLESSING = add(new Effects.Entry(Identifier.of(MOD_ID, "earthen_blessing"),
+            "Earthen Blessing",
+            "Increases Armor.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.EARTH.color),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ARMOR.getIdAsString(),
+                                    0.5F,
+                                    EntityAttributeModifier.Operation.ADD_VALUE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry DIFFICULT_TERRAIN = add(new Effects.Entry(Identifier.of(MOD_ID, "difficult_terrain"),
+            "Difficult Terrain",
+            "Reduces Movement Speed",
+            new CustomStatusEffect(StatusEffectCategory.HARMFUL, MoreSpellSchools.EARTH.color),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    -0.3F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry SEISMIC_ENTRY = add(new Effects.Entry(Identifier.of(MOD_ID, "seismic_entry"),
+            "Seismic Entry",
+            "Knocks targets back.",
+            new TickingStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.EARTH.color).interval(3),
+            new EffectConfig(
+                    List.of()
+            )
+    ));
+    public static Effects.Entry STONE_HEART = add(new Effects.Entry(Identifier.of(MOD_ID, "stone_heart"),
+            "Stone Heart",
+            "Absorbs damage.",
+            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.EARTH.color),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
+                                    2,
+                                    EntityAttributeModifier.Operation.ADD_VALUE
+                            )
                     )
             )
     ));

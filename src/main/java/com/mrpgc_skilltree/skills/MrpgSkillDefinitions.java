@@ -154,12 +154,12 @@ public class MrpgSkillDefinitions {
     public static final Entry EARTH_SPEC_B_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.earth_spec_b_modifier_3));
     public static final Entry EARTH_SPEC_A_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.earth_spec_a_modifier_4));
     public static final Entry EARTH_SPEC_B_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.earth_spec_b_modifier_4));
-    public static final Entry EARTH_SPEC_A_PASSIVE_1 = add(passiveSpell());
-    public static final Entry EARTH_SPEC_B_PASSIVE_1 = add(passiveSpell());
-    public static final Entry EARTH_SPEC_A_PASSIVE_2 = add(passiveSpell());
-    public static final Entry EARTH_SPEC_B_PASSIVE_2 = add(passiveSpell());
-    public static final Entry EARTH_SPEC_A_PASSIVE_3 = add(passiveSpell());
-    public static final Entry EARTH_SPEC_B_PASSIVE_3 = add(passiveSpell());
+    public static final Entry EARTH_SPEC_A_PASSIVE_1 = add(passiveSpell(MrpgSkillSpells.earth_spec_a_passive_1));
+    public static final Entry EARTH_SPEC_B_PASSIVE_1 = add(passiveSpell(MrpgSkillSpells.earth_spec_b_passive_1));
+    public static final Entry EARTH_SPEC_A_PASSIVE_2 = add(passiveSpell(MrpgSkillSpells.earth_spec_a_passive_2));
+    public static final Entry EARTH_SPEC_B_PASSIVE_2 = add(passiveSpell(MrpgSkillSpells.earth_spec_b_passive_2));
+    public static final Entry EARTH_SPEC_A_PASSIVE_3 = add(passiveSpell(MrpgSkillSpells.earth_spec_a_passive_3));
+    public static final Entry EARTH_SPEC_B_PASSIVE_3 = add(passiveSpell(MrpgSkillSpells.earth_spec_b_passive_3));
     ///WATER WIZARD
     public static final Entry WATER_ROOT = add(
             Entry.attribute("water_root",
