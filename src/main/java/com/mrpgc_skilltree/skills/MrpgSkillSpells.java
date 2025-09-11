@@ -699,7 +699,7 @@ public class MrpgSkillSpells {
     public static final Entry earth_spec_b_passive_1 = add(earth_spec_b_passive_1());
     private static Entry earth_spec_b_passive_1() {
         var id = Identifier.of(NAMESPACE, "earth_spec_b_passive_1");
-        var title = "";
+        var title = "Serrated Stones";
         var description = "Earth spell impacts have {trigger_chance} chance to apply Earthen Blessing effect."
                 + " Increasing armor by {bonus}, stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
@@ -1116,7 +1116,7 @@ public class MrpgSkillSpells {
         spell.school = waterWizardSchool;
 
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "elemental_wizards_rpg:aqua_springwater";
+        modifier.spell_pattern = "elemental_wizards_rpg:aqua_hydro_beam";
 
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(),10,1);
 
@@ -2534,7 +2534,7 @@ public class MrpgSkillSpells {
     }
     public static final Entry war_archer_spec_b_passive_3 = add(war_archer_spec_b_passive_3());
     private static Entry war_archer_spec_b_passive_3() {
-        var id = Identifier.of(NAMESPACE, "archer_spec_b_passive_3");
+        var id = Identifier.of(NAMESPACE, "war_archer_spec_b_passive_3");
         var title = "Last Stand";
         final var healthThreshold = 0.3F;
         var description = "Upon taking damage below {threshold} health you gain Last Stand effect, increasing your size, ranged haste & decreasing incoming damage for {effect_duration} sec.";

@@ -109,7 +109,7 @@ public class MrpgSkillDefinitions {
             Entry.attribute("air_boost",
                     "Air Attunement",
                     null,
-                    Icon.item("elemental_wizards:wand_wind"),
+                    Icon.item("elemental_wizards_rpg:wand_wind"),
                     AIR_ROOT.attributeReward())
     );
     public static final Entry AIR_SPEC_A_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.air_spec_a_modifier_1));
@@ -143,7 +143,7 @@ public class MrpgSkillDefinitions {
             Entry.attribute("earth_boost",
                     "Earth Attunement",
                     null,
-                    Icon.item("elemental_wizards:wand_terra"),
+                    Icon.item("elemental_wizards_rpg:wand_terra"),
                     EARTH_ROOT.attributeReward())
     );
     public static final Entry EARTH_SPEC_A_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.earth_spec_a_modifier_1));
@@ -175,7 +175,7 @@ public class MrpgSkillDefinitions {
             Entry.attribute("water_boost",
                     "Water Attunement",
                     null,
-                    Icon.item("elemental_wizards:wand_aqua"),
+                    Icon.item("elemental_wizards_rpg:wand_aqua"),
                     WATER_ROOT.attributeReward())
     );
     public static final Entry WATER_SPEC_A_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.water_spec_a_modifier_1));
@@ -208,7 +208,7 @@ public class MrpgSkillDefinitions {
     );
     public static final Entry BERSERKER_BOOST = add(
             Entry.attribute("berserker_boost",
-                    "Path of the Berserker",
+                    "Berserker Empowerment",
                     null,
                     Icon.item("berserker_rpg:iron_berserker_axe"),
                     BERSERKER_ROOT.attributeReward())
@@ -279,7 +279,7 @@ public class MrpgSkillDefinitions {
             Entry.attribute("war_archer_boost",
                     "War Archer Empowerment",
                     null,
-                    Icon.item("archers:heavy_crossbow_standby"),
+                    Icon.item("archers:heavy_crossbow"),
                     WAR_ARCHER_ROOT.attributeReward())
     );
     public static final Entry WAR_ARCHER_SPEC_A_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.war_archer_spec_a_modifier_1));
@@ -349,7 +349,7 @@ public class MrpgSkillDefinitions {
             Entry.attribute("tundra_hunter_boost",
                     "Tundra Hunter Empowerment",
                     null,
-                    Icon.item("archers:rapid_crossbow_standby"),
+                    Icon.item("archers:rapid_crossbow"),
                     TUNDRA_HUNTER_ROOT.attributeReward())
     );
     public static final Entry TUNDRA_HUNTER_SPEC_A_MODIFIER_1 = add(modifierSpell(MrpgSkillSpells.tundra_hunter_spec_a_modifier_1));

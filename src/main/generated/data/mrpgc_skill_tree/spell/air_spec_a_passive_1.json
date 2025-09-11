@@ -27,7 +27,7 @@
       "action": {
         "type": "STATUS_EFFECT",
         "status_effect": {
-          "effect_id": "net.spell_engine.api.effect.Effects$Entry@61b7d68d",
+          "effect_id": "net.spell_engine.api.effect.Effects$Entry@4c05575e",
           "duration": 5.0
         }
       },

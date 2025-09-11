@@ -25,7 +25,7 @@
         "client_data": {
           "particles": [
             {
-              "particle_id": "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes$1@8b58de4",
+              "particle_id": "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes$1@15544b0a",
               "origin": "FEET",
               "shape": "PILLAR",
               "count": 4.0,

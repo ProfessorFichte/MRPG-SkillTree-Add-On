@@ -28,7 +28,7 @@
         "client_data": {
           "particles": [
             {
-              "particle_id": "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes$1@367763bd",
+              "particle_id": "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes$1@33d2afd9",
               "origin": "FEET",
               "shape": "PILLAR",
               "count": 4.0,
@@ -47,7 +47,7 @@
       "action": {
         "type": "STATUS_EFFECT",
         "status_effect": {
-          "effect_id": "net.spell_engine.api.effect.Effects$Entry@30f9e9b5",
+          "effect_id": "net.spell_engine.api.effect.Effects$Entry@32ef37ff",
           "duration": 3.0
         }
       }

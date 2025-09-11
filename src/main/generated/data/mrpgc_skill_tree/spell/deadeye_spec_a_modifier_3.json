@@ -12,7 +12,7 @@
         "type": "SPELL_IMPACT_SPECIFIC",
         "target_conditions": [
           {
-            "entity_predicate_id": "Entry[id=spell_engine:has_bad_effect, predicate=net.spell_engine.api.entity.SpellEntityPredicates$$Lambda/0x000001f701cbb3e0@3c3f61c8]"
+            "entity_predicate_id": "Entry[id=spell_engine:has_bad_effect, predicate=net.spell_engine.api.entity.SpellEntityPredicates$$Lambda/0x000002caa7cd0000@207ea2bc]"
           }
         ],
         "spell": {

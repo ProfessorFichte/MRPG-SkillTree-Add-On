@@ -30,7 +30,7 @@
       "action": {
         "type": "STATUS_EFFECT",
         "status_effect": {
-          "effect_id": "net.spell_engine.api.effect.Effects$Entry@440b84fa",
+          "effect_id": "net.spell_engine.api.effect.Effects$Entry@2c4d08b5",
           "duration": 5.0
         }
       },

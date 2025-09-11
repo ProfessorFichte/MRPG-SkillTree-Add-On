@@ -1,14 +1,14 @@
 {
-	"required": true,
-	"package": "com.mrpgc_skilltree.mixin",
-	"compatibilityLevel": "JAVA_21",
-	"mixins": [
-		"TrackTargetGoalStealth"
-	],
-	"injectors": {
-		"defaultRequire": 1
-	},
-	"overwrites": {
-		"requireAnnotations": true
+  "required": true,
+  "package": "com.mrpgc_skilltree.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "TrackTargetGoalStealth"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  },
+  "overwrites": {
+    "requireAnnotations": true
 	}
 }

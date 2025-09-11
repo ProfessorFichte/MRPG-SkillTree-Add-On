@@ -5,7 +5,7 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "elemental_wizards_rpg:aqua_springwater",
+      "spell_pattern": "elemental_wizards_rpg:aqua_hydro_beam",
       "mutate_impacts": "APPEND",
       "impacts": [
         {
