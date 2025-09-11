@@ -1,0 +1,74 @@
+{
+  "school": "spell_power:physical_ranged",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {},
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "deliver": {
+    "type": "CLOUD",
+    "clouds": [
+      {
+        "volume": {
+          "radius": 4.0,
+          "area": {
+            "vertical_range_multiplier": 0.3
+          },
+          "sound": {
+            "id": "spell_engine:generic_frost_release"
+          }
+        },
+        "time_to_live_seconds": 5.0,
+        "impact_tick_interval": 10,
+        "client_data": {
+          "particles": [
+            {
+              "particle_id": "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes$1@8b58de4",
+              "origin": "FEET",
+              "shape": "PILLAR",
+              "count": 4.0,
+              "max_speed": 0.0
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "impacts": [
+    {
+      "target_modifiers": [
+        {
+          "conditions": [
+            {
+              "entity_type": "#minecraft:freeze_immune_entity_types"
+            }
+          ],
+          "execute": "DENY"
+        }
+      ],
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "more_rpg_classes:frosted",
+          "duration": 7.0,
+          "amplifier_cap": 6,
+          "apply_mode": "ADD"
+        }
+      }
+    },
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.4,
+          "knockback": 0.0
+        }
+      },
+      "sound": {
+        "id": "spell_engine:generic_frost_impact"
+      }
+    }
+  ]
+}

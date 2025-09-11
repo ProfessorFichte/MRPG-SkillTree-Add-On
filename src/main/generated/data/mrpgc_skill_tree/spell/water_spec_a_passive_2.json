@@ -1,0 +1,63 @@
+{
+  "school": "spell_power:water",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "ROLL",
+        "chance": 0.5
+      }
+    ]
+  },
+  "deliver": {
+    "type": "CLOUD",
+    "delay": 5,
+    "clouds": [
+      {
+        "volume": {
+          "radius": 2.5,
+          "area": {
+            "vertical_range_multiplier": 0.3
+          },
+          "sound": {}
+        },
+        "time_to_live_seconds": 5.0,
+        "impact_tick_interval": 20,
+        "client_data": {
+          "particles": [
+            {
+              "particle_id": "spell_engine:smoke_large",
+              "origin": "FEET",
+              "shape": "PILLAR",
+              "count": 1.0,
+              "min_speed": 0.01,
+              "max_speed": 0.02,
+              "color_rgba": 1250689023
+            }
+          ]
+        },
+        "spawn": {
+          "sound": {}
+        }
+      }
+    ]
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "apply_mode": "REMOVE",
+          "remove": {
+            "id": "!minecraft:trial_omen"
+          }
+        }
+      },
+      "sound": {
+        "id": "spell_engine:generic_dispel_1"
+      }
+    }
+  ]
+}

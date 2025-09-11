@@ -1,0 +1,77 @@
+{
+  "school": "spell_power:water",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "target_override": "CASTER",
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "chance": 0.25,
+        "spell": {
+          "school": "water",
+          "type": "ACTIVE"
+        },
+        "impact": {
+          "impact_type": "DAMAGE"
+        }
+      },
+      {
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "chance": 0.25,
+        "spell": {
+          "type": "ACTIVE"
+        },
+        "impact": {
+          "impact_type": "HEAL"
+        }
+      }
+    ]
+  },
+  "release": {
+    "sound": {}
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "deliver": {
+    "type": "STASH_EFFECT",
+    "stash_effect": {
+      "id": "mrpgc_skill_tree:calming_flow",
+      "duration": 5.0,
+      "triggers": [
+        {
+          "type": "SPELL_IMPACT_SPECIFIC",
+          "spell": {
+            "school": "water",
+            "type": "ACTIVE"
+          },
+          "impact": {
+            "impact_type": "DAMAGE"
+          }
+        }
+      ],
+      "consume": 0
+    }
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "COOLDOWN",
+        "cooldown": {
+          "actives": {
+            "school": "water",
+            "duration_multiplier": 0.8
+          }
+        }
+      },
+      "sound": {}
+    }
+  ],
+  "cost": {
+    "cooldown": {
+      "duration": 45.0
+    }
+  }
+}

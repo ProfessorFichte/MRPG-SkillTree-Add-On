@@ -7,11 +7,13 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.custom.MoreSpellSchools;
+import net.skill_tree_rpgs.skills.SkillTreeSounds;
 import net.spell_engine.api.config.AttributeModifier;
 import net.spell_engine.api.config.ConfigFile;
 import net.spell_engine.api.config.EffectConfig;
 import net.spell_engine.api.effect.*;
 import net.spell_engine.api.entity.SpellEngineAttributes;
+import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_power.api.SpellPower;
 import net.spell_power.api.SpellPowerMechanics;
 import net.spell_power.api.SpellSchools;
@@ -43,7 +45,7 @@ public class MrpgSkillEffects {
                     )
             )
     ));
-    public static Effects.Entry OBSIDIAN_SKIN = add(new Effects.Entry(Identifier.of(MOD_ID, "obsidian skin"),
+    public static Effects.Entry OBSIDIAN_SKIN = add(new Effects.Entry(Identifier.of(MOD_ID, "obsidian_skin"),
             "Obsidian Skin",
             "Protects you from the incoming attack",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.EARTH.color),
@@ -616,11 +618,12 @@ public class MrpgSkillEffects {
         for (var entry : entries) {
             Synchronized.configure(entry.effect, true);
         }
+        Effects.register(entries, config.effects);
         ActionImpairing.configure(SURYS_TENACITY.effect, EntityActionsAllowed.SILENCE);
         Protection.register(OBSIDIAN_SKIN.entry, new Protection.Pop(
-                /// IMPROVE SFX & VFX
-                null,
-                null));
-        Effects.register(entries, config.effects);
+                new ParticleBatch[]{  },
+                SkillTreeSounds.rogue_shadows_impact.soundEvent()
+        ));
+
     }
 }

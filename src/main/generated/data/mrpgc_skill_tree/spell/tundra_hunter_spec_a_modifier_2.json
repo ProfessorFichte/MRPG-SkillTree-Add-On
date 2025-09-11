@@ -1,0 +1,17 @@
+{
+  "school": "spell_power:physical_ranged",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "archers_expansion:arctic_volley",
+      "projectile_launch": {
+        "velocity": 0.0,
+        "extra_launch_count": 3,
+        "extra_launch_delay": 3
+      },
+      "power_modifier": {}
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "school": "spell_power:air",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "ROLL",
+        "chance": 0.5
+      }
+    ]
+  },
+  "deliver": {
+    "type": "CLOUD",
+    "delay": 5,
+    "clouds": [
+      {
+        "volume": {
+          "radius": 2.5,
+          "area": {
+            "vertical_range_multiplier": 1.5
+          },
+          "sound": {}
+        },
+        "time_to_live_seconds": 5.0,
+        "impact_tick_interval": 20,
+        "spawn": {
+          "sound": {}
+        }
+      }
+    ]
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "net.spell_engine.api.effect.Effects$Entry@322dcc9b",
+          "duration": 4.0
+        }
+      }
+    }
+  ]
+}

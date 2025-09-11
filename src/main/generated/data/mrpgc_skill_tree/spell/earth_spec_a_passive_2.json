@@ -1,0 +1,65 @@
+{
+  "school": "spell_power:earth",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "ROLL",
+        "chance": 0.5
+      }
+    ]
+  },
+  "deliver": {
+    "type": "CLOUD",
+    "delay": 5,
+    "clouds": [
+      {
+        "volume": {
+          "radius": 2.5,
+          "area": {
+            "vertical_range_multiplier": 0.3
+          },
+          "sound": {}
+        },
+        "time_to_live_seconds": 5.0,
+        "impact_tick_interval": 20,
+        "client_data": {
+          "particles": [
+            {
+              "particle_id": "net.fabricmc.fabric.api.particle.v1.FabricParticleTypes$1@367763bd",
+              "origin": "FEET",
+              "shape": "PILLAR",
+              "count": 4.0,
+              "max_speed": 0.0
+            }
+          ]
+        },
+        "spawn": {
+          "sound": {}
+        }
+      }
+    ]
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "net.spell_engine.api.effect.Effects$Entry@30f9e9b5",
+          "duration": 3.0
+        }
+      }
+    },
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.1,
+          "knockback": 0.0
+        }
+      }
+    }
+  ]
+}

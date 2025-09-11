@@ -1,0 +1,87 @@
+{
+  "school": "spell_power:physical_ranged",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "target_override": "CASTER",
+        "type": "DAMAGE_TAKEN",
+        "caster_conditions": [
+          {
+            "health_percent_above": 0.01,
+            "health_percent_below": 0.35
+          }
+        ]
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "deliver": {
+    "type": "CLOUD",
+    "delay": 5,
+    "clouds": [
+      {
+        "volume": {
+          "radius": 5.0,
+          "area": {
+            "vertical_range_multiplier": 0.3
+          },
+          "sound": {
+            "id": "spell_engine:poison_cloud_tick"
+          }
+        },
+        "time_to_live_seconds": 5.0,
+        "impact_tick_interval": 10,
+        "client_data": {
+          "interval_particles": [
+            {
+              "particle_id": "spell_engine:area_effect_715",
+              "origin": "GROUND",
+              "shape": "LINE",
+              "count": 1.0,
+              "max_speed": 0.0,
+              "color_rgba": 808201471,
+              "scale": 7.5
+            }
+          ]
+        },
+        "spawn": {
+          "sound": {
+            "id": "spell_engine:poison_cloud_spawn"
+          }
+        }
+      }
+    ]
+  },
+  "impacts": [
+    {
+      "attribute_from_target": true,
+      "attribute": "minecraft:generic.max_health",
+      "action": {
+        "type": "HEAL",
+        "apply_to_caster": true,
+        "heal": {
+          "spell_power_coefficient": 0.05
+        }
+      }
+    },
+    {
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "archers_expansion:infiltrators_arrow",
+          "duration": 2.0
+        }
+      }
+    }
+  ],
+  "cost": {
+    "cooldown": {
+      "duration": 40.0
+    }
+  }
+}

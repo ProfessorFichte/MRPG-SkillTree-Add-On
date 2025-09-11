@@ -1,0 +1,48 @@
+{
+  "school": "spell_power:air",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "ROLL",
+        "chance": 0.5
+      }
+    ]
+  },
+  "deliver": {
+    "clouds": [
+      {
+        "volume": {
+          "radius": 2.0,
+          "area": {
+            "vertical_range_multiplier": 1.5
+          }
+        },
+        "time_to_live_seconds": 5.0,
+        "impact_tick_interval": 20,
+        "delay_ticks": 5,
+        "client_data": {
+          "model": {
+            "model_id": "elemental_wizards_rpg:effect/tornado",
+            "light_emission": "NONE",
+            "scale": 0.5,
+            "rotate_degrees_per_tick": -20.0
+          }
+        }
+      }
+    ]
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.3,
+          "knockback": 0.0
+        }
+      }
+    }
+  ]
+}

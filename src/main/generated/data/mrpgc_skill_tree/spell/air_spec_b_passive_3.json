@@ -1,0 +1,65 @@
+{
+  "school": "spell_power:air",
+  "range": 15.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "SPELL_CAST",
+        "spell": {
+          "school": "spell_power:air",
+          "type": "ACTIVE"
+        }
+      }
+    ]
+  },
+  "release": {
+    "sound": {
+      "id": "spell_engine:generic_healing_release"
+    }
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "deliver": {
+    "type": "PROJECTILE",
+    "projectile": {
+      "direct_towards_target": true,
+      "launch_properties": {
+        "velocity": 1.2,
+        "extra_launch_count": 2,
+        "extra_launch_delay": 5
+      },
+      "projectile": {
+        "perks": {
+          "ricochet_range": 0.0
+        },
+        "client_data": {
+          "model": {
+            "model_id": "elemental_wizards_rpg:projectile/stone_shard",
+            "light_emission": "NONE",
+            "rotate_degrees_per_tick": 0.0
+          }
+        }
+      }
+    }
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.3,
+          "knockback": 0.0
+        }
+      },
+      "sound": {}
+    }
+  ],
+  "cost": {
+    "cooldown": {
+      "duration": 10.0
+    }
+  }
+}

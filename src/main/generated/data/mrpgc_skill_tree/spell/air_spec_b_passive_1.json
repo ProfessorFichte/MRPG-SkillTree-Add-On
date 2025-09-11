@@ -1,0 +1,45 @@
+{
+  "school": "spell_power:air",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "target_conditions": [
+          {
+            "health_percent_above": 0.01,
+            "health_percent_below": 0.3
+          }
+        ],
+        "spell": {
+          "school": "air"
+        },
+        "impact": {
+          "impact_type": "DAMAGE"
+        }
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "net.spell_engine.api.effect.Effects$Entry@440b84fa",
+          "duration": 5.0
+        }
+      },
+      "sound": {}
+    }
+  ],
+  "cost": {
+    "cooldown": {
+      "duration": 10.0
+    }
+  }
+}

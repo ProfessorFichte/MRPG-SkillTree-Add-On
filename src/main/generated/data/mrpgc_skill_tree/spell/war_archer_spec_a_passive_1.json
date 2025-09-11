@@ -1,0 +1,51 @@
+{
+  "school": "spell_power:physical_ranged",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "ARROW_IMPACT",
+        "target_conditions": [
+          {
+            "entity_predicate_id": "Entry[id=spell_engine:is_on_fire, predicate=net.spell_engine.api.entity.SpellEntityPredicates$$Lambda/0x000001f701cbb880@6c40667b]"
+          }
+        ]
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.35,
+          "knockback": 0.75
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "explosion",
+          "origin": "CENTER",
+          "shape": "SPHERE",
+          "count": 2.0,
+          "min_speed": 0.2,
+          "max_speed": 0.25,
+          "scale": 2.0
+        }
+      ],
+      "sound": {
+        "id": "entity.generic.explode"
+      }
+    }
+  ],
+  "cost": {
+    "cooldown": {
+      "duration": 5.0
+    }
+  }
+}

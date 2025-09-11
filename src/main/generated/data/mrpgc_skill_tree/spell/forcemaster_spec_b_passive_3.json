@@ -1,0 +1,34 @@
+{
+  "school": "spell_power:arcane",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "target_override": "CASTER",
+        "type": "SPELL_CAST",
+        "spell": {
+          "school": "spell_power:arcane",
+          "type": "ACTIVE"
+        }
+      }
+    ]
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "mrpgc_skill_tree:surys_grace",
+          "apply_mode": "ADD"
+        }
+      }
+    }
+  ],
+  "cost": {
+    "cooldown": {
+      "duration": 60.0
+    }
+  }
+}

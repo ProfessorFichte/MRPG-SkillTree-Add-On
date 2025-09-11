@@ -189,6 +189,8 @@ public class MrpgSkillSpells {
         modifier.impacts = List.of(impact);
         modifier.replacing_area_impact = area_impact;
 
+        spell.modifiers = List.of(modifier);
+
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.AIR));
     }
     public static final Entry air_spec_a_modifier_3 = add(air_spec_a_modifier_3());
@@ -239,7 +241,7 @@ public class MrpgSkillSpells {
     }
     public static final Entry air_spec_b_modifier_4 = add(air_spec_b_modifier_4());
     private static Entry air_spec_b_modifier_4() {
-        var id = Identifier.of(NAMESPACE, "air_spec_a_modifier_4");
+        var id = Identifier.of(NAMESPACE, "air_spec_b_modifier_4");
         var title = "Negative Pressure";
         var description = "Tornado deals {power_multiplier} more damage.";
         var spell = SpellBuilder.createSpellModifier();
@@ -970,6 +972,8 @@ public class MrpgSkillSpells {
         modifier.power_modifier = new Spell.Impact.Modifier();
         modifier.power_modifier.power_multiplier = bonus;
 
+        spell.modifiers = List.of(modifier);
+
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.WATER));
     }
     public static final Entry water_spec_b_modifier_2 = add(water_spec_b_modifier_2());
@@ -1499,7 +1503,7 @@ public class MrpgSkillSpells {
     }
     public static final Entry berserker_spec_b_modifier_3 = add(berserker_spec_b_modifier_3());
     private static Entry berserker_spec_b_modifier_3() {
-        var id = Identifier.of(NAMESPACE, "berserker_spec_a_modifier_1");
+        var id = Identifier.of(NAMESPACE, "berserker_spec_b_modifier_3");
         var title = "Slicing Maelstorm";
         var description = "Bloody Strike inflicts bleeding around the target for {effect_duration} seconds.";
         var spell = SpellBuilder.createSpellModifier();
@@ -1902,7 +1906,7 @@ public class MrpgSkillSpells {
         var id = Identifier.of(NAMESPACE, "forcemaster_spec_a_modifier_3");
         var title = "Powerful Belial Smashing";
         var description = "Belial Smashing has {trigger_chance} chance to knock up the target.";
-        var spell = SpellBuilder.createSpellModifier();
+        var spell = createModifierAlikePassiveSpell();
         spell.school = forcemasterFighterSchool;
         spell.range = 0;
 
@@ -1977,7 +1981,7 @@ public class MrpgSkillSpells {
     }
     public static final Entry forcemaster_spec_a_modifier_4 = add(forcemaster_spec_a_modifier_4());
     private static Entry forcemaster_spec_a_modifier_4() {
-        var id = Identifier.of(NAMESPACE, "forcemaster_spec_b_modifier_2");
+        var id = Identifier.of(NAMESPACE, "forcemaster_spec_a_modifier_4");
         var title = "Powerful Asalraalaikum";
         var description = " Asalraalaikum damage increased by {power_multiplier}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -2813,7 +2817,6 @@ public class MrpgSkillSpells {
         impact.attribute_from_target = true;
         impact.action.apply_to_caster = true;
         var cleanse = SpellBuilder.Impacts.effectCleanse();
-        impact.action.status_effect.refresh_duration = true;
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         SpellEngineParticles.MagicParticles.get(

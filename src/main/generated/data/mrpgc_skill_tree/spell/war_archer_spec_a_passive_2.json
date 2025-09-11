@@ -1,0 +1,28 @@
+{
+  "school": "spell_power:physical_ranged",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "ROLL"
+      }
+    ]
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "archers_expansion:smoldering_arrows",
+          "amplifier_cap": 4,
+          "apply_mode": "ADD"
+        }
+      },
+      "sound": {
+        "id": "spell_engine:generic_fire_ignite"
+      }
+    }
+  ]
+}
