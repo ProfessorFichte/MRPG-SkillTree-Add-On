@@ -12,8 +12,10 @@ import net.spell_engine.api.config.ConfigFile;
 import net.spell_engine.api.config.EffectConfig;
 import net.spell_engine.api.effect.*;
 import net.spell_engine.api.entity.SpellEngineAttributes;
+import net.spell_power.api.SpellPower;
 import net.spell_power.api.SpellPowerMechanics;
 import net.spell_power.api.SpellSchools;
+import net.spell_power.api.statuseffects.SpellVulnerabilityStatusEffect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -546,6 +548,59 @@ public class MrpgSkillEffects {
             "Stone Heart",
             "Absorbs damage.",
             new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.EARTH.color),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
+                                    2,
+                                    EntityAttributeModifier.Operation.ADD_VALUE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry IMPETUS = add(new Effects.Entry(Identifier.of(MOD_ID, "impetus"),
+            "Impetus",
+            "Increases Spell Haste.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.AIR.color),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellPowerMechanics.HASTE.id,
+                                    0.05F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry EYE_OF_THE_STORM = add(new Effects.Entry(Identifier.of(MOD_ID, "eye_of_the_storm"),
+            "Eye of the Storm",
+            "Increased air spell critical Chance",
+            new SpellVulnerabilityStatusEffect(StatusEffectCategory.HARMFUL, MoreSpellSchools.AIR.color)
+                    .setVulnerability(MoreSpellSchools.AIR, new SpellPower.Vulnerability(0, 0.075F, 0))
+            ,
+            new EffectConfig(
+                    List.of(
+                    )
+            )
+    ));
+    public static Effects.Entry TAILWIND = add(new Effects.Entry(Identifier.of(MOD_ID, "tailwind"),
+            "Tailwind",
+            "Increases Movement Speed.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.AIR.color),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    0.2F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry AIR_BUBBLE = add(new Effects.Entry(Identifier.of(MOD_ID, "air_bubble"),
+            "Air Bubble",
+            "Absorbs damage.",
+            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.AIR.color),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(

@@ -10,6 +10,7 @@ import net.more_rpg_classes.effect.MRPGCEffects;
 import net.skill_tree_rpgs.skills.SkillTreeSounds;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.entity.SpellEntityPredicates;
+import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.fx.ParticleBatch;
@@ -29,6 +30,8 @@ import java.util.EnumSet;
 import java.util.List;
 
 import static com.mrpgc_skilltree.MRPGCSkillTreeAddOn.MOD_ID;
+import static net.skill_tree_rpgs.skills.Spells.WIZARD_WARD_CHANCE;
+import static net.skill_tree_rpgs.skills.Spells.WIZARD_WARD_DURATION;
 
 public class MrpgSkillSpells {
     public static final String NAMESPACE = MOD_ID;
@@ -251,7 +254,240 @@ public class MrpgSkillSpells {
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.AIR));
     }
     ///AIR PASSIVES
-    //TO DO
+    public static final Entry air_spec_a_passive_1 = add(air_spec_a_passive_1());
+    private static Entry air_spec_a_passive_1() {
+        var id = Identifier.of(NAMESPACE, "air_spec_a_passive_1");
+        var effect = MrpgSkillEffects.IMPETUS;
+        var title = effect.title;
+        var description = "Air spell impacts have {trigger_chance} chance, increase the casters Spell Haste by {bonus} for {effect_duration} sec.";
+        var spell = SpellBuilder.createSpellPassive();
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var modifier = effect.config().firstModifier();
+            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+            return args.description()
+                    .replace("{bonus}", bonus);
+        };
+        spell.school = airWizardSchool;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.activeSpellHit(0.05F, "air");
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.effectSet(effect.toString(), 5F, 0);
+        /// IMPROVE SOUNDS AND PARTICLES
+        impact.particles = new ParticleBatch[]{
+        };
+        impact.sound = new Sound();
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 10F);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.AIR));
+    }
+    public static final Entry air_spec_b_passive_1 = add(air_spec_b_passive_1());
+    private static Entry air_spec_b_passive_1() {
+        var id = Identifier.of(NAMESPACE, "air_spec_b_passive_1");
+        var effect = MrpgSkillEffects.EYE_OF_THE_STORM;
+        var title = "Eye of the Storm";
+        float healthThreshold = 0.3F;
+        var description = "Air spell impacts on targets below {threshold} makes the target more vulnerable to spell crits.";
+        var spell = SpellBuilder.createSpellPassive();
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var threshold = SpellTooltip.percent(healthThreshold);
+            return args.description()
+                    .replace("{threshold}", threshold);
+        };
+        spell.school = airWizardSchool;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var trigger = SpellBuilder.Triggers.spellHit(1.0F,"air");
+        trigger.target_conditions = List.of(SpellBuilder.TargetConditions.lowHP(healthThreshold));
+        spell.passive.triggers = List.of(trigger);
+
+        var impact = SpellBuilder.Impacts.effectSet(effect.toString(), 5F, 0);
+        /// IMPROVE SOUNDS AND PARTICLES
+        impact.particles = new ParticleBatch[]{
+        };
+        impact.sound = new Sound();
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 10F);
+
+        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.AIR));
+    }
+    public static final Entry air_spec_a_passive_2 = add(air_spec_a_passive_2());
+    private static Entry air_spec_a_passive_2() {
+        var id = Identifier.of(NAMESPACE, "air_spec_a_passive_2");
+        var effect = MrpgSkillEffects.TAILWIND;
+        var title = "Tailwind";
+        var description = "{trigger_chance} chance upon rolling to leave difficult terrain behind for {cloud_duration} sec, slowing for {effect_duration} sec and damaging enemies..";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = airWizardSchool;
+        spell.range = 0;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        trigger.chance = 0.5F;
+        spell.passive.triggers = List.of(trigger);
+
+        spell.deliver.type = Spell.Delivery.Type.CLOUD;
+        spell.deliver.delay = 5;
+        Spell.Delivery.Cloud cloud = new Spell.Delivery.Cloud();
+        cloud.volume.radius = 2.5F;
+        cloud.volume.area.vertical_range_multiplier = 1.5F;
+        //IMRPOVE SOUND
+        cloud.volume.sound = new Sound();
+        cloud.impact_tick_interval = 20;
+        cloud.time_to_live_seconds = 5;
+        //IMRPOVE SOUND
+        cloud.spawn.sound = new Sound();
+        cloud.client_data = new Spell.Delivery.Cloud.ClientData();
+        cloud.client_data.light_level = 0;
+        cloud.client_data.particles = new ParticleBatch[]{
+        };
+        spell.deliver.clouds = List.of(cloud);
+        Spell.Impact buff = SpellBuilder.Impacts.effectSet(effect.toString(),4,0);
+        buff.particles = new ParticleBatch[]{
+                /// ADD PARTICLES
+        };
+        spell.impacts = List.of(buff);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.AIR));
+    }
+    public static final Entry air_spec_b_passive_2 = add(air_spec_b_passive_2());
+    private static Entry air_spec_b_passive_2() {
+        var id = Identifier.of(NAMESPACE, "air_spec_b_passive_2");
+        var effect = MrpgSkillEffects.TAILWIND;
+        var title = "Strongwind";
+        var description = "{trigger_chance} chance upon rolling to spawn a strongwind that deals {damage} damage to enemies.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = airWizardSchool;
+        spell.range = 0;
+
+        var trigger = SpellBuilder.Triggers.roll();
+        trigger.chance = 0.5F;
+        spell.passive.triggers = List.of(trigger);
+
+        var cloud = new Spell.Delivery.Cloud();
+        cloud.volume.radius = 2.0F;
+        cloud.volume.area.vertical_range_multiplier = 1.5F;
+        cloud.delay_ticks = 5;
+        cloud.impact_tick_interval = 20;
+        cloud.time_to_live_seconds = 5;
+        cloud.spawn = new Spell.Delivery.Cloud.Spawn();
+        cloud.client_data = new Spell.Delivery.Cloud.ClientData();
+        cloud.client_data.model = new Spell.ProjectileModel();
+        cloud.client_data.model.model_id = "elemental_wizards_rpg:effect/tornado";
+        cloud.client_data.model.rotate_degrees_per_tick = -20;
+        cloud.client_data.model.light_emission = LightEmission.NONE;
+        cloud.client_data.model.scale = 0.5F;
+        spell.deliver.clouds = List.of(cloud);
+        Spell.Impact damage = SpellBuilder.Impacts.damage(0.3F,0.0F);
+        damage.particles = new ParticleBatch[]{
+                /// ADD PARTICLES
+        };
+        spell.impacts = List.of(damage);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.AIR));
+    }
+    public static final Entry air_spec_a_passive_3 = add(air_spec_a_passive_3());
+    private static Entry air_spec_a_passive_3() {
+        var id = Identifier.of(NAMESPACE, "air_spec_a_passive_3");
+        var effect = MrpgSkillEffects.AIR_BUBBLE;
+        var title = effect.title;
+        var description = "Air spells have {trigger_chance_1} chance, to grant you " + effect.title + ", absorbing damage and knocking attackers back, lasts {stash_duration} sec.";
+        var duration = WIZARD_WARD_DURATION;
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = airWizardSchool;
+        spell.range = 0;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+        ///SOUND
+        spell.release.sound = new Sound();
+
+        var spell_trigger = SpellBuilder.Triggers.activeSpellCast(MoreSpellSchools.AIR);
+        spell_trigger.chance = WIZARD_WARD_CHANCE;
+        spell_trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(spell_trigger);
+
+        spell.deliver.type = Spell.Delivery.Type.STASH_EFFECT;
+        spell.deliver.stash_effect = new Spell.Delivery.StashEffect();
+        spell.deliver.stash_effect.id = effect.id.toString();
+        spell.deliver.stash_effect.duration = duration;
+        spell.deliver.stash_effect.amplifier = 0;
+        spell.deliver.stash_effect.amplifier_power_multiplier = 0.2F;
+        spell.deliver.stash_effect.consume = 0;
+
+        var stash_trigger = SpellBuilder.Triggers.damageTaken();
+        spell.deliver.stash_effect.triggers = List.of(stash_trigger);
+
+        var damage = SpellBuilder.Impacts.damage(0.0F, 1.5F);
+        /// IMPROVE PARTICLES AND SOUND
+        damage.particles = new ParticleBatch[]{
+        };
+        damage.sound = new Sound();
+        spell.impacts = List.of(damage);
+
+        SpellBuilder.Cost.cooldown(spell, duration * 2);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.AIR));
+    }
+    public static final Entry air_spec_b_passive_3 = add(air_spec_b_passive_3()); //
+    private static Entry air_spec_b_passive_3() {
+        var id = Identifier.of(NAMESPACE, "air_spec_b_passive_3");
+        var title = "Wind Flurry";
+        var description = "Casting Air spells attacks shoot cutting winds at the target, dealing {damage} damage.";
+
+        var spell = SpellBuilder.createSpellPassive();
+        spell.school = airWizardSchool;
+        spell.range = 15;
+
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+        spell.release.sound = new Sound(SpellEngineSounds.GENERIC_HEALING_RELEASE.id());
+
+        var trigger = SpellBuilder.Triggers.activeSpellCast(airWizardSchool);
+        trigger.chance = 1F;
+        spell.passive.triggers = List.of(trigger);
+
+        spell.deliver.type = Spell.Delivery.Type.PROJECTILE;
+        spell.deliver.projectile = new Spell.Delivery.ShootProjectile();
+        spell.deliver.projectile.direct_towards_target = true;
+        spell.deliver.projectile.launch_properties.velocity = 1.2F;
+        spell.deliver.projectile.launch_properties.extra_launch_count =2;
+        spell.deliver.projectile.launch_properties.extra_launch_delay = 5;
+        spell.deliver.projectile.projectile = new Spell.ProjectileData();
+        spell.deliver.projectile.projectile.perks = new Spell.ProjectileData.Perks();
+        spell.deliver.projectile.projectile.perks.ricochet_range = 0F;
+        spell.deliver.projectile.projectile.perks.ricochet = 0;
+        spell.deliver.projectile.projectile.perks.bounce = 0;
+
+        var model = new Spell.ProjectileModel();
+        model.light_emission = LightEmission.NONE;
+        model.model_id = "elemental_wizards_rpg:projectile/stone_shard";
+        model.scale = 1.0F;
+        model.rotate_degrees_per_tick = 0F;
+
+        spell.deliver.projectile.projectile.client_data = new Spell.ProjectileData.Client();
+        spell.deliver.projectile.projectile.client_data.model = model;
+
+
+        var impact = SpellBuilder.Impacts.damage(0.3F, 0F);
+        impact.particles = new ParticleBatch[]{
+        };
+        impact.sound = new Sound();
+        spell.impacts = List.of(impact);
+
+        SpellBuilder.Cost.cooldown(spell, 10F);
+
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.AIR));
+    }
     public static final Color EARTH_SPELL_COLOR = new Color(255.0F, 165.0F, 0.0F);
     ///EARTH MODIFIERS
     public static final Entry earth_spec_a_modifier_1 = add(earth_spec_a_modifier_1());
@@ -577,20 +813,21 @@ public class MrpgSkillSpells {
     private static Entry earth_spec_a_passive_3() {
         var id = Identifier.of(NAMESPACE, "earth_spec_a_passive_3");
         var title = "Stone Heart";
-        var description = "Taking damage has {trigger_chance} chance to absorb a huge amount of damage.";
+        var description = "Earth Spells have {trigger_chance} chance to absorb a huge amount of damage.";
         var spell = SpellBuilder.createSpellPassive();
-        spell.school = SpellSchools.FROST;
+        spell.school = earthWizardSchool;
         spell.range = 0;
+        var duration = WIZARD_WARD_DURATION;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var trigger = SpellBuilder.Triggers.damageTaken();
-        trigger.chance = 0.1F;
-        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
-        spell.passive.triggers = List.of(trigger);
+        var spell_trigger = SpellBuilder.Triggers.activeSpellCast(earthWizardSchool);
+        spell_trigger.chance = WIZARD_WARD_CHANCE;
+        spell_trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(spell_trigger);
 
         var effect = MrpgSkillEffects.STONE_HEART;
-        var impact = SpellBuilder.Impacts.effectSet(effect.toString(),10,0);
+        var impact = SpellBuilder.Impacts.effectSet(effect.toString(),duration,0);
         impact.action.status_effect.amplifier_power_multiplier = 0.5F;
         ///IMRPOVE SOUND & PARTICLES
         impact.particles = new ParticleBatch[]{
@@ -599,7 +836,7 @@ public class MrpgSkillSpells {
         impact.sound = new Sound();
         spell.impacts = List.of(impact);
 
-        SpellBuilder.Cost.cooldown(spell, 45F);
+        SpellBuilder.Cost.cooldown(spell, duration * 2);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.EARTH));
     }
