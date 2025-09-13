@@ -1,0 +1,32 @@
+{
+  "air_eye_of_the_storm": {
+    "sounds": [
+      "mrpgc_skill_tree:air_eye_of_the_storm"
+    ]
+  },
+  "air_impetus_buff": {
+    "sounds": [
+      "mrpgc_skill_tree:air_impetus_buff"
+    ]
+  },
+  "air_tailwind_loop": {
+    "sounds": [
+      "mrpgc_skill_tree:air_tailwind_loop"
+    ]
+  },
+  "air_tailwind_release": {
+    "sounds": [
+      "mrpgc_skill_tree:air_tailwind_release"
+    ]
+  },
+  "air_wind_flurry_release": {
+    "sounds": [
+      "mrpgc_skill_tree:air_wind_flurry_release"
+    ]
+  },
+  "earthen_blessing": {
+    "sounds": [
+      "mrpgc_skill_tree:earthen_blessing"
+    ]
+  }
+}

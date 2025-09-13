@@ -69,8 +69,8 @@ public class MrpgSkillEffects {
             )
     ));
     public static Effects.Entry CONCUSSION = add(new Effects.Entry(Identifier.of(MOD_ID, "concussion"),
-            "Dripstone Obstacles",
-            "Decreased movement speed.",
+            "Concussion",
+            "Decreased attack damage, ranged damage & spell power.",
             new CustomStatusEffect(StatusEffectCategory.HARMFUL, MoreSpellSchools.EARTH.color),
             new EffectConfig(
                     List.of(

@@ -9,7 +9,7 @@ group = project.maven_group
 fabricApi {
 	configureDataGeneration() {
 		client = true
-		modId = "skill_tree_rpgs"
+		modId = "mrpgc_skill_tree"
 	}
 }
 

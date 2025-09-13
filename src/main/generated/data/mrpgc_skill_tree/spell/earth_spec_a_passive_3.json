@@ -24,7 +24,7 @@
       "action": {
         "type": "STATUS_EFFECT",
         "status_effect": {
-          "effect_id": "net.spell_engine.api.effect.Effects$Entry@79993ff5",
+          "effect_id": "mrpgc_skill_tree:stone_heart",
           "duration": 8.0,
           "amplifier_power_multiplier": 0.5
         }
@@ -42,7 +42,10 @@
           "follow_entity": true
         }
       ],
-      "sound": {}
+      "sound": {
+        "id": "more_rpg_classes:earth_magic_cast1",
+        "volume": 0.5
+      }
     }
   ],
   "cost": {

@@ -2,6 +2,7 @@ package com.mrpgc_skilltree;
 
 import com.mrpgc_skilltree.effect.MrpgSkillEffects;
 import com.mrpgc_skilltree.skills.MrpgSkillDefinitions;
+import com.mrpgc_skilltree.skills.MrpgSkillSounds;
 import com.mrpgc_skilltree.skills.MrpgSkillSpells;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
@@ -14,12 +15,15 @@ import net.puffish.skillsmod.reward.builtin.AttributeReward;
 import net.skill_tree_rpgs.data_gen.SkillDefinitionGenerator;
 import net.skill_tree_rpgs.node.SpellContainerReward;
 import net.skill_tree_rpgs.utils.ResolvableTextContent;
+import net.spell_engine.api.datagen.SimpleSoundGeneratorV2;
 import net.spell_engine.api.datagen.SpellGenerator;
 import net.spell_engine.client.gui.SpellTooltip;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.concurrent.CompletableFuture;
+
+import static com.mrpgc_skilltree.MRPGCSkillTreeAddOn.MOD_ID;
 
 public class MRPGCSkillTreeAddOnDataGenerator implements DataGeneratorEntrypoint {
 	@Override
@@ -28,6 +32,7 @@ public class MRPGCSkillTreeAddOnDataGenerator implements DataGeneratorEntrypoint
 		pack.addProvider(LangGenerator::new);
 		pack.addProvider(SpellsGen::new);
 		pack.addProvider(SkillDefinitionGen::new);
+		pack.addProvider(SoundGen::new);
 	}
 
 	public static class LangGenerator extends FabricLanguageProvider {
@@ -53,6 +58,21 @@ public class MRPGCSkillTreeAddOnDataGenerator implements DataGeneratorEntrypoint
 				translationBuilder.add(entry.effect.getTranslationKey(), entry.title);
 				translationBuilder.add(entry.effect.getTranslationKey() + ".description", entry.description);
 			});
+		}
+	}
+	public static class SoundGen extends SimpleSoundGeneratorV2 {
+		public SoundGen(FabricDataOutput dataOutput, CompletableFuture<RegistryWrapper.WrapperLookup> registryLookup) {
+			super(dataOutput, registryLookup);
+		}
+
+		@Override
+		public void generateSounds(Builder builder) {
+			builder.entries.add(new Entry(MOD_ID,
+							MrpgSkillSounds.entries.stream()
+									.map(entry -> SoundEntry.withVariants(entry.id().getPath(), entry.variants()))
+									.toList()
+					)
+			);
 		}
 	}
 

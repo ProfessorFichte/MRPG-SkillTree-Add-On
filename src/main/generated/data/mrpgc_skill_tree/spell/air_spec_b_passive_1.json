@@ -7,6 +7,7 @@
     "triggers": [
       {
         "type": "SPELL_IMPACT_SPECIFIC",
+        "chance": 0.5,
         "target_conditions": [
           {
             "health_percent_above": 0.01,
@@ -30,16 +31,18 @@
       "action": {
         "type": "STATUS_EFFECT",
         "status_effect": {
-          "effect_id": "net.spell_engine.api.effect.Effects$Entry@2c4d08b5",
+          "effect_id": "mrpgc_skill_tree:eye_of_the_storm",
           "duration": 5.0
         }
       },
-      "sound": {}
+      "sound": {
+        "id": "mrpgc_skill_tree:air_eye_of_the_storm"
+      }
     }
   ],
   "cost": {
     "cooldown": {
-      "duration": 10.0
+      "duration": 1.0
     }
   }
 }

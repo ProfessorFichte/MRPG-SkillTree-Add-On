@@ -7,7 +7,7 @@
     {
       "spell_pattern": "elemental_wizards_rpg:wind_updraft",
       "power_modifier": {
-        "critical_damage_bonus": 0.35
+        "critical_damage_bonus": 0.25
       }
     }
   ]

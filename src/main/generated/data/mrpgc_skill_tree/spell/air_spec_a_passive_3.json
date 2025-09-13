@@ -17,7 +17,9 @@
     ]
   },
   "release": {
-    "sound": {}
+    "sound": {
+      "id": "mrpgc_skill_tree:air_impetus_buff"
+    }
   },
   "target": {
     "type": "FROM_TRIGGER"
@@ -45,7 +47,19 @@
           "knockback": 1.5
         }
       },
-      "sound": {}
+      "particles": [
+        {
+          "particle_id": "spell_engine:smoke_medium",
+          "origin": "CENTER",
+          "shape": "SPHERE",
+          "count": 10.0,
+          "min_speed": 0.2,
+          "max_speed": 0.2
+        }
+      ],
+      "sound": {
+        "id": "more_rpg_classes:air_magic_impact2"
+      }
     }
   ],
   "cost": {

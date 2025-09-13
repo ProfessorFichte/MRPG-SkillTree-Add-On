@@ -57,7 +57,10 @@
         "scale": 5.0
       }
     ],
-    "sound": {}
+    "sound": {
+      "id": "more_rpg_classes:earth_magic_impact1",
+      "volume": 0.7
+    }
   },
   "target": {
     "type": "AREA",

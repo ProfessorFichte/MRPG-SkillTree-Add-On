@@ -2,6 +2,7 @@ package com.mrpgc_skilltree;
 
 import com.mrpgc_skilltree.effect.MrpgSkillEffects;
 import com.mrpgc_skilltree.skills.CustomSpellImpacts;
+import com.mrpgc_skilltree.skills.MrpgSkillSounds;
 import net.fabricmc.api.ModInitializer;
 import com.mrpgc_skilltree.config.TweaksConfig;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
@@ -34,6 +35,7 @@ public class MRPGCSkillTreeAddOn implements ModInitializer {
 	public void onInitialize() {
 		effectConfig.refresh();
 		tweaksConfig.refresh();
+		MrpgSkillSounds.register();
 		if (MRPGCSkillTreeAddOn.tweaksConfig.value.disable_mrpgc_skilltree_changes) {
 			FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(modContainer -> {
 				ResourceManagerHelper.registerBuiltinResourcePack(
