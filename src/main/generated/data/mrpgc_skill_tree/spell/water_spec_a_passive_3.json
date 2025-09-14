@@ -18,6 +18,7 @@
         }
       },
       {
+        "target_override": "CASTER",
         "type": "SPELL_IMPACT_SPECIFIC",
         "chance": 0.25,
         "spell": {
@@ -30,7 +31,9 @@
     ]
   },
   "release": {
-    "sound": {}
+    "sound": {
+      "id": "mrpgc_skill_tree:calming_flow_release"
+    }
   },
   "target": {
     "type": "FROM_TRIGGER"
@@ -39,16 +42,13 @@
     "type": "STASH_EFFECT",
     "stash_effect": {
       "id": "mrpgc_skill_tree:calming_flow",
-      "duration": 5.0,
+      "duration": 6.0,
       "triggers": [
         {
-          "type": "SPELL_IMPACT_SPECIFIC",
+          "type": "SPELL_CAST",
           "spell": {
             "school": "water",
             "type": "ACTIVE"
-          },
-          "impact": {
-            "impact_type": "DAMAGE"
           }
         }
       ],
@@ -59,14 +59,27 @@
     {
       "action": {
         "type": "COOLDOWN",
+        "apply_to_caster": true,
         "cooldown": {
           "actives": {
             "school": "water",
-            "duration_multiplier": 0.8
+            "duration_multiplier": 0.9
           }
         }
       },
-      "sound": {}
+      "particles": [
+        {
+          "particle_id": "spell_engine:sign_hourglass",
+          "origin": "CENTER",
+          "shape": "LINE_VERTICAL",
+          "count": 1.0,
+          "min_speed": 0.8,
+          "max_speed": 0.8,
+          "color_rgba": 1250689023,
+          "scale": 0.8,
+          "follow_entity": true
+        }
+      ]
     }
   ],
   "cost": {

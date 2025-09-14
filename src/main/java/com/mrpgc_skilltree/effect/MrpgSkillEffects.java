@@ -498,11 +498,16 @@ public class MrpgSkillEffects {
                     List.of(
                             new AttributeModifier(
                                     MoreSpellSchools.WATER.id,
-                                    0.2F,
+                                    0.3F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             ),
                             new AttributeModifier(
                                     SpellPowerMechanics.CRITICAL_CHANCE.id,
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    SpellPowerMechanics.HASTE.id,
                                     0.1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
@@ -540,8 +545,8 @@ public class MrpgSkillEffects {
     ));
     public static Effects.Entry SEISMIC_ENTRY = add(new Effects.Entry(Identifier.of(MOD_ID, "seismic_entry"),
             "Seismic Entry",
-            "Knocks targets back.",
-            new TickingStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.EARTH.color).interval(3),
+            "Deals damage and knocks targets up.",
+            new TickingStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.EARTH.color).interval(10),
             new EffectConfig(
                     List.of()
             )

@@ -61,6 +61,7 @@ public class MRPGCSkillTreeClient implements ClientModInitializer {
         CustomModelStatusEffect.register(MrpgSkillEffects.EYE_OF_THE_STORM.effect, new EyeofTheStormRenderer());
 
         final Color EARTH_SPELL_COLOR = new Color(255.0F, 165.0F, 0.0F);
+        final Color WATER_SPELL_COLOR = Color.from(0x4a8bff);
         final var speedParticles = new ParticleBatch(
                 SpellEngineParticles.MagicParticles.get(
                         SpellEngineParticles.MagicParticles.Shape.STRIPE,
@@ -79,6 +80,19 @@ public class MRPGCSkillTreeClient implements ClientModInitializer {
                 ParticleBatch.Shape.LINE, ParticleBatch.Origin.CENTER,
                 1, 0, 0)
                 .scale(1.4F)
+                .followEntity(true);
+        final var groundSeismicParticles = new ParticleBatch(
+                SpellEngineParticles.area_effect_293.id().toString(),
+                ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.GROUND,
+                1, 0, 0)
+                .scale(2.5F)
+                .followEntity(true);
+        final var verticalCircleParticles = new ParticleBatch(
+                SpellEngineParticles.area_circle_1.id().toString(),
+                ParticleBatch.Shape.LINE_VERTICAL, ParticleBatch.Origin.FEET,
+                1F, 0.05F, 0.05F)
+                .color(Color.NATURE.toRGBA())
+                .scale(0.75F)
                 .followEntity(true);
 
         CustomParticleStatusEffect.register(
@@ -105,6 +119,51 @@ public class MRPGCSkillTreeClient implements ClientModInitializer {
                 new BuffParticleSpawner(
                         barrierParticles.copy().color(EARTH_SPELL_COLOR.alpha(0.5F).toRGBA())
                 ).withFrequency(30).scaleWithAmplifier(false)
+        );
+        CustomParticleStatusEffect.register(
+                MrpgSkillEffects.SEISMIC_ENTRY.effect,
+                new BuffParticleSpawner(
+                        groundSeismicParticles.copy().color(EARTH_SPELL_COLOR.alpha(0.5F).toRGBA())
+                ).withFrequency(10).scaleWithAmplifier(false)
+        );
+        CustomParticleStatusEffect.register(
+                MrpgSkillEffects.CALMING_FLOW.effect,
+                new BuffParticleSpawner(
+                        phaseShiftParticles.color(WATER_SPELL_COLOR.toRGBA())
+                ).withFrequency(20).scaleWithAmplifier(false)
+        );
+        CustomParticleStatusEffect.register(
+                MrpgSkillEffects.PERSISTENT_BUBBLES.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{
+                        new ParticleBatch(
+                                "more_rpg_classes:bubble",
+                                ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                                2.0F, 0F, 0.1F)
+                })
+        );
+        CustomParticleStatusEffect.register(
+                MrpgSkillEffects.TORRENT.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{
+                        new ParticleBatch(
+                                SpellEngineParticles.MagicParticles.get(
+                                        SpellEngineParticles.MagicParticles.Shape.STRIPE,
+                                        SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
+                                ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.GROUND,
+                                10.0F, 0.05F, 0.5F)
+                                .extent(0.5F).color(WATER_SPELL_COLOR.toRGBA())
+                })
+        );
+        CustomParticleStatusEffect.register(
+                MrpgSkillEffects.HYDRATION.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{
+                        new ParticleBatch(
+                                SpellEngineParticles.MagicParticles.get(
+                                        SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                        SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                                ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                                1.0F, 0.05F, 0.1F)
+                                .extent(0.5F).color(WATER_SPELL_COLOR.toRGBA())
+                })
         );
     }
 

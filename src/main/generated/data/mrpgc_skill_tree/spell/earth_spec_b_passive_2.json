@@ -18,7 +18,7 @@
     "type": "STASH_EFFECT",
     "stash_effect": {
       "id": "mrpgc_skill_tree:seismic_entry",
-      "duration": 0.5,
+      "duration": 1.5,
       "triggers": [
         {
           "type": "EFFECT_TICK",
@@ -35,8 +35,27 @@
       "action": {
         "type": "DAMAGE",
         "damage": {
-          "spell_power_coefficient": 0.2,
+          "spell_power_coefficient": 0.1,
           "knockback": 0.0
+        }
+      }
+    },
+    {
+      "target_modifiers": [
+        {
+          "conditions": [
+            {
+              "entity_type": "#c:bosses"
+            }
+          ],
+          "execute": "DENY"
+        }
+      ],
+      "action": {
+        "type": "CUSTOM",
+        "custom": {
+          "intent": "HARMFUL",
+          "handler": "more_rpg_classes:knock_up_fixed"
         }
       }
     }
@@ -55,7 +74,7 @@
       }
     ],
     "sound": {
-      "id": "block.pointed_dripstone.break"
+      "id": "mrpgc_skill_tree:seismic_entry"
     }
   }
 }

@@ -9,9 +9,12 @@
   "passive": {
     "triggers": [
       {
-        "type": "SPELL_CAST",
+        "type": "SPELL_IMPACT_SPECIFIC",
         "spell": {
           "id": "elemental_wizards_rpg:aqua_springwater"
+        },
+        "impact": {
+          "impact_type": "DAMAGE"
         }
       }
     ]
@@ -24,9 +27,9 @@
     "clouds": [
       {
         "volume": {
-          "radius": 4.0
+          "radius": 2.0
         },
-        "time_to_live_seconds": 7.0,
+        "time_to_live_seconds": 3.0,
         "impact_tick_interval": 10,
         "client_data": {
           "particles": [
@@ -34,9 +37,9 @@
               "particle_id": "more_rpg_classes:bubble",
               "origin": "GROUND",
               "shape": "PILLAR",
-              "count": 25.0,
+              "count": 10.0,
               "min_speed": 0.05,
-              "max_speed": 0.2
+              "max_speed": 0.1
             }
           ]
         }
@@ -48,7 +51,7 @@
       "action": {
         "type": "DAMAGE",
         "damage": {
-          "spell_power_coefficient": 0.25,
+          "spell_power_coefficient": 0.2,
           "knockback": 0.3
         }
       },

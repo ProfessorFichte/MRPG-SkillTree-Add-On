@@ -23,6 +23,14 @@ public class MrpgSkillSounds {
     public static final SpellEngineSounds.Entry air_tailwind_loop = add(entry("air_tailwind_loop"));
     public static final SpellEngineSounds.Entry air_wind_flurry_release = add(entry("air_wind_flurry_release"));
     public static final SpellEngineSounds.Entry earthen_blessing = add(entry("earthen_blessing"));
+    public static final SpellEngineSounds.Entry splashdown = add(entry("splashdown"));
+    public static final SpellEngineSounds.Entry soothing_mist_cleanse = add(entry("soothing_mist_cleanse"));
+    public static final SpellEngineSounds.Entry second_wave = add(entry("second_wave"));
+    public static final SpellEngineSounds.Entry seismic_entry = add(entry("seismic_entry"));
+    public static final SpellEngineSounds.Entry torrent = add(entry("torrent"));
+    public static final SpellEngineSounds.Entry calming_flow_release = add(entry("calming_flow_release"));
+
+
 
 
     public static void register() {

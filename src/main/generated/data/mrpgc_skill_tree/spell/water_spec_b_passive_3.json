@@ -17,6 +17,11 @@
       }
     ]
   },
+  "release": {
+    "sound": {
+      "id": "mrpgc_skill_tree:torrent"
+    }
+  },
   "target": {
     "type": "FROM_TRIGGER"
   },
@@ -25,27 +30,30 @@
       "action": {
         "type": "STATUS_EFFECT",
         "status_effect": {
-          "effect_id": "mrpgc_skill_tree:torrent",
-          "duration": 6.0
+          "effect_id": "mrpgc_skill_tree:torrent"
         }
       },
       "particles": [
         {
-          "particle_id": "spell_engine:magic_spark_decelerate",
-          "origin": "CENTER",
-          "shape": "SPHERE",
-          "count": 15.0,
+          "particle_id": "spell_engine:magic_stripe_decelerate",
+          "origin": "GROUND",
+          "shape": "WIDE_PIPE",
+          "count": 30.0,
           "min_speed": 0.2,
-          "max_speed": 0.2,
+          "max_speed": 0.8,
+          "extent": 2.0,
+          "invert": true,
           "color_rgba": 1250689023
         }
       ],
-      "sound": {}
+      "sound": {
+        "id": "mrpgc_skill_tree:torrent"
+      }
     }
   ],
   "cost": {
     "cooldown": {
-      "duration": 30.0
+      "duration": 20.0
     }
   }
 }

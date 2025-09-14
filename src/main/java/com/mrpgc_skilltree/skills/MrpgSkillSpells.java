@@ -777,7 +777,7 @@ public class MrpgSkillSpells {
         var id = Identifier.of(NAMESPACE, "earth_spec_a_passive_2");
         var effect = MrpgSkillEffects.DIFFICULT_TERRAIN;
         var title = "Difficult Terrain";
-        var description = " {trigger_chance} chance upon rolling to leave difficult terrain behind for {cloud_duration} sec, slowing for {effect_duration} sec and damaging enemies..";
+        var description = " {trigger_chance} chance upon rolling to leave difficult terrain behind for {cloud_duration} sec, slowing for {effect_duration} sec and dealing {damage} damage to enemies.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = earthWizardSchool;
@@ -820,7 +820,7 @@ public class MrpgSkillSpells {
     private static Entry earth_spec_b_passive_2() {
         var id = Identifier.of(NAMESPACE, "earth_spec_b_passive_2");
         var title = "Seismic Entry";
-        var description = " {trigger_chance} chance while rolling, to deal {damage} damage and knock up nearby enemies.";
+        var description = " {trigger_chance_1} chance while rolling, to deal {damage} damage and knock up nearby enemies.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = earthWizardSchool;
@@ -834,10 +834,10 @@ public class MrpgSkillSpells {
 
         var stashEffect = MrpgSkillEffects.SEISMIC_ENTRY;
         var stashTrigger = SpellBuilder.Triggers.effectTick(stashEffect.id.toString());
-        SpellBuilder.Deliver.stash(spell, stashEffect.id.toString(), 0.5F, List.of(stashTrigger));
+        SpellBuilder.Deliver.stash(spell, stashEffect.id.toString(), 1.5F, List.of(stashTrigger));
         spell.deliver.stash_effect.consume = 0;
 
-        var impact = SpellBuilder.Impacts.damage(0.2F, 0F);
+        var impact = SpellBuilder.Impacts.damage(0.1F, 0F);
         var custom = new Spell.Impact();
         bossImmuneDeny(custom);
         custom.action = new Spell.Impact.Action();
@@ -845,7 +845,7 @@ public class MrpgSkillSpells {
         custom.action.type = Spell.Impact.Action.Type.CUSTOM;
         custom.action.custom.intent = SpellTarget.Intent.HARMFUL;
         custom.action.custom.handler = "more_rpg_classes:knock_up_fixed";
-        spell.impacts = List.of(impact);
+        spell.impacts = List.of(impact, custom);
         var areaImpact = new Spell.AreaImpact();
         areaImpact.radius = 2.5F;
         areaImpact.force_indirect = true;
@@ -855,7 +855,7 @@ public class MrpgSkillSpells {
                         ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
                         2, 0.1F, 0.1F)
         };
-        areaImpact.sound = new Sound("block.pointed_dripstone.break");
+        areaImpact.sound = new Sound(MrpgSkillSounds.seismic_entry.id());
         spell.area_impact = areaImpact;
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.EARTH));
@@ -953,7 +953,7 @@ public class MrpgSkillSpells {
         var spell = SpellBuilder.createSpellModifier();
         spell.school = waterWizardSchool;
 
-        var bonus = 0.5F;
+        var bonus = 1.0F;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "elemental_wizards_rpg:aqua_water_whip";
@@ -966,7 +966,7 @@ public class MrpgSkillSpells {
     private static Entry water_spec_b_modifier_1() {
         var id = Identifier.of(NAMESPACE, "water_spec_b_modifier_1");
         var title = "Splish Splash";
-        var description = "";
+        var description = "Water Whip deals {damage} damage around the target.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = waterWizardSchool;
 
@@ -1114,23 +1114,23 @@ public class MrpgSkillSpells {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var trigger = SpellBuilder.Triggers.specificSpellCast("elemental_wizards_rpg:aqua_springwater");
+        var trigger = SpellBuilder.Triggers.specificSpellHit("elemental_wizards_rpg:aqua_springwater");
         spell.passive.triggers = List.of(trigger);
 
         spell.deliver.type = Spell.Delivery.Type.CLOUD;
         var cloud = new Spell.Delivery.Cloud();
-        cloud.volume.radius = 4;
+        cloud.volume.radius = 2.0F;
         cloud.impact_tick_interval = 10;
-        cloud.time_to_live_seconds = 7;
+        cloud.time_to_live_seconds = 3;
         cloud.client_data.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         "more_rpg_classes:bubble",
                         ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.GROUND,
-                        25, 0.05F, 0.2F)
+                        10, 0.05F, 0.1F)
         };
         spell.deliver.clouds = List.of(cloud);
 
-        var impact = SpellBuilder.Impacts.damage(0.25F, 0.3F);
+        var impact = SpellBuilder.Impacts.damage(0.2F, 0.3F);
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         "bubble_pop",
@@ -1213,7 +1213,6 @@ public class MrpgSkillSpells {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 4, 0, 3);
-        ///IMPROVE PARTICLES AND SOUNDS
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         SpellEngineParticles.area_circle_1.id().toString(),
@@ -1223,8 +1222,15 @@ public class MrpgSkillSpells {
                         .scale(0.8F)
                         .maxAge(0.8F)
                         .color(WATER_SPELL_COLOR.toRGBA()),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.HEAL ,
+                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.GROUND,
+                        15, 0.02F, 0.15F)
+                        .color(WATER_SPELL_COLOR.toRGBA()).extent(1.0F)
         };
-        impact.sound = new Sound();
+        impact.sound = new Sound(SpellEngineSounds.GENERIC_HEALING_IMPACT_4.id());
         spell.impacts = List.of(impact);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.WATER));
@@ -1241,15 +1247,19 @@ public class MrpgSkillSpells {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var trigger = SpellBuilder.Triggers.spellHit(0.5F,"water");
+        var trigger = SpellBuilder.Triggers.spellHit(0.3F,"water");
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.damage(0.0F,1.0F);
-        ///IMPROVE PARTICLES AND SOUNDS
+        var impact = SpellBuilder.Impacts.damage(0.0F,1.5F);
         impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        "more_rpg_classes:splash",
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
+                        50, 0.1F, 0.3F).extent(0.5F)
         };
-        impact.sound = new Sound();
+        impact.sound = new Sound(MrpgSkillSounds.second_wave.id());
         spell.impacts = List.of(impact);
+        SpellBuilder.Cost.cooldown(spell, 5F);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.WATER));
     }
@@ -1272,23 +1282,27 @@ public class MrpgSkillSpells {
         Spell.Delivery.Cloud cloud = new Spell.Delivery.Cloud();
         cloud.volume.radius = 2.5F;
         cloud.volume.area.vertical_range_multiplier = 0.3F;
-        //IMRPOVE SOUND
-        cloud.volume.sound = new Sound();
         cloud.impact_tick_interval = 20;
         cloud.time_to_live_seconds = 5;
-        //IMRPOVE SOUND
-        cloud.spawn.sound = new Sound();
         cloud.client_data = new Spell.Delivery.Cloud.ClientData();
         cloud.client_data.light_level = 0;
-        cloud.client_data.particles = new ParticleBatch[]{(new ParticleBatch(SpellEngineParticles.smoke_large.id().toString(),
-                ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET, 1.0F, 0.01F, 0.02F))
-                .color(WATER_SPELL_COLOR.toRGBA()),};
+        cloud.client_data.particles = new ParticleBatch[]{
+                (new ParticleBatch("more_rpg_classes:water_mist",
+                ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.GROUND, 20.0F, 0.0F, 0.0F))};
         spell.deliver.clouds = List.of(cloud);
-        Spell.Impact debuff = SpellBuilder.Impacts.effectCleanse();
-        debuff.particles = new ParticleBatch[]{
-                /// ADD PARTICLES
+        Spell.Impact cleanse = SpellBuilder.Impacts.effectCleanse();
+        cleanse.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.area_circle_1.id().toString(),
+                        ParticleBatch.Shape.LINE_VERTICAL, ParticleBatch.Origin.FEET,
+                        1, 0.15F, 0.16F)
+                        .followEntity(true)
+                        .scale(0.8F)
+                        .maxAge(0.8F)
+                        .color(Color.WHITE.toRGBA()),
         };
-        spell.impacts = List.of(debuff);
+        cleanse.sound = new Sound(MrpgSkillSounds.soothing_mist_cleanse.id());
+        spell.impacts = List.of(cleanse);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.WATER));
     }
@@ -1300,15 +1314,19 @@ public class MrpgSkillSpells {
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = waterWizardSchool;
-        spell.range = 0;
+        spell.range = 3F;
 
         var trigger = SpellBuilder.Triggers.roll();
         spell.passive.triggers = List.of(trigger);
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        /// ADD RELEASE PARTICLES
         spell.release.particles_scaled_with_ranged = new ParticleBatch[]{
+                new ParticleBatch(SpellEngineParticles.area_effect_480.texture().id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.GROUND,
+                        1, 0.0F, 0.F)
+                        .scale(2.5F)
+                        .color(WATER_SPELL_COLOR.alpha(0.75F).toRGBA())
         };
 
         var stashEffect = MrpgSkillEffects.SPLASHDOWN;
@@ -1316,13 +1334,18 @@ public class MrpgSkillSpells {
         SpellBuilder.Deliver.stash(spell, stashEffect.id.toString(), 0.5F, List.of(stashTrigger));
         spell.deliver.stash_effect.consume = 0;
 
-        var impact = SpellBuilder.Impacts.damage(0.0F, 1.5F);
+        var impact = SpellBuilder.Impacts.damage(0.0F, 2.5F);
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        "more_rpg_classes:splash",
+                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET,
+                        20, 0, 0)
+        };
         spell.impacts = List.of(impact);
         var areaImpact = new Spell.AreaImpact();
         areaImpact.radius = 2.5F;
         areaImpact.force_indirect = true;
-        /// CHANGE SOUND
-        areaImpact.sound = new Sound();
+        areaImpact.sound = new Sound(MrpgSkillSounds.splashdown.id());
         spell.area_impact = areaImpact;
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.WATER));
@@ -1332,35 +1355,36 @@ public class MrpgSkillSpells {
         var id = Identifier.of(NAMESPACE, "water_spec_a_passive_3");
         var effect = MrpgSkillEffects.CALMING_FLOW;
         var title = "Calming Flow";
-        var description = "Water Spell Hits and heals have {trigger_chance_1} chance to reduce active water spell cooldowns per hit for {effect_duration} sec..";
+        var description = "Water Spell Hits and heals have {trigger_chance_1} chance to enter in a calming flow, reducing active water spell cooldowns while casting spells for a {stash_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = waterWizardSchool;
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
-        spell.release.sound = new Sound();
+        spell.release.sound = new Sound(MrpgSkillSounds.calming_flow_release.id());
 
         var trigger = SpellBuilder.Triggers.activeSpellHit(0.25F, "water");
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         var trigger2 = SpellBuilder.Triggers.activeSpellHeal(0.25F);
-        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        trigger2.target_override = Spell.Trigger.TargetSelector.CASTER;
         spell.passive.triggers = List.of(trigger, trigger2);
 
-        SpellBuilder.Deliver.stash(spell, effect.id.toString(), 5, SpellBuilder.Triggers.activeSpellHit(1.0f,"water"));
+        SpellBuilder.Deliver.stash(spell, effect.id.toString(), 6, SpellBuilder.Triggers.activeSpellCast("water"));
         spell.deliver.stash_effect.consume = 0;
 
         Spell.Impact impact = new Spell.Impact();
         impact.action = new Spell.Impact.Action();
+        impact.action.apply_to_caster = true;
         impact.action.type = net.spell_engine.api.spell.Spell.Impact.Action.Type.COOLDOWN;
         impact.action.cooldown = new Spell.Impact.Action.Cooldown();
         impact.action.cooldown.actives = new Spell.Impact.Action.Cooldown.Modify();
         impact.action.cooldown.actives.school = "water";
-        impact.action.cooldown.actives.duration_multiplier = 0.8F;
-        /// ADD SOUNDS & PARTICLES
+        impact.action.cooldown.actives.duration_multiplier = 0.9F;
+
         impact.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), WATER_SPELL_COLOR),
         };
-        impact.sound = new Sound();
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 45F);
@@ -1373,7 +1397,7 @@ public class MrpgSkillSpells {
         var effect = MrpgSkillEffects.TORRENT;
         var title = effect.title;
         var healthThreshold = 0.3F;
-        var description = "Falling under {threshold} health, increases water spell power for {bonus2} and spell crit chance for {bonus} for {effect_duration} sec.";
+        var description = "Falling under {threshold} health, increases water spell power for {bonus2} and spell crit chance & spell haste for {bonus} for {effect_duration} sec.";
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = effect.config().attributes().get(1);
             var modifier2 = effect.config().attributes().get(0);
@@ -1391,25 +1415,26 @@ public class MrpgSkillSpells {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
+        spell.release.sound = new Sound(MrpgSkillSounds.torrent.id());
+
         var trigger = SpellBuilder.Triggers.becomingLowHP(healthThreshold);
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 6, 0);
-        ////CHANGE PARTICLES AND SOUND
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 10, 0);
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
                                 SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        15, 0.2F, 0.2F)
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.GROUND,
+                        30, 0.2F, 0.8F).extent(2.0F).invert()
                         .color(WATER_SPELL_COLOR.toRGBA())
         };
-        impact.sound = new Sound();
+        impact.sound = new Sound(MrpgSkillSounds.torrent.id());
         spell.impacts = List.of(impact);
 
-        SpellBuilder.Cost.cooldown(spell, 30F);
+        SpellBuilder.Cost.cooldown(spell, 20F);
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.WATER));
     }

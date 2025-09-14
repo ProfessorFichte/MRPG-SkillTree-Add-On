@@ -24,9 +24,39 @@
       "mrpgc_skill_tree:air_wind_flurry_release"
     ]
   },
+  "calming_flow_release": {
+    "sounds": [
+      "mrpgc_skill_tree:calming_flow_release"
+    ]
+  },
   "earthen_blessing": {
     "sounds": [
       "mrpgc_skill_tree:earthen_blessing"
+    ]
+  },
+  "second_wave": {
+    "sounds": [
+      "mrpgc_skill_tree:second_wave"
+    ]
+  },
+  "seismic_entry": {
+    "sounds": [
+      "mrpgc_skill_tree:seismic_entry"
+    ]
+  },
+  "soothing_mist_cleanse": {
+    "sounds": [
+      "mrpgc_skill_tree:soothing_mist_cleanse"
+    ]
+  },
+  "splashdown": {
+    "sounds": [
+      "mrpgc_skill_tree:splashdown"
+    ]
+  },
+  "torrent": {
+    "sounds": [
+      "mrpgc_skill_tree:torrent"
     ]
   }
 }

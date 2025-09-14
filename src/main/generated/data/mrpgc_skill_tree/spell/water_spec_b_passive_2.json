@@ -1,6 +1,6 @@
 {
   "school": "spell_power:water",
-  "range": 0.0,
+  "range": 3.0,
   "tier": 1,
   "type": "PASSIVE",
   "passive": {
@@ -11,7 +11,17 @@
     ]
   },
   "release": {
-    "particles_scaled_with_ranged": []
+    "particles_scaled_with_ranged": [
+      {
+        "particle_id": "spell_engine:area/effect_480",
+        "origin": "GROUND",
+        "shape": "SPHERE",
+        "count": 1.0,
+        "max_speed": 0.0,
+        "color_rgba": 1250688959,
+        "scale": 2.5
+      }
+    ]
   },
   "target": {
     "type": "FROM_TRIGGER"
@@ -38,14 +48,25 @@
         "type": "DAMAGE",
         "damage": {
           "spell_power_coefficient": 0.0,
-          "knockback": 1.5
+          "knockback": 2.5
         }
-      }
+      },
+      "particles": [
+        {
+          "particle_id": "more_rpg_classes:splash",
+          "origin": "FEET",
+          "shape": "PILLAR",
+          "count": 20.0,
+          "max_speed": 0.0
+        }
+      ]
     }
   ],
   "area_impact": {
     "force_indirect": true,
     "radius": 2.5,
-    "sound": {}
+    "sound": {
+      "id": "mrpgc_skill_tree:splashdown"
+    }
   }
 }

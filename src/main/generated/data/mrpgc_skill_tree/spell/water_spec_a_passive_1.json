@@ -42,9 +42,21 @@
           "scale": 0.8,
           "follow_entity": true,
           "max_age": 0.8
+        },
+        {
+          "particle_id": "spell_engine:magic_heal_ascend",
+          "origin": "GROUND",
+          "shape": "WIDE_PIPE",
+          "count": 15.0,
+          "min_speed": 0.02,
+          "max_speed": 0.15,
+          "extent": 1.0,
+          "color_rgba": 1250689023
         }
       ],
-      "sound": {}
+      "sound": {
+        "id": "spell_engine:generic_healing_impact_4"
+      }
     }
   ]
 }
