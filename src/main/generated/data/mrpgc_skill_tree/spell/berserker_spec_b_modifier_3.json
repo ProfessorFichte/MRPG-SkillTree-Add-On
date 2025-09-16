@@ -1,5 +1,5 @@
 {
-  "school": "spell_power:physical_melee",
+  "school": "spell_power:rage_melee",
   "range": 0.0,
   "tier": 1,
   "type": "MODIFIER",
@@ -9,6 +9,16 @@
       "mutate_impacts": "APPEND",
       "impacts": [
         {
+          "target_modifiers": [
+            {
+              "conditions": [
+                {
+                  "entity_type": "#more_rpg_classes:bleeding_immune"
+                }
+              ],
+              "execute": "DENY"
+            }
+          ],
           "action": {
             "type": "STATUS_EFFECT",
             "status_effect": {
@@ -20,7 +30,7 @@
         }
       ],
       "replacing_area_impact": {
-        "execute_action_type": "DAMAGE",
+        "execute_action_type": "STATUS_EFFECT",
         "radius": 2.5,
         "area": {
           "distance_dropoff": "SQUARED"

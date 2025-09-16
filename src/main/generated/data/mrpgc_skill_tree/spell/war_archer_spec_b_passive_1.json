@@ -1,5 +1,5 @@
 {
-  "school": "spell_power:physical_ranged",
+  "school": "spell_power:fire_ranged",
   "range": 0.0,
   "tier": 1,
   "type": "PASSIVE",
@@ -19,7 +19,7 @@
       "action": {
         "type": "STATUS_EFFECT",
         "status_effect": {
-          "effect_id": "net.spell_engine.api.effect.Effects$Entry@67931d83",
+          "effect_id": "net.spell_engine.api.effect.Effects$Entry@2c2716c4",
           "duration": 8.0,
           "amplifier_cap": 5,
           "apply_mode": "ADD"

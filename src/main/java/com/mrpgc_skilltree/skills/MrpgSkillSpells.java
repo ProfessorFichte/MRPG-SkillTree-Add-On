@@ -74,6 +74,11 @@ public class MrpgSkillSpells {
         modifier.execute = TriState.ALLOW;
         impact.target_modifiers = List.of(modifier);
     }
+    private static void bleedingDeny(Spell.Impact impact) {
+        var modifier = createImpactModifier("#more_rpg_classes:bleeding_immune");
+        modifier.execute = TriState.DENY;
+        impact.target_modifiers = List.of(modifier);
+    }
     private static void poisonDeny(Spell.Impact impact) {
         var modifier = createImpactModifier("#minecraft:ignores_poison_and_regen");
         modifier.execute = TriState.DENY;
@@ -96,12 +101,12 @@ public class MrpgSkillSpells {
     public static final SpellSchool airWizardSchool = MoreSpellSchools.AIR;
     public static final SpellSchool earthWizardSchool = MoreSpellSchools.EARTH;
     public static final SpellSchool waterWizardSchool = MoreSpellSchools.WATER;
-    public static final SpellSchool berserkerSchool = ExternalSpellSchools.PHYSICAL_MELEE;
+    public static final SpellSchool berserkerSchool = MoreSpellSchools.RAGE_MELEE;
     public static final SpellSchool forcemasterFighterSchool = ExternalSpellSchools.PHYSICAL_MELEE;
     public static final SpellSchool forcemasterCasterSchool = SpellSchools.ARCANE;
-    public static final SpellSchool warArcherSchool = ExternalSpellSchools.PHYSICAL_RANGED;
+    public static final SpellSchool warArcherSchool = MoreSpellSchools.FIRE_RANGED;
     public static final SpellSchool deadeyeSchool = ExternalSpellSchools.PHYSICAL_RANGED;
-    public static final SpellSchool tundraHunterSchool = ExternalSpellSchools.PHYSICAL_RANGED;
+    public static final SpellSchool tundraHunterSchool = MoreSpellSchools.FROST_RANGED;
     ///AIR MODIFIERS
     public static final Entry air_spec_a_modifier_1 = add(air_spec_a_modifier_1());
     private static Entry air_spec_a_modifier_1() {
@@ -1380,7 +1385,7 @@ public class MrpgSkillSpells {
         impact.action.cooldown = new Spell.Impact.Action.Cooldown();
         impact.action.cooldown.actives = new Spell.Impact.Action.Cooldown.Modify();
         impact.action.cooldown.actives.school = "water";
-        impact.action.cooldown.actives.duration_multiplier = 0.9F;
+        impact.action.cooldown.actives.duration_multiplier = 0.8F;
 
         impact.particles = new ParticleBatch[]{
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), WATER_SPELL_COLOR),
@@ -1459,7 +1464,7 @@ public class MrpgSkillSpells {
         var id = Identifier.of(NAMESPACE, "berserker_spec_b_modifier_1");
         var title = "Blind with Rage";
         var effect = MrpgSkillEffects.BLIND_WITH_RAGE;
-        var description = "Wild Rage reduces incoming damage by {bonus} for {effect_duration} sec.";
+        var description = "Melee Hits with Wild Rage reduces incoming damage by {bonus} for {effect_duration} sec.";
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = effect.config().firstModifier();
             var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
@@ -1483,7 +1488,7 @@ public class MrpgSkillSpells {
     private static Entry berserker_spec_a_modifier_2() {
         var id = Identifier.of(NAMESPACE, "berserker_spec_a_modifier_2");
         var title = "Bloodflow";
-        var effect = MrpgSkillEffects.BLIND_WITH_RAGE;
+        var effect = MrpgSkillEffects.BLOODFLOW;
         var description = "Blood Reckoning increases attack damage by {bonus} for {effect_duration} sec.";
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = effect.config().firstModifier();
@@ -1496,7 +1501,7 @@ public class MrpgSkillSpells {
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "berserker_rpg:blood_reckoning";
 
-        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 10, 0);
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 8, 0);
         impact.action.apply_to_caster = true;
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
@@ -1509,22 +1514,23 @@ public class MrpgSkillSpells {
     private static Entry berserker_spec_b_modifier_2() {
         var id = Identifier.of(NAMESPACE, "berserker_spec_b_modifier_2");
         var title = "Norse Blood Ritual";
-        var description = "Hitting Bleeding Targets with Blood Reckoning deals additional {damage} damage.";
+        var description = "Bleeding Targets near the caster now receive {damage} damage.";
         var spell = createModifierAlikePassiveSpell();
         spell.school = berserkerSchool;
-        spell.range = 0;
+        spell.range = 6;
 
-        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
-        var trigger = SpellBuilder.Triggers.specificSpellHit("berserker_rpg:blood_reckoning");
-        var condition = new Spell.TargetCondition();
-        condition.entity_predicate_id = HAS_BLEEDING.id().toString();
-        trigger.target_conditions = List.of(condition);
+        spell.target.type = Spell.Target.Type.AREA;
+        spell.target.area = new Spell.Target.Area();
+        spell.target.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+
+        var trigger = SpellBuilder.Triggers.specificSpellCast("berserker_rpg:blood_reckoning");
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.damage(0.5F, 0F);
-        spell.impacts = List.of(impact);
 
-        SpellBuilder.Cost.cooldown(spell, 0.5F);
+        var damage = SpellBuilder.Impacts.damage(0.4F, 0F);
+        SpellBuilder.configureImpactEnableCondition(damage,
+                SpellBuilder.TargetConditions.ofPredicate(HAS_BLEEDING));
+        spell.impacts = List.of(damage);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.BERSERKER));
     }
@@ -1532,46 +1538,21 @@ public class MrpgSkillSpells {
     private static Entry berserker_spec_a_modifier_3() {
         var id = Identifier.of(NAMESPACE, "berserker_spec_a_modifier_3");
         var title = "Deadly Precision";
-        var description = "After Casting Bloody Strike your melee hits deal additional damage according to {max_health_damage} of the targets max health for {stash_duration} seconds.";
-        var spell = createModifierAlikePassiveSpell();
+        var description = "Bloody Strike deals {power_multiplier} more damage.";
+        var spell = SpellBuilder.createSpellModifier();
         spell.school = berserkerSchool;
         spell.range = 0;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifiedDescription = args.description();
-            var max_health_damage = spell.impacts.get(0).action.damage;
-            if (max_health_damage != null) {
-                modifiedDescription = modifiedDescription.replace("{max_health_damage}", SpellTooltip.percent(max_health_damage.spell_power_coefficient));
-            }
-            return modifiedDescription;
-        };
 
-        var effect = MrpgSkillEffects.DEADLY_PRECISION;
-        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
-        var trigger = SpellBuilder.Triggers.specificSpellCast("berserker_rpg:bloody_strike");
-        spell.passive.triggers = List.of(trigger);
+        var bonus = 0.25F;
 
-        var strashTrigger = SpellBuilder.Triggers.meleeAttack(false);
-        SpellBuilder.Deliver.stash(spell, effect.id.toString(), 3, strashTrigger);
-        spell.deliver.stash_effect.consume = 0;
-
-        var damage = new Spell.Impact();
-        damage.attribute = EntityAttributes.GENERIC_MAX_HEALTH.getIdAsString();
-        damage.attribute_from_target = true;
-        damage.action = new Spell.Impact.Action();
-        damage.action.type = Spell.Impact.Action.Type.DAMAGE;
-        damage.action.damage = new Spell.Impact.Action.Damage();
-        damage.action.damage.spell_power_coefficient = 0.03F;
-        damage.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.dripping_blood.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        20, 0.2F, 0.8F)
-        };
-
-        spell.impacts = List.of(damage);
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "berserker_rpg:bloody_strike";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.power_modifier.power_multiplier = bonus;
+        spell.modifiers = List.of(modifier);
 
 
-        return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.BERSERKER));
+        return new Entry(id, spell, title, description, null, EnumSet.of(Category.BERSERKER));
     }
     public static final Entry berserker_spec_b_modifier_3 = add(berserker_spec_b_modifier_3());
     private static Entry berserker_spec_b_modifier_3() {
@@ -1587,7 +1568,7 @@ public class MrpgSkillSpells {
         var radius = 2.5F;
 
         var area_impact = new Spell.AreaImpact();
-        area_impact.execute_action_type = Spell.Impact.Action.Type.DAMAGE;
+        area_impact.execute_action_type = Spell.Impact.Action.Type.STATUS_EFFECT;
         area_impact.radius = radius;
         area_impact.area = new Spell.Target.Area();
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
@@ -1602,6 +1583,7 @@ public class MrpgSkillSpells {
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
 
         var debuff = SpellBuilder.Impacts.effectSet(MRPGCEffects.BLEEDING.id.toString(), 6, 0);
+        bleedingDeny(debuff);
         debuff.action.status_effect.amplifier_power_multiplier = 0.2F;
         debuff.action.status_effect.refresh_duration = true;
         modifier.impacts = List.of(debuff);
@@ -1615,17 +1597,20 @@ public class MrpgSkillSpells {
     private static Entry berserker_spec_a_modifier_4() {
         var id = Identifier.of(NAMESPACE, "berserker_spec_a_modifier_4");
         var title = "Savage Outrage";
-        var description = "Outrage deals {power_multiplier} more damage.";
-        var spell = SpellBuilder.createSpellModifier();
+        var description = "Outrage now deals {damage} damage around the caster.";
+        var spell = createModifierAlikePassiveSpell();
         spell.school = berserkerSchool;
+        spell.range_mechanic = Spell.RangeMechanic.MELEE;
 
-        var bonus = 0.5F;
+        spell.target.type = Spell.Target.Type.AREA;
+        spell.target.area = new Spell.Target.Area();
+        spell.target.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+        var trigger = SpellBuilder.Triggers.specificSpellCast("berserker_rpg:outrage");
+        spell.passive.triggers = List.of(trigger);
 
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "berserker_rpg:outrage";
-        modifier.power_modifier = new Spell.Impact.Modifier();
-        modifier.power_modifier.power_multiplier = bonus;
-        spell.modifiers = List.of(modifier);
+        var damage = SpellBuilder.Impacts.damage(0.3F, 0.2F);
+        spell.impacts = List.of(damage);
+
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.BERSERKER));
     }
@@ -1633,14 +1618,18 @@ public class MrpgSkillSpells {
     private static Entry berserker_spec_b_modifier_4() {
         var id = Identifier.of(NAMESPACE, "berserker_spec_b_modifier_4");
         var title = "Reckless Outrage";
-        var description = "";
+        var description = "Melee Hits grants Absorption in trade for reducing the players health.";
         var effect = MrpgSkillEffects.RECKLESS_RAGE;
-        var spell = SpellBuilder.createSpellModifier();
+        var spell = createModifierAlikePassiveSpell();
         spell.school = berserkerSchool;
 
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "berserker_rpg:outrage";
-        spell.modifiers = List.of(modifier);
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+        var trigger = SpellBuilder.Triggers.specificSpellCast("berserker_rpg:outrage");
+        spell.passive.triggers = List.of(trigger);
+
+        var stashTrigger = SpellBuilder.Triggers.meleeAttack(false);
+        SpellBuilder.Deliver.stash(spell, effect.id.toString(), 6, stashTrigger);
+        spell.deliver.stash_effect.consume = 0;
 
         var custom = new Spell.Impact();
         custom.action = new Spell.Impact.Action();
@@ -1660,12 +1649,13 @@ public class MrpgSkillSpells {
                         .color(Color.RAGE.toRGBA()),
         };
 
-        var buff = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 12, 0,9);
+        var buff = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 12, 1,9);
+        buff.action.status_effect.refresh_duration = false;
+        buff.action.status_effect.amplifier_cap_power_multiplier = 0.2F;
         buff.action.apply_to_caster = true;
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(custom, buff);
 
-        spell.modifiers = List.of(modifier);
+        spell.impacts = List.of(custom,buff);
+
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.BERSERKER));
     }
     ///BERSERKER PASSIVES
@@ -1678,13 +1668,23 @@ public class MrpgSkillSpells {
         spell.school = berserkerSchool;
         spell.range = 0;
 
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
         var trigger = SpellBuilder.Triggers.meleeAttack(false);
-        trigger.chance = 0.25F;
+        trigger.chance = 0.2F;
         spell.passive.triggers = List.of(trigger);
 
-        ///SOUNDS & PARTICLES?
         var debuff = SpellBuilder.Impacts.effectAdd(MRPGCEffects.GRIEVOUS_WOUNDS.id.toString(), 6, 0,3);
         debuff.action.status_effect.refresh_duration = true;
+        debuff.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.dripping_blood.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        10, 0.01F, 0.1F)
+                        .color(Color.BLOOD.toRGBA()),
+                SpellBuilder.Particles.aura(SpellEngineParticles.aura_effect_409.id())
+                        .color(Color.RAGE.toRGBA())
+        };
+        debuff.sound = new Sound(MrpgSkillSounds.cleave_impact.id());
         spell.impacts = List.of(debuff);
 
         SpellBuilder.Cost.cooldown(spell, 1F);
@@ -1695,21 +1695,48 @@ public class MrpgSkillSpells {
     private static Entry berserker_spec_b_passive_1() {
         var id = Identifier.of(NAMESPACE, "berserker_spec_b_passive_1");
         var title = "Bloodfrenzy";
-        var description = "Hitting Bleeding Targets heals yourself for {heal} hearts.";
+        var description = "Melee Hits have a {trigger_chance} to inflict bleeding and healing yourself for {heal} hearts.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = berserkerSchool;
         spell.range = 0;
 
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
         var trigger = SpellBuilder.Triggers.meleeAttack(false);
-        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
-        var condition = new Spell.TargetCondition();
-        condition.entity_predicate_id = HAS_BLEEDING.id().toString();
-        trigger.target_conditions = List.of(condition);
+        trigger.chance = 0.2F;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.heal(0.1F);
-        /// ADD PARTICLES & SOUNDS
-        spell.impacts = List.of(impact);
+        var debuff = SpellBuilder.Impacts.effectAdd(MRPGCEffects.BLEEDING.id.toString(), 6, 0,5);
+        bleedingDeny(debuff);
+        debuff.action.status_effect.refresh_duration = true;
+        debuff.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.dripping_blood.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        10, 0.01F, 0.1F)
+                        .color(Color.BLOOD.toRGBA()),
+        };
+
+        var heal = SpellBuilder.Impacts.heal(0.1F);
+        heal.action.apply_to_caster = true;
+        heal.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                        SpellEngineParticles.MagicParticles.Shape.HEAL,
+                                        SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        10, 0.01F, 0.1F)
+                        .color(Color.RAGE.toRGBA()),
+                new ParticleBatch(
+                        SpellEngineParticles.ground_glow.id().toString(),
+                        ParticleBatch.Shape.LINE_VERTICAL, ParticleBatch.Origin.GROUND,
+                        1, 0.0F, 0.F)
+                        .followEntity(true)
+                        .scale(1.2F)
+                        .color(Color.RAGE.alpha(0.35F).toRGBA())
+        };
+        heal.sound = new Sound(MrpgSkillSounds.blood_frenzy_heal.id());
+        spell.impacts = List.of(debuff,heal);
 
         SpellBuilder.Cost.cooldown(spell, 1F);
 
@@ -1730,13 +1757,12 @@ public class MrpgSkillSpells {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        /// OVERWRITE ROLLING ANIMATION WITH NEW SLASHING ANIMATION
         spell.release.particles_scaled_with_ranged = new ParticleBatch[]{
                 new ParticleBatch(SpellEngineParticles.area_swirl.id().toString(),
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
                         1, 0.0F, 0.F)
                         .scale(0.8F)
-                        .followEntity(true)
+                        .followEntity(true).color(Color.RAGE.toRGBA())
         };
 
         var stashEffect = MrpgSkillEffects.SPINNING_SLASH;
@@ -1749,8 +1775,7 @@ public class MrpgSkillSpells {
         var areaImpact = new Spell.AreaImpact();
         areaImpact.radius = 2F;
         areaImpact.force_indirect = true;
-        /// CHANGE SOUND
-        areaImpact.sound = new Sound();
+        areaImpact.sound = new Sound(MrpgSkillSounds.spinning_slash_impact.id());
         spell.area_impact = areaImpact;
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.BERSERKER));
@@ -1760,7 +1785,7 @@ public class MrpgSkillSpells {
         var id = Identifier.of(NAMESPACE, "berserker_spec_b_passive_2");
         var title = "Burst of Aggression";
         var effect = MrpgSkillEffects.BURST_OF_AGGRESSION;
-        var description = "When the player is in rage and is rolling, you gain {bonus} movement speed for {effect_duration} sec.";
+        var description = "When the player is in rage and is rolling, you gain {bonus} movement speed and rage for {effect_duration} sec.";
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = effect.config().firstModifier();
             var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
@@ -1781,11 +1806,22 @@ public class MrpgSkillSpells {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 4F, 0);
+        var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 5F, 0);
         buff.action.status_effect.refresh_duration = true;
         buff.particles = new ParticleBatch[]{
-                ///PARTICLE CHANGE
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
+                        25, 0.3F, 0.8F).extent(1.0F)
+                        .color(Color.RAGE.toRGBA()).followEntity(true),
+                SpellBuilder.Particles.area(SpellEngineParticles.area_effect_658.id())
+                        .origin(ParticleBatch.Origin.CENTER)
+                        .scale(1.5F)
+                        .color(Color.RAGE.toRGBA()).followEntity(true)
         };
+        buff.sound = new Sound(MrpgSkillSounds.burst_of_aggression.id());
         spell.impacts = List.of(buff);
 
         return new Entry(id, spell, title, description, mutator, EnumSet.of(Category.BERSERKER));
@@ -1813,18 +1849,25 @@ public class MrpgSkillSpells {
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         var condition = new Spell.TargetCondition();
         condition.entity_predicate_id = SpellEntityPredicates.HAS_BAD_EFFECT.id().toString();
-        trigger.target_conditions = List.of(condition);
+        trigger.caster_conditions = List.of(condition);
         spell.passive.triggers = List.of(trigger);
 
-        var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 3, 0);
+        var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 5, 0);
         buff.action.apply_to_caster = true;
-        ///CHANGE PARTICLES & SOUND
         buff.particles = new ParticleBatch[]{
                 SpellBuilder.Particles.aura(SpellEngineParticles.aura_effect_728.id())
                         .scale(1.2F)
-                        .color(Color.RAGE.alpha(0.5F).toRGBA())
+                        .color(Color.RAGE.alpha(0.5F).toRGBA()),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
+                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        25, 0.2F, 0.6F)
+                        .extent(-0.2F)
+                        .color(Color.RAGE.toRGBA()),
         };
-        buff.sound = new Sound();
+        buff.sound = new Sound(MrpgSkillSounds.ragnarok_release.id());
         spell.impacts = List.of(buff);
 
         SpellBuilder.Cost.cooldown(spell, 60F);
@@ -1850,13 +1893,25 @@ public class MrpgSkillSpells {
 
         var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 3, 0);
         buff.action.apply_to_caster = true;
-        ///CHANGE PARTICLES & SOUND
         buff.particles = new ParticleBatch[]{
-                SpellBuilder.Particles.aura(SpellEngineParticles.aura_effect_728.id())
-                        .scale(1.2F)
-                        .color(Color.RAGE.alpha(0.5F).toRGBA())
+                SpellBuilder.Particles.area(SpellEngineParticles.area_effect_658.id())
+                        .origin(ParticleBatch.Origin.CENTER)
+                        .scale(1.5F)
+                        .color(Color.RAGE.toRGBA()),
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
+                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
+                        15, 0.3F, 0.5F)
+                        .invert()
+                        .color(Color.RAGE.toRGBA()),
+                new ParticleBatch("berserker_rpg:rage_particle",
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        10, 0.1F, 0.5F)
+                        .preSpawnTravel(7)
         };
-        buff.sound = new Sound();
+        buff.sound = Sound.withVolume(Identifier.of("berserker_rpg:wild_rage"), 1.3F);
         spell.impacts = List.of(buff);
 
         SpellBuilder.Cost.cooldown(spell, 60F);
@@ -2100,6 +2155,7 @@ public class MrpgSkillSpells {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 7F, 0,6);
+        bleedingDeny(impact);
         impact.action.status_effect.refresh_duration = true;
         impact.particles = new ParticleBatch[]{
                 ///PARTICLE CHANGE
@@ -2858,6 +2914,7 @@ public class MrpgSkillSpells {
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 7F, 0,6);
         impact.action.status_effect.refresh_duration = true;
+        bleedingDeny(impact);
         impact.particles = new ParticleBatch[]{
                 ///PARTICLE CHANGE
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_speed.id(), Color.WHITE)};
@@ -2872,7 +2929,6 @@ public class MrpgSkillSpells {
         var id = Identifier.of(NAMESPACE, "deadeye_spec_b_passive_1");
         var title = "Withdraw";
         var description = "Arrows have {trigger_chance} chance, to cure a negative condition and heal for {heal} hearts.";
-        var effect = MRPGCEffects.BLEEDING;
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = deadeyeSchool;

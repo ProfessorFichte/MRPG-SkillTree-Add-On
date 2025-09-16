@@ -1,5 +1,5 @@
 {
-  "school": "spell_power:physical_ranged",
+  "school": "spell_power:fire_ranged",
   "range": 0.0,
   "tier": 1,
   "type": "PASSIVE",
@@ -9,7 +9,7 @@
         "type": "ARROW_IMPACT",
         "target_conditions": [
           {
-            "entity_predicate_id": "Entry[id=spell_engine:is_on_fire, predicate=net.spell_engine.api.entity.SpellEntityPredicates$$Lambda/0x000001ac58ca8000@60d75d51]"
+            "entity_predicate_id": "Entry[id=spell_engine:is_on_fire, predicate=net.spell_engine.api.entity.SpellEntityPredicates$$Lambda/0x000001e8cfc86940@7ec91217]"
           }
         ]
       }

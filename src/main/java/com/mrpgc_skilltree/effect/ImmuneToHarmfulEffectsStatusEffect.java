@@ -13,7 +13,7 @@ public class ImmuneToHarmfulEffectsStatusEffect extends StatusEffect {
     }
     public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
         clearNegativeEffects(entity,false);
-        return false;
+        return true;
     }
 
     public boolean canApplyUpdateEffect(int duration, int amplifier) {

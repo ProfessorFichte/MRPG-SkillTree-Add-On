@@ -29,9 +29,11 @@ public class MrpgSkillSounds {
     public static final SpellEngineSounds.Entry seismic_entry = add(entry("seismic_entry"));
     public static final SpellEngineSounds.Entry torrent = add(entry("torrent"));
     public static final SpellEngineSounds.Entry calming_flow_release = add(entry("calming_flow_release"));
-
-
-
+    public static final SpellEngineSounds.Entry cleave_impact = add(entry("cleave_impact"));
+    public static final SpellEngineSounds.Entry blood_frenzy_heal = add(entry("blood_frenzy_heal"));
+    public static final SpellEngineSounds.Entry spinning_slash_impact = add(entry("spinning_slash_impact"));
+    public static final SpellEngineSounds.Entry burst_of_aggression = add(entry("burst_of_aggression"));
+    public static final SpellEngineSounds.Entry ragnarok_release = add(entry("ragnarok_release"));
 
     public static void register() {
         for (var entry: entries) {

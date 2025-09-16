@@ -7,6 +7,7 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.custom.MoreSpellSchools;
+import net.more_rpg_classes.entity.attribute.MRPGCEntityAttributes;
 import net.skill_tree_rpgs.skills.SkillTreeSounds;
 import net.spell_engine.api.config.AttributeModifier;
 import net.spell_engine.api.config.ConfigFile;
@@ -151,15 +152,6 @@ public class MrpgSkillEffects {
                                     0.1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
-                    )
-            )
-    ));
-    public static Effects.Entry DEADLY_PRECISION = add(new Effects.Entry(Identifier.of(MOD_ID, "deadly_precision"),
-            "Deadly Precision",
-            "Deal additional damage according to the targets max health.",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
-            new EffectConfig(
-                    List.of(
                     )
             )
     ));
@@ -432,7 +424,13 @@ public class MrpgSkillEffects {
                                     EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
                                     0.15F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    MRPGCEntityAttributes.RAGE_MODIFIER.getIdAsString(),
+                                    0.15F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
+
                     )
             )
     ));
@@ -444,7 +442,7 @@ public class MrpgSkillEffects {
                     List.of(
                             new AttributeModifier(
                                     EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
-                                    0.1F,
+                                    0.3F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )

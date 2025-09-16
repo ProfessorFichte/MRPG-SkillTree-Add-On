@@ -1,6 +1,6 @@
 {
-  "school": "spell_power:physical_melee",
-  "range": 0.0,
+  "school": "spell_power:rage_melee",
+  "range": 6.0,
   "tier": 1,
   "tooltip": {
     "show_activation": false
@@ -9,38 +9,37 @@
   "passive": {
     "triggers": [
       {
-        "type": "SPELL_IMPACT_SPECIFIC",
-        "target_conditions": [
-          {
-            "entity_predicate_id": "has_effect_optimized:more_rpg_classes.bleeding"
-          }
-        ],
+        "type": "SPELL_CAST",
         "spell": {
           "id": "berserker_rpg:blood_reckoning"
-        },
-        "impact": {
-          "impact_type": "DAMAGE"
         }
       }
     ]
   },
   "target": {
-    "type": "FROM_TRIGGER"
+    "type": "AREA",
+    "area": {
+      "distance_dropoff": "SQUARED"
+    }
   },
   "impacts": [
     {
+      "target_modifiers": [
+        {
+          "conditions": [
+            {
+              "entity_predicate_id": "has_effect_optimized:more_rpg_classes.bleeding"
+            }
+          ]
+        }
+      ],
       "action": {
         "type": "DAMAGE",
         "damage": {
-          "spell_power_coefficient": 0.5,
+          "spell_power_coefficient": 0.4,
           "knockback": 0.0
         }
       }
     }
-  ],
-  "cost": {
-    "cooldown": {
-      "duration": 0.5
-    }
-  }
+  ]
 }

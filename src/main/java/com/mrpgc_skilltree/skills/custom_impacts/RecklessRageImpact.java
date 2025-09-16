@@ -1,5 +1,6 @@
 package com.mrpgc_skilltree.skills.custom_impacts;
 
+import com.mrpgc_skilltree.effect.MrpgSkillEffects;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -23,7 +24,8 @@ public class RecklessRageImpact implements SpellHandlers.CustomImpact {
             var max_health = playerEntity.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH);
             float actual_health_player = playerEntity.getHealth();
             float self_damage_calc = (float) (max_health * 0.05F);
-            if(actual_health_player <= 0.5F){
+            if(actual_health_player <= 1.0F){
+                playerEntity.removeStatusEffect(MrpgSkillEffects.RECKLESS_RAGE.entry);
                 return new SpellHandlers.ImpactResult(false, false);
             }else{
                 if(self_damage_calc > actual_health_player){

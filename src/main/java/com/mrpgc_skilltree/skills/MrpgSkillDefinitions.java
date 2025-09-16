@@ -218,11 +218,12 @@ public class MrpgSkillDefinitions {
     public static final Entry BERSERKER_SPEC_A_MODIFIER_2 = add(modifierSpell(MrpgSkillSpells.berserker_spec_a_modifier_2));
     public static final Entry BERSERKER_SPEC_B_MODIFIER_2 = add(passiveSpell(MrpgSkillSpells.berserker_spec_b_modifier_2)
             .withIcon(Icon.spell(Identifier.of("berserker_rpg", "blood_reckoning"))));
-    public static final Entry BERSERKER_SPEC_A_MODIFIER_3 = add(passiveSpell(MrpgSkillSpells.berserker_spec_a_modifier_3)
-            .withIcon(Icon.spell(Identifier.of("berserker_rpg", "bloody_strike"))));
+    public static final Entry BERSERKER_SPEC_A_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.berserker_spec_a_modifier_3));
     public static final Entry BERSERKER_SPEC_B_MODIFIER_3 = add(modifierSpell(MrpgSkillSpells.berserker_spec_b_modifier_3));
-    public static final Entry BERSERKER_SPEC_A_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.berserker_spec_a_modifier_4));
-    public static final Entry BERSERKER_SPEC_B_MODIFIER_4 = add(modifierSpell(MrpgSkillSpells.berserker_spec_b_modifier_4));
+    public static final Entry BERSERKER_SPEC_A_MODIFIER_4 = add(passiveSpell(MrpgSkillSpells.berserker_spec_a_modifier_4)
+            .withIcon(Icon.spell(Identifier.of("berserker_rpg", "outrage"))));
+    public static final Entry BERSERKER_SPEC_B_MODIFIER_4 = add(passiveSpell(MrpgSkillSpells.berserker_spec_b_modifier_4)
+            .withIcon(Icon.spell(Identifier.of("berserker_rpg", "outrage"))));
     public static final Entry BERSERKER_SPEC_A_PASSIVE_1 = add(passiveSpell(MrpgSkillSpells.berserker_spec_a_passive_1));
     public static final Entry BERSERKER_SPEC_B_PASSIVE_1 = add(passiveSpell(MrpgSkillSpells.berserker_spec_b_passive_1));
     public static final Entry BERSERKER_SPEC_A_PASSIVE_2 = add(passiveSpell(MrpgSkillSpells.berserker_spec_a_passive_2));

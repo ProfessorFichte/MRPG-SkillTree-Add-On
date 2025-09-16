@@ -16,6 +16,16 @@
   },
   "impacts": [
     {
+      "target_modifiers": [
+        {
+          "conditions": [
+            {
+              "entity_type": "#more_rpg_classes:bleeding_immune"
+            }
+          ],
+          "execute": "DENY"
+        }
+      ],
       "action": {
         "type": "STATUS_EFFECT",
         "status_effect": {

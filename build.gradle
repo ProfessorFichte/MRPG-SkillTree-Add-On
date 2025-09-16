@@ -66,6 +66,7 @@ dependencies {
 	modImplementation("maven.modrinth:spell-power:${project.spell_power_version}")
 	modApi("net.puffish:skillsmod:${project.pufferfish_skills_version}:fabric")
 	modImplementation("maven.modrinth:ranged-weapon-api:${project.ranged_weapon_api_version}")
+	modImplementation("maven.modrinth:combat-roll:${project.combat_roll_version}")
 	modImplementation("maven.modrinth:more-rpg-library:${project.more_rpg_library_version}")
 }
 

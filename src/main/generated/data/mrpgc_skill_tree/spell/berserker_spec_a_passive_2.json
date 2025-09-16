@@ -1,5 +1,5 @@
 {
-  "school": "spell_power:physical_melee",
+  "school": "spell_power:rage_melee",
   "range": 2.0,
   "tier": 1,
   "type": "PASSIVE",
@@ -56,6 +56,8 @@
   "area_impact": {
     "force_indirect": true,
     "radius": 2.0,
-    "sound": {}
+    "sound": {
+      "id": "mrpgc_skill_tree:spinning_slash_impact"
+    }
   }
 }

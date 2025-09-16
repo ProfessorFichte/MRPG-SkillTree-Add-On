@@ -62,7 +62,7 @@
       "action": {
         "type": "STATUS_EFFECT",
         "status_effect": {
-          "effect_id": "net.spell_engine.api.effect.Effects$Entry@78498577",
+          "effect_id": "net.spell_engine.api.effect.Effects$Entry@606b3d08",
           "duration": 1.0
         }
       },
@@ -92,7 +92,7 @@
         "type": "STATUS_EFFECT",
         "apply_to_caster": true,
         "status_effect": {
-          "effect_id": "net.spell_engine.api.effect.Effects$Entry@1b0cf915",
+          "effect_id": "net.spell_engine.api.effect.Effects$Entry@528a8423",
           "duration": 1.0
         }
       }

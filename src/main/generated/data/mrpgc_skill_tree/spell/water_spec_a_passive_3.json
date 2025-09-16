@@ -63,7 +63,7 @@
         "cooldown": {
           "actives": {
             "school": "water",
-            "duration_multiplier": 0.9
+            "duration_multiplier": 0.8
           }
         }
       },

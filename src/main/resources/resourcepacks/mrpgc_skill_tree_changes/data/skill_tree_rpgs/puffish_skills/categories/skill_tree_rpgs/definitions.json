@@ -4112,6 +4112,7 @@
       "translate": "skill.skill_tree_rpgs.warrior_spec_b_passive_3.title"
     }
   },
+
   "air_boost": {
     "description": {
       "skill_definition_id": "air_boost"
@@ -4752,7 +4753,7 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
+              "content": "ANY",
               "is_proxy": false,
               "max_spell_count": 0,
               "pool": "",
@@ -4785,7 +4786,7 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
+              "content": "MAGIC",
               "is_proxy": false,
               "max_spell_count": 0,
               "pool": "",
@@ -5016,7 +5017,7 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
+              "content": "MAGIC",
               "is_proxy": false,
               "max_spell_count": 0,
               "pool": "",

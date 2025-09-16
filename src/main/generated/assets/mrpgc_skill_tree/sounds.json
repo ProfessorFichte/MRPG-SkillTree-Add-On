@@ -24,14 +24,34 @@
       "mrpgc_skill_tree:air_wind_flurry_release"
     ]
   },
+  "blood_frenzy_heal": {
+    "sounds": [
+      "mrpgc_skill_tree:blood_frenzy_heal"
+    ]
+  },
+  "burst_of_aggression": {
+    "sounds": [
+      "mrpgc_skill_tree:burst_of_aggression"
+    ]
+  },
   "calming_flow_release": {
     "sounds": [
       "mrpgc_skill_tree:calming_flow_release"
     ]
   },
+  "cleave_impact": {
+    "sounds": [
+      "mrpgc_skill_tree:cleave_impact"
+    ]
+  },
   "earthen_blessing": {
     "sounds": [
       "mrpgc_skill_tree:earthen_blessing"
+    ]
+  },
+  "ragnarok_release": {
+    "sounds": [
+      "mrpgc_skill_tree:ragnarok_release"
     ]
   },
   "second_wave": {
@@ -47,6 +67,11 @@
   "soothing_mist_cleanse": {
     "sounds": [
       "mrpgc_skill_tree:soothing_mist_cleanse"
+    ]
+  },
+  "spinning_slash_impact": {
+    "sounds": [
+      "mrpgc_skill_tree:spinning_slash_impact"
     ]
   },
   "splashdown": {
