@@ -2334,7 +2334,7 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
+              "content": "MAGIC",
               "is_proxy": false,
               "max_spell_count": 0,
               "pool": "",
@@ -2400,7 +2400,7 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
+              "content": "ANY",
               "is_proxy": false,
               "max_spell_count": 0,
               "pool": "",

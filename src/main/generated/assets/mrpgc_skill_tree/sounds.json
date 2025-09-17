@@ -34,6 +34,11 @@
       "mrpgc_skill_tree:burst_of_aggression"
     ]
   },
+  "calm_mind": {
+    "sounds": [
+      "mrpgc_skill_tree:calm_mind"
+    ]
+  },
   "calming_flow_release": {
     "sounds": [
       "mrpgc_skill_tree:calming_flow_release"
@@ -47,6 +52,11 @@
   "earthen_blessing": {
     "sounds": [
       "mrpgc_skill_tree:earthen_blessing"
+    ]
+  },
+  "flying_fists": {
+    "sounds": [
+      "mrpgc_skill_tree:flying_fists"
     ]
   },
   "ragnarok_release": {
@@ -77,6 +87,16 @@
   "splashdown": {
     "sounds": [
       "mrpgc_skill_tree:splashdown"
+    ]
+  },
+  "surys_grace": {
+    "sounds": [
+      "mrpgc_skill_tree:surys_grace"
+    ]
+  },
+  "surys_tenacity": {
+    "sounds": [
+      "mrpgc_skill_tree:surys_tenacity"
     ]
   },
   "torrent": {

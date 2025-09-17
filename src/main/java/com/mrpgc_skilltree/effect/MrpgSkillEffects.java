@@ -376,12 +376,12 @@ public class MrpgSkillEffects {
                     List.of(
                             new AttributeModifier(
                                     EntityAttributes.GENERIC_ATTACK_SPEED.getIdAsString(),
-                                    0.1F,
+                                    0.2F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             ),
                             new AttributeModifier(
                                     EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
-                                    0.1F,
+                                    0.2F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )

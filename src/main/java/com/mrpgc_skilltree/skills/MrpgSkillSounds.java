@@ -34,6 +34,10 @@ public class MrpgSkillSounds {
     public static final SpellEngineSounds.Entry spinning_slash_impact = add(entry("spinning_slash_impact"));
     public static final SpellEngineSounds.Entry burst_of_aggression = add(entry("burst_of_aggression"));
     public static final SpellEngineSounds.Entry ragnarok_release = add(entry("ragnarok_release"));
+    public static final SpellEngineSounds.Entry calm_mind = add(entry("calm_mind"));
+    public static final SpellEngineSounds.Entry flying_fists = add(entry("flying_fists"));
+    public static final SpellEngineSounds.Entry surys_grace = add(entry("surys_grace"));
+    public static final SpellEngineSounds.Entry surys_tenacity = add(entry("surys_tenacity"));
 
     public static void register() {
         for (var entry: entries) {
