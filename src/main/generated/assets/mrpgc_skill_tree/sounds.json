@@ -59,6 +59,16 @@
       "mrpgc_skill_tree:flying_fists"
     ]
   },
+  "last_stand": {
+    "sounds": [
+      "mrpgc_skill_tree:last_stand"
+    ]
+  },
+  "protector_of_the_tower": {
+    "sounds": [
+      "mrpgc_skill_tree:protector_of_the_tower"
+    ]
+  },
   "ragnarok_release": {
     "sounds": [
       "mrpgc_skill_tree:ragnarok_release"

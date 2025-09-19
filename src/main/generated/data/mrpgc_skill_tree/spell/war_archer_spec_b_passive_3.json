@@ -28,6 +28,22 @@
           "effect_id": "mrpgc_skill_tree:last_stand",
           "duration": 7.0
         }
+      },
+      "particles": [
+        {
+          "particle_id": "spell_engine:sign_shield",
+          "origin": "CENTER",
+          "shape": "LINE_VERTICAL",
+          "count": 1.0,
+          "min_speed": 0.8,
+          "max_speed": 0.8,
+          "color_rgba": 4278190335,
+          "scale": 0.8,
+          "follow_entity": true
+        }
+      ],
+      "sound": {
+        "id": "mrpgc_skill_tree:last_stand"
       }
     }
   ],

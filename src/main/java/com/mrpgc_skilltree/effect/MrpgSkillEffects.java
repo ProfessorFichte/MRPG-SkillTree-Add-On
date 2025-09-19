@@ -293,7 +293,7 @@ public class MrpgSkillEffects {
             )
     ));
     public static Effects.Entry TOWER_PROTECTOR = add(new Effects.Entry(Identifier.of(MOD_ID, "tower_protector"),
-            "Protector of the Tower",
+            "Tower's Watch",
             "Increased Armor and Knockback Resistance",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
             new EffectConfig(

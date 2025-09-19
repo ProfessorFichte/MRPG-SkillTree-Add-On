@@ -27,10 +27,10 @@
           "particle_id": "spell_engine:magic_spark_ascend",
           "origin": "CENTER",
           "shape": "PIPE",
-          "count": 10.0,
+          "count": 20.0,
           "min_speed": 0.2,
           "max_speed": 0.4,
-          "color_rgba": 3208659199
+          "color_rgba": 4278190335
         }
       ],
       "sound": {

@@ -62,7 +62,7 @@
       "action": {
         "type": "STATUS_EFFECT",
         "status_effect": {
-          "effect_id": "net.spell_engine.api.effect.Effects$Entry@6df177ed",
+          "effect_id": "mrpgc_skill_tree:smoke_bomb",
           "duration": 1.0
         }
       },
@@ -92,7 +92,7 @@
         "type": "STATUS_EFFECT",
         "apply_to_caster": true,
         "status_effect": {
-          "effect_id": "net.spell_engine.api.effect.Effects$Entry@2993d023",
+          "effect_id": "mrpgc_skill_tree:camouflaged",
           "duration": 1.0
         }
       }

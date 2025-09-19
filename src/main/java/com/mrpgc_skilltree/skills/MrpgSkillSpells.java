@@ -2474,16 +2474,19 @@ public class MrpgSkillSpells {
         var id = Identifier.of(NAMESPACE, "war_archer_spec_a_modifier_3");
         var title = "Explosive Point Blank Shot";
         var description = "Damaging with Point Blank Shot causes small explosion, hitting enemies within {impact_range} blocks radius, dealing extra {damage} damage.";
-        var spell = createModifierAlikePassiveSpell();
+        var spell = SpellBuilder.createSpellModifier();
         spell.school = warArcherSchool;
 
-        var radius = 2F;
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:point_blank_shot";
-        var impact = SpellBuilder.Impacts.damage(0.5F, 0F);
+        var impact = SpellBuilder.Impacts.damage(0.5F, 0.0F);
+        impact.action.allow_on_center_target = false;
+
+        var radius = 2F;
 
         var area_impact = new Spell.AreaImpact();
         area_impact.execute_action_type = Spell.Impact.Action.Type.DAMAGE;
+        area_impact.sound = new Sound("entity.generic.explode");
         area_impact.radius = radius;
         area_impact.area = new Spell.Target.Area();
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
@@ -2495,7 +2498,7 @@ public class MrpgSkillSpells {
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 25.0F, 0.2F, 0.4F).preSpawnTravel(4).extent(4)
         };
 
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.PREPEND;
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
         modifier.replacing_area_impact = area_impact;
 
@@ -2538,7 +2541,7 @@ public class MrpgSkillSpells {
         var trigger = SpellBuilder.Triggers.specificSpellCast("archers_expansion:pin_down");
         spell.passive.triggers = List.of(trigger);
 
-        SpellBuilder.Complex.flameCloud(spell, 5.0F, 0.75F, 8, null);
+        SpellBuilder.Complex.flameCloud(spell, 3.5F, 0.75F, 4, null);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
     }
@@ -2546,7 +2549,7 @@ public class MrpgSkillSpells {
     private static Entry war_archer_spec_b_modifier_4() {
         var id = Identifier.of(NAMESPACE, "war_archer_spec_b_modifier_4");
         var title = "Increased Pin Down";
-        var description = "Increases the knockback of Pin Down by {knockback_multiply_base}.";
+        var description = "Increases the effect duration of Pin Down by {effect_duration_add}.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = warArcherSchool;
 
@@ -2578,13 +2581,15 @@ public class MrpgSkillSpells {
 
 
         var impact = SpellBuilder.Impacts.damage(0.35F, 0.75F);
-        /// IMPROVE PARTICLE AND SOUND
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
-                        "explosion",
+                        SpellEngineParticles.flame_medium_a.id().toString(),
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        2, 0.2F, 0.25F)
-                        .scale(2.0F)
+                        10, 0.1F, 0.5F),
+                new ParticleBatch(
+                        SpellEngineParticles.flame_medium_b.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        10, 0.1F, 0.5F)
         };
         impact.sound = new Sound("entity.generic.explode");
         spell.impacts = List.of(impact);
@@ -2596,7 +2601,7 @@ public class MrpgSkillSpells {
     public static final Entry war_archer_spec_b_passive_1 = add(war_archer_spec_b_passive_1());
     private static Entry war_archer_spec_b_passive_1() {
         var id = Identifier.of(NAMESPACE, "war_archer_spec_b_passive_1");
-        var title = "Protector of the Tower";
+        var title = "Tower's Watch";
         var description = "Your arrow hits have {trigger_chance} to increase your armor and knockback resistance for {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
@@ -2604,19 +2609,17 @@ public class MrpgSkillSpells {
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
-
         var trigger = SpellBuilder.Triggers.arrowHit();
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         trigger.chance = 0.35F;
         spell.passive.triggers = List.of(trigger);
 
 
-        var impact = SpellBuilder.Impacts.effectAdd(MrpgSkillEffects.TOWER_PROTECTOR.toString(), 8,0,5);
+        var impact = SpellBuilder.Impacts.effectAdd(MrpgSkillEffects.TOWER_PROTECTOR.id.toString(), 8,1,5);
         impact.particles = new ParticleBatch[]{
-                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_shield.id(), Color.WHITE),
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_shield.id(), Color.RED),
         };
-
-        /// IMPROVE SOUND
-        impact.sound = new Sound("entity.generic.explode");
+        impact.sound = new Sound(MrpgSkillSounds.protector_of_the_tower.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 1F);
@@ -2627,7 +2630,7 @@ public class MrpgSkillSpells {
     private static Entry war_archer_spec_a_passive_2() {
         var id = Identifier.of(NAMESPACE, "war_archer_spec_a_passive_2");
         var title = "Reloading";
-        var description = "When roaling you recharge Smoldering Arrows, you can now stack up to {effect_amplifier_cap} times.";
+        var description = "When rolling you recharge Smoldering Arrows, you can now stack up to {effect_amplifier_cap} times.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = warArcherSchool;
         spell.range = 0;
@@ -2635,8 +2638,11 @@ public class MrpgSkillSpells {
         var trigger = SpellBuilder.Triggers.roll();
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectAdd("archers_expansion:smoldering_arrows", 10, 0,4);
+        var impact = SpellBuilder.Impacts.effectAdd("archers_expansion:smoldering_arrows", 10, 1,4);
         impact.action.status_effect.refresh_duration = true;
+        impact.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_arrow.id(), Color.RED),
+        };
         impact.sound = new Sound(SpellEngineSounds.GENERIC_FIRE_IGNITE.id());
         spell.impacts = List.of(impact);
 
@@ -2662,8 +2668,8 @@ public class MrpgSkillSpells {
                                 SpellEngineParticles.MagicParticles.Shape.SPARK,
                                 SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
                         ParticleBatch.Shape.PIPE, ParticleBatch.Origin.CENTER,
-                        10, 0.2F, 0.4F)
-                        .color(Color.RAGE.toRGBA())
+                        20, 0.2F, 0.4F)
+                        .color(Color.RED.toRGBA())
         };
         impact.sound = new Sound(SpellEngineSounds.GENERIC_DISPEL_1.id());
         spell.impacts = List.of(impact);
@@ -2684,7 +2690,7 @@ public class MrpgSkillSpells {
         spell.passive.triggers = List.of(trigger);
 
         spell.release.particles = new ParticleBatch[]{
-                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_arrow.id(), Color.RAGE),
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_arrow.id(), Color.RED),
         };
 
         spell.target.type = Spell.Target.Type.AIM;
@@ -2697,7 +2703,7 @@ public class MrpgSkillSpells {
         spell.deliver.shoot_arrow.launch_properties.extra_launch_count = 3;
 
         spell.arrow_perks = new Spell.ArrowPerks();
-        spell.arrow_perks.damage_multiplier = 1F;
+        spell.arrow_perks.damage_multiplier = 0.75F;
         spell.arrow_perks.bypass_iframes = true;
         spell.arrow_perks.knockback = 0.5F;
 
@@ -2729,7 +2735,10 @@ public class MrpgSkillSpells {
         spell.passive.triggers = List.of(trigger);
 
         var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 7, 0);
-        /// ADD SOUNDS AND PARTICLES
+        buff.particles = new ParticleBatch[]{
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_shield.id(), Color.RED),
+        };
+        buff.sound = new Sound(MrpgSkillSounds.last_stand.id());
         spell.impacts = List.of(buff);
 
         SpellBuilder.Cost.cooldown(spell, 30F);
@@ -3080,9 +3089,9 @@ public class MrpgSkillSpells {
                         ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET, 1.0F, 0.01F, 0.02F))
                         .color(SMOKE_BOMB_COLOR.toRGBA())};
         spell.deliver.clouds = List.of(cloud);
-        Spell.Impact debuff = SpellBuilder.Impacts.effectSet(MrpgSkillEffects.SMOKE_BOMB.toString(), 1, 0);
+        Spell.Impact debuff = SpellBuilder.Impacts.effectSet(MrpgSkillEffects.SMOKE_BOMB.id.toString(), 1, 0);
         debuff.action.status_effect.refresh_duration = true;
-        Spell.Impact buff = SpellBuilder.Impacts.effectSet(MrpgSkillEffects.CAMOUFLAGED.toString(), 1, 0);
+        Spell.Impact buff = SpellBuilder.Impacts.effectSet(MrpgSkillEffects.CAMOUFLAGED.id.toString(), 1, 0);
         buff.action.status_effect.refresh_duration = true;
         buff.action.apply_to_caster = true;
         debuff.particles = new ParticleBatch[]{(

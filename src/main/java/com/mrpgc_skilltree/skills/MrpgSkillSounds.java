@@ -38,6 +38,8 @@ public class MrpgSkillSounds {
     public static final SpellEngineSounds.Entry flying_fists = add(entry("flying_fists"));
     public static final SpellEngineSounds.Entry surys_grace = add(entry("surys_grace"));
     public static final SpellEngineSounds.Entry surys_tenacity = add(entry("surys_tenacity"));
+    public static final SpellEngineSounds.Entry protector_of_the_tower = add(entry("protector_of_the_tower"));
+    public static final SpellEngineSounds.Entry last_stand = add(entry("last_stand"));
 
     public static void register() {
         for (var entry: entries) {

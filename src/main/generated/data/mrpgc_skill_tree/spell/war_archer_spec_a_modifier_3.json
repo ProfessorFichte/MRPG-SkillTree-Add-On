@@ -2,19 +2,16 @@
   "school": "spell_power:fire_ranged",
   "range": 0.0,
   "tier": 1,
-  "tooltip": {
-    "show_activation": false
-  },
-  "type": "PASSIVE",
-  "passive": {},
+  "type": "MODIFIER",
   "modifiers": [
     {
       "spell_pattern": "archers_expansion:point_blank_shot",
-      "mutate_impacts": "PREPEND",
+      "mutate_impacts": "APPEND",
       "impacts": [
         {
           "action": {
             "type": "DAMAGE",
+            "allow_on_center_target": false,
             "damage": {
               "spell_power_coefficient": 0.5,
               "knockback": 0.0
