@@ -22,7 +22,7 @@
             "vertical_range_multiplier": 0.3
           },
           "sound": {
-            "id": "spell_engine:poison_cloud_tick"
+            "id": "mrpgc_skill_tree:smokebomb_loop"
           }
         },
         "time_to_live_seconds": 5.0,
@@ -51,7 +51,7 @@
         },
         "spawn": {
           "sound": {
-            "id": "spell_engine:poison_cloud_spawn"
+            "id": "mrpgc_skill_tree:smokebomb_release"
           }
         }
       }

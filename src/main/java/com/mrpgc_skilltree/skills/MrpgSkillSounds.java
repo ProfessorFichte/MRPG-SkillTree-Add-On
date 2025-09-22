@@ -40,6 +40,10 @@ public class MrpgSkillSounds {
     public static final SpellEngineSounds.Entry surys_tenacity = add(entry("surys_tenacity"));
     public static final SpellEngineSounds.Entry protector_of_the_tower = add(entry("protector_of_the_tower"));
     public static final SpellEngineSounds.Entry last_stand = add(entry("last_stand"));
+    public static final SpellEngineSounds.Entry smokebomb_loop = add(entry("smokebomb_loop"));
+    public static final SpellEngineSounds.Entry smokebomb_release = add(entry("smokebomb_release"));
+    public static final SpellEngineSounds.Entry shadow_refuge_loop = add(entry("shadow_refuge_loop"));
+    public static final SpellEngineSounds.Entry shadow_refuge_release = add(entry("shadow_refuge_release"));
 
     public static void register() {
         for (var entry: entries) {

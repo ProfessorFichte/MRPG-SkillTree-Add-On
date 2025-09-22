@@ -8,7 +8,7 @@
       {
         "target_override": "CASTER",
         "type": "ARROW_IMPACT",
-        "chance": 0.2
+        "chance": 0.05
       }
     ]
   },
@@ -34,7 +34,7 @@
           "count": 5.0,
           "min_speed": 0.25,
           "max_speed": 0.3,
-          "color_rgba": 10027263
+          "color_rgba": 11579647
         }
       ]
     },

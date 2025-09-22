@@ -37,15 +37,12 @@
       },
       "particles": [
         {
-          "particle_id": "spell_engine:sign_speed",
+          "particle_id": "spell_engine:dripping_blood",
           "origin": "CENTER",
-          "shape": "LINE_VERTICAL",
-          "count": 1.0,
-          "min_speed": 0.8,
-          "max_speed": 0.8,
-          "color_rgba": 4294967295,
-          "scale": 0.8,
-          "follow_entity": true
+          "shape": "SPHERE",
+          "count": 10.0,
+          "min_speed": 0.2,
+          "max_speed": 0.3
         }
       ]
     }

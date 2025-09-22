@@ -1737,7 +1737,7 @@ public class MrpgSkillSpells {
         heal.sound = new Sound(MrpgSkillSounds.blood_frenzy_heal.id());
         spell.impacts = List.of(debuff,heal);
 
-        SpellBuilder.Cost.cooldown(spell, 1F);
+        SpellBuilder.Cost.cooldown(spell, 2F);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.BERSERKER));
     }
@@ -2807,6 +2807,7 @@ public class MrpgSkillSpells {
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:trick_shot";
+        modifier.effect_duration_add = 4;
         spell.modifiers = List.of(modifier);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
@@ -2815,7 +2816,7 @@ public class MrpgSkillSpells {
     private static Entry deadeye_spec_b_modifier_2() {
         var id = Identifier.of(NAMESPACE, "deadeye_spec_b_modifier_2");
         var title = "Bouncing Trick Shots";
-        var description = "Trick Shot now ricochets {ricochet} times.";
+        var description = "Trick Shot now ricochets {ricochet} more times.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = deadeyeSchool;
 
@@ -2949,6 +2950,7 @@ public class MrpgSkillSpells {
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
     }
+    public static final Color SHADOW_COLOR = Color.from(0x00B0B0);
     ///DEADEYE PASSIVES
     public static final Entry deadeye_spec_a_passive_1 = add(deadeye_spec_a_passive_1());
     private static Entry deadeye_spec_a_passive_1() {
@@ -2970,11 +2972,14 @@ public class MrpgSkillSpells {
         impact.action.status_effect.refresh_duration = true;
         bleedingDeny(impact);
         impact.particles = new ParticleBatch[]{
-                ///PARTICLE CHANGE
-                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_speed.id(), Color.WHITE)};
+                new ParticleBatch(
+                        SpellEngineParticles.dripping_blood.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        10, 0.2F, 0.8F)
+        };
         spell.impacts = List.of(impact);
 
-        SpellBuilder.Cost.cooldown(spell, 5F);
+        SpellBuilder.Cost.cooldown(spell, 2F);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
     }
@@ -2991,7 +2996,7 @@ public class MrpgSkillSpells {
 
         var trigger = SpellBuilder.Triggers.arrowHit();
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
-        trigger.chance = 0.2F;
+        trigger.chance = 0.05F;
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.heal(0.025F);
@@ -3005,9 +3010,10 @@ public class MrpgSkillSpells {
                                 SpellEngineParticles.MagicParticles.Shape.HEAL,
                                 SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        5, 0.25F, 0.3F
-                ).color(Color.POISON_DARK.toRGBA())
+                        25, 0.25F, 0.6F
+                ).color(SHADOW_COLOR.toRGBA())
         };
+        impact.sound = new Sound(SpellEngineSounds.GENERIC_HEALING_IMPACT_3.id());
         spell.impacts = List.of(impact,cleanse);
 
         SpellBuilder.Cost.cooldown(spell, 15F);
@@ -3076,10 +3082,10 @@ public class MrpgSkillSpells {
         Spell.Delivery.Cloud cloud = new Spell.Delivery.Cloud();
         cloud.volume.radius = 2.5F;
         cloud.volume.area.vertical_range_multiplier = 0.3F;
-        cloud.volume.sound = new Sound(SpellEngineSounds.POISON_CLOUD_TICK.id().toString());
+        cloud.volume.sound = new Sound(MrpgSkillSounds.smokebomb_loop.id());
         cloud.impact_tick_interval = 10;
         cloud.time_to_live_seconds = 5;
-        cloud.spawn.sound = new Sound(SpellEngineSounds.POISON_CLOUD_SPAWN.id().toString());
+        cloud.spawn.sound = new Sound(MrpgSkillSounds.smokebomb_release.id());
         cloud.client_data = new Spell.Delivery.Cloud.ClientData();
         cloud.client_data.light_level = 0;
         cloud.client_data.particles = new ParticleBatch[]{(new ParticleBatch(SpellEngineParticles.smoke_large.id().toString(),
@@ -3134,7 +3140,11 @@ public class MrpgSkillSpells {
                 new ParticleBatch(
                         SpellEngineParticles.dripping_blood.id().toString(),
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        35, 0.4F, 1.0F)
+                        35, 0.4F, 1.0F),
+                new ParticleBatch(
+                        SpellEngineParticles.smoke_medium.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        10, 0.2F, 0.5F).color(Color.RED.toRGBA())
         };
 
         spell.impacts = List.of();
@@ -3168,33 +3178,42 @@ public class MrpgSkillSpells {
 
         float radius =5.0F;
         spell.deliver.type = Spell.Delivery.Type.CLOUD;
-        spell.deliver.delay = 5;
+        spell.deliver.delay = 0;
         Spell.Delivery.Cloud cloud = new Spell.Delivery.Cloud();
         cloud.volume.radius = radius;
-        cloud.volume.area.vertical_range_multiplier = 0.3F;
-        ///IMPROVE SHADOW REFUGE SOUNDS
-        cloud.volume.sound = new Sound(SpellEngineSounds.POISON_CLOUD_TICK.id().toString());
-        cloud.impact_tick_interval = 10;
-        cloud.time_to_live_seconds = 5;
-        cloud.spawn.sound = new Sound(SpellEngineSounds.POISON_CLOUD_SPAWN.id().toString());
+        cloud.volume.area.vertical_range_multiplier = 0.5F;
+
+        cloud.impact_tick_interval = 20;
+        cloud.time_to_live_seconds = 7;
+        cloud.spawn.sound = new Sound(MrpgSkillSounds.shadow_refuge_release.id());
         cloud.client_data = new Spell.Delivery.Cloud.ClientData();
-        cloud.client_data.light_level = 0;
+        cloud.client_data.light_level = 10;
+        var areaParticle = SpellEngineParticles.area_effect_658;
+        cloud.client_data.particle_spawn_interval = 20;
         cloud.client_data.interval_particles = new ParticleBatch[] {
-                new ParticleBatch(
-                        SpellEngineParticles.area_effect_715.id().toString(),
-                        ParticleBatch.Shape.LINE, ParticleBatch.Origin.GROUND,
-                        1, 0F, 0F)
-                        .scale(radius * 1.5F)
-                        .color(SMOKE_BOMB_COLOR.toRGBA())
+                new ParticleBatch(areaParticle.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.GROUND,
+                        1, 0.0F, 0.F)
+                        .scale(4)
+                        .color(SHADOW_COLOR.alpha(0.75F).toRGBA()),
         };
         spell.deliver.clouds = List.of(cloud);
 
-        /// TOO DO SOUND AND PARTICLES
         var heal = SpellBuilder.Impacts.heal(0.05F);
         heal.attribute = EntityAttributes.GENERIC_MAX_HEALTH.getIdAsString();
         heal.attribute_from_target = true;
         heal.action.apply_to_caster = true;
-        var buff = SpellBuilder.Impacts.effectSet("archers_expansion:infiltrators_arrow", 2, 0);
+        heal.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.HEAL,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        10, 0.25F, 0.4F
+                ).color(SHADOW_COLOR.toRGBA())
+        };
+        var buff = SpellBuilder.Impacts.effectSet(MrpgSkillEffects.SHADOWS_REFUGE.id.toString(), 2, 0);
+        buff.sound = new Sound(MrpgSkillSounds.shadow_refuge_release.id());
 
         spell.impacts = List.of(heal,buff);
 

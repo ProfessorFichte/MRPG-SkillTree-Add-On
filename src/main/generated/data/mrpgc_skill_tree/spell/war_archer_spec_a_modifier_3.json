@@ -54,7 +54,10 @@
             "extent": 4.0,
             "pre_spawn_travel": 4.0
           }
-        ]
+        ],
+        "sound": {
+          "id": "entity.generic.explode"
+        }
       }
     }
   ]

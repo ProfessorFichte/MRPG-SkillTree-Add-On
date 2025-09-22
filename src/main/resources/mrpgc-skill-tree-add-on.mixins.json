@@ -3,6 +3,7 @@
   "package": "com.mrpgc_skilltree.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "LivingEntityStealth",
     "TrackTargetGoalStealth"
   ],
   "injectors": {
@@ -10,5 +11,8 @@
   },
   "overwrites": {
     "requireAnnotations": true
-	}
+  },
+  "client": [
+    "client.LivingEntityRenderStealth"
+  ]
 }

@@ -5,7 +5,8 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "archers_expansion:trick_shot"
+      "spell_pattern": "archers_expansion:trick_shot",
+      "effect_duration_add": 2.0
     }
   ]
 }

@@ -35,7 +35,7 @@ public class TrackTargetGoalStealth {
     private void getFollowRange_HEAD(CallbackInfoReturnable<Double> cir) {
         var target = mob.getTarget();
         if (target != null
-                && (target.hasStatusEffect(MrpgSkillEffects.CAMOUFLAGED.entry) )) {
+                && (target.hasStatusEffect(MrpgSkillEffects.CAMOUFLAGED.entry) || target.hasStatusEffect(MrpgSkillEffects.SHADOWS_REFUGE.entry))) {
             cir.setReturnValue(1.0);
             cir.cancel();
         }

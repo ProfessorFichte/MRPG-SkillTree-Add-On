@@ -84,6 +84,26 @@
       "mrpgc_skill_tree:seismic_entry"
     ]
   },
+  "shadow_refuge_loop": {
+    "sounds": [
+      "mrpgc_skill_tree:shadow_refuge_loop"
+    ]
+  },
+  "shadow_refuge_release": {
+    "sounds": [
+      "mrpgc_skill_tree:shadow_refuge_release"
+    ]
+  },
+  "smokebomb_loop": {
+    "sounds": [
+      "mrpgc_skill_tree:smokebomb_loop"
+    ]
+  },
+  "smokebomb_release": {
+    "sounds": [
+      "mrpgc_skill_tree:smokebomb_release"
+    ]
+  },
   "soothing_mist_cleanse": {
     "sounds": [
       "mrpgc_skill_tree:soothing_mist_cleanse"

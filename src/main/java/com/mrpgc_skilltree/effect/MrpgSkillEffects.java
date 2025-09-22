@@ -14,6 +14,8 @@ import net.spell_engine.api.config.ConfigFile;
 import net.spell_engine.api.config.EffectConfig;
 import net.spell_engine.api.effect.*;
 import net.spell_engine.api.entity.SpellEngineAttributes;
+import net.spell_engine.api.event.CombatEvents;
+import net.spell_engine.api.spell.event.SpellEvents;
 import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_power.api.SpellPower;
 import net.spell_power.api.SpellPowerMechanics;
@@ -616,12 +618,52 @@ public class MrpgSkillEffects {
                     )
             )
     ));
+    public static Effects.Entry SHADOWS_REFUGE = add(new Effects.Entry(Identifier.of(MOD_ID, "shadows_refuge"),
+            "Shadow's Refuge",
+            "Gain Stealth.",
+            new ShadowsRefugeStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+            new EffectConfig(
+                    List.of()
+            )
+    ));
 
     public static void register(ConfigFile.Effects config) {
         for (var entry : entries) {
             Synchronized.configure(entry.effect, true);
         }
         Effects.register(entries, config.effects);
+
+        RemoveOnHit.configure(SHADOWS_REFUGE.effect,true);
+
+        SpellEvents.SPELL_CAST.register((args) -> {
+            var caster = args.caster();
+            if (caster.hasStatusEffect(SHADOWS_REFUGE.entry)) {
+                caster.removeStatusEffect(SHADOWS_REFUGE.entry);
+            }
+            if (caster.hasStatusEffect(CAMOUFLAGED.entry)) {
+                caster.removeStatusEffect(CAMOUFLAGED.entry);
+            }
+        });
+        CombatEvents.ITEM_USE.register((args) -> {
+            var user = args.user();
+            if (user.hasStatusEffect(SHADOWS_REFUGE.entry)) {
+                user.removeStatusEffect(SHADOWS_REFUGE.entry);
+            }
+            if (user.hasStatusEffect(CAMOUFLAGED.entry)) {
+                user.removeStatusEffect(CAMOUFLAGED.entry);
+            }
+        });
+        OnRemoval.configure(SHADOWS_REFUGE.effect, (context) -> {
+           // StealthEffect.onRemove(context.entity());
+            if (context.entity().hasStatusEffect(SHADOWS_REFUGE.entry)) {
+                context.entity().removeStatusEffect(SHADOWS_REFUGE.entry);
+            }
+           // StealthEffect.onRemove(context.entity());
+            if (context.entity().hasStatusEffect(CAMOUFLAGED.entry)) {
+                context.entity().removeStatusEffect(CAMOUFLAGED.entry);
+            }
+        });
+
         ActionImpairing.configure(SURYS_TENACITY.effect, EntityActionsAllowed.SILENCE);
         Protection.register(OBSIDIAN_SKIN.entry, new Protection.Pop(
                 new ParticleBatch[]{  },
