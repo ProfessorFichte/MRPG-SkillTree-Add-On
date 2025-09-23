@@ -3,7 +3,31 @@
   "range": 0.0,
   "tier": 1,
   "type": "PASSIVE",
-  "passive": {},
+  "passive": {
+    "triggers": [
+      {
+        "type": "ARROW_IMPACT",
+        "chance": 0.35,
+        "target_conditions": [
+          {
+            "health_percent_below": 0.0
+          }
+        ]
+      },
+      {
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "chance": 0.35,
+        "target_conditions": [
+          {
+            "health_percent_below": 0.0
+          }
+        ],
+        "spell": {
+          "school": "spell_power:frost_ranged"
+        }
+      }
+    ]
+  },
   "target": {
     "type": "FROM_TRIGGER"
   },
@@ -15,9 +39,6 @@
           "radius": 4.0,
           "area": {
             "vertical_range_multiplier": 0.3
-          },
-          "sound": {
-            "id": "spell_engine:generic_frost_release"
           }
         },
         "time_to_live_seconds": 5.0,
@@ -30,6 +51,22 @@
               "shape": "PILLAR",
               "count": 4.0,
               "max_speed": 0.0
+            }
+          ]
+        },
+        "spawn": {
+          "sound": {
+            "id": "mrpgc_skill_tree:icy_rebirth_spawn"
+          },
+          "particles": [
+            {
+              "particle_id": "spell_engine:area_effect_293",
+              "origin": "GROUND",
+              "shape": "SPHERE",
+              "count": 1.0,
+              "max_speed": 0.0,
+              "color_rgba": 1724710911,
+              "scale": 3.5
             }
           ]
         }
@@ -66,6 +103,16 @@
           "knockback": 0.0
         }
       },
+      "particles": [
+        {
+          "particle_id": "spell_engine:snowflake",
+          "origin": "CENTER",
+          "shape": "WIDE_PIPE",
+          "count": 25.0,
+          "min_speed": 0.1,
+          "max_speed": 0.3
+        }
+      ],
       "sound": {
         "id": "spell_engine:generic_frost_impact"
       }

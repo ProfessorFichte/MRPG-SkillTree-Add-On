@@ -59,9 +59,24 @@
       "mrpgc_skill_tree:flying_fists"
     ]
   },
+  "hunting_fever": {
+    "sounds": [
+      "mrpgc_skill_tree:hunting_fever"
+    ]
+  },
+  "icy_rebirth_spawn": {
+    "sounds": [
+      "mrpgc_skill_tree:icy_rebirth_spawn"
+    ]
+  },
   "last_stand": {
     "sounds": [
       "mrpgc_skill_tree:last_stand"
+    ]
+  },
+  "obsidian_skin": {
+    "sounds": [
+      "mrpgc_skill_tree:obsidian_skin"
     ]
   },
   "protector_of_the_tower": {
@@ -132,6 +147,11 @@
   "torrent": {
     "sounds": [
       "mrpgc_skill_tree:torrent"
+    ]
+  },
+  "winters_cloak_freeze": {
+    "sounds": [
+      "mrpgc_skill_tree:winters_cloak_freeze"
     ]
   }
 }

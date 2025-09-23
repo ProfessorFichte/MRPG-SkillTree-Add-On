@@ -22,6 +22,7 @@
     {
       "action": {
         "type": "HEAL",
+        "apply_to_caster": true,
         "heal": {
           "spell_power_coefficient": 0.1
         }
@@ -50,7 +51,7 @@
         }
       ],
       "sound": {
-        "id": "spell_engine:generic_healing_casting"
+        "id": "spell_engine:generic_healing_impact_3"
       }
     }
   ],

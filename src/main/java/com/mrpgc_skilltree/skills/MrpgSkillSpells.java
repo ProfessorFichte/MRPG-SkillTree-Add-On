@@ -31,6 +31,7 @@ import java.util.List;
 
 import static com.mrpgc_skilltree.MRPGCSkillTreeAddOn.MOD_ID;
 import static net.skill_tree_rpgs.skills.Spells.*;
+import static net.spell_engine.api.datagen.SpellBuilder.Triggers.rangedAttack;
 
 public class MrpgSkillSpells {
     public static final String NAMESPACE = MOD_ID;
@@ -2770,7 +2771,7 @@ public class MrpgSkillSpells {
                 .color(Color.POISON_MID.toRGBA())),
                 new ParticleBatch(
                         SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Shape.SKULL,
                                 SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
                         10, 0.5F, 0.8F)
@@ -2928,7 +2929,7 @@ public class MrpgSkillSpells {
                         ParticleBatch.Origin.CENTER, 3.0F, 0.1F, 0.2F)
                         .color(Color.POISON_MID.toRGBA())};
         poisonDeny(debuff);
-        var impact = SpellBuilder.Impacts.damage(0.25F, 0);
+        var impact = SpellBuilder.Impacts.damage(0.1F, 0);
         spell.impacts = List.of(debuff,impact);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
@@ -3147,7 +3148,7 @@ public class MrpgSkillSpells {
                         10, 0.2F, 0.5F).color(Color.RED.toRGBA())
         };
 
-        spell.impacts = List.of();
+        spell.impacts = List.of(custom);
 
         SpellBuilder.Cost.cooldown(spell, 20F);
 
@@ -3247,7 +3248,7 @@ public class MrpgSkillSpells {
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:frozen_shot";
-        modifier.effect_duration_add = 2;
+        modifier.effect_duration_add = 3;
         spell.modifiers = List.of(modifier);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.TUNDRA_HUNTER));
@@ -3264,8 +3265,8 @@ public class MrpgSkillSpells {
         modifier.spell_pattern = "archers_expansion:arctic_volley";
 
         modifier.projectile_launch = Spell.LaunchProperties.EMPTY();
-        modifier.projectile_launch.extra_launch_count = 3;
-        modifier.projectile_launch.extra_launch_delay = 3;
+        modifier.projectile_launch.extra_launch_count = 2;
+        modifier.projectile_launch.extra_launch_delay = 0;
         modifier.power_modifier = new Spell.Impact.Modifier();
 
         spell.modifiers = List.of(modifier);
@@ -3298,8 +3299,13 @@ public class MrpgSkillSpells {
         spell.school = tundraHunterSchool;
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var trigger = SpellBuilder.Triggers.specificSpellHit("archers_expansion:frozen_pact");
-        trigger.chance = 0.3F;
+        Spell.Trigger trigger = new Spell.Trigger();
+        trigger.impact = new Spell.Trigger.ImpactCondition();
+        trigger.impact.impact_type = Spell.Impact.Action.Type.STATUS_EFFECT.toString();
+        trigger.type = Spell.Trigger.Type.SPELL_IMPACT_SPECIFIC;
+        trigger.spell = new Spell.Trigger.SpellCondition();
+        trigger.spell.id = "archers_expansion:frozen_pact";
+        trigger.chance = 0.2F;
         spell.passive.triggers = List.of(trigger);
 
         var debuff = SpellBuilder.Impacts.effectSet(MRPGCEffects.FROZEN_SOLID.id.toString(), 2, 0);
@@ -3340,7 +3346,7 @@ public class MrpgSkillSpells {
     private static Entry tundra_hunter_spec_a_modifier_4() {
         var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_a_modifier_4");
         var title = "Icicle Crystals";
-        var bonus = 2.5F;
+        var bonus = 1.5F;
         var description = "Increases the area of effect of Enchanted Crystal Arrow by {bonus}.";
         var mutator = new SpellTooltip.DescriptionMutator() {
             @Override
@@ -3353,11 +3359,19 @@ public class MrpgSkillSpells {
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:enchanted_crystal_arrow";
-        var extendedRadius = 3.0F * (1F + bonus);
-        modifier.replacing_area_impact = new Spell.AreaImpact();
+        var extendedRadius = 3.0F + bonus;
         Spell.AreaImpact area_impact = new Spell.AreaImpact();
         area_impact.radius = extendedRadius;
+        area_impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.snowflake.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        ParticleBatch.Rotation.LOOK,
+                        25, 0.8F, 1.5F,0)
+        };
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+
+        modifier.replacing_area_impact = area_impact;
 
         spell.modifiers = List.of(modifier);
 
@@ -3366,7 +3380,7 @@ public class MrpgSkillSpells {
     public static final Entry tundra_hunter_spec_b_modifier_4 = add(tundra_hunter_spec_b_modifier_4());
     private static Entry tundra_hunter_spec_b_modifier_4() {
         var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_b_modifier_4");
-        var title = "Whirlwind Mastery";
+        var title = "Deep Crystallized Arrow";
         var description = "Enchanted Crystal Arrow deals {power_multiplier} more damage.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = tundraHunterSchool;
@@ -3436,9 +3450,22 @@ public class MrpgSkillSpells {
                         25, 0.45F, 0.85F)
                         .color(Color.from(SpellSchools.FROST.color).toRGBA()),
         };
-        // CHANGE SOUND
-        impact.sound = new Sound("spell_engine:generic_frost_impact");
+        impact.sound = new Sound(SpellEngineSounds.GENERIC_FROST_IMPACT.id());
         spell.impacts = List.of(impact);
+
+        var area_impact = new Spell.AreaImpact();
+        area_impact.radius = 2.5F;
+        area_impact.area = new Spell.Target.Area();
+        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+        area_impact.particles = new ParticleBatch[] {
+                new ParticleBatch(
+                        SpellEngineParticles.snowflake.id().toString(),
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.CENTER,
+                        ParticleBatch.Rotation.LOOK,
+                        5, 0.1F, 0.2F,0)
+
+        };
+        spell.area_impact = area_impact;
 
         SpellBuilder.Cost.cooldown(spell, 5F);
 
@@ -3448,7 +3475,7 @@ public class MrpgSkillSpells {
     private static Entry tundra_hunter_spec_b_passive_1() {
         var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_b_passive_1");
         var title = "Frozen Prey";
-        var description = "If the target is frosted, you heal yourself for {heal}.";
+        var description = "If the target is frosted, you heal yourself for {heal} hearts.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = tundraHunterSchool;
@@ -3464,6 +3491,7 @@ public class MrpgSkillSpells {
 
 
         var impact = SpellBuilder.Impacts.heal(0.1F);
+        impact.action.apply_to_caster = true;
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         SpellEngineParticles.area_circle_1.id().toString(),
@@ -3481,8 +3509,7 @@ public class MrpgSkillSpells {
                         15, 0.2F, 0.25F)
                         .color(Color.FROST.toRGBA()),
         };
-        //CHANGE SOUND
-        impact.sound = new Sound("spell_engine:generic_healing_casting");
+        impact.sound = new Sound(SpellEngineSounds.GENERIC_HEALING_IMPACT_3.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 2F);
@@ -3493,7 +3520,7 @@ public class MrpgSkillSpells {
     private static Entry tundra_hunter_spec_a_passive_2() {
         var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_a_passive_2");
         var title = "Winter's Cloak";
-        var description = "Upon rolling: {trigger_chance} chance to freeze enemies that hit you for {effect_duration} sec.";
+        var description = "When rolling you have {trigger_chance_1} chance to freeze enemies solid that hit you for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = tundraHunterSchool;
         spell.range = 0;
@@ -3515,11 +3542,15 @@ public class MrpgSkillSpells {
         spell.deliver.stash_effect.consume = 0;
         spell.deliver.stash_effect.triggers = List.of(trigger_stash_damage_taken);
 
-        var impact = SpellBuilder.Impacts.effectAdd(MRPGCEffects.FROSTED.id.toString(), 7, 0,6);
+        var impact = SpellBuilder.Impacts.effectSet(MRPGCEffects.FROZEN_SOLID.id.toString(), 3, 0);
         freezeImmuneDeny(impact);
-        impact.action.status_effect.refresh_duration = true;
-        /// CHANGE SOUND & ADD PARTICLES?
-        impact.sound = new Sound(SpellEngineSounds.GENERIC_FROST_RELEASE.id());
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.snowflake.id().toString(),
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
+                        30, 0.4F, 0.4F)
+        };
+        impact.sound = new Sound(MrpgSkillSounds.winters_cloak_freeze.id());
         spell.impacts = List.of(impact);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.TUNDRA_HUNTER));
@@ -3528,17 +3559,17 @@ public class MrpgSkillSpells {
     private static Entry tundra_hunter_spec_b_passive_2() {
         var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_b_passive_2");
         var title = "Terrain Mastery";
-        var description = "Upon rolling: {trigger_chance} to cleanse a negative effect.";
+        var description = "When rolling you have a {trigger_chance} chance to stay immune from harmful effects for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
+        var effect = MrpgSkillEffects.TERRAIN_MASTERY;
         spell.school = tundraHunterSchool;
         spell.range = 0;
 
         var trigger = SpellBuilder.Triggers.roll();
-        trigger.chance = 0.5F;
+        trigger.chance = 0.3F;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectCleanse();
-        /// CHANGE PARTICLES & ADD SOUND?
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(),3,0);
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         SpellEngineParticles.MagicParticles.get(
@@ -3560,24 +3591,39 @@ public class MrpgSkillSpells {
     private static Entry tundra_hunter_spec_a_passive_3() {
         var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_a_passive_3");
         var title = "Icy Rebirth";
-        var description = "On kill:{trigger_chance_1} chance to spawn icicles on the ground for {cloud_duration}, dealing {damage} damage.";
+        var description = "When killing targets you have a {trigger_chance_1} chance to spawn icicles on the ground for {cloud_duration}, dealing {damage} damage.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = tundraHunterSchool;
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var trigger = SpellBuilder.Triggers.rangedKill(false);
-        trigger.get(0).chance = 0.35F;
-        trigger.get(1).chance = 0.35F;
+        Spell.TargetCondition deadCondition = SpellBuilder.TargetConditions.dead();
+        Spell.Trigger arrowTrigger = rangedAttack(false);
+        arrowTrigger.chance = 0.35F;
+        arrowTrigger.target_conditions = List.of(deadCondition);
+        Spell.Trigger skillTrigger = new Spell.Trigger();
+        skillTrigger.chance = 0.35F;
+        skillTrigger.type = net.spell_engine.api.spell.Spell.Trigger.Type.SPELL_IMPACT_SPECIFIC;
+        skillTrigger.spell = new Spell.Trigger.SpellCondition();
+        skillTrigger.spell.school = tundraHunterSchool.id.toString();
+        skillTrigger.target_conditions = List.of(deadCondition);
+        spell.passive.triggers = List.of(arrowTrigger,skillTrigger);
 
 
         spell.deliver.type = Spell.Delivery.Type.CLOUD;
         var cloud = new Spell.Delivery.Cloud();
         cloud.volume.radius = 4.0F;
+        cloud.spawn.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.area_effect_293.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.GROUND,
+                        1, 0,0)
+                        .scale(3.5F)
+                        .color(Color.FROST.toRGBA())
+        };
         cloud.volume.area.vertical_range_multiplier = 0.3F;
-        ///CHANGE CLOUD SOUND
-        cloud.volume.sound = new Sound(SpellEngineSounds.GENERIC_FROST_RELEASE.id());
+        cloud.spawn.sound = new Sound(MrpgSkillSounds.icy_rebirth_spawn.id());
         cloud.impact_tick_interval = 10;
         cloud.time_to_live_seconds = 5;
         cloud.client_data = new Spell.Delivery.Cloud.ClientData();
@@ -3592,8 +3638,13 @@ public class MrpgSkillSpells {
         var impact = SpellBuilder.Impacts.effectAdd(MRPGCEffects.FROSTED.id.toString(), 7, 0,6);
         freezeImmuneDeny(impact);
         impact.action.status_effect.refresh_duration = true;
-        /// CHANGE IMPACT SOUND & ADD PARTICLES?
         var damage = SpellBuilder.Impacts.damage(0.4F, 0);
+        damage.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.snowflake.id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
+                        25, 0.1F, 0.3F),
+        };
         damage.sound = new Sound(SpellEngineSounds.GENERIC_FROST_IMPACT.id());
         spell.impacts = List.of(impact,damage);
 
@@ -3603,13 +3654,13 @@ public class MrpgSkillSpells {
     private static Entry tundra_hunter_spec_b_passive_3() {
         var id = Identifier.of(NAMESPACE, "tundra_hunter_spec_b_passive_3");
         var title = "Hunting Fever";
-        final var healthThreshold = 0.5F;
-        var description = "Upon taking damage below {threshold} health you gain Hunting Fever effect, increasing your Movement Speed & Ranged Haste by {bonus} for {effect_duration} sec.";
+        var description = "Arrow hits have a {trigger_chance} to apply Hunting Fever, increasing your Movement Speed & Ranged Haste by {bonus} for {effect_duration} sec.";
         var effect = MrpgSkillEffects.HUNTING_FEVER;
         SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var threshold = SpellTooltip.percent(healthThreshold);
+            var modifier = effect.config().firstModifier();
+            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
             return args.description()
-                    .replace("{threshold}", threshold);
+                    .replace("{bonus}", bonus);
         };
 
         var spell = SpellBuilder.createSpellPassive();
@@ -3618,13 +3669,13 @@ public class MrpgSkillSpells {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var trigger = SpellBuilder.Triggers.becomingLowHP(healthThreshold);
+        var trigger = SpellBuilder.Triggers.arrowHit();
+        trigger.chance = 0.2F;
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         spell.passive.triggers = List.of(trigger);
 
-        var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 10, 2);
-        /// CHANGE SOUNDS & PARTICLES
-        //buff.sound = new Sound();
+        var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 10, 0);
+        buff.sound = new Sound(MrpgSkillSounds.hunting_fever.id());
         spell.impacts = List.of(buff);
 
         SpellBuilder.Cost.cooldown(spell, 30F);

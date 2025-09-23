@@ -6,7 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "archers_expansion:frozen_shot",
-      "effect_duration_add": 2.0
+      "effect_duration_add": 3.0
     }
   ]
 }

@@ -7,13 +7,8 @@
     "triggers": [
       {
         "target_override": "CASTER",
-        "type": "DAMAGE_TAKEN",
-        "caster_conditions": [
-          {
-            "health_percent_above": 0.01,
-            "health_percent_below": 0.5
-          }
-        ]
+        "type": "ARROW_IMPACT",
+        "chance": 0.2
       }
     ]
   },
@@ -25,9 +20,11 @@
       "action": {
         "type": "STATUS_EFFECT",
         "status_effect": {
-          "effect_id": "mrpgc_skill_tree:hunting_fever",
-          "amplifier": 2
+          "effect_id": "mrpgc_skill_tree:hunting_fever"
         }
+      },
+      "sound": {
+        "id": "mrpgc_skill_tree:hunting_fever"
       }
     }
   ],

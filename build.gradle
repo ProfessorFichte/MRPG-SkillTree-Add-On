@@ -55,7 +55,7 @@ dependencies {
 	modImplementation "net.fabricmc:fabric-loader:${project.fabric_loader_version}"
 
 	// Dependencies
-	implementation include("com.github.ZsoltMolnarrr:TinyConfig:${project.tiny_config_version}")
+	modImplementation("maven.modrinth:tiny-config:${project.tiny_config_version}")
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
 
 	modImplementation("maven.modrinth:spell-engine:${project.spell_engine_version}")

@@ -42,14 +42,14 @@
           "shape": "SPHERE",
           "count": 10.0,
           "min_speed": 0.2,
-          "max_speed": 0.3
+          "max_speed": 0.8
         }
       ]
     }
   ],
   "cost": {
     "cooldown": {
-      "duration": 5.0
+      "duration": 2.0
     }
   }
 }

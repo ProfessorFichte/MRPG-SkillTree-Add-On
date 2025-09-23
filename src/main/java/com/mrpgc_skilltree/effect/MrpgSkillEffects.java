@@ -1,5 +1,6 @@
 package com.mrpgc_skilltree.effect;
 
+import com.mrpgc_skilltree.skills.MrpgSkillSounds;
 import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -34,6 +35,61 @@ public class MrpgSkillEffects {
         return entry;
     }
 
+    /// AIR WIZARD EFFECTS
+    public static Effects.Entry IMPETUS = add(new Effects.Entry(Identifier.of(MOD_ID, "impetus"),
+            "Impetus",
+            "Increases Spell Haste.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.AIR.color),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellPowerMechanics.HASTE.id,
+                                    0.05F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry EYE_OF_THE_STORM = add(new Effects.Entry(Identifier.of(MOD_ID, "eye_of_the_storm"),
+            "Eye of the Storm",
+            "Increased air spell critical Chance",
+            new SpellVulnerabilityStatusEffect(StatusEffectCategory.HARMFUL, MoreSpellSchools.AIR.color)
+                    .setVulnerability(MoreSpellSchools.AIR, new SpellPower.Vulnerability(0, 0.075F, 0))
+            ,
+            new EffectConfig(
+                    List.of(
+                    )
+            )
+    ));
+    public static Effects.Entry TAILWIND = add(new Effects.Entry(Identifier.of(MOD_ID, "tailwind"),
+            "Tailwind",
+            "Increases Movement Speed.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.AIR.color),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    0.2F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry AIR_BUBBLE = add(new Effects.Entry(Identifier.of(MOD_ID, "air_bubble"),
+            "Air Bubble",
+            "Absorbs damage.",
+            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.AIR.color),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
+                                    2,
+                                    EntityAttributeModifier.Operation.ADD_VALUE
+                            )
+                    )
+            )
+    ));
+    /// EARTH WIZARD EFFECTS
     public static Effects.Entry EARTH_BENDER = add(new Effects.Entry(Identifier.of(MOD_ID, "earth_bender"),
             "Earth Bender",
             "Increases earth spell power.",
@@ -96,6 +152,57 @@ public class MrpgSkillEffects {
                     )
             )
     ));
+    public static Effects.Entry DIFFICULT_TERRAIN = add(new Effects.Entry(Identifier.of(MOD_ID, "difficult_terrain"),
+            "Difficult Terrain",
+            "Reduces Movement Speed",
+            new CustomStatusEffect(StatusEffectCategory.HARMFUL, MoreSpellSchools.EARTH.color),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    -0.3F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry SEISMIC_ENTRY = add(new Effects.Entry(Identifier.of(MOD_ID, "seismic_entry"),
+            "Seismic Entry",
+            "Deals damage and knocks targets up.",
+            new TickingStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.EARTH.color).interval(10),
+            new EffectConfig(
+                    List.of()
+            )
+    ));
+    public static Effects.Entry STONE_HEART = add(new Effects.Entry(Identifier.of(MOD_ID, "stone_heart"),
+            "Stone Heart",
+            "Absorbs damage.",
+            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.EARTH.color),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
+                                    2,
+                                    EntityAttributeModifier.Operation.ADD_VALUE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry EARTHEN_BLESSING = add(new Effects.Entry(Identifier.of(MOD_ID, "earthen_blessing"),
+            "Earthen Blessing",
+            "Increases Armor.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.EARTH.color),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ARMOR.getIdAsString(),
+                                    0.5F,
+                                    EntityAttributeModifier.Operation.ADD_VALUE
+                            )
+                    )
+            )
+    ));
+    /// WATER WIZARD EFFECTS
     public static Effects.Entry PERSISTENT_BUBBLES = add(new Effects.Entry(Identifier.of(MOD_ID, "persistent_bubbles"),
             "Persistent Bubbles",
             "Decreased movement & attack speed.",
@@ -129,6 +236,58 @@ public class MrpgSkillEffects {
                     )
             )
     ));
+    public static Effects.Entry HYDRATION = add(new Effects.Entry(Identifier.of(MOD_ID, "hydration"),
+            "Hydration",
+            "Regenerates health overtime.",
+            new RegenerationStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.WATER.color),
+            new EffectConfig(
+                    List.of(
+                    )
+            )
+    ));
+    public static Effects.Entry SPLASHDOWN = add(new Effects.Entry(Identifier.of(MOD_ID, "splashdown"),
+            "Splashdown",
+            "Knocks targets back.",
+            new TickingStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.WATER.color).interval(3),
+            new EffectConfig(
+                    List.of()
+            )
+    ));
+    public static Effects.Entry CALMING_FLOW = add(new Effects.Entry(Identifier.of(MOD_ID, "calming_flow"),
+            "Calming Flow",
+            "Decreases Active Cooldowns of Water Spells",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.WATER.color),
+            new EffectConfig(
+                    List.of(
+                    )
+            )
+    ));
+    public static Effects.Entry TORRENT = add(new Effects.Entry(Identifier.of(MOD_ID, "torrent"),
+            "Torrent",
+            "Increases Water Spell Power and Spell Critical Chance",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.WATER.color),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    MoreSpellSchools.WATER.id,
+                                    0.3F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    SpellPowerMechanics.CRITICAL_CHANCE.id,
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    SpellPowerMechanics.HASTE.id,
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+
+                    )
+            )
+    ));
+    /// BERSERKER EFFECTS
     public static Effects.Entry BLIND_WITH_RAGE = add(new Effects.Entry(Identifier.of(MOD_ID, "blind_with_rage"),
             "Blind with Rage",
             "Reduces Damage Taken",
@@ -171,20 +330,63 @@ public class MrpgSkillEffects {
                     )
             )
     ));
-    public static Effects.Entry CRYSTALLIZED_FISTS = add(new Effects.Entry(Identifier.of(MOD_ID, "crystallized_fists"),
-            "Crystallized Fists",
-            "Increases arcane spell power.",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, SpellSchools.ARCANE.color),
+    public static Effects.Entry SPINNING_SLASH = add(new Effects.Entry(Identifier.of(MOD_ID, "spinning_slash"),
+            "Spinning Slash",
+            "Damaging nearby enemies.",
+            new TickingStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff).interval(3),
+            new EffectConfig(
+                    List.of()
+            )
+    ));
+    public static Effects.Entry BURST_OF_AGGRESSION= add(new Effects.Entry(Identifier.of(MOD_ID, "burst_of_aggression"),
+            "Burst of Aggression",
+            "Increased Movement Speed",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    SpellSchools.ARCANE.id,
-                                    0.1F,
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    0.15F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    MRPGCEntityAttributes.RAGE_MODIFIER.getIdAsString(),
+                                    0.15F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+
+                    )
+            )
+    ));
+    public static Effects.Entry RAGNAROK = add(new Effects.Entry(Identifier.of(MOD_ID, "ragnarok"),
+            "Ragnarok",
+            "Increased Movement Speed and immune to harmful effects.",
+            new ImmuneToHarmfulEffectsStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    0.3F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )
             )
     ));
+    public static Effects.Entry UNDYING_RAGE = add(new Effects.Entry(Identifier.of(MOD_ID, "undying_rage"),
+            "Undying Rage",
+            "Reduces damage taken.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellEngineAttributes.DAMAGE_TAKEN.id,
+                                    -1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    /// FORCEMASTER EFFECTS
     public static Effects.Entry PUMPED_UP = add(new Effects.Entry(Identifier.of(MOD_ID, "pumped_up"),
             "Pumped Up",
             "Increased Attack Damage",
@@ -194,144 +396,6 @@ public class MrpgSkillEffects {
                             new AttributeModifier(
                                     EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
                                     0.1F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            )
-                    )
-            )
-    ));
-    public static Effects.Entry LEAPING_SWIFTNESS = add(new Effects.Entry(Identifier.of(MOD_ID, "leaping_swiftness"),
-            "Leaping Swiftness",
-            "Increased Movement Speed",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
-            new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
-                                    0.15F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            )
-                    )
-            )
-    ));
-    public static Effects.Entry HUNTING_INSTINCTS = add(new Effects.Entry(Identifier.of(MOD_ID, "hunting_instincts"),
-            "Hunting Instincts",
-            "Increased Frost Spell Power and Ranged Damage",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
-            new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    SpellSchools.FROST.id,
-                                    0.1F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            ),
-                            new AttributeModifier(
-                                    EntityAttributes_RangedWeapon.DAMAGE.id,
-                                    0.1F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            )
-
-                    )
-            )
-    ));
-    public static Effects.Entry WINTERS_CLOAK = add(new Effects.Entry(Identifier.of(MOD_ID, "winters_cloak"),
-            "Winters Cloak",
-            "Absorbs damage.",
-            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
-            new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
-                                    2,
-                                    EntityAttributeModifier.Operation.ADD_VALUE
-                            )
-                    )
-            )
-    ));
-    public static Effects.Entry HUNTING_FEVER = add(new Effects.Entry(Identifier.of(MOD_ID, "hunting_fever"),
-            "Hunting Fever",
-            "Increased Frost Spell Power and Ranged Damage",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
-            new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
-                                    0.2F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            ),
-                            new AttributeModifier(
-                                    EntityAttributes_RangedWeapon.HASTE.id.toString(),
-                                    0.2F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            )
-                    )
-            )
-    ));
-    public static Effects.Entry SMOKE_BOMB = add(new Effects.Entry(Identifier.of(MOD_ID, "smoke_bomb"),
-            "Smoke Bomb",
-            "Blindness and reduced Movement speed",
-            new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0x9999ff),
-            new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
-                                    -0.1F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            )
-                    )
-            )
-    ));
-    public static Effects.Entry CAMOUFLAGED = add(new Effects.Entry(Identifier.of(MOD_ID, "camouflaged"),
-            "Camouflaged",
-            "Increased Evasion",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
-            new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    SpellEngineAttributes.EVASION_CHANCE.id.toString(),
-                                    0.25F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            )
-                    )
-            )
-    ));
-    public static Effects.Entry TOWER_PROTECTOR = add(new Effects.Entry(Identifier.of(MOD_ID, "tower_protector"),
-            "Tower's Watch",
-            "Increased Armor and Knockback Resistance",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
-            new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    EntityAttributes.GENERIC_ARMOR.getIdAsString(),
-                                    0.5F,
-                                    EntityAttributeModifier.Operation.ADD_VALUE
-                            ),
-                            new AttributeModifier(
-                                    EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE.getIdAsString(),
-                                    0.2F,
-                                    EntityAttributeModifier.Operation.ADD_VALUE
-                            )
-                    )
-            )
-    ));
-    public static Effects.Entry LAST_STAND = add(new Effects.Entry(Identifier.of(MOD_ID, "last_stand"),
-            "Last Stand",
-            "Increases size",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
-            new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    EntityAttributes_RangedWeapon.HASTE.id.toString(),
-                                    0.25F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            ),
-                            new AttributeModifier(
-                                    EntityAttributes.GENERIC_SCALE.getIdAsString(),
-                                    0.15F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            ),
-                            new AttributeModifier(
-                                    SpellEngineAttributes.DAMAGE_TAKEN.id.toString(),
-                                    -0.25F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )
@@ -408,16 +472,9 @@ public class MrpgSkillEffects {
                     )
             )
     ));
-    public static Effects.Entry SPINNING_SLASH = add(new Effects.Entry(Identifier.of(MOD_ID, "spinning_slash"),
-            "Spinning Slash",
-            "Damaging nearby enemies.",
-            new TickingStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff).interval(3),
-            new EffectConfig(
-                    List.of()
-            )
-    ));
-    public static Effects.Entry BURST_OF_AGGRESSION= add(new Effects.Entry(Identifier.of(MOD_ID, "burst_of_aggression"),
-            "Burst of Aggression",
+    /// DEADEYE EFFECTS
+    public static Effects.Entry LEAPING_SWIFTNESS = add(new Effects.Entry(Identifier.of(MOD_ID, "leaping_swiftness"),
+            "Leaping Swiftness",
             "Increased Movement Speed",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
             new EffectConfig(
@@ -426,194 +483,34 @@ public class MrpgSkillEffects {
                                     EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
                                     0.15F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            ),
-                            new AttributeModifier(
-                                    MRPGCEntityAttributes.RAGE_MODIFIER.getIdAsString(),
-                                    0.15F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
-
                     )
             )
     ));
-    public static Effects.Entry RAGNAROK = add(new Effects.Entry(Identifier.of(MOD_ID, "ragnarok"),
-            "Ragnarok",
-            "Increased Movement Speed and immune to harmful effects.",
-            new ImmuneToHarmfulEffectsStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+    public static Effects.Entry SMOKE_BOMB = add(new Effects.Entry(Identifier.of(MOD_ID, "smoke_bomb"),
+            "Smoke Bomb",
+            "Blindness and reduced Movement speed",
+            new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0x9999ff),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
                                     EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
-                                    0.3F,
+                                    -0.1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )
             )
     ));
-    public static Effects.Entry UNDYING_RAGE = add(new Effects.Entry(Identifier.of(MOD_ID, "undying_rage"),
-            "Undying Rage",
-            "Reduces damage taken.",
+    public static Effects.Entry CAMOUFLAGED = add(new Effects.Entry(Identifier.of(MOD_ID, "camouflaged"),
+            "Camouflaged",
+            "Increased Evasion",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
-                                    SpellEngineAttributes.DAMAGE_TAKEN.id,
-                                    -1F,
+                                    SpellEngineAttributes.EVASION_CHANCE.id.toString(),
+                                    0.25F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            )
-                    )
-            )
-    ));
-    public static Effects.Entry HYDRATION = add(new Effects.Entry(Identifier.of(MOD_ID, "hydration"),
-            "Hydration",
-            "Regenerates health overtime.",
-            new RegenerationStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.WATER.color),
-            new EffectConfig(
-                    List.of(
-                    )
-            )
-    ));
-    public static Effects.Entry SPLASHDOWN = add(new Effects.Entry(Identifier.of(MOD_ID, "splashdown"),
-            "Splashdown",
-            "Knocks targets back.",
-            new TickingStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.WATER.color).interval(3),
-            new EffectConfig(
-                    List.of()
-            )
-    ));
-    public static Effects.Entry CALMING_FLOW = add(new Effects.Entry(Identifier.of(MOD_ID, "calming_flow"),
-            "Calming Flow",
-            "Decreases Active Cooldowns of Water Spells",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.WATER.color),
-            new EffectConfig(
-                    List.of(
-                    )
-            )
-    ));
-    public static Effects.Entry TORRENT = add(new Effects.Entry(Identifier.of(MOD_ID, "torrent"),
-            "Torrent",
-            "Increases Water Spell Power and Spell Critical Chance",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.WATER.color),
-            new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    MoreSpellSchools.WATER.id,
-                                    0.3F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            ),
-                            new AttributeModifier(
-                                    SpellPowerMechanics.CRITICAL_CHANCE.id,
-                                    0.1F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            ),
-                            new AttributeModifier(
-                                    SpellPowerMechanics.HASTE.id,
-                                    0.1F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            )
-
-                    )
-            )
-    ));
-    public static Effects.Entry EARTHEN_BLESSING = add(new Effects.Entry(Identifier.of(MOD_ID, "earthen_blessing"),
-            "Earthen Blessing",
-            "Increases Armor.",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.EARTH.color),
-            new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    EntityAttributes.GENERIC_ARMOR.getIdAsString(),
-                                    0.5F,
-                                    EntityAttributeModifier.Operation.ADD_VALUE
-                            )
-                    )
-            )
-    ));
-    public static Effects.Entry DIFFICULT_TERRAIN = add(new Effects.Entry(Identifier.of(MOD_ID, "difficult_terrain"),
-            "Difficult Terrain",
-            "Reduces Movement Speed",
-            new CustomStatusEffect(StatusEffectCategory.HARMFUL, MoreSpellSchools.EARTH.color),
-            new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
-                                    -0.3F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            )
-                    )
-            )
-    ));
-    public static Effects.Entry SEISMIC_ENTRY = add(new Effects.Entry(Identifier.of(MOD_ID, "seismic_entry"),
-            "Seismic Entry",
-            "Deals damage and knocks targets up.",
-            new TickingStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.EARTH.color).interval(10),
-            new EffectConfig(
-                    List.of()
-            )
-    ));
-    public static Effects.Entry STONE_HEART = add(new Effects.Entry(Identifier.of(MOD_ID, "stone_heart"),
-            "Stone Heart",
-            "Absorbs damage.",
-            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.EARTH.color),
-            new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
-                                    2,
-                                    EntityAttributeModifier.Operation.ADD_VALUE
-                            )
-                    )
-            )
-    ));
-    public static Effects.Entry IMPETUS = add(new Effects.Entry(Identifier.of(MOD_ID, "impetus"),
-            "Impetus",
-            "Increases Spell Haste.",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.AIR.color),
-            new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    SpellPowerMechanics.HASTE.id,
-                                    0.05F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            )
-                    )
-            )
-    ));
-    public static Effects.Entry EYE_OF_THE_STORM = add(new Effects.Entry(Identifier.of(MOD_ID, "eye_of_the_storm"),
-            "Eye of the Storm",
-            "Increased air spell critical Chance",
-            new SpellVulnerabilityStatusEffect(StatusEffectCategory.HARMFUL, MoreSpellSchools.AIR.color)
-                    .setVulnerability(MoreSpellSchools.AIR, new SpellPower.Vulnerability(0, 0.075F, 0))
-            ,
-            new EffectConfig(
-                    List.of(
-                    )
-            )
-    ));
-    public static Effects.Entry TAILWIND = add(new Effects.Entry(Identifier.of(MOD_ID, "tailwind"),
-            "Tailwind",
-            "Increases Movement Speed.",
-            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.AIR.color),
-            new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
-                                    0.2F,
-                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-                            )
-                    )
-            )
-    ));
-    public static Effects.Entry AIR_BUBBLE = add(new Effects.Entry(Identifier.of(MOD_ID, "air_bubble"),
-            "Air Bubble",
-            "Absorbs damage.",
-            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.AIR.color),
-            new EffectConfig(
-                    List.of(
-                            new AttributeModifier(
-                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
-                                    2,
-                                    EntityAttributeModifier.Operation.ADD_VALUE
                             )
                     )
             )
@@ -626,6 +523,113 @@ public class MrpgSkillEffects {
                     List.of()
             )
     ));
+    /// TUNDRA HUNTER EFFECTS
+    public static Effects.Entry HUNTING_INSTINCTS = add(new Effects.Entry(Identifier.of(MOD_ID, "hunting_instincts"),
+            "Hunting Instincts",
+            "Increased Frost Spell Power and Ranged Damage",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellSchools.FROST.id,
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes_RangedWeapon.DAMAGE.id,
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+
+                    )
+            )
+    ));
+    public static Effects.Entry WINTERS_CLOAK = add(new Effects.Entry(Identifier.of(MOD_ID, "winters_cloak"),
+            "Winters Cloak",
+            "Absorbs damage.",
+            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
+                                    2,
+                                    EntityAttributeModifier.Operation.ADD_VALUE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry HUNTING_FEVER = add(new Effects.Entry(Identifier.of(MOD_ID, "hunting_fever"),
+            "Hunting Fever",
+            "Increased Frost Spell Power and Ranged Damage",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    0.2F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes_RangedWeapon.HASTE.id.toString(),
+                                    0.2F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry TERRAIN_MASTERY = add(new Effects.Entry(Identifier.of(MOD_ID, "terrain_mastery"),
+            "Terrain Mastery",
+            "Immune to harmful effects.",
+            new ImmuneToHarmfulEffectsStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+            new EffectConfig(
+                    List.of()
+            )
+    ));
+    /// WAR ARCHER EFFECTS
+    public static Effects.Entry TOWER_PROTECTOR = add(new Effects.Entry(Identifier.of(MOD_ID, "tower_protector"),
+            "Tower's Watch",
+            "Increased Armor and Knockback Resistance",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ARMOR.getIdAsString(),
+                                    0.5F,
+                                    EntityAttributeModifier.Operation.ADD_VALUE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE.getIdAsString(),
+                                    0.2F,
+                                    EntityAttributeModifier.Operation.ADD_VALUE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry LAST_STAND = add(new Effects.Entry(Identifier.of(MOD_ID, "last_stand"),
+            "Last Stand",
+            "Increases size",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes_RangedWeapon.HASTE.id.toString(),
+                                    0.25F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_SCALE.getIdAsString(),
+                                    0.15F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    SpellEngineAttributes.DAMAGE_TAKEN.id.toString(),
+                                    -0.25F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+
 
     public static void register(ConfigFile.Effects config) {
         for (var entry : entries) {
@@ -654,11 +658,12 @@ public class MrpgSkillEffects {
             }
         });
         OnRemoval.configure(SHADOWS_REFUGE.effect, (context) -> {
-           // StealthEffect.onRemove(context.entity());
+           ShadowsRefugeStatusEffect.onRemove(context.entity());
             if (context.entity().hasStatusEffect(SHADOWS_REFUGE.entry)) {
                 context.entity().removeStatusEffect(SHADOWS_REFUGE.entry);
             }
-           // StealthEffect.onRemove(context.entity());
+        });
+        OnRemoval.configure(CAMOUFLAGED.effect, (context) -> {
             if (context.entity().hasStatusEffect(CAMOUFLAGED.entry)) {
                 context.entity().removeStatusEffect(CAMOUFLAGED.entry);
             }
@@ -667,7 +672,7 @@ public class MrpgSkillEffects {
         ActionImpairing.configure(SURYS_TENACITY.effect, EntityActionsAllowed.SILENCE);
         Protection.register(OBSIDIAN_SKIN.entry, new Protection.Pop(
                 new ParticleBatch[]{  },
-                SkillTreeSounds.rogue_shadows_impact.soundEvent()
+                MrpgSkillSounds.obsidian_skin.soundEvent()
         ));
 
     }

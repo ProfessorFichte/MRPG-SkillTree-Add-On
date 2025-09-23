@@ -8,8 +8,8 @@
       "spell_pattern": "archers_expansion:arctic_volley",
       "projectile_launch": {
         "velocity": 0.0,
-        "extra_launch_count": 3,
-        "extra_launch_delay": 3
+        "extra_launch_count": 2,
+        "extra_launch_delay": 0
       },
       "power_modifier": {}
     }

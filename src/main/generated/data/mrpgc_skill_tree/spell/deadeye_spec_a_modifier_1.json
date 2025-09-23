@@ -31,7 +31,7 @@
               "color_rgba": 870134783
             },
             {
-              "particle_id": "spell_engine:magic_spark_burst",
+              "particle_id": "spell_engine:magic_skull_burst",
               "origin": "CENTER",
               "shape": "SPHERE",
               "count": 10.0,

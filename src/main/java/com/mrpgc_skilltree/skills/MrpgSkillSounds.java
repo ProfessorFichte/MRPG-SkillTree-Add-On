@@ -44,6 +44,10 @@ public class MrpgSkillSounds {
     public static final SpellEngineSounds.Entry smokebomb_release = add(entry("smokebomb_release"));
     public static final SpellEngineSounds.Entry shadow_refuge_loop = add(entry("shadow_refuge_loop"));
     public static final SpellEngineSounds.Entry shadow_refuge_release = add(entry("shadow_refuge_release"));
+    public static final SpellEngineSounds.Entry icy_rebirth_spawn = add(entry("icy_rebirth_spawn"));
+    public static final SpellEngineSounds.Entry hunting_fever = add(entry("hunting_fever"));
+    public static final SpellEngineSounds.Entry winters_cloak_freeze = add(entry("winters_cloak_freeze"));
+    public static final SpellEngineSounds.Entry obsidian_skin = add(entry("obsidian_skin"));
 
     public static void register() {
         for (var entry: entries) {
