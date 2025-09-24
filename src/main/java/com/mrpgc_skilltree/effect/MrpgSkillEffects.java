@@ -5,11 +5,9 @@ import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffectCategory;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.custom.MoreSpellSchools;
 import net.more_rpg_classes.entity.attribute.MRPGCEntityAttributes;
-import net.skill_tree_rpgs.skills.SkillTreeSounds;
 import net.spell_engine.api.config.AttributeModifier;
 import net.spell_engine.api.config.ConfigFile;
 import net.spell_engine.api.config.EffectConfig;
@@ -489,13 +487,13 @@ public class MrpgSkillEffects {
     ));
     public static Effects.Entry SMOKE_BOMB = add(new Effects.Entry(Identifier.of(MOD_ID, "smoke_bomb"),
             "Smoke Bomb",
-            "Blindness and reduced Movement speed",
+            "Reduced Movement speed",
             new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0x9999ff),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
                                     EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
-                                    -0.1F,
+                                    -0.2F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )

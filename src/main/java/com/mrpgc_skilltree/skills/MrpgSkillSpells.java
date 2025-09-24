@@ -3098,10 +3098,12 @@ public class MrpgSkillSpells {
         spell.deliver.clouds = List.of(cloud);
         Spell.Impact debuff = SpellBuilder.Impacts.effectSet(MrpgSkillEffects.SMOKE_BOMB.id.toString(), 1, 0);
         debuff.action.status_effect.refresh_duration = true;
+        Spell.Impact debuff2 = SpellBuilder.Impacts.effectSet("blindness", 1, 0);
+        debuff2.action.status_effect.refresh_duration = true;
         Spell.Impact buff = SpellBuilder.Impacts.effectSet(MrpgSkillEffects.CAMOUFLAGED.id.toString(), 1, 0);
         buff.action.status_effect.refresh_duration = true;
         buff.action.apply_to_caster = true;
-        debuff.particles = new ParticleBatch[]{(
+        buff.particles = new ParticleBatch[]{(
                 new ParticleBatch(
                 SpellEngineParticles.smoke_large.id().toString(), ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
                 5.0F, 0.001F, 0.001F))
@@ -3112,7 +3114,7 @@ public class MrpgSkillSpells {
                 .color(SMOKE_BOMB_COLOR.toRGBA())
         };
 
-        spell.impacts = List.of(debuff, buff);
+        spell.impacts = List.of(debuff, debuff2, buff);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.DEADEYE));
     }
@@ -3433,6 +3435,7 @@ public class MrpgSkillSpells {
         var model = new Spell.ProjectileModel();
         model.model_id = "more_rpg_classes:projectile/falling_icicle";
         model.scale = 0.75F;
+        model.light_emission = LightEmission.NONE;
         projectile.client_data.model = model;
 
         meteor.projectile = projectile;
@@ -3490,7 +3493,7 @@ public class MrpgSkillSpells {
         spell.passive.triggers = List.of(trigger);
 
 
-        var impact = SpellBuilder.Impacts.heal(0.1F);
+        var impact = SpellBuilder.Impacts.heal(0.05F);
         impact.action.apply_to_caster = true;
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
@@ -3512,7 +3515,7 @@ public class MrpgSkillSpells {
         impact.sound = new Sound(SpellEngineSounds.GENERIC_HEALING_IMPACT_3.id());
         spell.impacts = List.of(impact);
 
-        SpellBuilder.Cost.cooldown(spell, 2F);
+        SpellBuilder.Cost.cooldown(spell, 5F);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.TUNDRA_HUNTER));
     }

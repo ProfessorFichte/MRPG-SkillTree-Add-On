@@ -6,9 +6,6 @@ import com.mrpgc_skilltree.skills.MrpgSkillDefinitions;
 import com.mrpgc_skilltree.skills.MrpgSkillSpells;
 import com.mrpgc_skilltree.utils.MrpgTranslationUtil;
 import net.fabricmc.api.ClientModInitializer;
-import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
-import net.minecraft.client.MinecraftClient;
-import net.minecraft.client.gui.DrawContext;
 import net.minecraft.util.Identifier;
 import net.skill_tree_rpgs.utils.TranslationUtil;
 import net.spell_engine.api.effect.CustomModelStatusEffect;
@@ -26,8 +23,6 @@ import static com.mrpgc_skilltree.MRPGCSkillTreeAddOn.MOD_ID;
 import static net.skill_tree_rpgs.skills.Spells.MIGHT_COLOR;
 
 public class MRPGCSkillTreeClient implements ClientModInitializer {
-    private static final Identifier BLINDNESS_TEXTURE = Identifier.of("textures/misc/vignette.png");
-
     @Override
     public void onInitializeClient() {
         for (var spell: MrpgSkillSpells.all) {
@@ -48,18 +43,10 @@ public class MRPGCSkillTreeClient implements ClientModInitializer {
             }
         }
 
-        HudRenderCallback.EVENT.register((guiGraphics, tickDelta) -> {
-            MinecraftClient client = MinecraftClient.getInstance();
-            if (client.player != null && client.player.hasStatusEffect(MrpgSkillEffects.SMOKE_BOMB.entry)) {
-                renderBlindnessOverlay(guiGraphics, client);
-            }
-        });
         CustomModels.registerModelIds(List.of(
                 EyeofTheStormRenderer.modelId,
                 Identifier.of(MOD_ID, "projectile/wind_flurry")
         ));
-
-        CustomModelStatusEffect.register(MrpgSkillEffects.EYE_OF_THE_STORM.effect, new EyeofTheStormRenderer());
 
         final Color EARTH_SPELL_COLOR = new Color(255.0F, 165.0F, 0.0F);
         final Color WATER_SPELL_COLOR = Color.from(0x4a8bff);
@@ -96,13 +83,7 @@ public class MRPGCSkillTreeClient implements ClientModInitializer {
                 .scale(0.75F)
                 .followEntity(true);
 
-        CustomParticleStatusEffect.register(
-                MrpgSkillEffects.TAILWIND.effect,
-                new BuffParticleSpawner(new ParticleBatch[]{
-                        speedParticles.copy()
-                                .color(Color.WHITE.toRGBA())
-                })
-        );
+
         /// AIR WIZARD EFFECTS
         CustomParticleStatusEffect.register(
                 MrpgSkillEffects.IMPETUS.effect,
@@ -116,7 +97,21 @@ public class MRPGCSkillTreeClient implements ClientModInitializer {
                         barrierParticles.copy().color(Color.WHITE.alpha(0.5F).toRGBA())
                 ).withFrequency(30).scaleWithAmplifier(false)
         );
+        CustomParticleStatusEffect.register(
+                MrpgSkillEffects.TAILWIND.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{
+                        speedParticles.copy()
+                                .color(Color.WHITE.toRGBA())
+                })
+        );
+        CustomModelStatusEffect.register(MrpgSkillEffects.EYE_OF_THE_STORM.effect, new EyeofTheStormRenderer());
         /// EARTH WIZARD EFFECTS
+        CustomParticleStatusEffect.register(
+                MrpgSkillEffects.EARTH_BENDER.effect,
+                new BuffParticleSpawner(
+                        phaseShiftParticles.color(EARTH_SPELL_COLOR.toRGBA())
+                ).withFrequency(20).scaleWithAmplifier(false)
+        );
         CustomParticleStatusEffect.register(
                 MrpgSkillEffects.STONE_HEART.effect,
                 new BuffParticleSpawner(
@@ -169,6 +164,23 @@ public class MRPGCSkillTreeClient implements ClientModInitializer {
                                 .extent(0.5F).color(WATER_SPELL_COLOR.toRGBA())
                 })
         );
+        CustomParticleStatusEffect.register(
+                MrpgSkillEffects.HYDRO_BOOST.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{
+                        speedParticles.copy()
+                                .color(WATER_SPELL_COLOR.toRGBA())
+                })
+        );
+        CustomParticleStatusEffect.register(
+                MrpgSkillEffects.TORRENT.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
+                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
+                        ParticleBatch.Shape.PIPE, ParticleBatch.Origin.CENTER,
+                        20F, 0.1F, 0.3F).invert().followEntity(true).extent(0.2F).color(WATER_SPELL_COLOR.toRGBA())
+                })
+        );
         /// BERSERKER EFFECTS
         CustomParticleStatusEffect.register(
                 MrpgSkillEffects.UNDYING_RAGE.effect,
@@ -177,7 +189,7 @@ public class MRPGCSkillTreeClient implements ClientModInitializer {
                                 SpellEngineParticles.MagicParticles.Shape.STRIPE,
                                 SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
                         ParticleBatch.Shape.PIPE, ParticleBatch.Origin.CENTER,
-                        20F, 0.1F, 0.3F).invert().followEntity(true).extent(0.2F)
+                        20F, 0.1F, 0.3F).invert().followEntity(true).extent(0.2F).color(Color.RAGE.toRGBA())
                 })
         );
         CustomParticleStatusEffect.register(
@@ -189,6 +201,31 @@ public class MRPGCSkillTreeClient implements ClientModInitializer {
                         ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
                         0.5F, 0F, 0.2F)
                         .color(Color.RAGE.toRGBA()) })
+        );
+        CustomParticleStatusEffect.register(
+                MrpgSkillEffects.BLOODFLOW.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{ new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        2F, 0.45F, 0.75F)
+                        .color(Color.BLOOD.toRGBA()) })
+        );
+        CustomParticleStatusEffect.register(
+                MrpgSkillEffects.BLIND_WITH_RAGE.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{ new ParticleBatch(
+                        "berserker_rpg:rage_particle",
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        2F, 0.45F, 0.75F)
+                        .color(Color.BLOOD.toRGBA()) })
+        );
+        CustomParticleStatusEffect.register(
+                MrpgSkillEffects.BURST_OF_AGGRESSION.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{
+                        speedParticles.copy()
+                                .color(Color.RAGE.toRGBA())
+                })
         );
         /// FORCEMASTER EFFECTS
         CustomParticleStatusEffect.register(
@@ -221,6 +258,13 @@ public class MRPGCSkillTreeClient implements ClientModInitializer {
                 })
         );
         /// DEADEYE EFFECTS
+        CustomParticleStatusEffect.register(
+                MrpgSkillEffects.LEAPING_SWIFTNESS.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{
+                        speedParticles.copy()
+                                .color(Color.WHITE.toRGBA())
+                })
+        );
         /// TUNDRA HUNTER EFFECTS
         CustomParticleStatusEffect.register(
                 MrpgSkillEffects.WINTERS_CLOAK.effect,
@@ -231,13 +275,17 @@ public class MRPGCSkillTreeClient implements ClientModInitializer {
                 })
         );
         /// WAR ARCHER EFFECTS
+        CustomParticleStatusEffect.register(
+                MrpgSkillEffects.LAST_STAND.effect,
+                new BuffParticleSpawner(new ParticleBatch[]{ new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
+                        0.5F, 0F, 0.2F)
+                        .color(Color.RED.toRGBA()) })
+        );
     }
 
 
-    private void renderBlindnessOverlay(DrawContext drawContext, MinecraftClient client) {
-        int width = client.getWindow().getScaledWidth();
-        int height = client.getWindow().getScaledHeight();
-
-        drawContext.drawTexture(BLINDNESS_TEXTURE, 0, 0, 0, 0, width, height, width, height);
-    }
 }

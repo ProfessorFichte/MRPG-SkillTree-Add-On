@@ -9,7 +9,7 @@
         "type": "ARROW_IMPACT",
         "target_conditions": [
           {
-            "entity_predicate_id": "Entry[id=spell_engine:is_on_fire, predicate=net.spell_engine.api.entity.SpellEntityPredicates$$Lambda/0x0000020f0bc8d230@1a8e50e3]"
+            "entity_predicate_id": "Entry[id=spell_engine:is_on_fire, predicate=net.spell_engine.api.entity.SpellEntityPredicates$$Lambda/0x000002413dc3d8a8@5a71dedd]"
           }
         ]
       }
