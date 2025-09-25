@@ -37,8 +37,8 @@
           ],
           "model": {
             "model_id": "more_rpg_classes:projectile/falling_icicle",
-            "scale": 0.75,
-            "light_emission": "NONE"
+            "light_emission": "NONE",
+            "scale": 0.75
           }
         }
       }
