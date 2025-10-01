@@ -40,7 +40,7 @@ public class MRPGCSkillTreeAddOn implements ModInitializer {
 			CombatRollCompat.register();
 		}
 		MrpgSkillSounds.register();
-		if (MRPGCSkillTreeAddOn.tweaksConfig.value.disable_mrpgc_skilltree_changes) {
+		if (!MRPGCSkillTreeAddOn.tweaksConfig.value.disable_mrpgc_skilltree_changes) {
 			FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(modContainer -> {
 				ResourceManagerHelper.registerBuiltinResourcePack(
 						Identifier.of(MOD_ID, "mrpgc_skill_tree_changes"),

@@ -1308,7 +1308,7 @@ public class MrpgSkillSpells {
         };
         cleanse.sound = new Sound(MrpgSkillSounds.soothing_mist_cleanse.id());
         spell.impacts = List.of(cleanse);
-
+        SpellBuilder.Cost.cooldown(spell, 20F);
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.WATER));
     }
     public static final Entry water_spec_b_passive_2 = add(water_spec_b_passive_2());
@@ -2542,7 +2542,7 @@ public class MrpgSkillSpells {
         var trigger = SpellBuilder.Triggers.specificSpellCast("archers_expansion:pin_down");
         spell.passive.triggers = List.of(trigger);
 
-        SpellBuilder.Complex.flameCloud(spell, 3.5F, 0.75F, 4, null);
+        SpellBuilder.Complex.flameCloud(spell, 3.5F, 0.25F, 3, null);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.WAR_ARCHER));
     }
