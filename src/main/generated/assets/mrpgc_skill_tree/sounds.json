@@ -1,0 +1,157 @@
+{
+  "air_eye_of_the_storm": {
+    "sounds": [
+      "mrpgc_skill_tree:air_eye_of_the_storm"
+    ]
+  },
+  "air_impetus_buff": {
+    "sounds": [
+      "mrpgc_skill_tree:air_impetus_buff"
+    ]
+  },
+  "air_tailwind_loop": {
+    "sounds": [
+      "mrpgc_skill_tree:air_tailwind_loop"
+    ]
+  },
+  "air_tailwind_release": {
+    "sounds": [
+      "mrpgc_skill_tree:air_tailwind_release"
+    ]
+  },
+  "air_wind_flurry_release": {
+    "sounds": [
+      "mrpgc_skill_tree:air_wind_flurry_release"
+    ]
+  },
+  "blood_frenzy_heal": {
+    "sounds": [
+      "mrpgc_skill_tree:blood_frenzy_heal"
+    ]
+  },
+  "burst_of_aggression": {
+    "sounds": [
+      "mrpgc_skill_tree:burst_of_aggression"
+    ]
+  },
+  "calm_mind": {
+    "sounds": [
+      "mrpgc_skill_tree:calm_mind"
+    ]
+  },
+  "calming_flow_release": {
+    "sounds": [
+      "mrpgc_skill_tree:calming_flow_release"
+    ]
+  },
+  "cleave_impact": {
+    "sounds": [
+      "mrpgc_skill_tree:cleave_impact"
+    ]
+  },
+  "earthen_blessing": {
+    "sounds": [
+      "mrpgc_skill_tree:earthen_blessing"
+    ]
+  },
+  "flying_fists": {
+    "sounds": [
+      "mrpgc_skill_tree:flying_fists"
+    ]
+  },
+  "hunting_fever": {
+    "sounds": [
+      "mrpgc_skill_tree:hunting_fever"
+    ]
+  },
+  "icy_rebirth_spawn": {
+    "sounds": [
+      "mrpgc_skill_tree:icy_rebirth_spawn"
+    ]
+  },
+  "last_stand": {
+    "sounds": [
+      "mrpgc_skill_tree:last_stand"
+    ]
+  },
+  "obsidian_skin": {
+    "sounds": [
+      "mrpgc_skill_tree:obsidian_skin"
+    ]
+  },
+  "protector_of_the_tower": {
+    "sounds": [
+      "mrpgc_skill_tree:protector_of_the_tower"
+    ]
+  },
+  "ragnarok_release": {
+    "sounds": [
+      "mrpgc_skill_tree:ragnarok_release"
+    ]
+  },
+  "second_wave": {
+    "sounds": [
+      "mrpgc_skill_tree:second_wave"
+    ]
+  },
+  "seismic_entry": {
+    "sounds": [
+      "mrpgc_skill_tree:seismic_entry"
+    ]
+  },
+  "shadow_refuge_loop": {
+    "sounds": [
+      "mrpgc_skill_tree:shadow_refuge_loop"
+    ]
+  },
+  "shadow_refuge_release": {
+    "sounds": [
+      "mrpgc_skill_tree:shadow_refuge_release"
+    ]
+  },
+  "smokebomb_loop": {
+    "sounds": [
+      "mrpgc_skill_tree:smokebomb_loop"
+    ]
+  },
+  "smokebomb_release": {
+    "sounds": [
+      "mrpgc_skill_tree:smokebomb_release"
+    ]
+  },
+  "soothing_mist_cleanse": {
+    "sounds": [
+      "mrpgc_skill_tree:soothing_mist_cleanse"
+    ]
+  },
+  "spinning_slash_impact": {
+    "sounds": [
+      "mrpgc_skill_tree:spinning_slash_impact"
+    ]
+  },
+  "splashdown": {
+    "sounds": [
+      "mrpgc_skill_tree:splashdown"
+    ]
+  },
+  "surys_grace": {
+    "sounds": [
+      "mrpgc_skill_tree:surys_grace"
+    ]
+  },
+  "surys_tenacity": {
+    "sounds": [
+      "mrpgc_skill_tree:surys_tenacity"
+    ]
+  },
+  "torrent": {
+    "sounds": [
+      "mrpgc_skill_tree:torrent"
+    ]
+  },
+  "winters_cloak_freeze": {
+    "sounds": [
+      "mrpgc_skill_tree:winters_cloak_freeze"
+    ]
+  }
+}

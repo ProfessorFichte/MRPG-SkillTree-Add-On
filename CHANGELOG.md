@@ -1,3 +1,8 @@
+# 1.0.3 - 1.21.1
+- Increase High Water pressure cooldown duration, nerf stun duration & trigger chance
+- Fix Earthen Blessing not stacking
+- Fix Norse Blood Ritual not working
+
 # 1.0.2 - 1.21.1
 - Fix wrong War Archer Node Connection
 - Change confusing named Disable-Config

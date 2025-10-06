@@ -733,7 +733,7 @@ public class MrpgSkillSpells {
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 10, 0, 5);
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 10, 1, 5);
         impact.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         "more_rpg_classes:stone_particle",
@@ -1191,12 +1191,12 @@ public class MrpgSkillSpells {
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
         var trigger = SpellBuilder.Triggers.specificSpellHit("elemental_wizards_rpg:aqua_hydro_beam");
-        trigger.chance = 0.3F;
+        trigger.chance = 0.2F;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.stun(3.5F);
+        var impact = SpellBuilder.Impacts.stun(1.5F);
         spell.impacts = List.of(impact);
-        SpellBuilder.Cost.cooldown(spell, 1F);
+        SpellBuilder.Cost.cooldown(spell, 2F);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.WATER));
     }
@@ -1530,6 +1530,7 @@ public class MrpgSkillSpells {
         var damage = SpellBuilder.Impacts.damage(0.4F, 0F);
         SpellBuilder.configureImpactEnableCondition(damage,
                 SpellBuilder.TargetConditions.ofPredicate(HAS_BLEEDING));
+        damage.target_modifiers.get(0).execute = TriState.ALLOW;
         spell.impacts = List.of(damage);
 
         return new Entry(id, spell, title, description, null, EnumSet.of(Category.BERSERKER));
