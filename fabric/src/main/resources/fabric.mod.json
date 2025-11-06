@@ -1,0 +1,45 @@
+{
+	"schemaVersion": 1,
+	"id": "mrpgc_skill_tree",
+	"version": "${version}",
+	"name": "MRPG Classes - RPG-Series Skill Tree Add On",
+	"description": "RPG Series Skill Tree Add-On for the More RPG Classes!",
+	"authors": [
+		"Fichte"
+	],
+	"contact": {
+		"sources": "https://github.com/ProfessorFichte"
+	},
+	"license": "All Rights Reserved",
+	"icon": "assets/mrpgc_skill_tree/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"com.mrpgc_skill_tree.fabric.FabricMod"
+		],
+		"client": [
+			"com.mrpgc_skill_tree.fabric.client.FabricClient"
+		],
+		"fabric-datagen": [
+			"com.mrpgc_skill_tree.MRPGCSkillTreeAddOnDataGenerator"
+		]
+	},
+	"mixins": [
+		"mrpgc-skill-tree-add-on.mixins.json"
+	],
+	"depends": {
+		"minecraft": "~1.21",
+		"fabricloader": ">=0.14.21",
+		"spell_engine": ">=1.7.0",
+		"spell_power": "*",
+		"puffish_skills": "*",
+		"skill_tree_rpgs": "*"
+	},
+	"custom": {
+		"modmenu": {
+			"links": {
+				"modmenu.discord": "https://discord.gg/AShKd5XrTu"
+			}
+		}
+	}
+}
