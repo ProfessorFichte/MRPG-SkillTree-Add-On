@@ -33,7 +33,8 @@
 		"spell_engine": ">=1.7.0",
 		"spell_power": "*",
 		"puffish_skills": "*",
-		"skill_tree_rpgs": "*"
+		"skill_tree_rpgs": "*",
+		"ranged_weapon_api": "*"
 	},
 	"custom": {
 		"modmenu": {

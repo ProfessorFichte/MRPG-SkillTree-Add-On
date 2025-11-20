@@ -1,4 +1,7 @@
 # 1.0.4 - 1.21.1
+increase range of spinning slash and slightly increase its damaging duration
+
+# 1.0.4 - 1.21.1
 - Move to Architectury Enviroment for Multiloader
 - NeoForge Beta!
 - add some missing status effects icons

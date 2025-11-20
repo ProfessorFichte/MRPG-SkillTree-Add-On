@@ -1751,24 +1751,17 @@ public class MrpgSkillSpells {
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = berserkerSchool;
-        spell.range = 2;
+        spell.range_mechanic = Spell.RangeMechanic.MELEE;
+        spell.range = 1.0F;
 
         var trigger = SpellBuilder.Triggers.roll();
         spell.passive.triggers = List.of(trigger);
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        spell.release.particles_scaled_with_ranged = new ParticleBatch[]{
-                new ParticleBatch(SpellEngineParticles.area_swirl.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        1, 0.0F, 0.F)
-                        .scale(0.8F)
-                        .followEntity(true).color(Color.RAGE.toRGBA())
-        };
-
         var stashEffect = MrpgSkillEffects.SPINNING_SLASH;
         var stashTrigger = SpellBuilder.Triggers.effectTick(stashEffect.id.toString());
-        SpellBuilder.Deliver.stash(spell, stashEffect.id.toString(), 0.5F, List.of(stashTrigger));
+        SpellBuilder.Deliver.stash(spell, stashEffect.id.toString(), 0.7F, List.of(stashTrigger));
         spell.deliver.stash_effect.consume = 0;
 
         var impact = SpellBuilder.Impacts.damage(0.5F, 0F);
