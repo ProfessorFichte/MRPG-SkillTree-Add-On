@@ -2570,7 +2570,7 @@ public class MrpgSkillSpells {
 
         var trigger = SpellBuilder.Triggers.arrowHit();
         var condition = new Spell.TargetCondition();
-        condition.entity_predicate_id = SpellEntityPredicates.IS_ON_FIRE.toString();
+        condition.entity_predicate_id = SpellEntityPredicates.IS_ON_FIRE.id().toString();
         trigger.target_conditions = List.of(condition);
         spell.passive.triggers = List.of(trigger);
 
