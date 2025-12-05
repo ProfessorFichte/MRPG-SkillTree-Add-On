@@ -1,5 +1,8 @@
-# 1.0.4 - 1.21.1
-increase range of spinning slash and slightly increase its damaging duration
+# 1.0.5 - 1.21.1
+- increase range of spinning slash and slightly increase its damaging duration
+- Fix War Archer Spec A Passive
+- Slightly Nerf Splish Splash Modifier for the Water Whip Spell
+- Better scaling for Poison Skill Nodes from the Deadeye Class
 
 # 1.0.4 - 1.21.1
 - Move to Architectury Enviroment for Multiloader

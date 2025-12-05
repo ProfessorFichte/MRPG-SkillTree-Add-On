@@ -977,10 +977,10 @@ public class MrpgSkillSpells {
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "elemental_wizards_rpg:aqua_water_whip";
-        var impact = SpellBuilder.Impacts.damage(0.35F, 0.5F);
+        var impact = SpellBuilder.Impacts.damage(0.25F, 0.3F);
         impact.action.allow_on_center_target = false;
 
-        var radius = 3F;
+        var radius = 2.0F;
 
         var area_impact = new Spell.AreaImpact();
         area_impact.execute_action_type = Spell.Impact.Action.Type.DAMAGE;
@@ -2753,7 +2753,8 @@ public class MrpgSkillSpells {
         modifier.spell_pattern = "archers_expansion:fast_shot";
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.PREPEND;
 
-        var debuff = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 5, 1, 1);
+        var debuff = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 8, 1, 1);
+        debuff.action.status_effect.amplifier_cap_power_multiplier = 0.5F;
         debuff.chance = 0.4F;
         debuff.action.status_effect.refresh_duration = true;
         debuff.particles = new ParticleBatch[]{(new ParticleBatch(
@@ -2912,8 +2913,8 @@ public class MrpgSkillSpells {
         cloud.client_data.light_level = 0;
         cloud.client_data.particles = new ParticleBatch[]{(new ParticleBatch(SpellEngineParticles.smoke_large.id().toString(), ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET, 1.0F, 0.01F, 0.02F)).color(2583652010L), (new ParticleBatch(SpellEngineParticles.smoke_large.id().toString(), ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET, 1.0F, 0.01F, 0.02F)).color(870134766L)};
         spell.deliver.clouds = List.of(cloud);
-        Spell.Impact debuff = SpellBuilder.Impacts.effectSet("archers_expansion:choking_gas", 3, 0);
-        debuff.action.status_effect.amplifier_power_multiplier = 0.2F;
+        Spell.Impact debuff = SpellBuilder.Impacts.effectSet("archers_expansion:choking_gas", 3, 1);
+        debuff.action.status_effect.amplifier_power_multiplier = 0.3F;
         debuff.particles = new ParticleBatch[]{(new ParticleBatch(
                 SpellEngineParticles.smoke_large.id().toString(), ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
                 1.5F, 0.01F, 0.02F))
@@ -3042,8 +3043,8 @@ public class MrpgSkillSpells {
         cloud.client_data.light_level = 0;
         cloud.client_data.particles = new ParticleBatch[]{(new ParticleBatch(SpellEngineParticles.smoke_large.id().toString(), ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET, 1.0F, 0.01F, 0.02F)).color(Color.POISON_DARK.toRGBA()), (new ParticleBatch(SpellEngineParticles.smoke_large.id().toString(), ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET, 1.0F, 0.01F, 0.02F)).color(Color.POISON_DARK.toRGBA())};
         spell.deliver.clouds = List.of(cloud);
-        Spell.Impact debuff = SpellBuilder.Impacts.effectSet("archers_expansion:choking_gas", 1, 0);
-        debuff.action.status_effect.amplifier_power_multiplier = 0.2F;
+        Spell.Impact debuff = SpellBuilder.Impacts.effectSet("archers_expansion:choking_gas", 1, 1);
+        debuff.action.status_effect.amplifier_power_multiplier = 0.3F;
         debuff.particles = new ParticleBatch[]{(new ParticleBatch(
                 SpellEngineParticles.smoke_large.id().toString(), ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
                 1.5F, 0.01F, 0.02F))

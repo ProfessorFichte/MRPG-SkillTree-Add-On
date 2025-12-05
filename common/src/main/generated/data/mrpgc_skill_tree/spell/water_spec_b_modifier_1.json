@@ -13,15 +13,15 @@
             "type": "DAMAGE",
             "allow_on_center_target": false,
             "damage": {
-              "spell_power_coefficient": 0.35,
-              "knockback": 0.5
+              "spell_power_coefficient": 0.25,
+              "knockback": 0.3
             }
           }
         }
       ],
       "replacing_area_impact": {
         "execute_action_type": "DAMAGE",
-        "radius": 3.0,
+        "radius": 2.0,
         "area": {
           "distance_dropoff": "SQUARED"
         },
