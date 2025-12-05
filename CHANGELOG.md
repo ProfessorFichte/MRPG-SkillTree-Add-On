@@ -3,6 +3,7 @@
 - Fix War Archer Spec A Passive
 - Slightly Nerf Splish Splash Modifier for the Water Whip Spell
 - Better scaling for Poison Skill Nodes from the Deadeye Class
+- Fix Resourcepack not loading for Neoforge
 
 # 1.0.4 - 1.21.1
 - Move to Architectury Enviroment for Multiloader
