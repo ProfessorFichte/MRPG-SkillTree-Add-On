@@ -1,8 +1,27 @@
 plugins {
     id 'com.gradleup.shadow'
+    id "com.matthewprenger.cursegradle" version "1.4.0"
+    id "com.github.breadmoirai.github-release" version "2.4.1"
+    id "com.modrinth.minotaur" version "2.+"
 }
 
 def platform = project.name;
+
+// Function to read the last section from CHANGELOG.md
+def changelog_last_section() {
+    def changelogFile = rootProject.file('CHANGELOG.md')
+    if (!changelogFile.exists()) {
+        return "No changelog available"
+    }
+
+    def content = changelogFile.text
+    def sections = content.split(/(?m)(?=^# )/)
+
+    // Return the first section (most recent) after the split
+    // Remove the first empty element if it exists
+    def recentSection = sections.find { it.trim().startsWith('#') }
+    return recentSection ?: "No changelog available"
+}
 
 architectury {
     platformSetupLoomIde()
