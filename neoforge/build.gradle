@@ -192,7 +192,7 @@ if (System.getenv("MODRINTH_API_KEY")) {
             required.project 'spell-engine'
             required.project 'more-rpg-library'
             required.project 'skill-tree'
-            required.project 'puffish-skills'
+            required.project 'skills'
         }
     }
 }
