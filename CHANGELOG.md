@@ -1,3 +1,6 @@
+# 1.0.6 - 1.21.1
+- Update for new MRPG-Lib Version
+
 # 1.0.5 - 1.21.1
 - increase range of spinning slash and slightly increase its damaging duration
 - Fix War Archer Spec A Passive
