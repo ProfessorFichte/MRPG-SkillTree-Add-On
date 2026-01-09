@@ -1,3 +1,7 @@
+# 1.0.7 - 1.21.1
+- Bump tweaks config version because of several issues
+- Attempt to fix Skil Tree Change snot loading on Neoforge Server
+
 # 1.0.6 - 1.21.1
 - Update for new MRPG-Lib Version
 
