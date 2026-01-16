@@ -1,6 +1,11 @@
+# 1.0.8 - 1.21.1
+- Add Logger with Instructions for NeoForge Servers where the Skill Tree Changes don't show up
+- Fix MRPGC Skill Node Descriptions not being shown
+- Fix Force Release Translation
+
 # 1.0.7 - 1.21.1
 - Bump tweaks config version because of several issues
-- Attempt to fix Skil Tree Change snot loading on Neoforge Server
+- Attempt to fix Skill Tree Change snot loading on Neoforge Server
 
 # 1.0.6 - 1.21.1
 - Update for new MRPG-Lib Version

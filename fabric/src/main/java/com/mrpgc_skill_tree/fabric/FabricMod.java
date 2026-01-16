@@ -19,8 +19,8 @@ public final class FabricMod implements ModInitializer {
                     ResourcePackActivationType.ALWAYS_ENABLED
             );
         });
-        MRPGCSkillTreeAddOn.tweaksConfig.save();
         MRPGCSkillTreeAddOn.init();
+        MRPGCSkillTreeAddOn.registerResourcePack();
         MRPGCSkillTreeAddOn.registerSounds();
         MRPGCSkillTreeAddOn.registerEffects();
     }

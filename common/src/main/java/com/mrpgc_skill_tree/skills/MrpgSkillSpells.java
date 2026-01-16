@@ -2159,7 +2159,7 @@ public class MrpgSkillSpells {
     private static Entry forcemaster_spec_b_passive_1() {
         var id = Identifier.of(NAMESPACE, "forcemaster_spec_b_passive_1");
         var title = "Force Release";
-        var description = "Arcane spell impacts have {trigger_chance} chance, to increase spell haste & critical by {bonus} for {effect_amplifier_cap} times and {effect_duration} sec.";
+        var description = "Arcane spell impacts have {trigger_chance} chance, to increase spell haste & spell crit chance by {bonus} for {effect_duration} sec. The effect can be stacked {effect_amplifier_cap} times.";
         var effect = MrpgSkillEffects.FORCE_RELEASE;
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = effect.config().firstModifier();

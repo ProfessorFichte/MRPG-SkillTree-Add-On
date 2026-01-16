@@ -28,17 +28,11 @@ architectury {
     fabric()
 }
 
-loom {
-    runs {
-        datagen {
-            client()
-            name "Data Generation"
-            vmArg "-Dfabric-api.datagen"
-            vmArg "-Dfabric-api.datagen.output-dir=${project(':common').file('src/main/generated')}"
-            vmArg "-Dfabric-api.datagen.modid=mrpgc_skill_tree"
-
-            runDir "build/datagen"
-        }
+fabricApi {
+    configureDataGeneration() {
+        client = true
+        modId = "mrpgc_skill_tree"
+        outputDirectory = project(':common').file('src/main/generated')
     }
 }
 
@@ -79,10 +73,10 @@ repositories {
         name = "Ladysnake Libs"
         url = 'https://maven.ladysnake.org/releases'
     }
+    maven { url 'https://maven.wispforest.io/releases' }
     maven {
         url = 'https://maven.puffish.net'
     }
-    maven { url 'https://maven.wispforest.io/releases' }
     mavenLocal()
 }
 

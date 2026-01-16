@@ -341,7 +341,7 @@
   "spell.mrpgc_skill_tree.forcemaster_spec_b_modifier_3.name": "Explosive Belial Smashing",
   "spell.mrpgc_skill_tree.forcemaster_spec_b_modifier_4.description": "Reduces the cooldown of Asalraalaikum  by {cooldown_duration_deduct} sec.",
   "spell.mrpgc_skill_tree.forcemaster_spec_b_modifier_4.name": "Arcane Regeneration",
-  "spell.mrpgc_skill_tree.forcemaster_spec_b_passive_1.description": "Arcane spell impacts have {trigger_chance} chance, to increase spell haste & critical by {bonus} for {effect_amplifier_cap} times and {effect_duration} sec.",
+  "spell.mrpgc_skill_tree.forcemaster_spec_b_passive_1.description": "Arcane spell impacts have {trigger_chance} chance, to increase spell haste & spell crit chance by {bonus} for {effect_duration} sec. The effect can be stacked {effect_amplifier_cap} times.",
   "spell.mrpgc_skill_tree.forcemaster_spec_b_passive_1.name": "Force Release",
   "spell.mrpgc_skill_tree.forcemaster_spec_b_passive_2.description": "Upon rolling, {trigger_chance} chance to slightly reduce active arcane cooldowns.",
   "spell.mrpgc_skill_tree.forcemaster_spec_b_passive_2.name": "Calm Mind",
