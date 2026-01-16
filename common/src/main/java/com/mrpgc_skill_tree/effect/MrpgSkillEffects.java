@@ -359,12 +359,17 @@ public class MrpgSkillEffects {
     public static Effects.Entry RAGNAROK = add(new Effects.Entry(Identifier.of(MOD_ID, "ragnarok"),
             "Ragnarok",
             "Increased Movement Speed and immune to harmful effects.",
-            new ImmuneToHarmfulEffectsStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new RemoveHarmfulEffectsWhenAppliedStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
                                     EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
                                     0.3F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    MRPGCEntityAttributes.TENACITY.getIdAsString(),
+                                    1.0F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )
@@ -435,7 +440,7 @@ public class MrpgSkillEffects {
     public static Effects.Entry SURYS_TENACITY = add(new Effects.Entry(Identifier.of(MOD_ID, "surys_tenacity"),
             "Sury's Tenacity",
             "Increased Attack and Movement Speed, immune to harmful effects, but can't cast spells.",
-            new ImmuneToHarmfulEffectsStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new RemoveHarmfulEffectsWhenAppliedStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
@@ -446,6 +451,11 @@ public class MrpgSkillEffects {
                             new AttributeModifier(
                                     EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
                                     0.2F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    MRPGCEntityAttributes.TENACITY.getIdAsString(),
+                                    1.0F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )
@@ -578,9 +588,14 @@ public class MrpgSkillEffects {
     public static Effects.Entry TERRAIN_MASTERY = add(new Effects.Entry(Identifier.of(MOD_ID, "terrain_mastery"),
             "Terrain Mastery",
             "Immune to harmful effects.",
-            new ImmuneToHarmfulEffectsStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
+            new RemoveHarmfulEffectsWhenAppliedStatusEffect(StatusEffectCategory.BENEFICIAL, 0x99ccff),
             new EffectConfig(
-                    List.of()
+                    List.of(
+                            new AttributeModifier(
+                                    MRPGCEntityAttributes.TENACITY.getIdAsString(),
+                                    1.0F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ))
             )
     ));
     /// WAR ARCHER EFFECTS

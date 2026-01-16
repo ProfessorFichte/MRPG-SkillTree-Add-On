@@ -2,6 +2,7 @@
 - Add Logger with Instructions for NeoForge Servers where the Skill Tree Changes don't show up
 - Fix MRPGC Skill Node Descriptions not being shown
 - Fix Force Release Translation
+- Add Tenacity Attribute to Ragnarok, Sury's Tenacity & Terrain Mastery
 
 # 1.0.7 - 1.21.1
 - Bump tweaks config version because of several issues

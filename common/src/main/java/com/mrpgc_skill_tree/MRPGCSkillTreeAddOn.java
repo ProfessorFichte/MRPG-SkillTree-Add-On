@@ -18,7 +18,7 @@ public class MRPGCSkillTreeAddOn{
 	public static final String MOD_ID = "mrpgc_skill_tree";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
 	public static ConfigManager<ConfigFile.Effects> effectConfig = new ConfigManager<>
-			("effects", new ConfigFile.Effects())
+			("effects_v0", new ConfigFile.Effects())
 			.builder()
 			.setDirectory(MOD_ID)
 			.sanitize(true)
