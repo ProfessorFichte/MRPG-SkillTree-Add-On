@@ -206,7 +206,7 @@ public class MRPGCSkillTreeClient {
         CustomParticleStatusEffect.register(
                 MrpgSkillEffects.BLIND_WITH_RAGE.effect,
                 new BuffParticleSpawner(new ParticleBatch[]{ new ParticleBatch(
-                        "berserker_rpg:rage_particle",
+                        "more_rpg_classes:rage_particle",
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
                         2F, 0.45F, 0.75F)
                         .color(Color.BLOOD.toRGBA()) })

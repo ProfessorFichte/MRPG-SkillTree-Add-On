@@ -1,3 +1,6 @@
+# 1.1.1 - 1.21.1
+-  Github Issue: #5 Console log Spam with Blind with Rage: Fixed the Log Spam of the Blind with Rage Effect, because of a wrong particle id
+
 # 1.1.0 - 1.21.1
 - Update for the new Spell Engine 1.9 API Changes
 
