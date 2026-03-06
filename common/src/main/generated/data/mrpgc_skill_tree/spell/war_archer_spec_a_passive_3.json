@@ -45,6 +45,7 @@
     "knockback": 0.5
   },
   "cost": {
+    "durability": 0,
     "cooldown": {
       "duration": 20.0
     }

@@ -68,5 +68,8 @@
     "sound": {
       "id": "mrpgc_skill_tree:splashdown"
     }
+  },
+  "cost": {
+    "durability": 0
   }
 }

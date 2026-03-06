@@ -47,5 +47,8 @@
     "sound": {
       "id": "mrpgc_skill_tree:spinning_slash_impact"
     }
+  },
+  "cost": {
+    "durability": 0
   }
 }

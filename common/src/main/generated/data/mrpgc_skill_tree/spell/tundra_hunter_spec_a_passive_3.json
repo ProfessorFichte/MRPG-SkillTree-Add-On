@@ -117,5 +117,8 @@
         "id": "spell_engine:generic_frost_impact"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

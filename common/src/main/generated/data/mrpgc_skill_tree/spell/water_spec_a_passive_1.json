@@ -58,5 +58,8 @@
         "id": "spell_engine:generic_healing_impact_4"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

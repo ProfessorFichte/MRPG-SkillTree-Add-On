@@ -33,7 +33,10 @@
     "icon": {
       "type": "item",
       "data": {
-        "item": "elemental_wizards_rpg:wind_spell_book"
+        "components": {
+          "spell_engine:item_model": "elemental_wizards_rpg:item/spell_book/wind"
+        },
+        "item": "spell_engine:spell_book"
       }
     },
     "required_mods": [
@@ -72,8 +75,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -108,8 +112,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -144,8 +149,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -180,8 +186,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -216,8 +223,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -252,8 +260,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -288,8 +297,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -324,8 +334,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -360,8 +371,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -396,8 +408,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -432,8 +445,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -468,8 +482,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -504,8 +519,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -540,8 +556,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -591,7 +608,10 @@
     "icon": {
       "type": "item",
       "data": {
-        "item": "berserker_rpg:berserker_spell_book"
+        "components": {
+          "spell_engine:item_model": "berserker_rpg:item/spell_book/berserker"
+        },
+        "item": "spell_engine:spell_book"
       }
     },
     "required_mods": [
@@ -630,8 +650,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -666,8 +687,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -702,8 +724,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -738,8 +761,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -774,8 +798,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -810,8 +835,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -846,8 +872,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -882,8 +909,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -918,8 +946,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -954,8 +983,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -990,8 +1020,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1026,8 +1057,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1062,8 +1094,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1098,8 +1131,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1149,7 +1183,10 @@
     "icon": {
       "type": "item",
       "data": {
-        "item": "archers_expansion:deadeye_spell_book"
+        "components": {
+          "spell_engine:item_model": "archers_expansion:item/spell_book/deadeye"
+        },
+        "item": "spell_engine:spell_book"
       }
     },
     "required_mods": [
@@ -1188,8 +1225,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1224,8 +1262,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1260,8 +1299,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1296,8 +1336,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1332,8 +1373,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1368,8 +1410,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1404,8 +1447,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1440,8 +1484,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1476,8 +1521,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1512,8 +1558,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1548,8 +1595,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1584,8 +1632,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1620,8 +1669,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1656,8 +1706,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1707,7 +1758,10 @@
     "icon": {
       "type": "item",
       "data": {
-        "item": "elemental_wizards_rpg:terra_spell_book"
+        "components": {
+          "spell_engine:item_model": "elemental_wizards_rpg:item/spell_book/terra"
+        },
+        "item": "spell_engine:spell_book"
       }
     },
     "required_mods": [
@@ -1746,8 +1800,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1782,8 +1837,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1818,8 +1874,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1854,8 +1911,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1890,8 +1948,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1926,8 +1985,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1962,8 +2022,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -1998,8 +2059,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2034,8 +2096,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2070,8 +2133,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2106,8 +2170,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2142,8 +2207,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2178,8 +2244,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2214,8 +2281,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2265,7 +2333,10 @@
     "icon": {
       "type": "item",
       "data": {
-        "item": "forcemaster_rpg:forcemaster_spell_book"
+        "components": {
+          "spell_engine:item_model": "forcemaster_rpg:item/spell_book/forcemaster"
+        },
+        "item": "spell_engine:spell_book"
       }
     },
     "required_mods": [
@@ -2304,8 +2375,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2340,8 +2412,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2376,8 +2449,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2412,8 +2486,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2448,8 +2523,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2484,8 +2560,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2520,8 +2597,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2556,8 +2634,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2592,8 +2671,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2628,8 +2708,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2664,8 +2745,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2700,8 +2782,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2736,8 +2819,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2772,8 +2856,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2823,7 +2908,10 @@
     "icon": {
       "type": "item",
       "data": {
-        "item": "archers_expansion:tundra_hunter_spell_book"
+        "components": {
+          "spell_engine:item_model": "archers_expansion:item/spell_book/tundra_hunter"
+        },
+        "item": "spell_engine:spell_book"
       }
     },
     "required_mods": [
@@ -2862,8 +2950,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2898,8 +2987,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2934,8 +3024,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -2970,8 +3061,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3006,8 +3098,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3042,8 +3135,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3078,8 +3172,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3114,8 +3209,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3150,8 +3246,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3186,8 +3283,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3222,8 +3320,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3258,8 +3357,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3294,8 +3394,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3330,8 +3431,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3381,7 +3483,10 @@
     "icon": {
       "type": "item",
       "data": {
-        "item": "archers_expansion:war_archer_spell_book"
+        "components": {
+          "spell_engine:item_model": "archers_expansion:item/spell_book/war_archer"
+        },
+        "item": "spell_engine:spell_book"
       }
     },
     "required_mods": [
@@ -3420,8 +3525,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3456,8 +3562,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3492,8 +3599,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3528,8 +3636,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3564,8 +3673,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3600,8 +3710,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3636,8 +3747,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3672,8 +3784,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3708,8 +3821,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3744,8 +3858,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3780,8 +3895,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3816,8 +3932,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3852,8 +3969,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3888,8 +4006,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -3939,7 +4058,10 @@
     "icon": {
       "type": "item",
       "data": {
-        "item": "elemental_wizards_rpg:aqua_spell_book"
+        "components": {
+          "spell_engine:item_model": "elemental_wizards_rpg:item/spell_book/aqua"
+        },
+        "item": "spell_engine:spell_book"
       }
     },
     "required_mods": [
@@ -3978,8 +4100,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -4014,8 +4137,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -4050,8 +4174,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -4086,8 +4211,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -4122,8 +4248,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -4158,8 +4285,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -4194,8 +4322,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -4230,8 +4359,9 @@
         "data": {
           "containers": [
             {
-              "content": "ANY",
-              "is_proxy": false,
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -4266,8 +4396,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -4302,8 +4433,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -4338,8 +4470,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -4374,8 +4507,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -4410,8 +4544,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
@@ -4446,8 +4581,9 @@
         "data": {
           "containers": [
             {
-              "content": "MAGIC",
-              "is_proxy": false,
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",

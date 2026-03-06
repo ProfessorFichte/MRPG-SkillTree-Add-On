@@ -37,5 +37,8 @@
         "id": "spell_engine:generic_dispel_1"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

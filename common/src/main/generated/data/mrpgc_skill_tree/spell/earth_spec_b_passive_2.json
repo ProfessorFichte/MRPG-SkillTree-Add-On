@@ -76,5 +76,8 @@
     "sound": {
       "id": "mrpgc_skill_tree:seismic_entry"
     }
+  },
+  "cost": {
+    "durability": 0
   }
 }

@@ -48,5 +48,8 @@
         "id": "mrpgc_skill_tree:calm_mind"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

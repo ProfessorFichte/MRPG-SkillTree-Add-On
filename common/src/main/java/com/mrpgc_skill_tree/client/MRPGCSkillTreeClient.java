@@ -10,15 +10,11 @@ import net.skill_tree_rpgs.utils.TranslationUtil;
 import net.spell_engine.api.effect.CustomModelStatusEffect;
 import net.spell_engine.api.effect.CustomParticleStatusEffect;
 import net.spell_engine.api.render.BuffParticleSpawner;
-import net.spell_engine.api.render.CustomModels;
 import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 
-import java.util.List;
-
-import static com.mrpgc_skill_tree.MRPGCSkillTreeAddOn.MOD_ID;
 import static net.skill_tree_rpgs.skills.Spells.MIGHT_COLOR;
 
 public class MRPGCSkillTreeClient {
@@ -40,14 +36,7 @@ public class MRPGCSkillTreeClient {
                 TranslationUtil.resolvers.put(skillId, () -> MrpgTranslationUtil.resolveAttributeModifierTooltip(attribute));
             }
         }
-        registerCustomModels();
         registerEffectRenderers();
-    }
-    private static void registerCustomModels() {
-        CustomModels.registerModelIds(List.of(
-                EyeofTheStormRenderer.modelId,
-                Identifier.of(MOD_ID, "projectile/wind_flurry")
-        ));
     }
     private static void registerEffectRenderers() {
         final Color EARTH_SPELL_COLOR = new Color(255.0F, 165.0F, 0.0F);

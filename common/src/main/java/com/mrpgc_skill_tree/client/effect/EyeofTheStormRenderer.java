@@ -16,7 +16,7 @@ import static com.mrpgc_skill_tree.MRPGCSkillTreeAddOn.MOD_ID;
 public class EyeofTheStormRenderer implements CustomModelStatusEffect.Renderer{
 
     private static final RenderLayer RENDER_LAYER = CustomLayers.spellEffect(LightEmission.GLOW, true);
-    public static final Identifier modelId = Identifier.of(MOD_ID, "effect/eye_of_the_storm");
+    public static final Identifier modelId = Identifier.of(MOD_ID, "spell_effect/eye_of_the_storm");
 
     @Override
     public void renderEffect(int amplifier, LivingEntity livingEntity, float delta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumers, int light) {

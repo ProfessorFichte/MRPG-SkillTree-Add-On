@@ -55,5 +55,8 @@
         "id": "mrpgc_skill_tree:burst_of_aggression"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

@@ -10,7 +10,7 @@ import net.more_rpg_classes.custom.MoreSpellSchools;
 import net.more_rpg_classes.entity.attribute.MRPGCEntityAttributes;
 import net.puffish.skillsmod.common.IconType;
 import net.spell_engine.api.spell.container.SpellContainer;
-import net.spell_engine.api.spell.container.SpellContainerHelper;
+import net.spell_engine.api.spell.container.SpellContainers;
 import net.spell_power.api.SpellSchools;
 
 import java.util.ArrayList;
@@ -21,15 +21,18 @@ import static com.mrpgc_skill_tree.MRPGCSkillTreeAddOn.MOD_ID;
 
 public class MrpgSkillDefinitions {
     public static final Identifier CATEGORY_ID = Identifier.of(MOD_ID, "skill_tree_rpgs");
-    public record Icon(IconType type, String value) {
+    public record Icon(IconType type, String value, String modelId) {
         public static Icon texture(String texture) {
-            return new Icon(IconType.TEXTURE, texture);
+            return new Icon(IconType.TEXTURE, texture, null);
         }
         public static Icon item(String item) {
-            return new Icon(IconType.ITEM, item);
+            return new Icon(IconType.ITEM, item, null);
+        }
+        public static Icon itemWithModel(String item, String modelId) {
+            return new Icon(IconType.ITEM, item, modelId);
         }
         public static Icon effect(String effect) {
-            return new Icon(IconType.EFFECT, effect);
+            return new Icon(IconType.EFFECT, effect, null);
         }
         public static Icon spell(Identifier spellId) {
             return texture(spellId.getNamespace() + ":textures/spell/" + spellId.getPath() + ".png");
@@ -81,7 +84,7 @@ public class MrpgSkillDefinitions {
     public static final float BOOST_MULTIPLIER = 0.01f;
 
     private static List<SpellContainer> dummyContainer() {
-        return List.of(SpellContainerHelper.createForSpellHost(Identifier.of("wizards:fireball")));
+        return List.of(SpellContainers.forWeapon(SpellContainer.ContentType.MAGIC, List.of(Identifier.of("wizards:fireball"))));
     }
 
     private static Entry modifierSpell(MrpgSkillSpells.Entry entry) {
@@ -90,7 +93,7 @@ public class MrpgSkillDefinitions {
                 entry.title(),
                 null,
                 Icon.spell(modifiedSpellId),
-                List.of(SpellContainerHelper.createForModifier(entry.id()))
+                List.of(SpellContainers.forModifier(entry.id()))
         );
     }
 
@@ -99,7 +102,7 @@ public class MrpgSkillDefinitions {
                 entry.title(),
                 null,
                 Icon.spell(entry.id()),
-                List.of(SpellContainerHelper.createForSpellHost(entry.id()))
+                List.of(SpellContainers.forWeapon(SpellContainer.ContentType.MAGIC, List.of(entry.id())))
         );
     }
 
@@ -108,7 +111,7 @@ public class MrpgSkillDefinitions {
             Entry.attribute("air_root",
                     "Path of Air",
                     null,
-                    Icon.item("elemental_wizards_rpg:wind_spell_book"),
+                    Icon.itemWithModel("spell_engine:spell_book", "elemental_wizards_rpg:item/spell_book/wind"),
                     MoreSpellSchools.AIR.attributeEntry,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
@@ -143,7 +146,7 @@ public class MrpgSkillDefinitions {
             Entry.attribute("earth_root",
                     "Path of Earth",
                     null,
-                    Icon.item("elemental_wizards_rpg:terra_spell_book"),
+                    Icon.itemWithModel("spell_engine:spell_book", "elemental_wizards_rpg:item/spell_book/terra"),
                     MoreSpellSchools.EARTH.attributeEntry,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
@@ -175,7 +178,7 @@ public class MrpgSkillDefinitions {
             Entry.attribute("water_root",
                     "Path of Water",
                     null,
-                    Icon.item("elemental_wizards_rpg:aqua_spell_book"),
+                    Icon.itemWithModel("spell_engine:spell_book", "elemental_wizards_rpg:item/spell_book/aqua"),
                     MoreSpellSchools.WATER.attributeEntry,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
@@ -210,7 +213,7 @@ public class MrpgSkillDefinitions {
             Entry.attribute("berserker_root",
                     "Path of the Berserker",
                     null,
-                    Icon.item("berserker_rpg:berserker_spell_book"),
+                    Icon.itemWithModel("spell_engine:spell_book", "berserker_rpg:item/spell_book/berserker"),
                     MRPGCEntityAttributes.RAGE_MODIFIER,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
@@ -246,7 +249,7 @@ public class MrpgSkillDefinitions {
             Entry.attribute("forcemaster_root",
                     "Path of the Forcemaster",
                     null,
-                    Icon.item("forcemaster_rpg:forcemaster_spell_book"),
+                    Icon.itemWithModel("spell_engine:spell_book", "forcemaster_rpg:item/spell_book/forcemaster"),
                     EntityAttributes.GENERIC_ATTACK_SPEED,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
@@ -280,7 +283,7 @@ public class MrpgSkillDefinitions {
             Entry.attribute("war_archer_root",
                     "Path of the War Archer",
                     null,
-                    Icon.item("archers_expansion:war_archer_spell_book"),
+                    Icon.itemWithModel("spell_engine:spell_book", "archers_expansion:item/spell_book/war_archer"),
                     EntityAttributes_RangedWeapon.DAMAGE.entry,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
@@ -314,7 +317,7 @@ public class MrpgSkillDefinitions {
             Entry.attribute("deadeye_root",
                     "Path of the Deadeye",
                     null,
-                    Icon.item("archers_expansion:deadeye_spell_book"),
+                    Icon.itemWithModel("spell_engine:spell_book", "archers_expansion:item/spell_book/deadeye"),
                     EntityAttributes_RangedWeapon.HASTE.entry,
                     0.01,
                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
@@ -349,7 +352,7 @@ public class MrpgSkillDefinitions {
             Entry.attribute("tundra_hunter_root",
                     "Path of the Tundra Hunter",
                     null,
-                    Icon.item("archers_expansion:tundra_hunter_spell_book"),
+                    Icon.itemWithModel("spell_engine:spell_book", "archers_expansion:item/spell_book/tundra_hunter"),
                     SpellSchools.FROST.attributeEntry,
                     0.2,
                     EntityAttributeModifier.Operation.ADD_VALUE

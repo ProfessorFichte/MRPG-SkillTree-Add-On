@@ -58,5 +58,8 @@
         "id": "mrpgc_skill_tree:winters_cloak_freeze"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

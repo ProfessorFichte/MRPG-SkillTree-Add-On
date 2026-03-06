@@ -31,7 +31,6 @@ import java.util.List;
 
 import static com.mrpgc_skill_tree.MRPGCSkillTreeAddOn.MOD_ID;
 import static net.skill_tree_rpgs.skills.Spells.*;
-import static net.spell_engine.api.datagen.SpellBuilder.Triggers.rangedAttack;
 
 public class MrpgSkillSpells {
     public static final String NAMESPACE = MOD_ID;
@@ -514,7 +513,7 @@ public class MrpgSkillSpells {
 
         var model = new Spell.ProjectileModel();
         model.light_emission = LightEmission.NONE;
-        model.model_id = "mrpgc_skill_tree:projectile/wind_flurry";
+        model.model_id = "mrpgc_skill_tree:spell_projectile/wind_flurry";
         model.scale = 1.0F;
         model.rotate_degrees_per_tick = 0F;
 
@@ -1628,7 +1627,7 @@ public class MrpgSkillSpells {
         var trigger = SpellBuilder.Triggers.specificSpellCast("berserker_rpg:outrage");
         spell.passive.triggers = List.of(trigger);
 
-        var stashTrigger = SpellBuilder.Triggers.meleeAttack(false);
+        var stashTrigger = SpellBuilder.Triggers.meleeAttackImpact();
         SpellBuilder.Deliver.stash(spell, effect.id.toString(), 6, stashTrigger);
         spell.deliver.stash_effect.consume = 0;
 
@@ -1670,7 +1669,7 @@ public class MrpgSkillSpells {
         spell.range = 0;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
-        var trigger = SpellBuilder.Triggers.meleeAttack(false);
+        var trigger = SpellBuilder.Triggers.meleeAttackImpact();
         trigger.chance = 0.2F;
         spell.passive.triggers = List.of(trigger);
 
@@ -1703,7 +1702,7 @@ public class MrpgSkillSpells {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var trigger = SpellBuilder.Triggers.meleeAttack(false);
+        var trigger = SpellBuilder.Triggers.meleeAttackImpact();
         trigger.chance = 0.2F;
         spell.passive.triggers = List.of(trigger);
 
@@ -2135,7 +2134,7 @@ public class MrpgSkillSpells {
         
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var trigger = SpellBuilder.Triggers.meleeAttack(false);
+        var trigger = SpellBuilder.Triggers.meleeAttackImpact();
         trigger.chance = 0.4F;
         spell.passive.triggers = List.of(trigger);
 
@@ -3597,7 +3596,7 @@ public class MrpgSkillSpells {
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
         Spell.TargetCondition deadCondition = SpellBuilder.TargetConditions.dead();
-        Spell.Trigger arrowTrigger = rangedAttack(false);
+        Spell.Trigger arrowTrigger = SpellBuilder.Triggers.rangedAttackImpact();
         arrowTrigger.chance = 0.35F;
         arrowTrigger.target_conditions = List.of(deadCondition);
         Spell.Trigger skillTrigger = new Spell.Trigger();

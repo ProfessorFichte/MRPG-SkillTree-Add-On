@@ -24,9 +24,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.arcane_boost.title"
-		},
-		"metadata": {
-			"icon": "t0yf3zi59s86f78s"
 		}
 	},
 	"arcane_root": {
@@ -36,7 +33,10 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "wizards:arcane_spell_book"
+				"components": {
+					"spell_engine:item_model": "wizards:item/spell_book/arcane"
+				},
+				"item": "spell_engine:spell_book"
 			}
 		},
 		"required_mods": [
@@ -54,9 +54,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.arcane_root.title"
-		},
-		"metadata": {
-			"icon": "a7ewus2bkjy6goww"
 		}
 	},
 	"arcane_spec_a_modifier_1": {
@@ -78,8 +75,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -93,9 +91,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.arcane_spec_a_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "xef65wcexr20w03r"
 		}
 	},
 	"arcane_spec_a_modifier_2": {
@@ -117,8 +112,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -132,9 +128,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.arcane_spec_a_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "oqen8hbidgh46v2e"
 		}
 	},
 	"arcane_spec_a_modifier_3": {
@@ -156,8 +149,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -171,9 +165,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.arcane_spec_a_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "qbekg5em4bievknh"
 		}
 	},
 	"arcane_spec_a_modifier_4": {
@@ -195,8 +186,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -210,9 +202,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.arcane_spec_a_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "433usifvpij01k4i"
 		}
 	},
 	"arcane_spec_a_passive_1": {
@@ -234,8 +223,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -249,9 +239,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.arcane_spec_a_passive_1.title"
-		},
-		"metadata": {
-			"icon": "debb1unod0236n84"
 		}
 	},
 	"arcane_spec_a_passive_2": {
@@ -273,8 +260,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -288,9 +276,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.arcane_spec_a_passive_2.title"
-		},
-		"metadata": {
-			"icon": "59fk1w5ks169j5zl"
 		}
 	},
 	"arcane_spec_a_passive_3": {
@@ -312,8 +297,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -327,9 +313,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.arcane_spec_a_passive_3.title"
-		},
-		"metadata": {
-			"icon": "lfq9ml4e35mv08od"
 		}
 	},
 	"arcane_spec_b_modifier_1": {
@@ -351,8 +334,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -366,9 +350,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.arcane_spec_b_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "nzplchxk7b7jz8w7"
 		}
 	},
 	"arcane_spec_b_modifier_2": {
@@ -390,8 +371,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -405,9 +387,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.arcane_spec_b_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "pkkog016yng82l1s"
 		}
 	},
 	"arcane_spec_b_modifier_3": {
@@ -429,8 +408,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -444,9 +424,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.arcane_spec_b_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "pk0z7khsa0mj7610"
 		}
 	},
 	"arcane_spec_b_modifier_4": {
@@ -468,8 +445,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -483,9 +461,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.arcane_spec_b_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "85zyzjs3jx61g8zw"
 		}
 	},
 	"arcane_spec_b_passive_1": {
@@ -507,8 +482,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -522,9 +498,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.arcane_spec_b_passive_1.title"
-		},
-		"metadata": {
-			"icon": "vyqopxmmldinnhq6"
 		}
 	},
 	"arcane_spec_b_passive_2": {
@@ -546,8 +519,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -561,9 +535,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.arcane_spec_b_passive_2.title"
-		},
-		"metadata": {
-			"icon": "iu7dep6yzvycihxk"
 		}
 	},
 	"arcane_spec_b_passive_3": {
@@ -585,8 +556,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -600,9 +572,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.arcane_spec_b_passive_3.title"
-		},
-		"metadata": {
-			"icon": "5wcaebhfm74367ej"
 		}
 	},
 	"archer_boost": {
@@ -630,9 +599,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.archer_boost.title"
-		},
-		"metadata": {
-			"icon": "nyngfmrhv00h0gmm"
 		}
 	},
 	"archer_root": {
@@ -642,7 +608,10 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "archers:archer_spell_book"
+				"components": {
+					"spell_engine:item_model": "archers:item/spell_book/archer"
+				},
+				"item": "spell_engine:spell_book"
 			}
 		},
 		"required_mods": [
@@ -660,9 +629,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.archer_root.title"
-		},
-		"metadata": {
-			"icon": "y1xqxcycwuy5q1du"
 		}
 	},
 	"archer_spec_a_modifier_1": {
@@ -684,8 +650,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -699,9 +666,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.archer_spec_a_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "gnum579jks6f17jf"
 		}
 	},
 	"archer_spec_a_modifier_2": {
@@ -723,8 +687,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -738,9 +703,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.archer_spec_a_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "x621te01g7d1wmg9"
 		}
 	},
 	"archer_spec_a_modifier_3": {
@@ -762,8 +724,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -777,9 +740,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.archer_spec_a_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "czidtwr9rbwxny57"
 		}
 	},
 	"archer_spec_a_modifier_4": {
@@ -801,8 +761,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -816,9 +777,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.archer_spec_a_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "0eyf09dbt6fq2hcr"
 		}
 	},
 	"archer_spec_a_passive_1": {
@@ -840,8 +798,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -855,9 +814,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.archer_spec_a_passive_1.title"
-		},
-		"metadata": {
-			"icon": "hu89tfgtayt2tfqe"
 		}
 	},
 	"archer_spec_a_passive_2": {
@@ -879,8 +835,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -894,9 +851,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.archer_spec_a_passive_2.title"
-		},
-		"metadata": {
-			"icon": "biykeovv1enh6293"
 		}
 	},
 	"archer_spec_a_passive_3": {
@@ -918,8 +872,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -933,9 +888,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.archer_spec_a_passive_3.title"
-		},
-		"metadata": {
-			"icon": "s45vm8lf0dgd23l1"
 		}
 	},
 	"archer_spec_b_modifier_1": {
@@ -957,8 +909,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -972,9 +925,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.archer_spec_b_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "p0bafcxbkeyiy5wt"
 		}
 	},
 	"archer_spec_b_modifier_2": {
@@ -996,8 +946,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1011,9 +962,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.archer_spec_b_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "xopha3l44k6yncik"
 		}
 	},
 	"archer_spec_b_modifier_3": {
@@ -1035,8 +983,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1050,9 +999,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.archer_spec_b_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "5fzthqm8qdp9uz9j"
 		}
 	},
 	"archer_spec_b_modifier_4": {
@@ -1074,8 +1020,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1089,9 +1036,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.archer_spec_b_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "mjizff61ec4ss89c"
 		}
 	},
 	"archer_spec_b_passive_1": {
@@ -1113,8 +1057,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1128,9 +1073,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.archer_spec_b_passive_1.title"
-		},
-		"metadata": {
-			"icon": "dzxkw2ov7xv4tqgx"
 		}
 	},
 	"archer_spec_b_passive_2": {
@@ -1152,8 +1094,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1167,9 +1110,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.archer_spec_b_passive_2.title"
-		},
-		"metadata": {
-			"icon": "24pu7ttvrv2pybx4"
 		}
 	},
 	"archer_spec_b_passive_3": {
@@ -1191,8 +1131,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1206,9 +1147,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.archer_spec_b_passive_3.title"
-		},
-		"metadata": {
-			"icon": "p6vferu45wvb0xlr"
 		}
 	},
 	"fire_boost": {
@@ -1236,9 +1174,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.fire_boost.title"
-		},
-		"metadata": {
-			"icon": "8vylsn8vdd1ijwue"
 		}
 	},
 	"fire_root": {
@@ -1248,7 +1183,10 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "wizards:fire_spell_book"
+				"components": {
+					"spell_engine:item_model": "wizards:item/spell_book/fire"
+				},
+				"item": "spell_engine:spell_book"
 			}
 		},
 		"required_mods": [
@@ -1266,9 +1204,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.fire_root.title"
-		},
-		"metadata": {
-			"icon": "4rb9ymwnln3kahxn"
 		}
 	},
 	"fire_spec_a_modifier_1": {
@@ -1290,8 +1225,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1305,9 +1241,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.fire_spec_a_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "xdyx5wlelfte0dbe"
 		}
 	},
 	"fire_spec_a_modifier_2": {
@@ -1329,8 +1262,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1344,9 +1278,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.fire_spec_a_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "3gvrnqbj258yag4y"
 		}
 	},
 	"fire_spec_a_modifier_3": {
@@ -1368,8 +1299,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1383,9 +1315,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.fire_spec_a_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "ic2u5fm6u8ebfb9w"
 		}
 	},
 	"fire_spec_a_modifier_4": {
@@ -1407,8 +1336,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1422,9 +1352,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.fire_spec_a_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "k5g1pmlsqo13v2c9"
 		}
 	},
 	"fire_spec_a_passive_1": {
@@ -1446,8 +1373,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1461,9 +1389,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.fire_spec_a_passive_1.title"
-		},
-		"metadata": {
-			"icon": "nsh1e0by3qa4r7od"
 		}
 	},
 	"fire_spec_a_passive_2": {
@@ -1485,8 +1410,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1500,9 +1426,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.fire_spec_a_passive_2.title"
-		},
-		"metadata": {
-			"icon": "cea7k6zlzsz7gm51"
 		}
 	},
 	"fire_spec_a_passive_3": {
@@ -1524,8 +1447,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1539,9 +1463,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.fire_spec_a_passive_3.title"
-		},
-		"metadata": {
-			"icon": "2f2vr7y3jxvkuj34"
 		}
 	},
 	"fire_spec_b_modifier_1": {
@@ -1563,8 +1484,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1578,9 +1500,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.fire_spec_b_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "macmqtbjijaw7kqq"
 		}
 	},
 	"fire_spec_b_modifier_2": {
@@ -1602,8 +1521,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1617,9 +1537,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.fire_spec_b_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "mv2eop3w4ja36jci"
 		}
 	},
 	"fire_spec_b_modifier_3": {
@@ -1641,8 +1558,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1656,9 +1574,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.fire_spec_b_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "kcxl51oamliqr6x3"
 		}
 	},
 	"fire_spec_b_modifier_4": {
@@ -1680,8 +1595,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1695,9 +1611,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.fire_spec_b_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "63l7l7cys6ox80c2"
 		}
 	},
 	"fire_spec_b_passive_1": {
@@ -1719,8 +1632,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1734,9 +1648,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.fire_spec_b_passive_1.title"
-		},
-		"metadata": {
-			"icon": "uc5tfwtierdqg79k"
 		}
 	},
 	"fire_spec_b_passive_2": {
@@ -1758,8 +1669,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1773,9 +1685,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.fire_spec_b_passive_2.title"
-		},
-		"metadata": {
-			"icon": "f2vdtneifqx5hx71"
 		}
 	},
 	"fire_spec_b_passive_3": {
@@ -1797,8 +1706,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1812,9 +1722,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.fire_spec_b_passive_3.title"
-		},
-		"metadata": {
-			"icon": "uz91al6wlk6n375x"
 		}
 	},
 	"fireball": {
@@ -1836,8 +1743,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1851,9 +1759,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.fireball.title"
-		},
-		"metadata": {
-			"icon": "pm6y8qg4wzk500xf"
 		}
 	},
 	"frost_boost": {
@@ -1881,9 +1786,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.frost_boost.title"
-		},
-		"metadata": {
-			"icon": "qy2ukvcyupk3ug1x"
 		}
 	},
 	"frost_root": {
@@ -1893,7 +1795,10 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "wizards:frost_spell_book"
+				"components": {
+					"spell_engine:item_model": "wizards:item/spell_book/frost"
+				},
+				"item": "spell_engine:spell_book"
 			}
 		},
 		"required_mods": [
@@ -1911,9 +1816,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.frost_root.title"
-		},
-		"metadata": {
-			"icon": "nhddg6h2yya6ljii"
 		}
 	},
 	"frost_spec_a_modifier_1": {
@@ -1935,8 +1837,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1950,9 +1853,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.frost_spec_a_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "8chys43n2m0im2c4"
 		}
 	},
 	"frost_spec_a_modifier_2": {
@@ -1974,8 +1874,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -1989,9 +1890,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.frost_spec_a_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "9vg5okjfj1z1z9xu"
 		}
 	},
 	"frost_spec_a_modifier_3": {
@@ -2013,8 +1911,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2028,9 +1927,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.frost_spec_a_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "1egduutyuxlrrl1r"
 		}
 	},
 	"frost_spec_a_modifier_4": {
@@ -2052,8 +1948,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2067,9 +1964,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.frost_spec_a_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "lq7g0ec6o679coz4"
 		}
 	},
 	"frost_spec_a_passive_1": {
@@ -2091,8 +1985,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2106,9 +2001,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.frost_spec_a_passive_1.title"
-		},
-		"metadata": {
-			"icon": "4wglpj7fs2f0rnkx"
 		}
 	},
 	"frost_spec_a_passive_2": {
@@ -2130,8 +2022,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2145,9 +2038,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.frost_spec_a_passive_2.title"
-		},
-		"metadata": {
-			"icon": "rxyxqihpzabgmvnd"
 		}
 	},
 	"frost_spec_a_passive_3": {
@@ -2169,8 +2059,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2184,9 +2075,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.frost_spec_a_passive_3.title"
-		},
-		"metadata": {
-			"icon": "3e8hnuwvju90iqta"
 		}
 	},
 	"frost_spec_b_modifier_1": {
@@ -2208,8 +2096,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2223,9 +2112,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.frost_spec_b_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "ts8qkurtrpdalxmn"
 		}
 	},
 	"frost_spec_b_modifier_2": {
@@ -2247,8 +2133,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2262,9 +2149,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.frost_spec_b_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "7qtegv8k85h7d8zh"
 		}
 	},
 	"frost_spec_b_modifier_3": {
@@ -2286,8 +2170,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2301,9 +2186,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.frost_spec_b_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "4gzgzcpoz1a3tg4t"
 		}
 	},
 	"frost_spec_b_modifier_4": {
@@ -2325,8 +2207,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2340,9 +2223,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.frost_spec_b_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "3k67c0z7z5jwa8de"
 		}
 	},
 	"frost_spec_b_passive_1": {
@@ -2364,8 +2244,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2379,9 +2260,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.frost_spec_b_passive_1.title"
-		},
-		"metadata": {
-			"icon": "5wvkjchnqvpsgaql"
 		}
 	},
 	"frost_spec_b_passive_2": {
@@ -2403,8 +2281,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2418,9 +2297,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.frost_spec_b_passive_2.title"
-		},
-		"metadata": {
-			"icon": "msdnuhoo6gqh3997"
 		}
 	},
 	"frost_spec_b_passive_3": {
@@ -2442,8 +2318,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2457,9 +2334,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.frost_spec_b_passive_3.title"
-		},
-		"metadata": {
-			"icon": "wyd6sw956do30lnt"
 		}
 	},
 	"paladin_boost": {
@@ -2487,9 +2361,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.paladin_boost.title"
-		},
-		"metadata": {
-			"icon": "cwhvzs618xg5g3i9"
 		}
 	},
 	"paladin_root": {
@@ -2499,7 +2370,10 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "paladins:paladin_spell_book"
+				"components": {
+					"spell_engine:item_model": "paladins:item/spell_book/paladin"
+				},
+				"item": "spell_engine:spell_book"
 			}
 		},
 		"required_mods": [
@@ -2517,9 +2391,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.paladin_root.title"
-		},
-		"metadata": {
-			"icon": "9nwxsi4fq2yom7do"
 		}
 	},
 	"paladin_spec_a_modifier_1": {
@@ -2541,8 +2412,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2556,9 +2428,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.paladin_spec_a_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "k2tv8izq3z15vwum"
 		}
 	},
 	"paladin_spec_a_modifier_2": {
@@ -2580,8 +2449,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2595,9 +2465,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.paladin_spec_a_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "vka5uq0ytk8dx1z6"
 		}
 	},
 	"paladin_spec_a_modifier_3": {
@@ -2619,8 +2486,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2634,9 +2502,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.paladin_spec_a_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "l6a1jhbatz1kg5zm"
 		}
 	},
 	"paladin_spec_a_modifier_4": {
@@ -2658,8 +2523,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2673,9 +2539,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.paladin_spec_a_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "dq93yn03vdbg3ilt"
 		}
 	},
 	"paladin_spec_a_passive_1": {
@@ -2697,8 +2560,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2712,9 +2576,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.paladin_spec_a_passive_1.title"
-		},
-		"metadata": {
-			"icon": "kpswbbdqf827s6vg"
 		}
 	},
 	"paladin_spec_a_passive_2": {
@@ -2736,8 +2597,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2751,9 +2613,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.paladin_spec_a_passive_2.title"
-		},
-		"metadata": {
-			"icon": "f4k5280h318k2b5i"
 		}
 	},
 	"paladin_spec_a_passive_3": {
@@ -2775,8 +2634,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2790,9 +2650,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.paladin_spec_a_passive_3.title"
-		},
-		"metadata": {
-			"icon": "3um7yqodapb7ugts"
 		}
 	},
 	"paladin_spec_b_modifier_1": {
@@ -2814,8 +2671,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2829,9 +2687,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.paladin_spec_b_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "b6cq2kmy4n6rgv4u"
 		}
 	},
 	"paladin_spec_b_modifier_2": {
@@ -2853,8 +2708,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2868,9 +2724,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.paladin_spec_b_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "bonpqy31x3t9sb3b"
 		}
 	},
 	"paladin_spec_b_modifier_3": {
@@ -2892,8 +2745,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2907,9 +2761,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.paladin_spec_b_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "t6wo0xz9fdx851km"
 		}
 	},
 	"paladin_spec_b_modifier_4": {
@@ -2931,8 +2782,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2946,9 +2798,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.paladin_spec_b_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "2q386rwuql43651e"
 		}
 	},
 	"paladin_spec_b_passive_1": {
@@ -2970,8 +2819,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -2985,9 +2835,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.paladin_spec_b_passive_1.title"
-		},
-		"metadata": {
-			"icon": "3gtnprody8oyk9e8"
 		}
 	},
 	"paladin_spec_b_passive_2": {
@@ -3009,8 +2856,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3024,9 +2872,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.paladin_spec_b_passive_2.title"
-		},
-		"metadata": {
-			"icon": "55okhx1hpmzxf8qh"
 		}
 	},
 	"paladin_spec_b_passive_3": {
@@ -3048,8 +2893,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3063,9 +2909,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.paladin_spec_b_passive_3.title"
-		},
-		"metadata": {
-			"icon": "6jg5puhvakg5zz5l"
 		}
 	},
 	"priest_boost": {
@@ -3093,9 +2936,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.priest_boost.title"
-		},
-		"metadata": {
-			"icon": "ei2p1t6imc01b88k"
 		}
 	},
 	"priest_root": {
@@ -3105,7 +2945,10 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "paladins:priest_spell_book"
+				"components": {
+					"spell_engine:item_model": "paladins:item/spell_book/priest"
+				},
+				"item": "spell_engine:spell_book"
 			}
 		},
 		"required_mods": [
@@ -3123,9 +2966,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.priest_root.title"
-		},
-		"metadata": {
-			"icon": "cvihrmh7s4pn0lch"
 		}
 	},
 	"priest_spec_a_modifier_1": {
@@ -3147,8 +2987,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3162,9 +3003,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.priest_spec_a_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "2gt20yd3i8vtndsl"
 		}
 	},
 	"priest_spec_a_modifier_2": {
@@ -3186,8 +3024,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3201,9 +3040,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.priest_spec_a_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "nsnkwjfb5xhn9n2f"
 		}
 	},
 	"priest_spec_a_modifier_3": {
@@ -3225,8 +3061,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3240,9 +3077,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.priest_spec_a_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "jk796bhw3ss649rc"
 		}
 	},
 	"priest_spec_a_modifier_4": {
@@ -3264,8 +3098,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3279,9 +3114,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.priest_spec_a_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "0xz2p0lpihl4xa1d"
 		}
 	},
 	"priest_spec_a_passive_1": {
@@ -3303,8 +3135,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3318,9 +3151,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.priest_spec_a_passive_1.title"
-		},
-		"metadata": {
-			"icon": "3pe6fu9d3ozlg0t8"
 		}
 	},
 	"priest_spec_a_passive_2": {
@@ -3342,8 +3172,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3357,9 +3188,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.priest_spec_a_passive_2.title"
-		},
-		"metadata": {
-			"icon": "kygy0l2s1qh5gqs2"
 		}
 	},
 	"priest_spec_a_passive_3": {
@@ -3381,8 +3209,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3396,9 +3225,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.priest_spec_a_passive_3.title"
-		},
-		"metadata": {
-			"icon": "a2x078ma968wthvu"
 		}
 	},
 	"priest_spec_b_modifier_1": {
@@ -3420,8 +3246,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3435,9 +3262,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.priest_spec_b_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "la8oum14cih9k73k"
 		}
 	},
 	"priest_spec_b_modifier_2": {
@@ -3459,8 +3283,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3474,9 +3299,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.priest_spec_b_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "k9lwyr1itpskj9fc"
 		}
 	},
 	"priest_spec_b_modifier_3": {
@@ -3498,8 +3320,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3513,9 +3336,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.priest_spec_b_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "cptewvzh4ic5pgz9"
 		}
 	},
 	"priest_spec_b_modifier_4": {
@@ -3537,8 +3357,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3552,9 +3373,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.priest_spec_b_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "pn3jdliachvfpitb"
 		}
 	},
 	"priest_spec_b_passive_1": {
@@ -3576,8 +3394,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3591,9 +3410,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.priest_spec_b_passive_1.title"
-		},
-		"metadata": {
-			"icon": "89irqz8pwtmay9ec"
 		}
 	},
 	"priest_spec_b_passive_2": {
@@ -3615,8 +3431,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3630,9 +3447,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.priest_spec_b_passive_2.title"
-		},
-		"metadata": {
-			"icon": "1wxnjm13lj8j5l69"
 		}
 	},
 	"priest_spec_b_passive_3": {
@@ -3654,8 +3468,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3669,9 +3484,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.priest_spec_b_passive_3.title"
-		},
-		"metadata": {
-			"icon": "yohoixz4nfta8hg4"
 		}
 	},
 	"rogue_boost": {
@@ -3699,9 +3511,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.rogue_boost.title"
-		},
-		"metadata": {
-			"icon": "z4psfy6881jq5wyq"
 		}
 	},
 	"rogue_root": {
@@ -3711,7 +3520,10 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "rogues:rogue_spell_book"
+				"components": {
+					"spell_engine:item_model": "rogues:item/spell_book/rogue"
+				},
+				"item": "spell_engine:spell_book"
 			}
 		},
 		"required_mods": [
@@ -3729,9 +3541,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.rogue_root.title"
-		},
-		"metadata": {
-			"icon": "x5k6uvr4cco8cb1e"
 		}
 	},
 	"rogue_spec_a_modifier_1": {
@@ -3753,8 +3562,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3768,9 +3578,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.rogue_spec_a_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "xx4gj4fp4ucxwvkf"
 		}
 	},
 	"rogue_spec_a_modifier_2": {
@@ -3792,8 +3599,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3807,9 +3615,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.rogue_spec_a_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "qosvim9tl43vk9d0"
 		}
 	},
 	"rogue_spec_a_modifier_3": {
@@ -3831,8 +3636,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3846,9 +3652,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.rogue_spec_a_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "je1b9i9932wsoq3k"
 		}
 	},
 	"rogue_spec_a_modifier_4": {
@@ -3870,8 +3673,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3885,9 +3689,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.rogue_spec_a_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "ygxjvny8g2vzjoym"
 		}
 	},
 	"rogue_spec_a_passive_1": {
@@ -3909,8 +3710,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3924,9 +3726,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.rogue_spec_a_passive_1.title"
-		},
-		"metadata": {
-			"icon": "mxyenlkjdw7086kc"
 		}
 	},
 	"rogue_spec_a_passive_2": {
@@ -3948,8 +3747,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -3963,9 +3763,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.rogue_spec_a_passive_2.title"
-		},
-		"metadata": {
-			"icon": "8pzwlpgnyp8lbyyc"
 		}
 	},
 	"rogue_spec_a_passive_3": {
@@ -3987,8 +3784,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4002,9 +3800,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.rogue_spec_a_passive_3.title"
-		},
-		"metadata": {
-			"icon": "ld6udhk4fr3ggrsk"
 		}
 	},
 	"rogue_spec_b_modifier_1": {
@@ -4026,8 +3821,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4041,9 +3837,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.rogue_spec_b_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "2803755eblcoorf3"
 		}
 	},
 	"rogue_spec_b_modifier_2": {
@@ -4065,8 +3858,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4080,9 +3874,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.rogue_spec_b_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "qtblm3pdrxtq64ly"
 		}
 	},
 	"rogue_spec_b_modifier_3": {
@@ -4104,8 +3895,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4119,9 +3911,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.rogue_spec_b_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "ofl861090zxzet8j"
 		}
 	},
 	"rogue_spec_b_modifier_4": {
@@ -4143,8 +3932,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4158,9 +3948,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.rogue_spec_b_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "e3z87khy4cu45ljr"
 		}
 	},
 	"rogue_spec_b_passive_1": {
@@ -4182,8 +3969,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4197,9 +3985,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.rogue_spec_b_passive_1.title"
-		},
-		"metadata": {
-			"icon": "75vm8fs428rkuubb"
 		}
 	},
 	"rogue_spec_b_passive_2": {
@@ -4221,8 +4006,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4236,9 +4022,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.rogue_spec_b_passive_2.title"
-		},
-		"metadata": {
-			"icon": "aqgskcxcy0yot8qj"
 		}
 	},
 	"rogue_spec_b_passive_3": {
@@ -4260,8 +4043,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4275,9 +4059,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.rogue_spec_b_passive_3.title"
-		},
-		"metadata": {
-			"icon": "87ejh3ivk8mcveng"
 		}
 	},
 	"warrior_boost": {
@@ -4305,9 +4086,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.warrior_boost.title"
-		},
-		"metadata": {
-			"icon": "jzy7gpb681730ewi"
 		}
 	},
 	"warrior_root": {
@@ -4317,7 +4095,10 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "rogues:warrior_spell_book"
+				"components": {
+					"spell_engine:item_model": "rogues:item/spell_book/warrior"
+				},
+				"item": "spell_engine:spell_book"
 			}
 		},
 		"required_mods": [
@@ -4335,9 +4116,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.warrior_root.title"
-		},
-		"metadata": {
-			"icon": "flfum40ven3q2v1b"
 		}
 	},
 	"warrior_spec_a_modifier_1": {
@@ -4359,8 +4137,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4374,9 +4153,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.warrior_spec_a_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "3vmtlcbeu9tepotk"
 		}
 	},
 	"warrior_spec_a_modifier_2": {
@@ -4398,8 +4174,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4413,9 +4190,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.warrior_spec_a_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "y7ta2653rrmuhshp"
 		}
 	},
 	"warrior_spec_a_modifier_3": {
@@ -4437,8 +4211,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4452,9 +4227,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.warrior_spec_a_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "y68liqgotjittp5j"
 		}
 	},
 	"warrior_spec_a_modifier_4": {
@@ -4464,7 +4236,7 @@
 		"icon": {
 			"type": "texture",
 			"data": {
-				"texture": "rogues:textures/spell/whirlwind.png"
+				"texture": "rpg_series:textures/spell/whirlwind.png"
 			}
 		},
 		"required_mods": [
@@ -4476,8 +4248,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4491,9 +4264,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.warrior_spec_a_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "kx161ce01jrijiv4"
 		}
 	},
 	"warrior_spec_a_passive_1": {
@@ -4515,8 +4285,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4530,9 +4301,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.warrior_spec_a_passive_1.title"
-		},
-		"metadata": {
-			"icon": "juzjrebxhmlu2vil"
 		}
 	},
 	"warrior_spec_a_passive_2": {
@@ -4554,8 +4322,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4569,9 +4338,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.warrior_spec_a_passive_2.title"
-		},
-		"metadata": {
-			"icon": "m52hah66g0lay3lp"
 		}
 	},
 	"warrior_spec_a_passive_3": {
@@ -4593,8 +4359,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4608,9 +4375,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.warrior_spec_a_passive_3.title"
-		},
-		"metadata": {
-			"icon": "6oxoyco37ooy0pds"
 		}
 	},
 	"warrior_spec_b_modifier_1": {
@@ -4632,8 +4396,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4647,9 +4412,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.warrior_spec_b_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "dy9e60uemh0ayusz"
 		}
 	},
 	"warrior_spec_b_modifier_2": {
@@ -4671,8 +4433,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4686,9 +4449,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.warrior_spec_b_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "moo0a54uk3mifazy"
 		}
 	},
 	"warrior_spec_b_modifier_3": {
@@ -4710,8 +4470,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4725,9 +4486,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.warrior_spec_b_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "wwadd0gm1v4jd35v"
 		}
 	},
 	"warrior_spec_b_modifier_4": {
@@ -4737,7 +4495,7 @@
 		"icon": {
 			"type": "texture",
 			"data": {
-				"texture": "rogues:textures/spell/whirlwind.png"
+				"texture": "rpg_series:textures/spell/whirlwind.png"
 			}
 		},
 		"required_mods": [
@@ -4749,8 +4507,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4764,9 +4523,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.warrior_spec_b_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "len4jt9w3kyqobdz"
 		}
 	},
 	"warrior_spec_b_passive_1": {
@@ -4788,8 +4544,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4803,9 +4560,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.warrior_spec_b_passive_1.title"
-		},
-		"metadata": {
-			"icon": "ap9phjx823l1cz0e"
 		}
 	},
 	"warrior_spec_b_passive_2": {
@@ -4827,8 +4581,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4842,9 +4597,6 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.warrior_spec_b_passive_2.title"
-		},
-		"metadata": {
-			"icon": "0k7u2s5lmdjoc8sv"
 		}
 	},
 	"warrior_spec_b_passive_3": {
@@ -4866,8 +4618,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4881,11 +4634,9 @@
 		],
 		"title": {
 			"translate": "skill.skill_tree_rpgs.warrior_spec_b_passive_3.title"
-		},
-		"metadata": {
-			"icon": "2lgdi0zuohbgrqq1"
 		}
 	},
+
 	"air_boost": {
 		"description": {
 			"skill_definition_id": "air_boost"
@@ -4911,9 +4662,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.air_boost.title"
-		},
-		"metadata": {
-			"icon": "bnjo64hi16xxihye"
 		}
 	},
 	"air_root": {
@@ -4923,7 +4671,10 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "elemental_wizards_rpg:wind_spell_book"
+				"components": {
+					"spell_engine:item_model": "elemental_wizards_rpg:item/spell_book/wind"
+				},
+				"item": "spell_engine:spell_book"
 			}
 		},
 		"required_mods": [
@@ -4941,9 +4692,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.air_root.title"
-		},
-		"metadata": {
-			"icon": "sxesf01ro5qz96ge"
 		}
 	},
 	"air_spec_a_modifier_1": {
@@ -4965,8 +4713,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -4980,9 +4729,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.air_spec_a_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "j2dm8iq5yjv7q5w7"
 		}
 	},
 	"air_spec_a_modifier_2": {
@@ -5004,8 +4750,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5019,9 +4766,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.air_spec_a_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "3flvia8yeelqxmtp"
 		}
 	},
 	"air_spec_a_modifier_3": {
@@ -5043,8 +4787,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5058,9 +4803,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.air_spec_a_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "h9dgisqrntzvnaq7"
 		}
 	},
 	"air_spec_a_modifier_4": {
@@ -5082,8 +4824,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5097,9 +4840,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.air_spec_a_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "tykhder8937ef7o7"
 		}
 	},
 	"air_spec_a_passive_1": {
@@ -5121,8 +4861,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5136,9 +4877,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.air_spec_a_passive_1.title"
-		},
-		"metadata": {
-			"icon": "hi4718hqavr5vb3o"
 		}
 	},
 	"air_spec_a_passive_2": {
@@ -5160,8 +4898,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5175,9 +4914,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.air_spec_a_passive_2.title"
-		},
-		"metadata": {
-			"icon": "pd0rgvhe705mwbhn"
 		}
 	},
 	"air_spec_a_passive_3": {
@@ -5199,8 +4935,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5214,9 +4951,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.air_spec_a_passive_3.title"
-		},
-		"metadata": {
-			"icon": "hxspz0c6044vqupc"
 		}
 	},
 	"air_spec_b_modifier_1": {
@@ -5238,8 +4972,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5253,9 +4988,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.air_spec_b_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "99dzux602lazehyw"
 		}
 	},
 	"air_spec_b_modifier_2": {
@@ -5277,8 +5009,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5292,9 +5025,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.air_spec_b_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "k1nghd9ee08wsgas"
 		}
 	},
 	"air_spec_b_modifier_3": {
@@ -5316,8 +5046,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5331,9 +5062,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.air_spec_b_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "7szw5rb4a28e46lj"
 		}
 	},
 	"air_spec_b_modifier_4": {
@@ -5355,8 +5083,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5370,9 +5099,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.air_spec_b_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "u7ixinya2dnyucdg"
 		}
 	},
 	"air_spec_b_passive_1": {
@@ -5394,8 +5120,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5409,9 +5136,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.air_spec_b_passive_1.title"
-		},
-		"metadata": {
-			"icon": "7avu5ew6f9keoccm"
 		}
 	},
 	"air_spec_b_passive_2": {
@@ -5433,8 +5157,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5448,9 +5173,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.air_spec_b_passive_2.title"
-		},
-		"metadata": {
-			"icon": "ase4h0t4gczyowsd"
 		}
 	},
 	"air_spec_b_passive_3": {
@@ -5472,8 +5194,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5487,9 +5210,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.air_spec_b_passive_3.title"
-		},
-		"metadata": {
-			"icon": "vj3w43ex7was2ceb"
 		}
 	},
 	"berserker_boost": {
@@ -5517,9 +5237,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.berserker_boost.title"
-		},
-		"metadata": {
-			"icon": "perb0sqyh19y39fc"
 		}
 	},
 	"berserker_root": {
@@ -5529,7 +5246,10 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "berserker_rpg:berserker_spell_book"
+				"components": {
+					"spell_engine:item_model": "berserker_rpg:item/spell_book/berserker"
+				},
+				"item": "spell_engine:spell_book"
 			}
 		},
 		"required_mods": [
@@ -5547,9 +5267,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.berserker_root.title"
-		},
-		"metadata": {
-			"icon": "p7fzxmxi88lhf0en"
 		}
 	},
 	"berserker_spec_a_modifier_1": {
@@ -5571,8 +5288,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5586,9 +5304,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.berserker_spec_a_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "sp8gbb6kzhz4no5q"
 		}
 	},
 	"berserker_spec_a_modifier_2": {
@@ -5610,8 +5325,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5625,9 +5341,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.berserker_spec_a_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "xk65t7cfvxksjn2w"
 		}
 	},
 	"berserker_spec_a_modifier_3": {
@@ -5649,8 +5362,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5664,9 +5378,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.berserker_spec_a_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "dp1yj2qwomobiq26"
 		}
 	},
 	"berserker_spec_a_modifier_4": {
@@ -5688,8 +5399,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5703,9 +5415,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.berserker_spec_a_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "2lv1t7loaa94jcag"
 		}
 	},
 	"berserker_spec_a_passive_1": {
@@ -5727,8 +5436,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5742,9 +5452,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.berserker_spec_a_passive_1.title"
-		},
-		"metadata": {
-			"icon": "qgol39spp6aruk0s"
 		}
 	},
 	"berserker_spec_a_passive_2": {
@@ -5766,8 +5473,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5781,9 +5489,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.berserker_spec_a_passive_2.title"
-		},
-		"metadata": {
-			"icon": "m2g5dn1q6gkuri65"
 		}
 	},
 	"berserker_spec_a_passive_3": {
@@ -5805,8 +5510,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5820,9 +5526,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.berserker_spec_a_passive_3.title"
-		},
-		"metadata": {
-			"icon": "fvk27cs0cbq8z8km"
 		}
 	},
 	"berserker_spec_b_modifier_1": {
@@ -5844,8 +5547,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5859,9 +5563,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.berserker_spec_b_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "sqqaigjnoidd6mu5"
 		}
 	},
 	"berserker_spec_b_modifier_2": {
@@ -5883,8 +5584,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5898,9 +5600,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.berserker_spec_b_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "ll8qxsytc3pvl48l"
 		}
 	},
 	"berserker_spec_b_modifier_3": {
@@ -5922,8 +5621,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5937,9 +5637,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.berserker_spec_b_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "ojmja2mc36gy6meb"
 		}
 	},
 	"berserker_spec_b_modifier_4": {
@@ -5961,8 +5658,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -5976,9 +5674,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.berserker_spec_b_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "909mzfdkmj5whr96"
 		}
 	},
 	"berserker_spec_b_passive_1": {
@@ -6000,8 +5695,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6015,9 +5711,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.berserker_spec_b_passive_1.title"
-		},
-		"metadata": {
-			"icon": "2asyl4owppdzhp7z"
 		}
 	},
 	"berserker_spec_b_passive_2": {
@@ -6039,8 +5732,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6054,9 +5748,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.berserker_spec_b_passive_2.title"
-		},
-		"metadata": {
-			"icon": "3b0bsx6qw8k0wm1u"
 		}
 	},
 	"berserker_spec_b_passive_3": {
@@ -6078,8 +5769,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6093,9 +5785,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.berserker_spec_b_passive_3.title"
-		},
-		"metadata": {
-			"icon": "7p2bns8gwwwh1pql"
 		}
 	},
 	"deadeye_boost": {
@@ -6123,9 +5812,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.deadeye_boost.title"
-		},
-		"metadata": {
-			"icon": "s1ro3v37dnwggzyh"
 		}
 	},
 	"deadeye_root": {
@@ -6135,7 +5821,10 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "archers_expansion:deadeye_spell_book"
+				"components": {
+					"spell_engine:item_model": "archers_expansion:item/spell_book/deadeye"
+				},
+				"item": "spell_engine:spell_book"
 			}
 		},
 		"required_mods": [
@@ -6153,9 +5842,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.deadeye_root.title"
-		},
-		"metadata": {
-			"icon": "gegzpw99pkk5dh4b"
 		}
 	},
 	"deadeye_spec_a_modifier_1": {
@@ -6177,8 +5863,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6192,9 +5879,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.deadeye_spec_a_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "ssy1mporhqwdmv57"
 		}
 	},
 	"deadeye_spec_a_modifier_2": {
@@ -6216,8 +5900,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6231,9 +5916,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.deadeye_spec_a_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "zebebvh3azl0vw9r"
 		}
 	},
 	"deadeye_spec_a_modifier_3": {
@@ -6255,8 +5937,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6270,9 +5953,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.deadeye_spec_a_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "c8qjm69ikuhze8yy"
 		}
 	},
 	"deadeye_spec_a_modifier_4": {
@@ -6294,8 +5974,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6309,9 +5990,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.deadeye_spec_a_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "g7xbxx9yi7m2rdem"
 		}
 	},
 	"deadeye_spec_a_passive_1": {
@@ -6333,8 +6011,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6348,9 +6027,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.deadeye_spec_a_passive_1.title"
-		},
-		"metadata": {
-			"icon": "afl742tx89t4xj2o"
 		}
 	},
 	"deadeye_spec_a_passive_2": {
@@ -6372,8 +6048,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6387,9 +6064,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.deadeye_spec_a_passive_2.title"
-		},
-		"metadata": {
-			"icon": "wj2r9aa24itvi4we"
 		}
 	},
 	"deadeye_spec_a_passive_3": {
@@ -6411,8 +6085,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6426,9 +6101,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.deadeye_spec_a_passive_3.title"
-		},
-		"metadata": {
-			"icon": "8vud1fzmkaadcmh3"
 		}
 	},
 	"deadeye_spec_b_modifier_1": {
@@ -6450,8 +6122,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6465,9 +6138,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.deadeye_spec_b_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "ohwbaobb1neyrvwj"
 		}
 	},
 	"deadeye_spec_b_modifier_2": {
@@ -6489,8 +6159,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6504,9 +6175,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.deadeye_spec_b_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "c042byeqspy81y0j"
 		}
 	},
 	"deadeye_spec_b_modifier_3": {
@@ -6528,8 +6196,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6543,9 +6212,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.deadeye_spec_b_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "o8rm80bfzupanfon"
 		}
 	},
 	"deadeye_spec_b_modifier_4": {
@@ -6567,8 +6233,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6582,9 +6249,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.deadeye_spec_b_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "sx0ujlgf71gikxek"
 		}
 	},
 	"deadeye_spec_b_passive_1": {
@@ -6606,8 +6270,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6621,9 +6286,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.deadeye_spec_b_passive_1.title"
-		},
-		"metadata": {
-			"icon": "10dlner2dj29t7yl"
 		}
 	},
 	"deadeye_spec_b_passive_2": {
@@ -6645,8 +6307,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6660,9 +6323,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.deadeye_spec_b_passive_2.title"
-		},
-		"metadata": {
-			"icon": "4ldpol742xig841l"
 		}
 	},
 	"deadeye_spec_b_passive_3": {
@@ -6684,8 +6344,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6699,9 +6360,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.deadeye_spec_b_passive_3.title"
-		},
-		"metadata": {
-			"icon": "gvdidqr2azda0p4o"
 		}
 	},
 	"earth_boost": {
@@ -6729,9 +6387,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.earth_boost.title"
-		},
-		"metadata": {
-			"icon": "1e8b1rlfosjam55l"
 		}
 	},
 	"earth_root": {
@@ -6741,7 +6396,10 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "elemental_wizards_rpg:terra_spell_book"
+				"components": {
+					"spell_engine:item_model": "elemental_wizards_rpg:item/spell_book/terra"
+				},
+				"item": "spell_engine:spell_book"
 			}
 		},
 		"required_mods": [
@@ -6759,9 +6417,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.earth_root.title"
-		},
-		"metadata": {
-			"icon": "ozbpgzcfjurbrwq8"
 		}
 	},
 	"earth_spec_a_modifier_1": {
@@ -6783,8 +6438,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6798,9 +6454,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.earth_spec_a_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "zwm4ftz7q3qf1eyt"
 		}
 	},
 	"earth_spec_a_modifier_2": {
@@ -6822,8 +6475,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6837,9 +6491,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.earth_spec_a_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "ja0is52fn2a44bsr"
 		}
 	},
 	"earth_spec_a_modifier_3": {
@@ -6861,8 +6512,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6876,9 +6528,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.earth_spec_a_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "hlule05b2tbkoj2b"
 		}
 	},
 	"earth_spec_a_modifier_4": {
@@ -6900,8 +6549,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6915,9 +6565,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.earth_spec_a_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "w9on2872icrge230"
 		}
 	},
 	"earth_spec_a_passive_1": {
@@ -6939,8 +6586,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6954,9 +6602,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.earth_spec_a_passive_1.title"
-		},
-		"metadata": {
-			"icon": "wd6hob98gd3w9x73"
 		}
 	},
 	"earth_spec_a_passive_2": {
@@ -6978,8 +6623,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -6993,9 +6639,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.earth_spec_a_passive_2.title"
-		},
-		"metadata": {
-			"icon": "pizi97qughcmooj6"
 		}
 	},
 	"earth_spec_a_passive_3": {
@@ -7017,8 +6660,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7032,9 +6676,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.earth_spec_a_passive_3.title"
-		},
-		"metadata": {
-			"icon": "9zitq0ewihj6b4db"
 		}
 	},
 	"earth_spec_b_modifier_1": {
@@ -7056,8 +6697,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7071,9 +6713,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.earth_spec_b_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "2p1izprkef3bng3j"
 		}
 	},
 	"earth_spec_b_modifier_2": {
@@ -7095,8 +6734,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7110,9 +6750,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.earth_spec_b_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "wn54yetesehs2f9z"
 		}
 	},
 	"earth_spec_b_modifier_3": {
@@ -7134,8 +6771,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7149,9 +6787,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.earth_spec_b_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "8e7ehs72jbqdhvsk"
 		}
 	},
 	"earth_spec_b_modifier_4": {
@@ -7173,8 +6808,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7188,9 +6824,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.earth_spec_b_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "1ebwqmnrgg8gzlox"
 		}
 	},
 	"earth_spec_b_passive_1": {
@@ -7212,8 +6845,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7227,9 +6861,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.earth_spec_b_passive_1.title"
-		},
-		"metadata": {
-			"icon": "c3tyrlfeudlhyd4y"
 		}
 	},
 	"earth_spec_b_passive_2": {
@@ -7251,8 +6882,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7266,9 +6898,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.earth_spec_b_passive_2.title"
-		},
-		"metadata": {
-			"icon": "jj6vdc3xw93ql6bi"
 		}
 	},
 	"earth_spec_b_passive_3": {
@@ -7290,8 +6919,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7305,9 +6935,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.earth_spec_b_passive_3.title"
-		},
-		"metadata": {
-			"icon": "wfc9bphybgn1ho2h"
 		}
 	},
 	"forcemaster_boost": {
@@ -7335,9 +6962,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.forcemaster_boost.title"
-		},
-		"metadata": {
-			"icon": "xavwh5fspsibc2gy"
 		}
 	},
 	"forcemaster_root": {
@@ -7347,7 +6971,10 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "forcemaster_rpg:forcemaster_spell_book"
+				"components": {
+					"spell_engine:item_model": "forcemaster_rpg:item/spell_book/forcemaster"
+				},
+				"item": "spell_engine:spell_book"
 			}
 		},
 		"required_mods": [
@@ -7365,9 +6992,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.forcemaster_root.title"
-		},
-		"metadata": {
-			"icon": "er7e1m3mhmzvgmha"
 		}
 	},
 	"forcemaster_spec_a_modifier_1": {
@@ -7389,8 +7013,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7404,9 +7029,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.forcemaster_spec_a_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "hhh7pv7olwebhefe"
 		}
 	},
 	"forcemaster_spec_a_modifier_2": {
@@ -7428,8 +7050,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7443,9 +7066,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.forcemaster_spec_a_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "qir948vx69mnojrn"
 		}
 	},
 	"forcemaster_spec_a_modifier_3": {
@@ -7467,8 +7087,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7482,9 +7103,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.forcemaster_spec_a_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "2kx6thiykl0qe43t"
 		}
 	},
 	"forcemaster_spec_a_modifier_4": {
@@ -7506,8 +7124,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7521,9 +7140,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.forcemaster_spec_a_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "nvz2oaasl00nxz7r"
 		}
 	},
 	"forcemaster_spec_a_passive_1": {
@@ -7545,8 +7161,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7560,9 +7177,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.forcemaster_spec_a_passive_1.title"
-		},
-		"metadata": {
-			"icon": "rm5l5a537lpoed8g"
 		}
 	},
 	"forcemaster_spec_a_passive_2": {
@@ -7584,8 +7198,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7599,9 +7214,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.forcemaster_spec_a_passive_2.title"
-		},
-		"metadata": {
-			"icon": "0n6fbj8zcdp91oce"
 		}
 	},
 	"forcemaster_spec_a_passive_3": {
@@ -7623,8 +7235,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7638,9 +7251,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.forcemaster_spec_a_passive_3.title"
-		},
-		"metadata": {
-			"icon": "a5dvtdam7p371hik"
 		}
 	},
 	"forcemaster_spec_b_modifier_1": {
@@ -7662,8 +7272,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7677,9 +7288,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.forcemaster_spec_b_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "96kvskap75vedclc"
 		}
 	},
 	"forcemaster_spec_b_modifier_2": {
@@ -7701,8 +7309,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7716,9 +7325,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.forcemaster_spec_b_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "0dpjeqq3y9yoz8sv"
 		}
 	},
 	"forcemaster_spec_b_modifier_3": {
@@ -7740,8 +7346,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7755,9 +7362,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.forcemaster_spec_b_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "e01c0pqssy3jwa65"
 		}
 	},
 	"forcemaster_spec_b_modifier_4": {
@@ -7779,8 +7383,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7794,9 +7399,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.forcemaster_spec_b_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "w3ufnc83ofziludp"
 		}
 	},
 	"forcemaster_spec_b_passive_1": {
@@ -7818,8 +7420,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7833,9 +7436,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.forcemaster_spec_b_passive_1.title"
-		},
-		"metadata": {
-			"icon": "z79zbeyl5rx6efdf"
 		}
 	},
 	"forcemaster_spec_b_passive_2": {
@@ -7857,8 +7457,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7872,9 +7473,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.forcemaster_spec_b_passive_2.title"
-		},
-		"metadata": {
-			"icon": "8pewhq1aonk7quvc"
 		}
 	},
 	"forcemaster_spec_b_passive_3": {
@@ -7896,8 +7494,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -7911,9 +7510,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.forcemaster_spec_b_passive_3.title"
-		},
-		"metadata": {
-			"icon": "6m2qwyglqn7npwhi"
 		}
 	},
 	"tundra_hunter_boost": {
@@ -7941,9 +7537,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.tundra_hunter_boost.title"
-		},
-		"metadata": {
-			"icon": "u3u9frvs2n7d3pjn"
 		}
 	},
 	"tundra_hunter_root": {
@@ -7953,7 +7546,10 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "archers_expansion:tundra_hunter_spell_book"
+				"components": {
+					"spell_engine:item_model": "archers_expansion:item/spell_book/tundra_hunter"
+				},
+				"item": "spell_engine:spell_book"
 			}
 		},
 		"required_mods": [
@@ -7971,9 +7567,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.tundra_hunter_root.title"
-		},
-		"metadata": {
-			"icon": "avrv2444fa2y0m86"
 		}
 	},
 	"tundra_hunter_spec_a_modifier_1": {
@@ -7995,8 +7588,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8010,9 +7604,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.tundra_hunter_spec_a_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "iwzz5tpri5sixc7h"
 		}
 	},
 	"tundra_hunter_spec_a_modifier_2": {
@@ -8034,8 +7625,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8049,9 +7641,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.tundra_hunter_spec_a_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "495pjaucskuxju9g"
 		}
 	},
 	"tundra_hunter_spec_a_modifier_3": {
@@ -8073,8 +7662,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8088,9 +7678,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.tundra_hunter_spec_a_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "koriexq426fgszdq"
 		}
 	},
 	"tundra_hunter_spec_a_modifier_4": {
@@ -8112,8 +7699,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8127,9 +7715,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.tundra_hunter_spec_a_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "rfyh9ajv9nenej7j"
 		}
 	},
 	"tundra_hunter_spec_a_passive_1": {
@@ -8151,8 +7736,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8166,9 +7752,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.tundra_hunter_spec_a_passive_1.title"
-		},
-		"metadata": {
-			"icon": "kh1yxq7q2onmtwud"
 		}
 	},
 	"tundra_hunter_spec_a_passive_2": {
@@ -8190,8 +7773,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8205,9 +7789,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.tundra_hunter_spec_a_passive_2.title"
-		},
-		"metadata": {
-			"icon": "guoka9bqre18gofi"
 		}
 	},
 	"tundra_hunter_spec_a_passive_3": {
@@ -8229,8 +7810,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8244,9 +7826,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.tundra_hunter_spec_a_passive_3.title"
-		},
-		"metadata": {
-			"icon": "719uve69ctnzfnx2"
 		}
 	},
 	"tundra_hunter_spec_b_modifier_1": {
@@ -8268,8 +7847,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8283,9 +7863,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.tundra_hunter_spec_b_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "omvmphoq5ut0f6dv"
 		}
 	},
 	"tundra_hunter_spec_b_modifier_2": {
@@ -8307,8 +7884,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8322,9 +7900,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.tundra_hunter_spec_b_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "tg1ef5wdkatwgs3k"
 		}
 	},
 	"tundra_hunter_spec_b_modifier_3": {
@@ -8346,8 +7921,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8361,9 +7937,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.tundra_hunter_spec_b_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "0t7u3uec4l3gpebq"
 		}
 	},
 	"tundra_hunter_spec_b_modifier_4": {
@@ -8385,8 +7958,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8400,9 +7974,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.tundra_hunter_spec_b_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "nb7ta53kgrwbu682"
 		}
 	},
 	"tundra_hunter_spec_b_passive_1": {
@@ -8424,8 +7995,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8439,9 +8011,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.tundra_hunter_spec_b_passive_1.title"
-		},
-		"metadata": {
-			"icon": "txthn167vyjeqsap"
 		}
 	},
 	"tundra_hunter_spec_b_passive_2": {
@@ -8463,8 +8032,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8478,9 +8048,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.tundra_hunter_spec_b_passive_2.title"
-		},
-		"metadata": {
-			"icon": "6lxfhooatyjawwfk"
 		}
 	},
 	"tundra_hunter_spec_b_passive_3": {
@@ -8502,8 +8069,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8517,9 +8085,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.tundra_hunter_spec_b_passive_3.title"
-		},
-		"metadata": {
-			"icon": "9whvv7nbwigcpz8r"
 		}
 	},
 	"war_archer_boost": {
@@ -8547,9 +8112,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.war_archer_boost.title"
-		},
-		"metadata": {
-			"icon": "xf7pns7n051ln5ie"
 		}
 	},
 	"war_archer_root": {
@@ -8559,7 +8121,10 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "archers_expansion:war_archer_spell_book"
+				"components": {
+					"spell_engine:item_model": "archers_expansion:item/spell_book/war_archer"
+				},
+				"item": "spell_engine:spell_book"
 			}
 		},
 		"required_mods": [
@@ -8577,9 +8142,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.war_archer_root.title"
-		},
-		"metadata": {
-			"icon": "iwpl7eainbsas9on"
 		}
 	},
 	"war_archer_spec_a_modifier_1": {
@@ -8601,8 +8163,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8616,9 +8179,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.war_archer_spec_a_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "n99fhx7hewt73jti"
 		}
 	},
 	"war_archer_spec_a_modifier_2": {
@@ -8640,8 +8200,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8655,9 +8216,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.war_archer_spec_a_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "jt9vldvemja3u80f"
 		}
 	},
 	"war_archer_spec_a_modifier_3": {
@@ -8679,8 +8237,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8694,9 +8253,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.war_archer_spec_a_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "q0953uckzv7fmdl6"
 		}
 	},
 	"war_archer_spec_a_modifier_4": {
@@ -8718,8 +8274,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8733,9 +8290,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.war_archer_spec_a_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "ue1ensjzoh1g3jro"
 		}
 	},
 	"war_archer_spec_a_passive_1": {
@@ -8757,8 +8311,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8772,9 +8327,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.war_archer_spec_a_passive_1.title"
-		},
-		"metadata": {
-			"icon": "jzj6wthi0rfucv9h"
 		}
 	},
 	"war_archer_spec_a_passive_2": {
@@ -8796,8 +8348,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8811,9 +8364,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.war_archer_spec_a_passive_2.title"
-		},
-		"metadata": {
-			"icon": "hjgvw6d3rgmrgsnc"
 		}
 	},
 	"war_archer_spec_a_passive_3": {
@@ -8835,8 +8385,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8850,9 +8401,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.war_archer_spec_a_passive_3.title"
-		},
-		"metadata": {
-			"icon": "3iublo67y5gihdym"
 		}
 	},
 	"war_archer_spec_b_modifier_1": {
@@ -8874,8 +8422,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8889,9 +8438,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.war_archer_spec_b_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "vr88lv3ujlvuginl"
 		}
 	},
 	"war_archer_spec_b_modifier_2": {
@@ -8913,8 +8459,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8928,9 +8475,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.war_archer_spec_b_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "wcs93vmmjunh4sfu"
 		}
 	},
 	"war_archer_spec_b_modifier_3": {
@@ -8952,8 +8496,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -8967,9 +8512,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.war_archer_spec_b_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "zedqiagiouh2jx69"
 		}
 	},
 	"war_archer_spec_b_modifier_4": {
@@ -8991,8 +8533,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -9006,9 +8549,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.war_archer_spec_b_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "7me00ywft0kvsgwm"
 		}
 	},
 	"war_archer_spec_b_passive_1": {
@@ -9030,8 +8570,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -9045,9 +8586,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.war_archer_spec_b_passive_1.title"
-		},
-		"metadata": {
-			"icon": "tg77wllnu2untsq7"
 		}
 	},
 	"war_archer_spec_b_passive_2": {
@@ -9069,8 +8607,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -9084,9 +8623,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.war_archer_spec_b_passive_2.title"
-		},
-		"metadata": {
-			"icon": "ulbtzhiy5ggv0ugp"
 		}
 	},
 	"war_archer_spec_b_passive_3": {
@@ -9108,8 +8644,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -9123,9 +8660,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.war_archer_spec_b_passive_3.title"
-		},
-		"metadata": {
-			"icon": "jw7zuejqx5zefi39"
 		}
 	},
 	"water_boost": {
@@ -9153,9 +8687,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.water_boost.title"
-		},
-		"metadata": {
-			"icon": "elnz3tzpmhyagi8s"
 		}
 	},
 	"water_root": {
@@ -9165,7 +8696,10 @@
 		"icon": {
 			"type": "item",
 			"data": {
-				"item": "elemental_wizards_rpg:aqua_spell_book"
+				"components": {
+					"spell_engine:item_model": "elemental_wizards_rpg:item/spell_book/aqua"
+				},
+				"item": "spell_engine:spell_book"
 			}
 		},
 		"required_mods": [
@@ -9183,9 +8717,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.water_root.title"
-		},
-		"metadata": {
-			"icon": "9o0u41mxqyaayc9j"
 		}
 	},
 	"water_spec_a_modifier_1": {
@@ -9207,8 +8738,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -9222,9 +8754,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.water_spec_a_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "p258syl63aqd54x5"
 		}
 	},
 	"water_spec_a_modifier_2": {
@@ -9246,8 +8775,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -9261,9 +8791,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.water_spec_a_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "fyfw7yqhcail0gld"
 		}
 	},
 	"water_spec_a_modifier_3": {
@@ -9285,8 +8812,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -9300,9 +8828,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.water_spec_a_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "hnt324pjlrwg9edy"
 		}
 	},
 	"water_spec_a_modifier_4": {
@@ -9324,8 +8849,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -9339,9 +8865,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.water_spec_a_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "nsxpq6x3ke6g6xxw"
 		}
 	},
 	"water_spec_a_passive_1": {
@@ -9363,8 +8886,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -9378,9 +8902,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.water_spec_a_passive_1.title"
-		},
-		"metadata": {
-			"icon": "s8q6evekqzcddrkx"
 		}
 	},
 	"water_spec_a_passive_2": {
@@ -9402,8 +8923,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -9417,9 +8939,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.water_spec_a_passive_2.title"
-		},
-		"metadata": {
-			"icon": "gfa1n95exdvaqvvx"
 		}
 	},
 	"water_spec_a_passive_3": {
@@ -9441,8 +8960,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -9456,9 +8976,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.water_spec_a_passive_3.title"
-		},
-		"metadata": {
-			"icon": "vlm3ub0hdbl188xo"
 		}
 	},
 	"water_spec_b_modifier_1": {
@@ -9480,8 +8997,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "ANY",
-							"is_proxy": false,
+							"access": "NONE",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -9495,9 +9013,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.water_spec_b_modifier_1.title"
-		},
-		"metadata": {
-			"icon": "t8c51dlv71ffdx6r"
 		}
 	},
 	"water_spec_b_modifier_2": {
@@ -9519,8 +9034,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -9534,9 +9050,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.water_spec_b_modifier_2.title"
-		},
-		"metadata": {
-			"icon": "en9qh7ia5rhc4e7s"
 		}
 	},
 	"water_spec_b_modifier_3": {
@@ -9558,8 +9071,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -9573,9 +9087,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.water_spec_b_modifier_3.title"
-		},
-		"metadata": {
-			"icon": "9wh19r177zfefhrl"
 		}
 	},
 	"water_spec_b_modifier_4": {
@@ -9597,8 +9108,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -9612,9 +9124,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.water_spec_b_modifier_4.title"
-		},
-		"metadata": {
-			"icon": "d3vnjdrlvhsusmds"
 		}
 	},
 	"water_spec_b_passive_1": {
@@ -9636,8 +9145,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -9651,9 +9161,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.water_spec_b_passive_1.title"
-		},
-		"metadata": {
-			"icon": "8m3v725idzgmjh0k"
 		}
 	},
 	"water_spec_b_passive_2": {
@@ -9675,8 +9182,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -9690,9 +9198,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.water_spec_b_passive_2.title"
-		},
-		"metadata": {
-			"icon": "116yvynyxm8f7di8"
 		}
 	},
 	"water_spec_b_passive_3": {
@@ -9714,8 +9219,9 @@
 				"data": {
 					"containers": [
 						{
-							"content": "MAGIC",
-							"is_proxy": false,
+							"access": "MAGIC",
+							"access_param": "",
+							"extra_tier_binding": 0,
 							"max_spell_count": 0,
 							"pool": "",
 							"slot": "",
@@ -9729,9 +9235,6 @@
 		],
 		"title": {
 			"translate": "skill.mrpgc_skill_tree.water_spec_b_passive_3.title"
-		},
-		"metadata": {
-			"icon": "403d6qfy6y58tk15"
 		}
 	}
 }

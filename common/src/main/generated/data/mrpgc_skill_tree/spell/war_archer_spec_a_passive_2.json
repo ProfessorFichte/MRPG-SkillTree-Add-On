@@ -38,5 +38,8 @@
         "id": "spell_engine:generic_fire_ignite"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }
