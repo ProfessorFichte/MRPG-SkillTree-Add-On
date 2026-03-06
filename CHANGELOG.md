@@ -1,3 +1,6 @@
+# 1.1.0 - 1.21.1
+- Update for the new Spell Engine 1.9 API Changes
+
 # 1.0.8 - 1.21.1
 - Add Logger with Instructions for NeoForge Servers where the Skill Tree Changes don't show up
 - Fix MRPGC Skill Node Descriptions not being shown
