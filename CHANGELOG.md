@@ -1,3 +1,6 @@
+# 1.1.2 - 1.21.1
+- Fixed a crash due to a wrong model_id path in the tundra_hunter_spec_a_passive_1 spell
+
 # 1.1.1 - 1.21.1
 -  Github Issue: #5 Console log Spam with Blind with Rage: Fixed the Log Spam of the Blind with Rage Effect, because of a wrong particle id
 

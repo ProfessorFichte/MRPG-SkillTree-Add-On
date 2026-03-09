@@ -3427,7 +3427,7 @@ public class MrpgSkillSpells {
 
         };
         var model = new Spell.ProjectileModel();
-        model.model_id = "more_rpg_classes:projectile/falling_icicle";
+        model.model_id = "more_rpg_classes:spell_projectile/falling_icicle";
         model.scale = 0.75F;
         model.light_emission = LightEmission.NONE;
         projectile.client_data.model = model;

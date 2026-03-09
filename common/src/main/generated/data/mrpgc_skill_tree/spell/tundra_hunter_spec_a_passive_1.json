@@ -36,7 +36,7 @@
             }
           ],
           "model": {
-            "model_id": "more_rpg_classes:projectile/falling_icicle",
+            "model_id": "more_rpg_classes:spell_projectile/falling_icicle",
             "light_emission": "NONE",
             "scale": 0.75
           }
