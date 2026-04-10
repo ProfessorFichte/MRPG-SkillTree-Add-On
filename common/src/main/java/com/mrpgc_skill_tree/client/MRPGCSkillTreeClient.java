@@ -15,7 +15,7 @@ import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 
-import static net.skill_tree_rpgs.skills.Spells.MIGHT_COLOR;
+import static net.skill_tree_rpgs.skills.SkillsCommon.MIGHT_COLOR;
 
 public class MRPGCSkillTreeClient {
     public static void init() {
