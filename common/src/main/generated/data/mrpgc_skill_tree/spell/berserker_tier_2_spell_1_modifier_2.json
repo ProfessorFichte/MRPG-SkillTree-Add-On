@@ -28,7 +28,7 @@
         {
           "conditions": [
             {
-              "entity_predicate_id": "has_effect_optimized:more_rpg_classes.bleeding"
+              "entity_predicate_id": "has_effect_optimized:spell_engine.bleed"
             }
           ],
           "execute": "ALLOW"

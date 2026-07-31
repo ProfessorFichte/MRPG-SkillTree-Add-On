@@ -39,12 +39,25 @@
               "max_speed": 0.5
             }
           ],
-          "model": {
-            "model_id": "elemental_wizards_rpg:effect/tornado",
-            "light_emission": "NONE",
-            "scale": 1.5,
-            "rotate_degrees_per_tick": -20.0
-          }
+          "model_fx": [
+            {
+              "model_id": "elemental_wizards_rpg:effect/tornado",
+              "light_emission": "NONE",
+              "scale": 1.5,
+              "duration": 100,
+              "animations": [
+                {
+                  "start": 0,
+                  "end": 100,
+                  "easing": "LINEAR",
+                  "operation": "rotate",
+                  "x": 0.0,
+                  "y": -2000.0,
+                  "z": 0.0
+                }
+              ]
+            }
+          ]
         }
       }
     ]

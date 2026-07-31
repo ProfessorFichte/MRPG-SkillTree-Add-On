@@ -208,7 +208,7 @@ public class MRPGCSkillTreeClient {
                 new BuffParticleSpawner(new ParticleBatch[]{ new ParticleBatch(
                         "more_rpg_classes:rage_particle",
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        2F, 0.45F, 0.75F)
+                        0.1F, 0.45F, 0.75F)
                         .color(Color.BLOOD.toRGBA()) })
         );
         CustomParticleStatusEffect.register(

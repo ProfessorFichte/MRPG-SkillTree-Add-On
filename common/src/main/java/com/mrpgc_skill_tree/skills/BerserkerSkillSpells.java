@@ -9,6 +9,7 @@ import net.more_rpg_classes.custom.MoreSpellSchools;
 import net.more_rpg_classes.effect.MRPGCEffects;
 import net.skill_tree_rpgs.skills.SkillSounds;
 import net.spell_engine.api.datagen.SpellBuilder;
+import net.spell_engine.api.effect.SpellEngineEffects;
 import net.spell_engine.api.entity.SpellEntityPredicates;
 import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.ExternalSpellSchools;
@@ -181,9 +182,10 @@ public class BerserkerSkillSpells {
 
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
 
-        var debuff = SpellBuilder.Impacts.effectSet(MRPGCEffects.BLEEDING.id.toString(), 6, 0);
+        var debuff = SpellBuilder.Impacts.effectSet(SpellEngineEffects.BLEED.id.toString(), 6, 0);
         MrpgSkillSpells.bleedingDeny(debuff);
         debuff.action.status_effect.amplifier_power_multiplier = 0.2F;
+        debuff.action.status_effect.amplifier_cap = 2;
         debuff.action.status_effect.refresh_duration = true;
         modifier.impacts = List.of(debuff);
         modifier.replacing_area_impact = area_impact;
@@ -305,7 +307,7 @@ public class BerserkerSkillSpells {
         trigger.chance = 0.2F;
         spell.passive.triggers = List.of(trigger);
 
-        var debuff = SpellBuilder.Impacts.effectAdd(MRPGCEffects.BLEEDING.id.toString(), 6, 0,5);
+        var debuff = SpellBuilder.Impacts.effectAdd(SpellEngineEffects.BLEED.id.toString(), 6, 0,3);
         MrpgSkillSpells.bleedingDeny(debuff);
         debuff.action.status_effect.refresh_duration = true;
         debuff.particles = new ParticleBatch[]{

@@ -35,10 +35,16 @@
               "max_speed": 0.0
             }
           ],
-          "model": {
-            "model_id": "more_rpg_classes:spell_projectile/falling_icicle",
-            "light_emission": "NONE",
-            "scale": 0.75
+          "composite_model": {
+            "models": [
+              {
+                "fx": {
+                  "model_id": "more_rpg_classes:spell_projectile/falling_icicle",
+                  "light_emission": "NONE",
+                  "scale": 0.75
+                }
+              }
+            ]
           }
         }
       }

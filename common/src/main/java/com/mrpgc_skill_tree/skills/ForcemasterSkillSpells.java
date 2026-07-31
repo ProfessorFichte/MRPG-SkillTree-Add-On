@@ -6,7 +6,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.custom.MoreSpellSchools;
-import net.more_rpg_classes.effect.MRPGCEffects;
+import net.spell_engine.api.effect.SpellEngineEffects;
 import net.skill_tree_rpgs.skills.SkillSounds;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.entity.SpellEntityPredicates;
@@ -256,7 +256,7 @@ public class ForcemasterSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_1_passive_1");
         var title = "Blood Fists";
         var description = "Your melee hits have {trigger_chance} chance, to stack bleeding on the target for {effect_duration} sec.";
-        var effect = MRPGCEffects.BLEEDING;
+        var effect = SpellEngineEffects.BLEED;
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.forcemasterFighterSchool;
@@ -268,7 +268,7 @@ public class ForcemasterSkillSpells {
         trigger.chance = 0.4F;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 7F, 0,6);
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 7F, 0,3);
         MrpgSkillSpells.bleedingDeny(impact);
         impact.action.status_effect.refresh_duration = true;
         impact.particles = new ParticleBatch[]{

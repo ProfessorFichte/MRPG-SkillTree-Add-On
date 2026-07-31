@@ -13,6 +13,8 @@ import net.spell_engine.api.entity.SpellEntityPredicates;
 import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
+import net.spell_engine.api.spell.fx.ModelEffect;
+import net.spell_engine.api.spell.fx.ModelEffectBuilder;
 import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.api.util.TriState;
@@ -346,18 +348,22 @@ public class AirSkillSpells {
         cloud.time_to_live_seconds = 5;
         cloud.spawn = new Spell.Delivery.Cloud.Spawn();
         cloud.client_data = new Spell.Delivery.Cloud.ClientData();
-        cloud.client_data.model = new Spell.ProjectileModel();
         cloud.presence_sound = Sound.withVolume(Identifier.of("more_rpg_classes:air_magic_cast1"),0.5F);
-        cloud.client_data.model.model_id = "elemental_wizards_rpg:effect/tornado";
-        cloud.client_data.model.rotate_degrees_per_tick = -20;
-        cloud.client_data.model.light_emission = LightEmission.NONE;
+        int tornadoDurationTicks = (int) (cloud.time_to_live_seconds * 20);
+        cloud.client_data.model_fx = List.of(
+                ModelEffectBuilder.create("elemental_wizards_rpg:effect/tornado")
+                        .scale(1.5F)
+                        .light(LightEmission.NONE)
+                        .duration(tornadoDurationTicks)
+                        .rotate(0, -20 * tornadoDurationTicks, 0, 0, tornadoDurationTicks, ModelEffect.Easing.LINEAR)
+                        .build()
+        );
         cloud.client_data.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         SpellEngineParticles.smoke_medium.id().toString(),
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
                         10, 0.1F, 0.5F)
         };
-        cloud.client_data.model.scale = 1.5F;
         spell.deliver.clouds = List.of(cloud);
         Spell.Impact damage = SpellBuilder.Impacts.damage(0.3F,0.0F);
         damage.sound = Sound.withVolume(Identifier.of("spell_engine:generic_wind_charging"),0.7F);
@@ -446,14 +452,11 @@ public class AirSkillSpells {
         spell.deliver.projectile.projectile.perks.ricochet = 0;
         spell.deliver.projectile.projectile.perks.bounce = 0;
 
-        var model = new Spell.ProjectileModel();
-        model.light_emission = LightEmission.NONE;
-        model.model_id = "mrpgc_skill_tree:spell_projectile/wind_flurry";
-        model.scale = 1.0F;
+        var model = SpellBuilder.ProjectileModels.model("mrpgc_skill_tree:spell_projectile/wind_flurry", 1.0F, LightEmission.NONE);
         model.rotate_degrees_per_tick = 0F;
 
         spell.deliver.projectile.projectile.client_data = new Spell.ProjectileData.Client();
-        spell.deliver.projectile.projectile.client_data.model = model;
+        spell.deliver.projectile.projectile.client_data.composite_model = SpellBuilder.ProjectileModels.composite(model);
 
 
         var impact = SpellBuilder.Impacts.damage(0.3F, 0F);

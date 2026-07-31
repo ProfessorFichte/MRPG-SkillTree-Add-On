@@ -5,6 +5,7 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.effect.MRPGCEffects;
 import net.spell_engine.api.datagen.SpellBuilder;
+import net.spell_engine.api.effect.SpellEngineEffects;
 import net.spell_engine.api.entity.SpellEntityPredicates;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.fx.ParticleBatch;
@@ -241,7 +242,7 @@ public class DeadeyeSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_1_passive_1");
         var title = "Barbed Arrows";
         var description = "Arrows have {trigger_chance} chance, to stack bleeding to the target for {effect_duration} sec.";
-        var effect = MRPGCEffects.BLEEDING;
+        var effect = SpellEngineEffects.BLEED;
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.deadeyeSchool;
@@ -252,7 +253,7 @@ public class DeadeyeSkillSpells {
         trigger.chance = 0.4F;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 7F, 0,6);
+        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 7F, 0,3);
         impact.action.status_effect.refresh_duration = true;
         MrpgSkillSpells.bleedingDeny(impact);
         impact.particles = new ParticleBatch[]{

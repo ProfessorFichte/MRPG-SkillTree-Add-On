@@ -671,7 +671,7 @@ public class MrpgSkillEffects {
             }
         });
         OnRemoval.configure(SHADOWS_REFUGE.effect, (context) -> {
-           ShadowsRefugeStatusEffect.onRemove(context.entity());
+           ((ShadowsRefugeStatusEffect) SHADOWS_REFUGE.effect).onStealthRemoved(context.entity());
             if (context.entity().hasStatusEffect(SHADOWS_REFUGE.entry)) {
                 context.entity().removeStatusEffect(SHADOWS_REFUGE.entry);
             }
