@@ -43,42 +43,9 @@ public class AirSkillSpells {
         return entry;
     }
 
-    ///AIR MODIFIERS
-    public static final MrpgSkillSpells.Entry air_tier_1_spell_1_modifier_1 = add(air_tier_1_spell_1_modifier_1());
-    private static MrpgSkillSpells.Entry air_tier_1_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "air_tier_1_spell_1_modifier_1");
-        var title = "Fast Winds";
-        var description = "Increases the knockback of Air Cutter by {knockback_multiply_base}.";
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = MrpgSkillSpells.airWizardSchool;
-
-        var bonus = 0.5F;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "elemental_wizards_rpg:wind_air_cutter";
-        modifier.knockback_multiply_base = bonus;
-        spell.modifiers = List.of(modifier);
-
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
-    }
-    public static final MrpgSkillSpells.Entry air_tier_1_spell_1_modifier_2 = add(air_tier_1_spell_1_modifier_2());
-    private static MrpgSkillSpells.Entry air_tier_1_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "air_tier_1_spell_1_modifier_2");
-        var title = "Air Cutting Pressure";
-        var description = "Air Cutter deals {power_multiplier} more damage.";
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = MrpgSkillSpells.airWizardSchool;
-
-        var bonus = 0.2F;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "elemental_wizards_rpg:wind_air_cutter";
-        modifier.power_modifier = new Spell.Impact.Modifier();
-        modifier.power_modifier.power_multiplier = bonus;
-        spell.modifiers = List.of(modifier);
-
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
-    }
+    public static final MrpgSkillSpells.Entry air_tier_2_spell_1_root = add(MrpgSkillsCommon.critRoot(
+            MrpgSkillSpells.Category.AIR, MrpgSkillSpells.airWizardSchool,
+            "air_tier_2_spell_1_root", "elemental_wizards_rpg:wind_aeroblast", "Aeroblast", 0.05F));
     public static final MrpgSkillSpells.Entry air_tier_2_spell_1_modifier_1 = add(air_tier_2_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry air_tier_2_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "air_tier_2_spell_1_modifier_1");
@@ -138,6 +105,9 @@ public class AirSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
+    public static final MrpgSkillSpells.Entry air_tier_3_spell_1_root = add(MrpgSkillsCommon.powerRoot(
+            MrpgSkillSpells.Category.AIR, MrpgSkillSpells.airWizardSchool,
+            "air_tier_3_spell_1_root", "elemental_wizards_rpg:wind_updraft", "Updraft", 0.15F));
     public static final MrpgSkillSpells.Entry air_tier_3_spell_1_modifier_1 = add(air_tier_3_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry air_tier_3_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "air_tier_3_spell_1_modifier_1");
@@ -169,10 +139,13 @@ public class AirSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
+    public static final MrpgSkillSpells.Entry air_tier_4_spell_1_root = add(MrpgSkillsCommon.radiusRoot(
+            MrpgSkillSpells.Category.AIR, MrpgSkillSpells.airWizardSchool,
+            "air_tier_4_spell_1_root", "elemental_wizards_rpg:wind_tornado", "Tornado", 1F));
     public static final MrpgSkillSpells.Entry air_tier_4_spell_1_modifier_1 = add(air_tier_4_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry air_tier_4_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "air_tier_4_spell_1_modifier_1");
-        var title = "Wind shear";
+        var title = "Wind Shear";
         var description = "Increases the duration of Tornado by {spawn_duration_add} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.airWizardSchool;

@@ -1,0 +1,34 @@
+{
+  "school": "spell_power:frost_ranged",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "archers_expansion:frozen_shot",
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "target_modifiers": [
+            {
+              "conditions": [
+                {
+                  "entity_predicate_id": "has_effect_optimized:more_rpg_classes.frosted"
+                }
+              ],
+              "execute": "ALLOW"
+            }
+          ],
+          "action": {
+            "type": "STATUS_EFFECT",
+            "apply_to_caster": true,
+            "status_effect": {
+              "effect_id": "mrpgc_skill_tree:hunting_fever",
+              "duration": 4.0
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

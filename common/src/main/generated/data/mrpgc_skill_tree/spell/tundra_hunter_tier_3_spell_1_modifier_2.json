@@ -5,20 +5,8 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "archers_expansion:frozen_pact",
-      "mutate_impacts": "APPEND",
-      "impacts": [
-        {
-          "action": {
-            "type": "STATUS_EFFECT",
-            "apply_to_caster": true,
-            "status_effect": {
-              "effect_id": "mrpgc_skill_tree:hunting_instincts",
-              "duration": 6.0
-            }
-          }
-        }
-      ]
+      "spell_pattern": "archers_expansion:arctic_volley",
+      "effect_duration_add": 3.0
     }
   ]
 }

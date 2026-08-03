@@ -41,26 +41,47 @@ public class ForcemasterSkillSpells {
         return entry;
     }
 
-    ///FORCEMASTER MODIFIERS
-    public static final MrpgSkillSpells.Entry forcemaster_tier_1_spell_1_modifier_1 = add(forcemaster_tier_1_spell_1_modifier_1());
-    private static MrpgSkillSpells.Entry forcemaster_tier_1_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_1_spell_1_modifier_1");
-        var title = "Extended Stonehand";
-        var description = "Increases the amplifier of Stonehand by {stash_amplifier_add}.";
-        var spell = SpellBuilder.createSpellModifier();
+    public static final MrpgSkillSpells.Entry forcemaster_tier_2_spell_1_root = add(MrpgSkillsCommon.powerRoot(
+            MrpgSkillSpells.Category.FORCEMASTER, MrpgSkillSpells.forcemasterFighterSchool,
+            "forcemaster_tier_2_spell_1_root", "forcemaster_rpg:stonehand", "Stonehand", 0.15F));
+    public static final MrpgSkillSpells.Entry forcemaster_tier_2_spell_1_modifier_1 = add(forcemaster_tier_2_spell_1_modifier_1());
+    private static MrpgSkillSpells.Entry forcemaster_tier_2_spell_1_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_2_spell_1_modifier_1");
+        var title = "Shattering Splitters";
+        var description = "Auto attacks have {trigger_chance} chance to create an extra area impact, dealing {damage} damage.";
+        var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.forcemasterFighterSchool;
+        spell.range = 3F;
 
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "forcemaster_rpg:stonehand";
-        modifier.stash_amplifier_add = 1;
-        spell.modifiers = List.of(modifier);
+        spell.target.type = Spell.Target.Type.AREA;
+        spell.target.area = new Spell.Target.Area();
+        spell.target.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+
+        var trigger = SpellBuilder.Triggers.meleeAttackImpact();
+        trigger.chance = 0.25F;
+        spell.passive.triggers = List.of(trigger);
+
+        var damage = SpellBuilder.Impacts.damage(0.2F, 0F);
+        damage.action.allow_on_center_target = false;
+        damage.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
+                        15, 0.1F, 0.7F)
+                        .color(Color.ARCANE.toRGBA()),
+        };
+        spell.impacts = List.of(damage);
+
+        SpellBuilder.Cost.cooldown(spell, 1F);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
-    public static final MrpgSkillSpells.Entry forcemaster_tier_1_spell_1_modifier_2 = add(forcemaster_tier_1_spell_1_modifier_2());
-    private static MrpgSkillSpells.Entry forcemaster_tier_1_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_1_spell_1_modifier_2");
-        var title = "Arcane Fist";
+    public static final MrpgSkillSpells.Entry forcemaster_tier_2_spell_1_modifier_2 = add(forcemaster_tier_2_spell_1_modifier_2());
+    private static MrpgSkillSpells.Entry forcemaster_tier_2_spell_1_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_2_spell_1_modifier_2");
+        var title = "Shattering Ground";
         var description = "Casting Stonehand deals {damage} damage around the caster.";
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
         spell.school = MrpgSkillSpells.forcemasterCasterSchool;
@@ -96,53 +117,13 @@ public class ForcemasterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
-    public static final MrpgSkillSpells.Entry forcemaster_tier_2_spell_1_modifier_1 = add(forcemaster_tier_2_spell_1_modifier_1());
-    private static MrpgSkillSpells.Entry forcemaster_tier_2_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_2_spell_1_modifier_1");
-        var title = "Pumped Up";
-        var description = "Burstcrack increases your attack damage by {bonus} for {effect_duration} seconds.";
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = MrpgSkillSpells.forcemasterFighterSchool;
-        var effect = MrpgSkillEffects.PUMPED_UP;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description()
-                    .replace("{bonus}", bonus);
-        };
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "forcemaster_rpg:burstcrack";
-        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(),8,0);
-        impact.action.apply_to_caster = true;
-
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(impact);
-
-        spell.modifiers = List.of(modifier);
-
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
-    }
-    public static final MrpgSkillSpells.Entry forcemaster_tier_2_spell_1_modifier_2 = add(forcemaster_tier_2_spell_1_modifier_2());
-    private static MrpgSkillSpells.Entry forcemaster_tier_2_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_2_spell_1_modifier_2");
-        var title = "Powerful Burst";
-        var description = "Burst Crack deals {critical_chance_bonus} critical chance bonus.";
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = MrpgSkillSpells.forcemasterCasterSchool;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "forcemaster_rpg:burstcrack";
-        modifier.power_modifier = new Spell.Impact.Modifier();
-        modifier.power_modifier.critical_chance_bonus = 0.1F;
-        spell.modifiers = List.of(modifier);
-
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
-    }
+    public static final MrpgSkillSpells.Entry forcemaster_tier_3_spell_1_root = add(MrpgSkillsCommon.critRoot(
+            MrpgSkillSpells.Category.FORCEMASTER, MrpgSkillSpells.forcemasterFighterSchool,
+            "forcemaster_tier_3_spell_1_root", "forcemaster_rpg:belial_smashing", "Belial Smashing", 0.05F));
     public static final MrpgSkillSpells.Entry forcemaster_tier_3_spell_1_modifier_1 = add(forcemaster_tier_3_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry forcemaster_tier_3_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_3_spell_1_modifier_1");
-        var title = "Powerful Belial Smashing";
+        var title = "Uppercut";
         var description = "Belial Smashing has {trigger_chance} chance to knock up the target.";
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
         spell.school = MrpgSkillSpells.forcemasterFighterSchool;
@@ -177,76 +158,64 @@ public class ForcemasterSkillSpells {
     public static final MrpgSkillSpells.Entry forcemaster_tier_3_spell_1_modifier_2 = add(forcemaster_tier_3_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry forcemaster_tier_3_spell_1_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_3_spell_1_modifier_2");
-        var title = "Explosive Belial Smashing";
-        var description = "Belial Smashing has {trigger_chance} chance create a arcane explosion, dealing {damage} damage.";
+        var title = "Belial Reach";
+        var description = "Increases the reach of Belial Smashing by {range_add} blocks.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.forcemasterCasterSchool;
 
-        var radius = 5F;
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "forcemaster_rpg:belial_smashing";
-        var impact = SpellBuilder.Impacts.damage(0.7F, 0.5F);
-
-        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
-
-        var area_impact = new Spell.AreaImpact();
-        area_impact.execute_action_type = Spell.Impact.Action.Type.DAMAGE;
-        area_impact.radius = radius;
-        area_impact.area = new Spell.Target.Area();
-        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-        area_impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.ARCANE,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        25, 0.35F, 0.35F
-                ).color(Color.ARCANE.toRGBA()),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPELL,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        25, 0.5F, 0.5F
-                ).color(Color.ARCANE.toRGBA())
-        };
-
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(impact);
-        modifier.replacing_area_impact = area_impact;
-
+        modifier.range_add = 1.5F;
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
-    public static final MrpgSkillSpells.Entry forcemaster_tier_4_spell_1_modifier_1 = add(forcemaster_tier_4_spell_1_modifier_1());
-    private static MrpgSkillSpells.Entry forcemaster_tier_4_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_4_spell_1_modifier_1");
+    public static final MrpgSkillSpells.Entry forcemaster_tier_4_spell_2_root = add(MrpgSkillsCommon.critRoot(
+            MrpgSkillSpells.Category.FORCEMASTER, MrpgSkillSpells.forcemasterFighterSchool,
+            "forcemaster_tier_4_spell_2_root", "forcemaster_rpg:asal", "Asalraalaikum", 0.05F));
+    public static final MrpgSkillSpells.Entry forcemaster_tier_4_spell_2_modifier_1 = add(forcemaster_tier_4_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry forcemaster_tier_4_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_4_spell_2_modifier_1");
         var title = "Powerful Asalraalaikum";
-        var description = " Asalraalaikum damage increased by {power_multiplier}.";
+        var description = "Asalraalaikum has {critical_chance_bonus} increased critical strike chance.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.forcemasterFighterSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "forcemaster_rpg:asal";
         modifier.power_modifier = new Spell.Impact.Modifier();
-        modifier.power_modifier.power_multiplier = 0.3F;
+        modifier.power_modifier.critical_chance_bonus = 0.15F;
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
-    public static final MrpgSkillSpells.Entry forcemaster_tier_4_spell_1_modifier_2 = add(forcemaster_tier_4_spell_1_modifier_2());
-    private static MrpgSkillSpells.Entry forcemaster_tier_4_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_4_spell_1_modifier_2");
+    public static final MrpgSkillSpells.Entry forcemaster_tier_4_spell_2_modifier_2 = add(forcemaster_tier_4_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry forcemaster_tier_4_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_4_spell_2_modifier_2");
         var title = "Arcane Regeneration";
-        var description = "Reduces the cooldown of Asalraalaikum  by {cooldown_duration_deduct} sec.";
-        var spell = SpellBuilder.createSpellModifier();
+        var description = "Killing a target with Asalraalaikum heals you for {power_multiplier} of your max health.";
+        var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
         spell.school = MrpgSkillSpells.forcemasterCasterSchool;
 
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "forcemaster_rpg:asal";
-        modifier.cooldown_duration_deduct = 8;
-        spell.modifiers = List.of(modifier);
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+        var trigger = SpellBuilder.Triggers.specificSpellHit("forcemaster_rpg:asal");
+        trigger.target_conditions = List.of(SpellBuilder.TargetConditions.dead());
+        spell.passive.triggers = List.of(trigger);
+
+        var heal = SpellBuilder.Impacts.heal(0.5F);
+        heal.attribute = EntityAttributes.GENERIC_MAX_HEALTH.getIdAsString();
+        heal.attribute_from_target = false;
+        heal.action.apply_to_caster = true;
+        heal.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.HEAL,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        25, 0.25F, 0.6F)
+                        .color(Color.ARCANE.toRGBA())
+        };
+        spell.impacts = List.of(heal);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
@@ -255,13 +224,13 @@ public class ForcemasterSkillSpells {
     private static MrpgSkillSpells.Entry forcemaster_tier_1_passive_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_1_passive_1");
         var title = "Blood Fists";
-        var description = "Your melee hits have {trigger_chance} chance, to stack bleeding on the target for {effect_duration} sec.";
+        var description = "Your melee hits have {trigger_chance} chance to stack bleeding on the target for {effect_duration} sec.";
         var effect = SpellEngineEffects.BLEED;
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.forcemasterFighterSchool;
         spell.range = 0;
-        
+
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
         var trigger = SpellBuilder.Triggers.meleeAttackImpact();
@@ -288,7 +257,7 @@ public class ForcemasterSkillSpells {
     private static MrpgSkillSpells.Entry forcemaster_tier_1_passive_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_1_passive_2");
         var title = "Force Release";
-        var description = "Arcane spell impacts have {trigger_chance} chance, to increase spell haste & spell crit chance by {bonus} for {effect_duration} sec. The effect can be stacked {effect_amplifier_cap} times.";
+        var description = "Arcane spell impacts have {trigger_chance} chance to increase spell haste & spell crit chance by {bonus} for {effect_duration} sec. The effect can be stacked {effect_amplifier_cap} times.";
         var effect = MrpgSkillEffects.FORCE_RELEASE;
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = effect.config().firstModifier();

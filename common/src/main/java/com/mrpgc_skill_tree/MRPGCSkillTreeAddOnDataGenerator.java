@@ -21,6 +21,7 @@ import net.spell_engine.client.gui.SpellTooltip;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 import static com.mrpgc_skill_tree.MRPGCSkillTreeAddOn.MOD_ID;
@@ -43,6 +44,14 @@ public class MRPGCSkillTreeAddOnDataGenerator implements DataGeneratorEntrypoint
 		@Override
 		public void generateTranslations(RegistryWrapper.WrapperLookup wrapperLookup, TranslationBuilder translationBuilder) {
 			for (var skill: MrpgSkillDefinitions.ENTRIES) {
+				if (skill.title() != null && !skill.title().isEmpty()) {
+					translationBuilder.add(skill.titleTranslationKey(), skill.title());
+				}
+				if (skill.description() != null && !skill.description().isEmpty()) {
+					translationBuilder.add(skill.descriptionTranslationKey(), skill.description());
+				}
+			}
+			for (var skill: MrpgSkillDefinitions.WEAPON_ENTRIES) {
 				if (skill.title() != null && !skill.title().isEmpty()) {
 					translationBuilder.add(skill.titleTranslationKey(), skill.title());
 				}
@@ -95,8 +104,13 @@ public class MRPGCSkillTreeAddOnDataGenerator implements DataGeneratorEntrypoint
 
 		@Override
 		public void generate(Builder builder) {
+			builder.entries.add(new Entry(MrpgSkillDefinitions.CATEGORY_ID, buildDefinitions(MrpgSkillDefinitions.ENTRIES)));
+			builder.entries.add(new Entry(MrpgSkillDefinitions.WEAPON_CATEGORY_ID, buildDefinitions(MrpgSkillDefinitions.WEAPON_ENTRIES)));
+		}
+
+		private LinkedHashMap<String, Format> buildDefinitions(List<MrpgSkillDefinitions.Entry> skills) {
 			LinkedHashMap<String, Format> skillDefinitions = new LinkedHashMap<>();
-			for (var skill : MrpgSkillDefinitions.ENTRIES) {
+			for (var skill : skills) {
 				Translatable title = null;
 				if (skill.title() != null && !skill.title().isEmpty()) {
 					title = new Translatable(skill.titleTranslationKey());
@@ -127,7 +141,7 @@ public class MRPGCSkillTreeAddOnDataGenerator implements DataGeneratorEntrypoint
 				var format = new Format(title, description, icon, rewards, skill.required_mods());
 				skillDefinitions.put(skill.id(), format);
 			}
-			builder.entries.add(new Entry(MrpgSkillDefinitions.CATEGORY_ID, skillDefinitions));
+			return skillDefinitions;
 		}
 	}
 }

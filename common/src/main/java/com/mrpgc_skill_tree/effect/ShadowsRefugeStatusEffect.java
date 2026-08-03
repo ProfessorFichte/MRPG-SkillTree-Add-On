@@ -1,7 +1,7 @@
 package com.mrpgc_skill_tree.effect;
 
 import net.minecraft.entity.effect.StatusEffectCategory;
-import net.more_rpg_classes.effect.stealth.StealthStatusEffect;
+import net.more_rpg_classes.effect.StealthStatusEffect;
 import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_engine.client.util.Color;
 

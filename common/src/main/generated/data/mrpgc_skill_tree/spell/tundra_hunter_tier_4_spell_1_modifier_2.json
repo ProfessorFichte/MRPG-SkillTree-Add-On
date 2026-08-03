@@ -7,7 +7,7 @@
     {
       "spell_pattern": "archers_expansion:enchanted_crystal_arrow",
       "power_modifier": {
-        "power_multiplier": 0.3
+        "critical_chance_bonus": 0.25
       }
     }
   ]

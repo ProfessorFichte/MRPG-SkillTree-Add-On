@@ -1,0 +1,47 @@
+{
+  "school": "spell_power:fire_ranged",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "target_override": "CASTER",
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "chance": 0.25,
+        "spell": {
+          "id": "archers_expansion:dual_shot"
+        },
+        "impact": {
+          "impact_type": "DAMAGE"
+        }
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "COOLDOWN",
+        "apply_to_caster": true,
+        "cooldown": {
+          "actives": {
+            "id": "archers_expansion:dual_shot",
+            "duration_multiplier": 0.0
+          }
+        }
+      },
+      "sound": {
+        "id": "spell_engine:spell_cooldown_impact"
+      }
+    }
+  ],
+  "cost": {
+    "durability": 0,
+    "cooldown": {
+      "duration": 5.0
+    }
+  }
+}

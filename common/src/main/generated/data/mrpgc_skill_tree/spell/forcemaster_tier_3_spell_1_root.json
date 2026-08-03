@@ -5,9 +5,9 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "forcemaster_rpg:asal",
+      "spell_pattern": "forcemaster_rpg:belial_smashing",
       "power_modifier": {
-        "power_multiplier": 0.3
+        "critical_chance_bonus": 0.05
       }
     }
   ]

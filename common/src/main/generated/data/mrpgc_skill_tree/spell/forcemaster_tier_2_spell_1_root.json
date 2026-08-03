@@ -6,7 +6,9 @@
   "modifiers": [
     {
       "spell_pattern": "forcemaster_rpg:stonehand",
-      "stash_amplifier_add": 1
+      "power_modifier": {
+        "power_multiplier": 0.15
+      }
     }
   ]
 }

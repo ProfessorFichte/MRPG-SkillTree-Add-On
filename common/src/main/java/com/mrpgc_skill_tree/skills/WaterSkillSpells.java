@@ -41,81 +41,28 @@ public class WaterSkillSpells {
         return entry;
     }
 
-    ///WATER MODIFIER
     public static final Color WATER_SPELL_COLOR = Color.from(0x4a8bff);
-    public static final MrpgSkillSpells.Entry water_tier_1_spell_1_modifier_1 = add(water_tier_1_spell_1_modifier_1());
-    private static MrpgSkillSpells.Entry water_tier_1_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_1_spell_1_modifier_1");
-        var title = "Strong Water Whip";
-        var description = "Water Whip deals {knockback_multiply_base} more knockback.";
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = MrpgSkillSpells.waterWizardSchool;
-
-        var bonus = 1.0F;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "elemental_wizards_rpg:aqua_water_whip";
-        modifier.knockback_multiply_base = bonus;
-        spell.modifiers = List.of(modifier);
-
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
-    }
-    public static final MrpgSkillSpells.Entry water_tier_1_spell_1_modifier_2 = add(water_tier_1_spell_1_modifier_2());
-    private static MrpgSkillSpells.Entry water_tier_1_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_1_spell_1_modifier_2");
-        var title = "Splish Splash";
-        var description = "Water Whip deals {damage} damage around the target.";
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = MrpgSkillSpells.waterWizardSchool;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "elemental_wizards_rpg:aqua_water_whip";
-        var impact = SpellBuilder.Impacts.damage(0.25F, 0.3F);
-        impact.action.allow_on_center_target = false;
-
-        var radius = 2.0F;
-
-        var area_impact = new Spell.AreaImpact();
-        area_impact.execute_action_type = Spell.Impact.Action.Type.DAMAGE;
-        area_impact.radius = radius;
-        area_impact.area = new Spell.Target.Area();
-        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-        area_impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        "more_rpg_classes:big_splash",
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        20, 0.35F, 0.35F
-                ),
-                new ParticleBatch(
-                        "more_rpg_classes:splash",
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        20, 0.15F, 0.15F
-                )
-        };
-
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(impact);
-        modifier.replacing_area_impact = area_impact;
-
-        spell.modifiers = List.of(modifier);
-
-
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
-    }
+    public static final MrpgSkillSpells.Entry water_tier_2_spell_1_root = add(MrpgSkillsCommon.powerRoot(
+            MrpgSkillSpells.Category.WATER, MrpgSkillSpells.waterWizardSchool,
+            "water_tier_2_spell_1_root", "elemental_wizards_rpg:aqua_bubble_beam", "Bubble Beam", 0.15F));
     public static final MrpgSkillSpells.Entry water_tier_2_spell_1_modifier_1 = add(water_tier_2_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry water_tier_2_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_2_spell_1_modifier_1");
-        var title = "Bubble Pop";
-        var description = "Bubble Beam's healing & damage is increased by by {power_multiplier}.";
+        var effect = MrpgSkillEffects.BUBBLE_SHIELD;
+        var title = "Protecting Bubbles";
+        var description = "Bubble Beam grants allies " + effect.title + ", absorbing damage, for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.waterWizardSchool;
 
-        var bonus = 0.2F;
-
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "elemental_wizards_rpg:aqua_bubble_beam";
-        modifier.power_modifier = new Spell.Impact.Modifier();
-        modifier.power_modifier.power_multiplier = bonus;
+
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 6, 0);
+        var impactFilter = new Spell.Modifier.ImpactFilter();
+        impactFilter.type = Spell.Impact.Action.Type.HEAL;
+        modifier.impact_filters = List.of(impactFilter);
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
 
         spell.modifiers = List.of(modifier);
 
@@ -124,9 +71,9 @@ public class WaterSkillSpells {
     public static final MrpgSkillSpells.Entry water_tier_2_spell_1_modifier_2 = add(water_tier_2_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry water_tier_2_spell_1_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_2_spell_1_modifier_2");
-        var title = "Persistant Bubbles";
+        var title = "Persistent Bubbles";
         var effect = MrpgSkillEffects.PERSISTENT_BUBBLES;
-        var description = "Bubble Beam hits have {trigger_chance} to decrease the movement- & attackspeed by {bonus} for {effect_duration} seconds.";
+        var description = "Bubble Beam hits have {trigger_chance} chance to decrease movement speed and attack speed by {bonus} for {effect_duration} seconds.";
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = effect.config().firstModifier();
@@ -151,6 +98,9 @@ public class WaterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
+    public static final MrpgSkillSpells.Entry water_tier_3_spell_1_root = add(MrpgSkillsCommon.powerRoot(
+            MrpgSkillSpells.Category.WATER, MrpgSkillSpells.waterWizardSchool,
+            "water_tier_3_spell_1_root", "elemental_wizards_rpg:aqua_springwater", "Springwater", 0.15F));
     public static final MrpgSkillSpells.Entry water_tier_3_spell_1_modifier_1 = add(water_tier_3_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry water_tier_3_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_spell_1_modifier_1");
@@ -245,9 +195,12 @@ public class WaterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
-    public static final MrpgSkillSpells.Entry water_tier_4_spell_1_modifier_1 = add(water_tier_4_spell_1_modifier_1());
-    private static MrpgSkillSpells.Entry water_tier_4_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_4_spell_1_modifier_1");
+    public static final MrpgSkillSpells.Entry water_tier_3_spell_2_root = add(MrpgSkillsCommon.channelRoot(
+            MrpgSkillSpells.Category.WATER, MrpgSkillSpells.waterWizardSchool,
+            "water_tier_3_spell_2_root", "elemental_wizards_rpg:aqua_hydro_beam", "Hydro Beam", 1));
+    public static final MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_1 = add(water_tier_3_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_spell_2_modifier_1");
         var effect = MrpgSkillEffects.HYDRO_BOOST;
         var title = "Hydro Boost";
         var description = "Hydro Beam increases the movement speed of allies by {bonus} for {effect_duration} seconds.";
@@ -272,9 +225,9 @@ public class WaterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
-    public static final MrpgSkillSpells.Entry water_tier_4_spell_1_modifier_2 = add(water_tier_4_spell_1_modifier_2());
-    private static MrpgSkillSpells.Entry water_tier_4_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_4_spell_1_modifier_2");
+    public static final MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_2 = add(water_tier_3_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_spell_2_modifier_2");
         var title = "High Water Pressure";
         var description = "Hydro Beam has {trigger_chance} chance to stun the target.";
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
@@ -337,7 +290,7 @@ public class WaterSkillSpells {
     private static MrpgSkillSpells.Entry water_tier_1_passive_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_1_passive_2");
         var title = "Second Wave";
-        var description = "Water Spells have {trigger_chance} to knock the target back.";
+        var description = "Water Spells have {trigger_chance} chance to knock the target back.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.waterWizardSchool;
@@ -453,7 +406,7 @@ public class WaterSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_passive_1");
         var effect = MrpgSkillEffects.CALMING_FLOW;
         var title = "Calming Flow";
-        var description = "Water Spell Hits and heals have {trigger_chance_1} chance to enter in a calming flow, reducing active water spell cooldowns while casting spells for a {stash_duration} sec.";
+        var description = "Water Spell Hits and heals have {trigger_chance_1} chance to enter a calming flow, reducing active water spell cooldowns while casting spells for a {stash_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.waterWizardSchool;
@@ -495,7 +448,7 @@ public class WaterSkillSpells {
         var effect = MrpgSkillEffects.TORRENT;
         var title = effect.title;
         var healthThreshold = 0.3F;
-        var description = "Falling under {threshold} health, increases water spell power for {bonus2} and spell crit chance & spell haste for {bonus} for {effect_duration} sec.";
+        var description = "Falling under {threshold} health increases your water spell power by {bonus2} and spell crit chance & spell haste by {bonus} for {effect_duration} sec.";
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = effect.config().attributes().get(1);
             var modifier2 = effect.config().attributes().get(0);

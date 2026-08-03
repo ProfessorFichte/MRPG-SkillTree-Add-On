@@ -1,0 +1,14 @@
+{
+  "school": "spell_power:fire_ranged",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "archers_expansion:point_blank_shot",
+      "power_modifier": {
+        "critical_chance_bonus": 0.05
+      }
+    }
+  ]
+}

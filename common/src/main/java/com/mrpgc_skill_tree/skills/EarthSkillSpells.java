@@ -43,50 +43,9 @@ public class EarthSkillSpells {
 
     public static final Color EARTH_SPELL_COLOR = new Color(255.0F, 165.0F, 0.0F);
     ///EARTH MODIFIERS
-    public static final MrpgSkillSpells.Entry earth_tier_1_spell_1_modifier_1 = add(earth_tier_1_spell_1_modifier_1());
-    private static MrpgSkillSpells.Entry earth_tier_1_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_1_spell_1_modifier_1");
-        var title = "Sharpened Stone Spears";
-        var description = "Increases the duration of Bleeding by {effect_duration_add} sec.";
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = MrpgSkillSpells.earthWizardSchool;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "elemental_wizards_rpg:terra_stone_spear";
-        modifier.effect_duration_add = 2;
-        spell.modifiers = List.of(modifier);
-
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.EARTH));
-    }
-    public static final MrpgSkillSpells.Entry earth_tier_1_spell_1_modifier_2 = add(earth_tier_1_spell_1_modifier_2());
-    private static MrpgSkillSpells.Entry earth_tier_1_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_1_spell_1_modifier_2");
-        var title = "Earthen Blast";
-        var bonus = 0.5F;
-        var description = "Increases the area of effect of Stone Spear by {bonus}.";
-        var mutator = new SpellTooltip.DescriptionMutator() {
-            @Override
-            public String mutate(Args args) {
-                return args.description().replace("{bonus}", SpellTooltip.percent(bonus));
-            }
-        };
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = MrpgSkillSpells.earthWizardSchool;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "elemental_wizards_rpg:terra_stone_spear";
-        var extendedRadius = 2.5F * (1F + bonus);
-        Spell.AreaImpact area_impact = new Spell.AreaImpact();
-        area_impact.radius = extendedRadius;
-        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-        area_impact.particles = new ParticleBatch[]{(new ParticleBatch("more_rpg_classes:stone_explosion", ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 1.0F, 0.0F, 0.0F)).scale(extendedRadius/2)};
-        area_impact.sound = Sound.withVolume(Identifier.of("block.pointed_dripstone.break"),1.5F);
-        modifier.replacing_area_impact = area_impact;
-
-        spell.modifiers = List.of(modifier);
-
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.EARTH));
-    }
+    public static final MrpgSkillSpells.Entry earth_tier_2_spell_1_root = add(MrpgSkillsCommon.powerRoot(
+            MrpgSkillSpells.Category.EARTH, MrpgSkillSpells.earthWizardSchool,
+            "earth_tier_2_spell_1_root", "elemental_wizards_rpg:terra_stone_flesh", "Stone Flesh", 0.15F));
     public static final MrpgSkillSpells.Entry earth_tier_2_spell_1_modifier_1 = add(earth_tier_2_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry earth_tier_2_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_2_spell_1_modifier_1");
@@ -135,6 +94,9 @@ public class EarthSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.EARTH));
     }
+    public static final MrpgSkillSpells.Entry earth_tier_3_spell_1_root = add(MrpgSkillsCommon.radiusRoot(
+            MrpgSkillSpells.Category.EARTH, MrpgSkillSpells.earthWizardSchool,
+            "earth_tier_3_spell_1_root", "elemental_wizards_rpg:terra_drip_circle", "Terra Circle", 1F));
     public static final MrpgSkillSpells.Entry earth_tier_3_spell_1_modifier_1 = add(earth_tier_3_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry earth_tier_3_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_3_spell_1_modifier_1");
@@ -163,18 +125,21 @@ public class EarthSkillSpells {
     private static MrpgSkillSpells.Entry earth_tier_3_spell_1_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_3_spell_1_modifier_2");
         var title = "Sharp Dripstones";
-        var description = "Terra Circle damage is increased by {power_multiplier}.";
+        var description = "Terra Circle has {critical_chance_bonus} increased critical strike chance.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.earthWizardSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "elemental_wizards_rpg:terra_drip_circle";
         modifier.power_modifier = new Spell.Impact.Modifier();
-        modifier.power_modifier.power_multiplier = 0.25F;
+        modifier.power_modifier.critical_chance_bonus = 0.1F;
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.EARTH));
     }
+    public static final MrpgSkillSpells.Entry earth_tier_4_spell_1_root = add(MrpgSkillsCommon.radiusRoot(
+            MrpgSkillSpells.Category.EARTH, MrpgSkillSpells.earthWizardSchool,
+            "earth_tier_4_spell_1_root", "elemental_wizards_rpg:terra_earthquake", "Earthquake", 1F));
     public static final MrpgSkillSpells.Entry earth_tier_4_spell_1_modifier_1 = add(earth_tier_4_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry earth_tier_4_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_4_spell_1_modifier_1");
@@ -203,14 +168,13 @@ public class EarthSkillSpells {
     private static MrpgSkillSpells.Entry earth_tier_4_spell_1_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_4_spell_1_modifier_2");
         var title = "Magnitude 10";
-        var description = "Increases the range of Earthquake by {range_add}.";
+        var description = "Increases the duration of Earthquake by {spawn_duration_add} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.earthWizardSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "elemental_wizards_rpg:terra_earthquake";
-        modifier.power_modifier = new Spell.Impact.Modifier();
-        modifier.range_add = 5;
+        modifier.spawn_duration_add = 3;
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.EARTH));
@@ -287,7 +251,7 @@ public class EarthSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_2_passive_1");
         var effect = MrpgSkillEffects.DIFFICULT_TERRAIN;
         var title = "Difficult Terrain";
-        var description = " {trigger_chance} chance upon rolling to leave difficult terrain behind for {cloud_duration} sec, slowing for {effect_duration} sec and dealing {damage} damage to enemies.";
+        var description = "{trigger_chance} chance upon rolling to leave difficult terrain behind for {cloud_duration} sec, slowing for {effect_duration} sec and dealing {damage} damage to enemies.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.earthWizardSchool;
@@ -330,7 +294,7 @@ public class EarthSkillSpells {
     private static MrpgSkillSpells.Entry earth_tier_2_passive_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_2_passive_2");
         var title = "Seismic Entry";
-        var description = " {trigger_chance_1} chance while rolling, to deal {damage} damage and knock up nearby enemies.";
+        var description = "{trigger_chance_1} chance while rolling to deal {damage} damage and knock up nearby enemies.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.earthWizardSchool;
@@ -405,7 +369,7 @@ public class EarthSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_3_passive_2");
         var title = "Aftershock";
         float radius = 5F;
-        var description = "Taking damage has {trigger_chance} chance to deal {damage} to nearby targets.";
+        var description = "Taking damage has {trigger_chance} chance to deal {damage} damage to nearby targets.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.earthWizardSchool;
         spell.range = radius;

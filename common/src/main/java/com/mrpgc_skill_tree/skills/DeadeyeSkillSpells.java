@@ -29,47 +29,72 @@ public class DeadeyeSkillSpells {
         return entry;
     }
 
-    ///DEADEYE MODIFIERS
-    public static final MrpgSkillSpells.Entry deadeye_tier_1_spell_1_modifier_1 = add(deadeye_tier_1_spell_1_modifier_1());
-    private static MrpgSkillSpells.Entry deadeye_tier_1_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_1_spell_1_modifier_1");
-        var title = "Poisonous Sting";
-        var description = "Fast Shot has {impact_chance} chance to apply stacking poison, lasting {effect_duration} sec.";
+    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_1_root = add(MrpgSkillsCommon.critRoot(
+            MrpgSkillSpells.Category.DEADEYE, MrpgSkillSpells.deadeyeSchool,
+            "deadeye_tier_2_spell_1_root", "archers_expansion:bouncing_arrow", "Bouncing Arrow", 0.05F));
+    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_1_modifier_1 = add(deadeye_tier_2_spell_1_modifier_1());
+    private static MrpgSkillSpells.Entry deadeye_tier_2_spell_1_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_2_spell_1_modifier_1");
+        var title = "Barbed Bouncing Arrows";
+        var description = "Bouncing Arrow's bleeding effect lasts {effect_duration_add} sec longer.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.deadeyeSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:bouncing_arrow";
+        modifier.effect_duration_add = 4;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
+    }
+    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_1_modifier_2 = add(deadeye_tier_2_spell_1_modifier_2());
+    private static MrpgSkillSpells.Entry deadeye_tier_2_spell_1_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_2_spell_1_modifier_2");
+        var title = "Bouncing Bouncing Arrows";
+        var description = "Bouncing Arrow now ricochets {ricochet} more times.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.deadeyeSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:bouncing_arrow";
+        modifier.projectile_perks = Spell.ProjectileData.Perks.EMPTY();
+        modifier.projectile_perks.ricochet = 3;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
+    }
+    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+            MrpgSkillSpells.Category.DEADEYE, MrpgSkillSpells.deadeyeSchool,
+            "deadeye_tier_2_spell_2_root", "archers_expansion:fast_shot", "Fast Shot", 0.1F));
+    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_2_modifier_1 = add(deadeye_tier_2_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry deadeye_tier_2_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_2_spell_2_modifier_1");
+        var title = "Swift Shots";
+        var description = "Fast Shot additionally increases movement speed by {bonus} for {effect_duration} sec.";
+        var effect = MrpgSkillEffects.HUNTING_FEVER;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var modifier = effect.config().firstModifier();
+            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+            return args.description().replace("{bonus}", bonus);
+        };
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.deadeyeSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:fast_shot";
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.PREPEND;
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
 
-        var debuff = SpellBuilder.Impacts.effectAdd(StatusEffects.POISON.getIdAsString(), 8, 1, 1);
-        debuff.action.status_effect.amplifier_cap_power_multiplier = 0.5F;
-        debuff.chance = 0.4F;
-        debuff.action.status_effect.refresh_duration = true;
-        debuff.particles = new ParticleBatch[]{(new ParticleBatch(
-                SpellEngineParticles.MagicParticles.get(
-                        SpellEngineParticles.MagicParticles.Shape.SPARK,
-                        SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                10, 0.5F, 0.8F)
-                .color(Color.POISON_MID.toRGBA())),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SKULL,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.5F, 0.8F)
-                        .color(Color.POISON_DARK.toRGBA()),
-        };
-        modifier.impacts = List.of(debuff);
+        var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 4, 0);
+        buff.action.apply_to_caster = true;
+        modifier.impacts = List.of(buff);
 
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
     }
-    public static final MrpgSkillSpells.Entry deadeye_tier_1_spell_1_modifier_2 = add(deadeye_tier_1_spell_1_modifier_2());
-    private static MrpgSkillSpells.Entry deadeye_tier_1_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_1_spell_1_modifier_2");
+    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_2_modifier_2 = add(deadeye_tier_2_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry deadeye_tier_2_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_2_spell_2_modifier_2");
         var title = "Fast Hands";
         var description = "Fast Shot applies {effect_amplifier_cap_add} additional Fast Shot stack.";
         var spell = SpellBuilder.createSpellModifier();
@@ -82,65 +107,73 @@ public class DeadeyeSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
     }
-    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_1_modifier_1 = add(deadeye_tier_2_spell_1_modifier_1());
-    private static MrpgSkillSpells.Entry deadeye_tier_2_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_2_spell_1_modifier_1");
-        var title = "Barbed Trick Arrows";
-        var description = "Trick Shot's bleeding effect lasts {effect_duration_add} sec longer.";
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = MrpgSkillSpells.deadeyeSchool;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "archers_expansion:trick_shot";
-        modifier.effect_duration_add = 4;
-        spell.modifiers = List.of(modifier);
-
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
-    }
-    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_1_modifier_2 = add(deadeye_tier_2_spell_1_modifier_2());
-    private static MrpgSkillSpells.Entry deadeye_tier_2_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_2_spell_1_modifier_2");
-        var title = "Bouncing Trick Shots";
-        var description = "Trick Shot now ricochets {ricochet} more times.";
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = MrpgSkillSpells.deadeyeSchool;
-
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "archers_expansion:trick_shot";
-        modifier.projectile_perks = Spell.ProjectileData.Perks.EMPTY();
-        modifier.projectile_perks.ricochet = 3;
-        spell.modifiers = List.of(modifier);
-
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
-    }
+    public static final MrpgSkillSpells.Entry deadeye_tier_3_spell_1_root = add(MrpgSkillsCommon.radiusRoot(
+            MrpgSkillSpells.Category.DEADEYE, MrpgSkillSpells.deadeyeSchool,
+            "deadeye_tier_3_spell_1_root", "archers_expansion:venom_cask", "Venom Cask", 1F));
     public static final MrpgSkillSpells.Entry deadeye_tier_3_spell_1_modifier_1 = add(deadeye_tier_3_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry deadeye_tier_3_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_3_spell_1_modifier_1");
-        var title = "Wounding Shot";
-        var description = "If the target has a bad effect Disabling Shot inflicts grievous wounds for {effect_duration} sec.";
-        var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
+        var title = "Persistent Venom";
+        var description = "Increases the effect amplifier cap of Venom Cask's poison by {effect_amplifier_cap_add}.";
+        var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.deadeyeSchool;
-        spell.range = 0;
 
-        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
-        var trigger = SpellBuilder.Triggers.specificSpellHit("archers_expansion:disabling_shot");
-        var condition = new Spell.TargetCondition();
-        condition.entity_predicate_id = SpellEntityPredicates.HAS_BAD_EFFECT.id().toString();
-        trigger.target_conditions = List.of(condition);
-        spell.passive.triggers = List.of(trigger);
-
-        var debuff = SpellBuilder.Impacts.effectSet(MRPGCEffects.GRIEVOUS_WOUNDS.id.toString(), 6, 0);
-        debuff.action.status_effect.amplifier_power_multiplier = 0.25F;
-        debuff.action.status_effect.refresh_duration = true;
-        spell.impacts = List.of(debuff);
-
-        SpellBuilder.Cost.cooldown(spell, 0.5F);
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:venom_cask";
+        modifier.effect_amplifier_cap_add = 1;
+        spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
     }
     public static final MrpgSkillSpells.Entry deadeye_tier_3_spell_1_modifier_2 = add(deadeye_tier_3_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry deadeye_tier_3_spell_1_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_3_spell_1_modifier_2");
+        var title = "Sticky Toxic Slime";
+        var description = "Venom Cask additionally slows targets by {bonus} for {effect_duration} sec.";
+        var bonus = 0.3F;
+        SpellTooltip.DescriptionMutator mutator = (args) ->
+                args.description().replace("{bonus}", SpellTooltip.percent(bonus));
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.deadeyeSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:venom_cask";
+
+        var slow = SpellBuilder.Impacts.effectSet(StatusEffects.SLOWNESS.getIdAsString(), 4, 0);
+        slow.action.status_effect.amplifier_power_multiplier = bonus;
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(slow);
+
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
+    }
+    public static final MrpgSkillSpells.Entry deadeye_tier_3_spell_2_root = add(MrpgSkillsCommon.lingerRoot(
+            MrpgSkillSpells.Category.DEADEYE, MrpgSkillSpells.deadeyeSchool,
+            "deadeye_tier_3_spell_2_root", "archers_expansion:disabling_shot", "Disabling Shot", 1F));
+    public static final MrpgSkillSpells.Entry deadeye_tier_3_spell_2_modifier_1 = add(deadeye_tier_3_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry deadeye_tier_3_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_3_spell_2_modifier_1");
+        var title = "Wounding Shot";
+        var description = "Disabling Shot has {impact_chance} chance to stun the target.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.deadeyeSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:disabling_shot";
+
+        var stun = SpellBuilder.Impacts.stun(2F);
+        stun.chance = 0.35F;
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(stun);
+
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
+    }
+    public static final MrpgSkillSpells.Entry deadeye_tier_3_spell_2_modifier_2 = add(deadeye_tier_3_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry deadeye_tier_3_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_3_spell_2_modifier_2");
         var title = "Leaping Swiftness";
         var description = "Disabling Shot increases movement speed by {bonus} for {effect_duration} secs.";
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
@@ -175,6 +208,9 @@ public class DeadeyeSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
     }
+    public static final MrpgSkillSpells.Entry deadeye_tier_4_spell_1_root = add(MrpgSkillsCommon.radiusRoot(
+            MrpgSkillSpells.Category.DEADEYE, MrpgSkillSpells.deadeyeSchool,
+            "deadeye_tier_4_spell_1_root", "archers_expansion:choking_gas", "Choking Gas", 1F));
     public static final MrpgSkillSpells.Entry deadeye_tier_4_spell_1_modifier_1 = add(deadeye_tier_4_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry deadeye_tier_4_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_4_spell_1_modifier_1");
@@ -235,13 +271,64 @@ public class DeadeyeSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
     }
+    public static final MrpgSkillSpells.Entry deadeye_tier_4_spell_2_root = add(MrpgSkillsCommon.companionRoot(
+            MrpgSkillSpells.Category.DEADEYE, MrpgSkillSpells.deadeyeSchool,
+            "deadeye_tier_4_spell_2_root", "archers_expansion:alter_ego", "Alter Ego", 5));
+    public static final MrpgSkillSpells.Entry deadeye_tier_4_spell_2_modifier_1 = add(deadeye_tier_4_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry deadeye_tier_4_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_4_spell_2_modifier_1");
+        var title = "Trickful Deceivers";
+        var description = "Alter Ego spawns {summon_spawn_count_add} additional decoy copies.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.deadeyeSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:alter_ego";
+        modifier.summon_spawn_count_add = 2;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
+    }
+    public static final MrpgSkillSpells.Entry deadeye_tier_4_spell_2_modifier_2 = add(deadeye_tier_4_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry deadeye_tier_4_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_4_spell_2_modifier_2");
+        var title = "Shocking Revelation";
+        var description = "Casting Alter Ego stuns nearby enemies for {effect_duration} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.deadeyeSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:alter_ego";
+
+        var radius = 4F;
+        var stun = SpellBuilder.Impacts.stun(2F);
+        var area_impact = new Spell.AreaImpact();
+        area_impact.execute_action_type = Spell.Impact.Action.Type.STATUS_EFFECT;
+        area_impact.radius = radius;
+        area_impact.area = new Spell.Target.Area();
+        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+        area_impact.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.smoke_large.id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        20, 0.2F, 0.4F)
+        };
+
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(stun);
+        modifier.replacing_area_impact = area_impact;
+
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
+    }
     public static final Color SHADOW_COLOR = Color.from(0x00B0B0);
     ///DEADEYE PASSIVES
     public static final MrpgSkillSpells.Entry deadeye_tier_1_passive_1 = add(deadeye_tier_1_passive_1());
     private static MrpgSkillSpells.Entry deadeye_tier_1_passive_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_1_passive_1");
         var title = "Barbed Arrows";
-        var description = "Arrows have {trigger_chance} chance, to stack bleeding to the target for {effect_duration} sec.";
+        var description = "Arrows have {trigger_chance} chance to stack bleeding to the target for {effect_duration} sec.";
         var effect = SpellEngineEffects.BLEED;
 
         var spell = SpellBuilder.createSpellPassive();
@@ -272,7 +359,7 @@ public class DeadeyeSkillSpells {
     private static MrpgSkillSpells.Entry deadeye_tier_1_passive_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_1_passive_2");
         var title = "Withdraw";
-        var description = "Arrows have {trigger_chance} chance, to cure a negative condition and heal for {heal} hearts.";
+        var description = "Arrows have {trigger_chance} chance to cure a negative condition and heal for {heal} hearts.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.deadeyeSchool;
@@ -406,7 +493,7 @@ public class DeadeyeSkillSpells {
     private static MrpgSkillSpells.Entry deadeye_tier_3_passive_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_3_passive_1");
         var title = "Heartseeker";
-        var description = "Arrows have {trigger_chance} chance, to deal more damage the less health the target has.";
+        var description = "Arrows have {trigger_chance} chance to deal more damage the less health the target has.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.deadeyeSchool;
@@ -445,7 +532,7 @@ public class DeadeyeSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_3_passive_2");
         var title = "Shadow Refuge";
         final var healthThreshold = 0.35F;
-        var description = "Upon taking damage below {threshold} health you create a area that heals you for {heal} hearts and gives you invisibility for {effect_duration} secs.";
+        var description = "Upon taking damage below {threshold} health you create an area that heals you for {heal} hearts and gives you invisibility for {effect_duration} secs.";
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var threshold = SpellTooltip.percent(healthThreshold);
             return args.description()

@@ -50,7 +50,7 @@ public class MrpgSkillEffects {
     ));
     public static Effects.Entry EYE_OF_THE_STORM = add(new Effects.Entry(Identifier.of(MOD_ID, "eye_of_the_storm"),
             "Eye of the Storm",
-            "Increased air spell critical Chance",
+            "Increased air spell critical chance.",
             new SpellVulnerabilityStatusEffect(StatusEffectCategory.HARMFUL, MoreSpellSchools.AIR.color)
                     .setVulnerability(MoreSpellSchools.AIR, new SpellPower.Vulnerability(0, 0.075F, 0))
             ,
@@ -230,6 +230,20 @@ public class MrpgSkillEffects {
                                     EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
                                     0.35F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry BUBBLE_SHIELD = add(new Effects.Entry(Identifier.of(MOD_ID, "bubble_shield"),
+            "Bubble Shield",
+            "Absorbs damage.",
+            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.WATER.color),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
+                                    2,
+                                    EntityAttributeModifier.Operation.ADD_VALUE
                             )
                     )
             )
@@ -552,6 +566,25 @@ public class MrpgSkillEffects {
                     )
             )
     ));
+    public static Effects.Entry FIELD_ADVANTAGE = add(new Effects.Entry(Identifier.of(MOD_ID, "field_advantage"),
+            "Field Advantage",
+            "Increased Ranged Haste and reduced incoming damage.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes_RangedWeapon.HASTE.id,
+                                    0.15F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    SpellEngineAttributes.DAMAGE_TAKEN.id.toString(),
+                                    -0.15F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL
+                            )
+                    )
+            )
+    ));
     public static Effects.Entry WINTERS_CLOAK = add(new Effects.Entry(Identifier.of(MOD_ID, "winters_cloak"),
             "Winters Cloak",
             "Absorbs damage.",
@@ -568,7 +601,7 @@ public class MrpgSkillEffects {
     ));
     public static Effects.Entry HUNTING_FEVER = add(new Effects.Entry(Identifier.of(MOD_ID, "hunting_fever"),
             "Hunting Fever",
-            "Increased Frost Spell Power and Ranged Damage",
+            "Increased Movement Speed and Ranged Haste",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
             new EffectConfig(
                     List.of(

@@ -5,8 +5,8 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "archers_expansion:frozen_shot",
-      "effect_duration_add": 3.0
+      "spell_pattern": "archers_expansion:frozen_pact",
+      "effect_duration_add": 1.0
     }
   ]
 }

@@ -1,12 +1,38 @@
 {
   "school": "spell_power:fire_ranged",
-  "range": 0.0,
+  "range": 6.0,
   "tier": 1,
-  "type": "MODIFIER",
-  "modifiers": [
+  "tooltip": {
+    "show_activation": false
+  },
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "target_override": "CASTER",
+        "type": "SPELL_CAST",
+        "spell": {
+          "id": "archers_expansion:scorched_earth"
+        }
+      }
+    ]
+  },
+  "target": {
+    "type": "AREA",
+    "area": {}
+  },
+  "impacts": [
     {
-      "spell_pattern": "archers_expansion:pin_down",
-      "effect_duration_add": 3.0
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "mrpgc_skill_tree:bloodflow",
+          "duration": 8.0
+        }
+      }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

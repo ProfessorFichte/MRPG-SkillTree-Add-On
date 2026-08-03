@@ -5,7 +5,7 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "archers_expansion:trick_shot",
+      "spell_pattern": "archers_expansion:bouncing_arrow",
       "projectile_perks": {
         "ricochet": 3,
         "ricochet_range": 0.0,

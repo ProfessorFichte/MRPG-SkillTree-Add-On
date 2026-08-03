@@ -1,18 +1,22 @@
 {
-  "school": "spell_power:rage_melee",
+  "school": "spell_power:fire_ranged",
   "range": 0.0,
   "tier": 1,
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "berserker_rpg:wild_rage",
+      "spell_pattern": "archers_expansion:pin_down",
       "mutate_impacts": "APPEND",
       "impacts": [
         {
           "action": {
             "type": "STATUS_EFFECT",
             "status_effect": {
-              "effect_id": "mrpgc_skill_tree:blind_with_rage"
+              "effect_id": "spell_engine:bleed",
+              "duration": 6.0,
+              "amplifier": 1,
+              "amplifier_cap": 2,
+              "apply_mode": "ADD"
             }
           }
         }

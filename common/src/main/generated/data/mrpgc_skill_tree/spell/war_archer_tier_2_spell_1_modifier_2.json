@@ -5,8 +5,8 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "archers_expansion:dual_shot",
-      "knockback_multiply_base": 1.0
+      "spell_pattern": "archers_expansion:smoldering_arrow",
+      "knockback_multiply_base": 0.5
     }
   ]
 }

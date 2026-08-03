@@ -9,6 +9,7 @@ import net.more_rpg_classes.custom.MoreSpellSchools;
 import net.more_rpg_classes.effect.MRPGCEffects;
 import net.skill_tree_rpgs.skills.SkillSounds;
 import net.spell_engine.api.datagen.SpellBuilder;
+import net.spell_engine.api.effect.SpellEngineEffects;
 import net.spell_engine.api.entity.SpellEntityPredicates;
 import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.ExternalSpellSchools;
@@ -41,10 +42,12 @@ public class WarArcherSkillSpells {
         return entry;
     }
 
-    ///WAR ARCHER MODIFIERS
-    public static final MrpgSkillSpells.Entry war_archer_tier_1_spell_1_modifier_1 = add(war_archer_tier_1_spell_1_modifier_1());
-    private static MrpgSkillSpells.Entry war_archer_tier_1_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_1_spell_1_modifier_1");
+    public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_1_root = add(MrpgSkillsCommon.radiusRoot(
+            MrpgSkillSpells.Category.WAR_ARCHER, MrpgSkillSpells.warArcherSchool,
+            "war_archer_tier_2_spell_1_root", "archers_expansion:smoldering_arrow", "Smoldering Arrow", 0.5F));
+    public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_1_modifier_1 = add(war_archer_tier_2_spell_1_modifier_1());
+    private static MrpgSkillSpells.Entry war_archer_tier_2_spell_1_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_1_modifier_1");
         var title = "Expanded Smoldering Arrow";
 
         var bonus = 0.5F;
@@ -79,9 +82,9 @@ public class WarArcherSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
-    public static final MrpgSkillSpells.Entry war_archer_tier_1_spell_1_modifier_2 = add(war_archer_tier_1_spell_1_modifier_2());
-    private static MrpgSkillSpells.Entry war_archer_tier_1_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_1_spell_1_modifier_2");
+    public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_1_modifier_2 = add(war_archer_tier_2_spell_1_modifier_2());
+    private static MrpgSkillSpells.Entry war_archer_tier_2_spell_1_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_1_modifier_2");
         var title = "Explosive Push";
         var description = "Increases the knockback of Smoldering Arrow by {knockback_multiply_base}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -96,41 +99,37 @@ public class WarArcherSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
-    public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_1_modifier_1 = add(war_archer_tier_2_spell_1_modifier_1());
-    private static MrpgSkillSpells.Entry war_archer_tier_2_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_1_modifier_1");
-        var title = "Flaming Double Shot";
-        var description = "Double Shot deals {power_multiplier} more damage and lights enemies on fire.";
-        var spell = SpellBuilder.createSpellModifier();
+    public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_2_root = add(MrpgSkillsCommon.critRoot(
+            MrpgSkillSpells.Category.WAR_ARCHER, MrpgSkillSpells.warArcherSchool,
+            "war_archer_tier_2_spell_2_root", "archers_expansion:dual_shot", "Double Shot", 0.05F));
+    public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_2_modifier_1 = add(war_archer_tier_2_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry war_archer_tier_2_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_2_modifier_1");
+        var title = "Instant Reload";
+        var description = "Double Shot has {trigger_chance} chance to reset its own cooldown.";
+        var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.warArcherSchool;
+        spell.range = 0;
 
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "archers_expansion:dual_shot";
-        modifier.power_modifier = new Spell.Impact.Modifier();
-        modifier.power_modifier.power_multiplier = 0.1F;
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var impact = SpellBuilder.Impacts.fire(2F);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.flame_medium_a.id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        1, 0.1F, 0.2F),
-                new ParticleBatch(
-                        SpellEngineParticles.flame_medium_b.id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        1, 0.1F, 0.2F)
-        };
-        impact.sound = Sound.withVolume(SpellEngineSounds.GENERIC_FIRE_IGNITE.id(), 0.6F);
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(impact);
+        var trigger = SpellBuilder.Triggers.specificSpellHit("archers_expansion:dual_shot");
+        trigger.chance = 0.25F;
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
 
-        spell.modifiers = List.of(modifier);
+        var reset = SpellBuilder.Impacts.resetCooldownActive("archers_expansion:dual_shot");
+        reset.action.apply_to_caster = true;
+        reset.sound = new Sound(SpellEngineSounds.SPELL_COOLDOWN_IMPACT.id());
+        spell.impacts = List.of(reset);
+
+        SpellBuilder.Cost.cooldown(spell, 5F);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
-    public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_1_modifier_2 = add(war_archer_tier_2_spell_1_modifier_2());
-    private static MrpgSkillSpells.Entry war_archer_tier_2_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_1_modifier_2");
+    public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_2_modifier_2 = add(war_archer_tier_2_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry war_archer_tier_2_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_2_modifier_2");
         var title = "Heavy Arrow Tips";
         var description = "Increases the knockback of Double Shot by {knockback_multiply_base}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -145,39 +144,20 @@ public class WarArcherSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
+    public static final MrpgSkillSpells.Entry war_archer_tier_3_spell_1_root = add(MrpgSkillsCommon.cooldownRoot(
+            MrpgSkillSpells.Category.WAR_ARCHER, MrpgSkillSpells.warArcherSchool,
+            "war_archer_tier_3_spell_1_root", "archers_expansion:explosive_barrel", "Explosive Barrel", 2F));
     public static final MrpgSkillSpells.Entry war_archer_tier_3_spell_1_modifier_1 = add(war_archer_tier_3_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry war_archer_tier_3_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_3_spell_1_modifier_1");
-        var title = "Explosive Point Blank Shot";
-        var description = "Damaging with Point Blank Shot causes small explosion, hitting enemies within {impact_range} blocks radius, dealing extra {damage} damage.";
+        var title = "Potent Saltpeter";
+        var description = "Increases the range of the Explosive Barrel's explosion by {range_add} blocks.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.warArcherSchool;
 
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "archers_expansion:point_blank_shot";
-        var impact = SpellBuilder.Impacts.damage(0.5F, 0.0F);
-        impact.action.allow_on_center_target = false;
-
-        var radius = 2F;
-
-        var area_impact = new Spell.AreaImpact();
-        area_impact.execute_action_type = Spell.Impact.Action.Type.DAMAGE;
-        area_impact.sound = new Sound("entity.generic.explode");
-        area_impact.radius = radius;
-        area_impact.area = new Spell.Target.Area();
-        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-        area_impact.particles = new ParticleBatch[]{(new ParticleBatch("spell_engine:fire_explosion",
-                ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 1.0F, 0.0F, 0.0F)).scale(2),
-                new ParticleBatch("spell_engine:flame_medium_b",
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 25.0F, 0.1F, 0.3F).preSpawnTravel(2).extent(2),
-                new ParticleBatch("spell_engine:flame_medium_b",
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 25.0F, 0.2F, 0.4F).preSpawnTravel(4).extent(4)
-        };
-
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(impact);
-        modifier.replacing_area_impact = area_impact;
-
+        modifier.spell_pattern = "archers_expansion:explosive_barrel_explosion";
+        modifier.range_add = 2F;
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
@@ -185,6 +165,61 @@ public class WarArcherSkillSpells {
     public static final MrpgSkillSpells.Entry war_archer_tier_3_spell_1_modifier_2 = add(war_archer_tier_3_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry war_archer_tier_3_spell_1_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_3_spell_1_modifier_2");
+        var title = "Barrel Supply";
+        var description = "Explosive Barrel has {impact_chance} chance to place 2 additional barrels nearby.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.warArcherSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:explosive_barrel";
+
+        var spawnImpact = new Spell.Impact();
+        spawnImpact.chance = 0.5F;
+        spawnImpact.action = new Spell.Impact.Action();
+        spawnImpact.action.type = Spell.Impact.Action.Type.SPAWN;
+        spawnImpact.action.apply_to_caster = true;
+
+        var spawnA = new Spell.Impact.Action.Spawn();
+        spawnA.entity_type_id = "archers_expansion:explosive_barrel";
+        spawnA.time_to_live_seconds = 32;
+        spawnA.placement.location_offset_by_look = 2.0F;
+        spawnA.placement.location_yaw_offset = 90F;
+        spawnA.placement.apply_yaw = true;
+
+        var spawnB = spawnA.copy();
+        spawnB.placement = spawnA.placement.copy();
+        spawnB.placement.location_yaw_offset = -90F;
+
+        spawnImpact.action.spawns = List.of(spawnA, spawnB);
+
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(spawnImpact);
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+    }
+    public static final MrpgSkillSpells.Entry war_archer_tier_3_spell_2_root = add(MrpgSkillsCommon.critRoot(
+            MrpgSkillSpells.Category.WAR_ARCHER, MrpgSkillSpells.warArcherSchool,
+            "war_archer_tier_3_spell_2_root", "archers_expansion:point_blank_shot", "Point Blank Shot", 0.05F));
+    public static final MrpgSkillSpells.Entry war_archer_tier_3_spell_2_modifier_1 = add(war_archer_tier_3_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry war_archer_tier_3_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_3_spell_2_modifier_1");
+        var title = "Stronger Point Blank Shot";
+        var description = "Point Blank Shot deals {power_multiplier} more damage.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.warArcherSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:point_blank_shot";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.power_modifier.power_multiplier = 0.3F;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+    }
+    public static final MrpgSkillSpells.Entry war_archer_tier_3_spell_2_modifier_2 = add(war_archer_tier_3_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry war_archer_tier_3_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_3_spell_2_modifier_2");
         var title = "Heavy Point Blank Shot";
         var description = "Point Blank Shot has {trigger_chance} chance to stun the target.";
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
@@ -203,27 +238,77 @@ public class WarArcherSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
+    public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_1_root = add(MrpgSkillsCommon.radiusRoot(
+            MrpgSkillSpells.Category.WAR_ARCHER, MrpgSkillSpells.warArcherSchool,
+            "war_archer_tier_4_spell_1_root", "archers_expansion:scorched_earth", "Scorched Earth", 0.5F));
     public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_1_modifier_1 = add(war_archer_tier_4_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry war_archer_tier_4_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_4_spell_1_modifier_1");
-        var title = "Combustive Shot";
-        var description = "Pin Down leaves a burning area behind, dealing {damage} damage to enemies, for {cloud_duration} sec.";
-        var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
+        var title = "Wild Flames";
+        var description = "Increases the range of Scorched Earth by {range_add} blocks.";
+        var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.warArcherSchool;
-        spell.range = 0;
 
-        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
-
-        var trigger = SpellBuilder.Triggers.specificSpellCast("archers_expansion:pin_down");
-        spell.passive.triggers = List.of(trigger);
-
-        SpellBuilder.Complex.flameCloud(spell, 3.5F, 0.25F, 3, null);
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:scorched_earth";
+        modifier.range_add = 10F;
+        spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_1_modifier_2 = add(war_archer_tier_4_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry war_archer_tier_4_spell_1_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_4_spell_1_modifier_2");
+        var effect = MrpgSkillEffects.BLOODFLOW;
+        var title = "Charge from the Flames";
+        var description = "Casting Scorched Earth grants you and nearby allies Bloodflow, increasing attack damage by {bonus} for {effect_duration} sec.";
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var modifier = effect.config().firstModifier();
+            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+            return args.description().replace("{bonus}", bonus);
+        };
+        var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
+        spell.school = MrpgSkillSpells.warArcherSchool;
+        spell.range = 6F;
+
+        spell.target.type = Spell.Target.Type.AREA;
+        spell.target.area = new Spell.Target.Area();
+
+        var trigger = SpellBuilder.Triggers.specificSpellCast("archers_expansion:scorched_earth");
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
+        var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 8, 0);
+        spell.impacts = List.of(buff);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+    }
+    public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_2_root = add(MrpgSkillsCommon.lingerRoot(
+            MrpgSkillSpells.Category.WAR_ARCHER, MrpgSkillSpells.warArcherSchool,
+            "war_archer_tier_4_spell_2_root", "archers_expansion:pin_down", "Pin Down", 1F));
+    public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_2_modifier_1 = add(war_archer_tier_4_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry war_archer_tier_4_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_4_spell_2_modifier_1");
+        var title = "Deep Wounding Shot";
+        var description = "Pin Down additionally inflicts a strong Bleeding effect for {effect_duration} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.warArcherSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:pin_down";
+
+        var debuff = SpellBuilder.Impacts.effectAdd(SpellEngineEffects.BLEED.id.toString(), 6, 1, 2);
+        debuff.action.status_effect.refresh_duration = true;
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(debuff);
+
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+    }
+    public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_2_modifier_2 = add(war_archer_tier_4_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry war_archer_tier_4_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_4_spell_2_modifier_2");
         var title = "Increased Pin Down";
         var description = "Increases the effect duration of Pin Down by {effect_duration_add}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -241,7 +326,7 @@ public class WarArcherSkillSpells {
     private static MrpgSkillSpells.Entry war_archer_tier_1_passive_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_1_passive_1");
         var title = "Bombardment";
-        var description = "If the target is on fire, create a explosion dealing {damage} damage.";
+        var description = "If the target is on fire, create an explosion dealing {damage} damage.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.warArcherSchool;
@@ -277,8 +362,8 @@ public class WarArcherSkillSpells {
     public static final MrpgSkillSpells.Entry war_archer_tier_1_passive_2 = add(war_archer_tier_1_passive_2());
     private static MrpgSkillSpells.Entry war_archer_tier_1_passive_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_1_passive_2");
-        var title = "Tower's Watch";
-        var description = "Your arrow hits have {trigger_chance} to increase your armor and knockback resistance for {effect_duration} sec.";
+        var title = "Protector of the Tower";
+        var description = "Your arrow hits have {trigger_chance} chance to increase your armor and knockback resistance for {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.warArcherSchool;

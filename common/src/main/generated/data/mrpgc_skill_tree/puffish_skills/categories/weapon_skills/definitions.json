@@ -1,0 +1,446 @@
+{
+  "weapon_aqua_staff_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_aqua_staff_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_water_whip.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_aqua_staff_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_aqua_staff_modifier_1.title"
+    }
+  },
+  "weapon_aqua_staff_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_aqua_staff_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_water_whip.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_aqua_staff_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_aqua_staff_modifier_2.title"
+    }
+  },
+  "weapon_aqua_staff_root": {
+    "description": {
+      "skill_definition_id": "weapon_aqua_staff_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_water_whip.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_aqua_staff_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_aqua_staff_root.title"
+    }
+  },
+  "weapon_knuckle_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_knuckle_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "forcemaster_rpg:textures/spell/burstcrack.png"
+      }
+    },
+    "required_mods": [
+      "forcemaster_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_knuckle_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_knuckle_modifier_1.title"
+    }
+  },
+  "weapon_knuckle_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_knuckle_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "forcemaster_rpg:textures/spell/burstcrack.png"
+      }
+    },
+    "required_mods": [
+      "forcemaster_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_knuckle_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_knuckle_modifier_2.title"
+    }
+  },
+  "weapon_knuckle_root": {
+    "description": {
+      "skill_definition_id": "weapon_knuckle_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "forcemaster_rpg:textures/spell/burstcrack.png"
+      }
+    },
+    "required_mods": [
+      "forcemaster_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_knuckle_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_knuckle_root.title"
+    }
+  },
+  "weapon_terra_staff_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_terra_staff_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/terra_stone_spear.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_terra_staff_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_terra_staff_modifier_1.title"
+    }
+  },
+  "weapon_terra_staff_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_terra_staff_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/terra_stone_spear.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_terra_staff_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_terra_staff_modifier_2.title"
+    }
+  },
+  "weapon_terra_staff_root": {
+    "description": {
+      "skill_definition_id": "weapon_terra_staff_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/terra_stone_spear.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_terra_staff_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_terra_staff_root.title"
+    }
+  },
+  "weapon_wind_staff_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_wind_staff_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/wind_air_cutter.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_wind_staff_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_wind_staff_modifier_1.title"
+    }
+  },
+  "weapon_wind_staff_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_wind_staff_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/wind_air_cutter.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_wind_staff_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_wind_staff_modifier_2.title"
+    }
+  },
+  "weapon_wind_staff_root": {
+    "description": {
+      "skill_definition_id": "weapon_wind_staff_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/wind_air_cutter.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_wind_staff_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_wind_staff_root.title"
+    }
+  }
+}

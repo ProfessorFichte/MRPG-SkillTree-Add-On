@@ -6,9 +6,20 @@
   "modifiers": [
     {
       "spell_pattern": "berserker_rpg:bloody_strike",
-      "power_modifier": {
-        "power_multiplier": 0.25
-      }
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "attribute_from_target": true,
+          "attribute": "minecraft:generic.max_health",
+          "action": {
+            "type": "DAMAGE",
+            "damage": {
+              "spell_power_coefficient": 0.1,
+              "knockback": 0.0
+            }
+          }
+        }
+      ]
     }
   ]
 }

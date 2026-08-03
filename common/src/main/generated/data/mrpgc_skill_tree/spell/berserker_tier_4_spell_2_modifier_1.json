@@ -1,0 +1,44 @@
+{
+  "school": "spell_power:rage_melee",
+  "range": 0.0,
+  "tier": 1,
+  "tooltip": {
+    "show_activation": false
+  },
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "target_conditions": [
+          {
+            "health_percent_below": 0.0
+          }
+        ],
+        "spell": {
+          "id": "berserker_rpg:northerners_guillotine"
+        },
+        "impact": {
+          "impact_type": "DAMAGE"
+        }
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "STATUS_EFFECT",
+        "apply_to_caster": true,
+        "status_effect": {
+          "effect_id": "mrpgc_skill_tree:bloodflow"
+        }
+      }
+    }
+  ],
+  "cost": {
+    "durability": 0
+  }
+}

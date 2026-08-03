@@ -6,11 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "archers_expansion:smoldering_arrow",
-      "replacing_area_impact": {
-        "sound": {
-          "id": "entity.generic.explode"
-        }
-      }
+      "range_add": 0.5
     }
   ]
 }

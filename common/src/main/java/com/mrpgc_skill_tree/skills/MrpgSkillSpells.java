@@ -22,7 +22,7 @@ import static com.mrpgc_skill_tree.MRPGCSkillTreeAddOn.MOD_ID;
 public class MrpgSkillSpells {
     public static final String NAMESPACE = MOD_ID;
     public enum Category {
-        AIR, EARTH, WATER, BERSERKER, FORCEMASTER, WAR_ARCHER, DEADEYE, TUNDRA_HUNTER
+        AIR, EARTH, WATER, BERSERKER, FORCEMASTER, WAR_ARCHER, DEADEYE, TUNDRA_HUNTER, WEAPON
     }
     public record Entry(Identifier id, Spell spell, String title, String description,
                         @Nullable SpellTooltip.DescriptionMutator mutator, EnumSet<Category> categories) {
@@ -99,5 +99,6 @@ public class MrpgSkillSpells {
         all.addAll(WarArcherSkillSpells.all);
         all.addAll(DeadeyeSkillSpells.all);
         all.addAll(TundraHunterSkillSpells.all);
+        all.addAll(MrpgWeaponSkills.all);
     }
 }

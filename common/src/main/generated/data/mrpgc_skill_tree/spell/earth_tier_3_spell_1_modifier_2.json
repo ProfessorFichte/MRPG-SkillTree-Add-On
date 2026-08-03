@@ -7,7 +7,7 @@
     {
       "spell_pattern": "elemental_wizards_rpg:terra_drip_circle",
       "power_modifier": {
-        "power_multiplier": 0.25
+        "critical_chance_bonus": 0.1
       }
     }
   ]

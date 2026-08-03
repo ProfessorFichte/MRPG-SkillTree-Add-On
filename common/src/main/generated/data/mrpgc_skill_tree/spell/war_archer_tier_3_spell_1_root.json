@@ -5,8 +5,8 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "archers_expansion:smoldering_arrow",
-      "knockback_multiply_base": 0.5
+      "spell_pattern": "archers_expansion:explosive_barrel",
+      "cooldown_duration_deduct": 2.0
     }
   ]
 }
