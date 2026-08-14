@@ -1,0 +1,56 @@
+{
+  "school": "spell_power:arcane",
+  "range": 10.0,
+  "tier": 1,
+  "tooltip": {
+    "show_activation": false
+  },
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "SPELL_CAST",
+        "chance": 0.2,
+        "spell": {
+          "id": "forcemaster_rpg:nen_sphere"
+        }
+      }
+    ]
+  },
+  "target": {
+    "type": "NONE"
+  },
+  "deliver": {
+    "type": "CUSTOM",
+    "custom": {
+      "handler": "forcemaster_rpg:nen_sphere"
+    }
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.35
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "spell_engine:magic_arcane_burst",
+          "origin": "CENTER",
+          "shape": "SPHERE",
+          "count": 10.0,
+          "min_speed": 0.2,
+          "max_speed": 0.4,
+          "color_rgba": 4284940287
+        }
+      ]
+    }
+  ],
+  "cost": {
+    "durability": 0,
+    "cooldown": {
+      "duration": 1.0
+    }
+  }
+}

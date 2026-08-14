@@ -219,6 +219,59 @@ public class ForcemasterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
+    public static final MrpgSkillSpells.Entry forcemaster_tier_3_spell_2_root = add(MrpgSkillsCommon.critRoot(
+            MrpgSkillSpells.Category.FORCEMASTER, MrpgSkillSpells.forcemasterFighterSchool,
+            "forcemaster_tier_3_spell_2_root", "forcemaster_rpg:nen_sphere", "Nen Sphere", 0.05F));
+    public static final MrpgSkillSpells.Entry forcemaster_tier_3_spell_2_modifier_1 = add(forcemaster_tier_3_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry forcemaster_tier_3_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_3_spell_2_modifier_1");
+        var title = "Sphere Mastery";
+        var description = "Nen Sphere has {critical_chance_bonus} increased critical strike chance.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.forcemasterFighterSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "forcemaster_rpg:nen_sphere";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.power_modifier.critical_chance_bonus = 0.15F;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+    }
+    public static final MrpgSkillSpells.Entry forcemaster_tier_3_spell_2_modifier_2 = add(forcemaster_tier_3_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry forcemaster_tier_3_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_3_spell_2_modifier_2");
+        var title = "Continuous Shooting";
+        var description = "Casting Nen Sphere has {trigger_chance} chance to immediately fire an additional, weaker sphere.";
+        var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
+        spell.school = MrpgSkillSpells.forcemasterCasterSchool;
+        spell.range = 10;
+
+        var trigger = SpellBuilder.Triggers.specificSpellCast("forcemaster_rpg:nen_sphere");
+        trigger.chance = 0.2F;
+        spell.passive.triggers = List.of(trigger);
+
+        spell.target.type = Spell.Target.Type.NONE;
+        spell.deliver.type = Spell.Delivery.Type.CUSTOM;
+        spell.deliver.custom = new Spell.Delivery.Custom();
+        spell.deliver.custom.handler = "forcemaster_rpg:nen_sphere";
+
+        var damage = SpellBuilder.Impacts.damage(0.35F);
+        damage.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.ARCANE,
+                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        10, 0.2F, 0.4F)
+                        .color(Color.ARCANE.toRGBA()),
+        };
+        spell.impacts = List.of(damage);
+
+        SpellBuilder.Cost.cooldown(spell, 1F);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+    }
     ///FORCEMASTER PASSIVES
     public static final MrpgSkillSpells.Entry forcemaster_tier_1_passive_1 = add(forcemaster_tier_1_passive_1());
     private static MrpgSkillSpells.Entry forcemaster_tier_1_passive_1() {
