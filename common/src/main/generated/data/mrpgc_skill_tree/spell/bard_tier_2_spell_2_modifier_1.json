@@ -1,0 +1,24 @@
+{
+  "school": "spell_power:arcane",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "bards_rpg:vicious_mockery",
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "action": {
+            "type": "STATUS_EFFECT",
+            "status_effect": {
+              "effect_id": "mrpgc_skill_tree:dirty_tricks",
+              "duration": 5.0,
+              "apply_mode": "ADD"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

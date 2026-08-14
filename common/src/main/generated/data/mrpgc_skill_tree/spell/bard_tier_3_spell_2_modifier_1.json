@@ -1,0 +1,30 @@
+{
+  "school": "spell_power:arcane",
+  "range": 0.0,
+  "tier": 1,
+  "type": "MODIFIER",
+  "modifiers": [
+    {
+      "spell_pattern": "bards_rpg:wardens_paean",
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "action": {
+            "type": "STATUS_EFFECT",
+            "status_effect": {
+              "effect_id": "mrpgc_skill_tree:bard_barrier",
+              "duration": 8.0,
+              "amplifier_power_multiplier": 0.15,
+              "apply_mode": "ADD"
+            }
+          }
+        }
+      ],
+      "impact_filters": [
+        {
+          "school": "spell_power:healing"
+        }
+      ]
+    }
+  ]
+}

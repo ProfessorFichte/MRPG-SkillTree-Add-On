@@ -611,6 +611,951 @@
       "translate": "skill.mrpgc_skill_tree.air_tier_4_spell_1_root.title"
     }
   },
+  "bard_boost": {
+    "description": {
+      "skill_definition_id": "bard_boost"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:iron_rapier"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "spell_power:arcane",
+          "operation": "multiply_base",
+          "value": 0.01
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_boost.title"
+    }
+  },
+  "bard_root": {
+    "description": {
+      "skill_definition_id": "bard_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "components": {
+          "spell_engine:item_model": "bards_rpg:item/spell_book/bard"
+        },
+        "item": "spell_engine:spell_book"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "spell_power:arcane",
+          "operation": "multiply_base",
+          "value": 0.01
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_root.title"
+    }
+  },
+  "bard_tier_1_passive_1": {
+    "description": {
+      "skill_definition_id": "bard_tier_1_passive_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "mrpgc_skill_tree:textures/spell/bard_tier_1_passive_1.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_1_passive_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_1_passive_1.title"
+    }
+  },
+  "bard_tier_1_passive_2": {
+    "description": {
+      "skill_definition_id": "bard_tier_1_passive_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "mrpgc_skill_tree:textures/spell/bard_tier_1_passive_2.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_1_passive_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_1_passive_2.title"
+    }
+  },
+  "bard_tier_2_passive_1": {
+    "description": {
+      "skill_definition_id": "bard_tier_2_passive_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "mrpgc_skill_tree:textures/spell/bard_tier_2_passive_1.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_2_passive_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_2_passive_1.title"
+    }
+  },
+  "bard_tier_2_passive_2": {
+    "description": {
+      "skill_definition_id": "bard_tier_2_passive_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "mrpgc_skill_tree:textures/spell/bard_tier_2_passive_2.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_2_passive_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_2_passive_2.title"
+    }
+  },
+  "bard_tier_2_spell_1_modifier_1": {
+    "description": {
+      "skill_definition_id": "bard_tier_2_spell_1_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "bards_rpg:textures/spell/magical_ballad.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_2_spell_1_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_2_spell_1_modifier_1.title"
+    }
+  },
+  "bard_tier_2_spell_1_modifier_2": {
+    "description": {
+      "skill_definition_id": "bard_tier_2_spell_1_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "bards_rpg:textures/spell/magical_ballad.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_2_spell_1_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_2_spell_1_modifier_2.title"
+    }
+  },
+  "bard_tier_2_spell_1_root": {
+    "description": {
+      "skill_definition_id": "bard_tier_2_spell_1_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "bards_rpg:textures/spell/magical_ballad.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_2_spell_1_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_2_spell_1_root.title"
+    }
+  },
+  "bard_tier_2_spell_2_modifier_1": {
+    "description": {
+      "skill_definition_id": "bard_tier_2_spell_2_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "bards_rpg:textures/spell/vicious_mockery.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_2_spell_2_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_2_spell_2_modifier_1.title"
+    }
+  },
+  "bard_tier_2_spell_2_modifier_2": {
+    "description": {
+      "skill_definition_id": "bard_tier_2_spell_2_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "bards_rpg:textures/spell/vicious_mockery.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_2_spell_2_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_2_spell_2_modifier_2.title"
+    }
+  },
+  "bard_tier_2_spell_2_root": {
+    "description": {
+      "skill_definition_id": "bard_tier_2_spell_2_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "bards_rpg:textures/spell/vicious_mockery.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_2_spell_2_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_2_spell_2_root.title"
+    }
+  },
+  "bard_tier_3_passive_1": {
+    "description": {
+      "skill_definition_id": "bard_tier_3_passive_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "mrpgc_skill_tree:textures/spell/bard_tier_3_passive_1.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_3_passive_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_3_passive_1.title"
+    }
+  },
+  "bard_tier_3_passive_2": {
+    "description": {
+      "skill_definition_id": "bard_tier_3_passive_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "mrpgc_skill_tree:textures/spell/bard_tier_3_passive_2.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_3_passive_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_3_passive_2.title"
+    }
+  },
+  "bard_tier_3_spell_1_modifier_1": {
+    "description": {
+      "skill_definition_id": "bard_tier_3_spell_1_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "bards_rpg:textures/spell/encore.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_3_spell_1_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_3_spell_1_modifier_1.title"
+    }
+  },
+  "bard_tier_3_spell_1_modifier_2": {
+    "description": {
+      "skill_definition_id": "bard_tier_3_spell_1_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "bards_rpg:textures/spell/encore.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_3_spell_1_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_3_spell_1_modifier_2.title"
+    }
+  },
+  "bard_tier_3_spell_1_root": {
+    "description": {
+      "skill_definition_id": "bard_tier_3_spell_1_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "bards_rpg:textures/spell/encore.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_3_spell_1_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_3_spell_1_root.title"
+    }
+  },
+  "bard_tier_3_spell_2_modifier_1": {
+    "description": {
+      "skill_definition_id": "bard_tier_3_spell_2_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "bards_rpg:textures/spell/wardens_paean.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_3_spell_2_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_3_spell_2_modifier_1.title"
+    }
+  },
+  "bard_tier_3_spell_2_modifier_2": {
+    "description": {
+      "skill_definition_id": "bard_tier_3_spell_2_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "bards_rpg:textures/spell/wardens_paean.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_3_spell_2_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_3_spell_2_modifier_2.title"
+    }
+  },
+  "bard_tier_3_spell_2_root": {
+    "description": {
+      "skill_definition_id": "bard_tier_3_spell_2_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "bards_rpg:textures/spell/wardens_paean.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_3_spell_2_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_3_spell_2_root.title"
+    }
+  },
+  "bard_tier_4_spell_1_modifier_1": {
+    "description": {
+      "skill_definition_id": "bard_tier_4_spell_1_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "bards_rpg:textures/spell/armys_paeon.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_4_spell_1_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_4_spell_1_modifier_1.title"
+    }
+  },
+  "bard_tier_4_spell_1_modifier_2": {
+    "description": {
+      "skill_definition_id": "bard_tier_4_spell_1_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "bards_rpg:textures/spell/armys_paeon.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_4_spell_1_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_4_spell_1_modifier_2.title"
+    }
+  },
+  "bard_tier_4_spell_1_root": {
+    "description": {
+      "skill_definition_id": "bard_tier_4_spell_1_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "bards_rpg:textures/spell/armys_paeon.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_4_spell_1_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_4_spell_1_root.title"
+    }
+  },
+  "bard_tier_4_spell_2_modifier_1": {
+    "description": {
+      "skill_definition_id": "bard_tier_4_spell_2_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "bards_rpg:textures/spell/crescendo.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_4_spell_2_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_4_spell_2_modifier_1.title"
+    }
+  },
+  "bard_tier_4_spell_2_modifier_2": {
+    "description": {
+      "skill_definition_id": "bard_tier_4_spell_2_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "bards_rpg:textures/spell/crescendo.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_4_spell_2_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_4_spell_2_modifier_2.title"
+    }
+  },
+  "bard_tier_4_spell_2_root": {
+    "description": {
+      "skill_definition_id": "bard_tier_4_spell_2_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "bards_rpg:textures/spell/crescendo.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:bard_tier_4_spell_2_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.bard_tier_4_spell_2_root.title"
+    }
+  },
   "berserker_boost": {
     "description": {
       "skill_definition_id": "berserker_boost"
@@ -3612,6 +4557,117 @@
     ],
     "title": {
       "translate": "skill.mrpgc_skill_tree.forcemaster_tier_3_spell_1_root.title"
+    }
+  },
+  "forcemaster_tier_3_spell_2_modifier_1": {
+    "description": {
+      "skill_definition_id": "forcemaster_tier_3_spell_2_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "forcemaster_rpg:textures/spell/nen_sphere.png"
+      }
+    },
+    "required_mods": [
+      "forcemaster_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:forcemaster_tier_3_spell_2_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.forcemaster_tier_3_spell_2_modifier_1.title"
+    }
+  },
+  "forcemaster_tier_3_spell_2_modifier_2": {
+    "description": {
+      "skill_definition_id": "forcemaster_tier_3_spell_2_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "forcemaster_rpg:textures/spell/nen_sphere.png"
+      }
+    },
+    "required_mods": [
+      "forcemaster_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:forcemaster_tier_3_spell_2_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.forcemaster_tier_3_spell_2_modifier_2.title"
+    }
+  },
+  "forcemaster_tier_3_spell_2_root": {
+    "description": {
+      "skill_definition_id": "forcemaster_tier_3_spell_2_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "forcemaster_rpg:textures/spell/nen_sphere.png"
+      }
+    },
+    "required_mods": [
+      "forcemaster_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:forcemaster_tier_3_spell_2_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.forcemaster_tier_3_spell_2_root.title"
     }
   },
   "forcemaster_tier_4_spell_2_modifier_1": {

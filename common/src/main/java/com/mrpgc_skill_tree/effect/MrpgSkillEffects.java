@@ -675,7 +675,162 @@ public class MrpgSkillEffects {
                     )
             )
     ));
-
+    /// BARD EFFECTS
+    public static Effects.Entry DIRTY_TRICKS = add(new Effects.Entry(Identifier.of(MOD_ID, "dirty_tricks"),
+            "Dirty Tricks",
+            "Reduces Ranged Haste, Attack Speed & Spell Haste.",
+            new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ATTACK_SPEED.getIdAsString(),
+                                    -0.05F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes_RangedWeapon.HASTE.id.toString(),
+                                    -0.05F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    SpellPowerMechanics.HASTE.id.toString(),
+                                    -0.05F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry RADIANT_ENCORE = add(new Effects.Entry(Identifier.of(MOD_ID, "radiant_encore"),
+            "Radiant Encore",
+            "Your next spell cast is instant.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                    )
+            )
+    ));
+    public static Effects.Entry BARD_BARRIER = add(new Effects.Entry(Identifier.of(MOD_ID, "bard_barrier"),
+            "Warden's Barrier",
+            "Absorbs damage.",
+            new AbsorptionEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MAX_ABSORPTION.getIdAsString(),
+                                    2,
+                                    EntityAttributeModifier.Operation.ADD_VALUE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry WEAKENING_PAEAN = add(new Effects.Entry(Identifier.of(MOD_ID, "weakening_paean"),
+            "Weakening Paean",
+            "Increases damage taken.",
+            new CustomStatusEffect(StatusEffectCategory.HARMFUL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellEngineAttributes.DAMAGE_TAKEN.id.toString(),
+                                    0.08F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry REPERTOIRE = add(new Effects.Entry(Identifier.of(MOD_ID, "repertoire"),
+            "Repertoire",
+            "Increases Critical Chance and Spell Critical Chance.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellPowerMechanics.CRITICAL_CHANCE.id,
+                                    0.03F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    "critical_strike:chance",
+                                    0.03F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry CHARISMATIC_PERFORMANCE = add(new Effects.Entry(Identifier.of(MOD_ID, "charismatic_performance"),
+            "Charismatic Performance",
+            "Increases Healing Spell Power & Spell Haste.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellSchools.HEALING.id.toString(),
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    SpellPowerMechanics.HASTE.id.toString(),
+                                    0.05F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry JOLLY_TIME = add(new Effects.Entry(Identifier.of(MOD_ID, "jolly_time"),
+            "Jolly Time",
+            "Increases Ranged Haste, Attack Speed & Spell Haste.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ATTACK_SPEED.getIdAsString(),
+                                    0.08F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes_RangedWeapon.HASTE.id.toString(),
+                                    0.08F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    SpellPowerMechanics.HASTE.id.toString(),
+                                    0.08F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry DANCING_FEET = add(new Effects.Entry(Identifier.of(MOD_ID, "dancing_feet"),
+            "Dancing Feet",
+            "Greatly increases Movement Speed.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
+                                    0.6F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
+    public static Effects.Entry MELODIC_PROTECTION = add(new Effects.Entry(Identifier.of(MOD_ID, "melodic_protection"),
+            "Melodic Protection",
+            "Nullifies the next hit, once per effect amplifier.",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                    )
+            )
+    ));
+    public static Effects.Entry COUNTERCHARM = add(new Effects.Entry(Identifier.of(MOD_ID, "countercharm"),
+            "Countercharm",
+            "Turns the target against its allies.",
+            new CountercharmEffect(StatusEffectCategory.HARMFUL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                    )
+            )
+    ));
 
     public static void register(ConfigFile.Effects config) {
         for (var entry : entries) {
@@ -720,6 +875,17 @@ public class MrpgSkillEffects {
                 new ParticleBatch[]{  },
                 MrpgSkillSounds.obsidian_skin.soundEvent()
         ));
+        Protection.register(MELODIC_PROTECTION.entry, new Protection.Pop(
+                new ParticleBatch[]{  },
+                MrpgSkillSounds.obsidian_skin.soundEvent()
+        ));
 
+        InstantCast.register(RADIANT_ENCORE.entry.getKey().get(), new InstantCast.Args(InstantCast.Selection.NONE, null, null));
+        SpellEvents.SPELL_CAST.register((args) -> {
+            var caster = args.caster();
+            if (caster.hasStatusEffect(RADIANT_ENCORE.entry)) {
+                caster.removeStatusEffect(RADIANT_ENCORE.entry);
+            }
+        });
     }
 }

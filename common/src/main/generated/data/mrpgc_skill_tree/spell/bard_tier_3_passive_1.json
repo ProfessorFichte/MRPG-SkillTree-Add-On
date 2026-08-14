@@ -1,0 +1,54 @@
+{
+  "school": "spell_power:arcane",
+  "range": 0.0,
+  "tier": 1,
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "target_override": "CASTER",
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "chance": 0.25,
+        "spell": {
+          "type": "ACTIVE"
+        },
+        "impact": {
+          "impact_type": "STATUS_EFFECT"
+        }
+      },
+      {
+        "target_override": "CASTER",
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "chance": 0.25,
+        "spell": {
+          "type": "ACTIVE"
+        },
+        "impact": {
+          "impact_type": "HEAL"
+        }
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "mrpgc_skill_tree:melodic_protection",
+          "duration": 12.0,
+          "amplifier_power_multiplier": 0.05,
+          "apply_mode": "ADD"
+        }
+      }
+    }
+  ],
+  "cost": {
+    "durability": 0,
+    "cooldown": {
+      "duration": 3.0
+    }
+  }
+}

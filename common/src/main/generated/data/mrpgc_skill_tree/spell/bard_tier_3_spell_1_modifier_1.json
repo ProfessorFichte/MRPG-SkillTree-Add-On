@@ -1,0 +1,39 @@
+{
+  "school": "spell_power:arcane",
+  "range": 0.0,
+  "tier": 1,
+  "tooltip": {
+    "show_activation": false
+  },
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "target_override": "CASTER",
+        "type": "SPELL_CAST",
+        "chance": 0.3,
+        "spell": {
+          "id": "bards_rpg:encore"
+        }
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "mrpgc_skill_tree:radiant_encore",
+          "duration": 4.0,
+          "apply_mode": "ADD"
+        }
+      }
+    }
+  ],
+  "cost": {
+    "durability": 0
+  }
+}
