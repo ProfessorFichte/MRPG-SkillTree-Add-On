@@ -6,7 +6,48 @@
   "modifiers": [
     {
       "spell_pattern": "archers_expansion:scorched_earth",
-      "range_add": 10.0
+      "additional_placements": [
+        {
+          "delay_ticks": 2,
+          "location_offset_by_look": 53.0
+        },
+        {
+          "delay_ticks": 2,
+          "location_offset_by_look": 56.0
+        },
+        {
+          "delay_ticks": 2,
+          "location_offset_by_look": 59.0
+        },
+        {
+          "delay_ticks": 2,
+          "location_offset_by_look": 62.0
+        },
+        {
+          "delay_ticks": 2,
+          "location_offset_by_look": 65.0
+        },
+        {
+          "delay_ticks": 2,
+          "location_offset_by_look": 68.0
+        },
+        {
+          "delay_ticks": 2,
+          "location_offset_by_look": 71.0
+        },
+        {
+          "delay_ticks": 2,
+          "location_offset_by_look": 74.0
+        },
+        {
+          "delay_ticks": 2,
+          "location_offset_by_look": 77.0
+        },
+        {
+          "delay_ticks": 2,
+          "location_offset_by_look": 80.0
+        }
+      ]
     }
   ]
 }

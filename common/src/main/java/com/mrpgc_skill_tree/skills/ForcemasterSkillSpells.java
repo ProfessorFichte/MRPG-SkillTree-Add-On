@@ -511,4 +511,83 @@ public class ForcemasterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
+    public static final MrpgSkillSpells.Entry forcemaster_tier_2_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+            MrpgSkillSpells.Category.FORCEMASTER, MrpgSkillSpells.forcemasterCasterSchool,
+            "forcemaster_tier_2_spell_2_root", "forcemaster_rpg:baraqijal_esna", "Baraqijal Esna", 0.15F));
+    public static final MrpgSkillSpells.Entry forcemaster_tier_2_spell_2_modifier_1 = add(forcemaster_tier_2_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry forcemaster_tier_2_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_2_spell_2_modifier_1");
+        var title = "Baraqijal's Wrath";
+        var description = "Increases the duration of Baraqijal Esna's stacking debuff by {effect_duration_add} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.forcemasterCasterSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "forcemaster_rpg:baraqijal_esna";
+        modifier.effect_duration_add = 3F;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+    }
+    public static final MrpgSkillSpells.Entry forcemaster_tier_2_spell_2_modifier_2 = add(forcemaster_tier_2_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry forcemaster_tier_2_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_2_spell_2_modifier_2");
+        var title = "Piercing Light";
+        var description = "Baraqijal Esna pierces through targets, hitting up to 2 additional enemies.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.forcemasterCasterSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "forcemaster_rpg:baraqijal_esna";
+        modifier.projectile_perks = Spell.ProjectileData.Perks.EMPTY();
+        modifier.projectile_perks.pierce = 2;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+    }
+    public static final MrpgSkillSpells.Entry forcemaster_tier_4_spell_1_root = add(MrpgSkillsCommon.powerRoot(
+            MrpgSkillSpells.Category.FORCEMASTER, MrpgSkillSpells.forcemasterFighterSchool,
+            "forcemaster_tier_4_spell_1_root", "forcemaster_rpg:sonic_hand", "Sonic Hand", 0.05F));
+    public static final MrpgSkillSpells.Entry forcemaster_tier_4_spell_1_modifier_1 = add(forcemaster_tier_4_spell_1_modifier_1());
+    private static MrpgSkillSpells.Entry forcemaster_tier_4_spell_1_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_4_spell_1_modifier_1");
+        var title = "Focused Palms";
+        var description = "Casting Sonic Hand increases your attack damage by {bonus} for {effect_duration} seconds.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.forcemasterFighterSchool;
+        var effect = MrpgSkillEffects.PUMPED_UP;
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var modifier = effect.config().firstModifier();
+            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+            return args.description()
+                    .replace("{bonus}", bonus);
+        };
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "forcemaster_rpg:sonic_hand";
+        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 8, 0);
+        impact.action.apply_to_caster = true;
+
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+    }
+    public static final MrpgSkillSpells.Entry forcemaster_tier_4_spell_1_modifier_2 = add(forcemaster_tier_4_spell_1_modifier_2());
+    private static MrpgSkillSpells.Entry forcemaster_tier_4_spell_1_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_4_spell_1_modifier_2");
+        var title = "Rapid Palms";
+        var description = "Reduces the cooldown of Sonic Hand by {cooldown_duration_deduct} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.forcemasterFighterSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "forcemaster_rpg:sonic_hand";
+        modifier.cooldown_duration_deduct = 6F;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+    }
 }

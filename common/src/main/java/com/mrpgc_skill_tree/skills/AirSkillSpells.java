@@ -161,14 +161,41 @@ public class AirSkillSpells {
     private static MrpgSkillSpells.Entry air_tier_4_spell_1_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "air_tier_4_spell_1_modifier_2");
         var title = "Negative Pressure";
-        var description = "Tornado critical damage hits are increased by {critical_damage_bonus}.";
+        var description = "Tornado grows in size, dealing {damage} damage in a wider area around it.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.airWizardSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "elemental_wizards_rpg:wind_tornado";
-        modifier.power_modifier = new Spell.Impact.Modifier();
-        modifier.power_modifier.critical_damage_bonus = 0.4F;
+
+        var radius = 8.0F;
+
+        var impact = SpellBuilder.Impacts.damage(0.2F, 0);
+        impact.action.allow_on_center_target = false;
+        impact.particles = new ParticleBatch[]{
+                new ParticleBatch("more_rpg_classes:stone_particle",
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.FEET,
+                        ParticleBatch.Rotation.LOOK,
+                        1.5F, 0.5F, 1.0F, 0)
+        };
+
+        var area_impact = new Spell.AreaImpact();
+        area_impact.execute_action_type = Spell.Impact.Action.Type.DAMAGE;
+        area_impact.radius = radius;
+        area_impact.area = new Spell.Target.Area();
+        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+        area_impact.model_fx = List.of(
+                ModelEffectBuilder.create("elemental_wizards_rpg:spell_effect/tornado")
+                        .scale(5.5F)
+                        .light(LightEmission.RADIATE)
+                        .duration(140)
+                        .build()
+        );
+
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(impact);
+        modifier.replacing_area_impact = area_impact;
+
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
@@ -302,7 +329,7 @@ public class AirSkillSpells {
     private static MrpgSkillSpells.Entry air_tier_2_passive_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "air_tier_2_passive_2");
         var title = "Strongwind";
-        var description = "{trigger_chance} chance upon rolling to spawn a strongwind that deals {damage} damage to enemies.";
+        var description = "{trigger_chance} chance upon rolling to summon a twister that chases and damages nearby enemies.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.airWizardSchool;
@@ -312,41 +339,25 @@ public class AirSkillSpells {
         trigger.chance = 0.5F;
         spell.passive.triggers = List.of(trigger);
 
-        spell.deliver.type = Spell.Delivery.Type.CLOUD;
-        Spell.Delivery.Cloud cloud = new Spell.Delivery.Cloud();
-        cloud.volume.radius = 2.0F;
-        cloud.volume.area.vertical_range_multiplier = 1.5F;
-        cloud.delay_ticks = 5;
-        cloud.impact_tick_interval = 20;
-        cloud.time_to_live_seconds = 5;
-        cloud.spawn = new Spell.Delivery.Cloud.Spawn();
-        cloud.client_data = new Spell.Delivery.Cloud.ClientData();
-        cloud.presence_sound = Sound.withVolume(Identifier.of("more_rpg_classes:air_magic_cast1"),0.5F);
-        int tornadoDurationTicks = (int) (cloud.time_to_live_seconds * 20);
-        cloud.client_data.model_fx = List.of(
-                ModelEffectBuilder.create("elemental_wizards_rpg:effect/tornado")
-                        .scale(1.5F)
-                        .light(LightEmission.NONE)
-                        .duration(tornadoDurationTicks)
-                        .rotate(0, -20 * tornadoDurationTicks, 0, 0, tornadoDurationTicks, ModelEffect.Easing.LINEAR)
-                        .build()
-        );
-        cloud.client_data.particles = new ParticleBatch[]{
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
+        var spawn = new Spell.Impact();
+        spawn.action = new Spell.Impact.Action();
+        spawn.action.type = Spell.Impact.Action.Type.SPAWN;
+        spawn.action.apply_to_caster = true;
+        var twister = new Spell.Impact.Action.Spawn();
+        twister.entity_type_id = "elemental_wizards_rpg:whirlwind";
+        twister.time_to_live_seconds = 7;
+        twister.placement.apply_yaw = true;
+        spawn.action.spawns = List.of(twister);
+        spawn.sound = Sound.withVolume(Identifier.of("more_rpg_classes:air_magic_cast1"), 0.5F);
+        spawn.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         SpellEngineParticles.smoke_medium.id().toString(),
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
                         10, 0.1F, 0.5F)
         };
-        spell.deliver.clouds = List.of(cloud);
-        Spell.Impact damage = SpellBuilder.Impacts.damage(0.3F,0.0F);
-        damage.sound = Sound.withVolume(Identifier.of("spell_engine:generic_wind_charging"),0.7F);
-        damage.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.smoke_medium.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.2F, 0.2F)
-        };
-        spell.impacts = List.of(damage);
+        spell.impacts = List.of(spawn);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
@@ -443,6 +454,106 @@ public class AirSkillSpells {
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 20F);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+    }
+    public static final MrpgSkillSpells.Entry air_tier_2_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+            MrpgSkillSpells.Category.AIR, MrpgSkillSpells.airWizardSchool,
+            "air_tier_2_spell_2_root", "elemental_wizards_rpg:wind_twister", "Twister", 0.05F));
+    public static final MrpgSkillSpells.Entry air_tier_2_spell_2_modifier_1 = add(air_tier_2_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry air_tier_2_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "air_tier_2_spell_2_modifier_1");
+        var title = "Lingering Winds";
+        var description = "Twister lasts {spawn_duration_add} sec longer.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.airWizardSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "elemental_wizards_rpg:wind_twister";
+        modifier.spawn_duration_add = 4F;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+    }
+    public static final MrpgSkillSpells.Entry air_tier_2_spell_2_modifier_2 = add(air_tier_2_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry air_tier_2_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "air_tier_2_spell_2_modifier_2");
+        var title = "Farther Winds";
+        var description = "Range of Twister increased by {range_add} blocks.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.airWizardSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "elemental_wizards_rpg:wind_twister";
+        modifier.range_add = 6F;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+    }
+    public static final MrpgSkillSpells.Entry air_tier_3_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+            MrpgSkillSpells.Category.AIR, MrpgSkillSpells.airWizardSchool,
+            "air_tier_3_spell_2_root", "elemental_wizards_rpg:wind_windfield", "Windfield", 0.15F));
+    public static final MrpgSkillSpells.Entry air_tier_3_spell_2_modifier_1 = add(air_tier_3_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry air_tier_3_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "air_tier_3_spell_2_modifier_1");
+        var title = "Howling Gale";
+        var description = "Increases the duration of Windfield's slow by {effect_duration_add} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.airWizardSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "elemental_wizards_rpg:wind_windfield";
+        modifier.effect_duration_add = 3F;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+    }
+    public static final MrpgSkillSpells.Entry air_tier_3_spell_2_modifier_2 = add(air_tier_3_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry air_tier_3_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "air_tier_3_spell_2_modifier_2");
+        var title = "Raging Squall";
+        var description = "Windfield has {critical_chance_bonus} increased critical strike chance.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.airWizardSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "elemental_wizards_rpg:wind_windfield";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.power_modifier.critical_chance_bonus = 0.15F;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+    }
+    public static final MrpgSkillSpells.Entry air_tier_4_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+            MrpgSkillSpells.Category.AIR, MrpgSkillSpells.airWizardSchool,
+            "air_tier_4_spell_2_root", "elemental_wizards_rpg:wind_stormdraft", "Storm Draft", 0.05F));
+    public static final MrpgSkillSpells.Entry air_tier_4_spell_2_modifier_1 = add(air_tier_4_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry air_tier_4_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "air_tier_4_spell_2_modifier_1");
+        var title = "Prolonged Gust";
+        var description = "Channeling Storm Draft releases {channel_ticks_add} additional times.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.airWizardSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "elemental_wizards_rpg:wind_stormdraft";
+        modifier.channel_ticks_add = 2;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+    }
+    public static final MrpgSkillSpells.Entry air_tier_4_spell_2_modifier_2 = add(air_tier_4_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry air_tier_4_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "air_tier_4_spell_2_modifier_2");
+        var title = "Numbing Draft";
+        var description = "Increases the stun duration of Storm Draft by {effect_duration_add} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.airWizardSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "elemental_wizards_rpg:wind_stormdraft";
+        modifier.effect_duration_add = 1F;
+        spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }

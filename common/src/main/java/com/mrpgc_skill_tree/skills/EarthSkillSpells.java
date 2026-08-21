@@ -1,6 +1,7 @@
 package com.mrpgc_skill_tree.skills;
 
 import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
+import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Colors;
@@ -13,6 +14,7 @@ import net.spell_engine.api.entity.SpellEntityPredicates;
 import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
+import net.spell_engine.api.spell.summon.AttributeScaling;
 import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.api.util.TriState;
@@ -414,6 +416,127 @@ public class EarthSkillSpells {
                         20, 0.2F, 0.3F)
         };
         spell.impacts = List.of(damage);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.EARTH));
+    }
+    public static final MrpgSkillSpells.Entry earth_tier_2_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+            MrpgSkillSpells.Category.EARTH, MrpgSkillSpells.earthWizardSchool,
+            "earth_tier_2_spell_2_root", "elemental_wizards_rpg:terra_impale", "Impale", 0.15F));
+    public static final MrpgSkillSpells.Entry earth_tier_2_spell_2_modifier_1 = add(earth_tier_2_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry earth_tier_2_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_2_spell_2_modifier_1");
+        var title = "Deep Impale";
+        var description = "Increases the duration Impale blocks movement by {effect_duration_add} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.earthWizardSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "elemental_wizards_rpg:terra_impale";
+        modifier.effect_duration_add = 2F;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.EARTH));
+    }
+    public static final MrpgSkillSpells.Entry earth_tier_2_spell_2_modifier_2 = add(earth_tier_2_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry earth_tier_2_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_2_spell_2_modifier_2");
+        var title = "Sharpened Point";
+        var description = "Reduces the cooldown of Impale by {cooldown_duration_deduct} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.earthWizardSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "elemental_wizards_rpg:terra_impale";
+        modifier.cooldown_duration_deduct = 3F;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.EARTH));
+    }
+    public static final MrpgSkillSpells.Entry earth_tier_3_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+            MrpgSkillSpells.Category.EARTH, MrpgSkillSpells.earthWizardSchool,
+            "earth_tier_3_spell_2_root", "elemental_wizards_rpg:terra_shattering_stone", "Shattering Stone", 0.05F));
+    public static final MrpgSkillSpells.Entry earth_tier_3_spell_2_modifier_1 = add(earth_tier_3_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry earth_tier_3_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_3_spell_2_modifier_1");
+        var title = "Jagged Fragments";
+        var description = "Increases the max stacks of Shattering Stone's bleeding by {effect_amplifier_cap_add}.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.earthWizardSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "elemental_wizards_rpg:terra_shattering_stone";
+        modifier.effect_amplifier_cap_add = 1;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.EARTH));
+    }
+    public static final MrpgSkillSpells.Entry earth_tier_3_spell_2_modifier_2 = add(earth_tier_3_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry earth_tier_3_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_3_spell_2_modifier_2");
+        var title = "Wide Fracture";
+        var description = "Range of Shattering Stone increased by {range_add} blocks.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.earthWizardSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "elemental_wizards_rpg:terra_shattering_stone";
+        modifier.range_add = 8F;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.EARTH));
+    }
+    public static final MrpgSkillSpells.Entry earth_tier_4_spell_2_root = add(MrpgSkillsCommon.companionRoot(
+            MrpgSkillSpells.Category.EARTH, MrpgSkillSpells.earthWizardSchool,
+            "earth_tier_4_spell_2_root", "elemental_wizards_rpg:terra_earth_golem", "Earth Golem", 10));
+    public static final MrpgSkillSpells.Entry earth_tier_4_spell_2_modifier_1 = add(earth_tier_4_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry earth_tier_4_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_4_spell_2_modifier_1");
+        var title = "Boulder Fists";
+        var description = "The summoned Earth Golem has increased attack damage and attack speed.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.earthWizardSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "elemental_wizards_rpg:terra_earth_golem";
+
+        var attackDamage = new AttributeScaling.Entry();
+        attackDamage.attribute_id = "minecraft:generic.attack_damage";
+        attackDamage.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
+                "minecraft:generic.attack_damage", EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE, 0.25, 0.0));
+        var attackSpeed = new AttributeScaling.Entry();
+        attackSpeed.attribute_id = "minecraft:generic.attack_speed";
+        attackSpeed.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
+                "minecraft:generic.attack_speed", EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE, 0.25, 0.0));
+        modifier.summon_attribute_scaling = new AttributeScaling();
+        modifier.summon_attribute_scaling.entries = List.of(attackDamage, attackSpeed);
+
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.EARTH));
+    }
+    public static final MrpgSkillSpells.Entry earth_tier_4_spell_2_modifier_2 = add(earth_tier_4_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry earth_tier_4_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_4_spell_2_modifier_2");
+        var title = "Bedrock Body";
+        var description = "The summoned Earth Golem takes reduced damage and has increased health.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.earthWizardSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "elemental_wizards_rpg:terra_earth_golem";
+
+        var damageTaken = new AttributeScaling.Entry();
+        damageTaken.attribute_id = "spell_engine:damage_taken";
+        damageTaken.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
+                "spell_engine:damage_taken", EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL, -0.25, 0.0));
+        var maxHealth = new AttributeScaling.Entry();
+        maxHealth.attribute_id = "minecraft:generic.max_health";
+        maxHealth.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
+                "minecraft:generic.max_health", EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE, 0.3, 0.0));
+        modifier.summon_attribute_scaling = new AttributeScaling();
+        modifier.summon_attribute_scaling.entries = List.of(damageTaken, maxHealth);
+
+        spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.EARTH));
     }

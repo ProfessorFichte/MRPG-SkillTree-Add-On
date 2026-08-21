@@ -6,8 +6,43 @@
   "modifiers": [
     {
       "spell_pattern": "elemental_wizards_rpg:wind_tornado",
-      "power_modifier": {
-        "critical_damage_bonus": 0.4
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "action": {
+            "type": "DAMAGE",
+            "allow_on_center_target": false,
+            "damage": {
+              "spell_power_coefficient": 0.2,
+              "knockback": 0.0
+            }
+          },
+          "particles": [
+            {
+              "particle_id": "more_rpg_classes:stone_particle",
+              "origin": "FEET",
+              "shape": "SPHERE",
+              "rotation": "LOOK",
+              "count": 1.5,
+              "min_speed": 0.5
+            }
+          ]
+        }
+      ],
+      "replacing_area_impact": {
+        "execute_action_type": "DAMAGE",
+        "radius": 8.0,
+        "area": {
+          "distance_dropoff": "SQUARED"
+        },
+        "model_fx": [
+          {
+            "model_id": "elemental_wizards_rpg:spell_effect/tornado",
+            "light_emission": "RADIATE",
+            "scale": 5.5,
+            "duration": 140
+          }
+        ]
       }
     }
   ]

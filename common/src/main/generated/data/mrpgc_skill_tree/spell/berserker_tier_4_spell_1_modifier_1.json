@@ -1,12 +1,11 @@
 {
   "school": "spell_power:rage_melee",
-  "range": 4.0,
+  "range": 0.0,
   "tier": 1,
   "type": "PASSIVE",
   "passive": {
     "triggers": [
       {
-        "aoe_source_override": "CASTER",
         "type": "DAMAGE_TAKEN",
         "chance": 0.25,
         "caster_conditions": [
@@ -18,10 +17,7 @@
     ]
   },
   "target": {
-    "type": "AREA",
-    "area": {
-      "distance_dropoff": "SQUARED"
-    }
+    "type": "FROM_TRIGGER"
   },
   "impacts": [
     {

@@ -293,32 +293,27 @@ public class DeadeyeSkillSpells {
     private static MrpgSkillSpells.Entry deadeye_tier_4_spell_2_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_4_spell_2_modifier_2");
         var title = "Shocking Revelation";
-        var description = "Casting Alter Ego stuns nearby enemies for {effect_duration} sec.";
-        var spell = SpellBuilder.createSpellModifier();
+        var description = "When an Alter Ego copy explodes, nearby enemies are stunned for {effect_duration} sec.";
+        var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
         spell.school = MrpgSkillSpells.deadeyeSchool;
+        spell.range = 4F;
 
-        var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "archers_expansion:alter_ego";
+        spell.target.type = Spell.Target.Type.AREA;
+        spell.target.area = new Spell.Target.Area();
+        spell.target.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
 
-        var radius = 4F;
+        var trigger = SpellBuilder.Triggers.specificSpellHit("archers_expansion:alter_ego_explosion");
+        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        spell.passive.triggers = List.of(trigger);
+
         var stun = SpellBuilder.Impacts.stun(2F);
-        var area_impact = new Spell.AreaImpact();
-        area_impact.execute_action_type = Spell.Impact.Action.Type.STATUS_EFFECT;
-        area_impact.radius = radius;
-        area_impact.area = new Spell.Target.Area();
-        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-        area_impact.particles = new ParticleBatch[]{
+        stun.particles = new ParticleBatch[]{
                 new ParticleBatch(
                         SpellEngineParticles.smoke_large.id().toString(),
                         ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
                         20, 0.2F, 0.4F)
         };
-
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(stun);
-        modifier.replacing_area_impact = area_impact;
-
-        spell.modifiers = List.of(modifier);
+        spell.impacts = List.of(stun);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
     }

@@ -315,6 +315,117 @@
       "translate": "skill.mrpgc_skill_tree.air_tier_2_spell_1_root.title"
     }
   },
+  "air_tier_2_spell_2_modifier_1": {
+    "description": {
+      "skill_definition_id": "air_tier_2_spell_2_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/wind_twister.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:air_tier_2_spell_2_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.air_tier_2_spell_2_modifier_1.title"
+    }
+  },
+  "air_tier_2_spell_2_modifier_2": {
+    "description": {
+      "skill_definition_id": "air_tier_2_spell_2_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/wind_twister.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:air_tier_2_spell_2_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.air_tier_2_spell_2_modifier_2.title"
+    }
+  },
+  "air_tier_2_spell_2_root": {
+    "description": {
+      "skill_definition_id": "air_tier_2_spell_2_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/wind_twister.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:air_tier_2_spell_2_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.air_tier_2_spell_2_root.title"
+    }
+  },
   "air_tier_3_passive_1": {
     "description": {
       "skill_definition_id": "air_tier_3_passive_1"
@@ -500,6 +611,117 @@
       "translate": "skill.mrpgc_skill_tree.air_tier_3_spell_1_root.title"
     }
   },
+  "air_tier_3_spell_2_modifier_1": {
+    "description": {
+      "skill_definition_id": "air_tier_3_spell_2_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/wind_windfield.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:air_tier_3_spell_2_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.air_tier_3_spell_2_modifier_1.title"
+    }
+  },
+  "air_tier_3_spell_2_modifier_2": {
+    "description": {
+      "skill_definition_id": "air_tier_3_spell_2_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/wind_windfield.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:air_tier_3_spell_2_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.air_tier_3_spell_2_modifier_2.title"
+    }
+  },
+  "air_tier_3_spell_2_root": {
+    "description": {
+      "skill_definition_id": "air_tier_3_spell_2_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/wind_windfield.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:air_tier_3_spell_2_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.air_tier_3_spell_2_root.title"
+    }
+  },
   "air_tier_4_spell_1_modifier_1": {
     "description": {
       "skill_definition_id": "air_tier_4_spell_1_modifier_1"
@@ -609,6 +831,117 @@
     ],
     "title": {
       "translate": "skill.mrpgc_skill_tree.air_tier_4_spell_1_root.title"
+    }
+  },
+  "air_tier_4_spell_2_modifier_1": {
+    "description": {
+      "skill_definition_id": "air_tier_4_spell_2_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/wind_stormdraft.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:air_tier_4_spell_2_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.air_tier_4_spell_2_modifier_1.title"
+    }
+  },
+  "air_tier_4_spell_2_modifier_2": {
+    "description": {
+      "skill_definition_id": "air_tier_4_spell_2_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/wind_stormdraft.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:air_tier_4_spell_2_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.air_tier_4_spell_2_modifier_2.title"
+    }
+  },
+  "air_tier_4_spell_2_root": {
+    "description": {
+      "skill_definition_id": "air_tier_4_spell_2_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/wind_stormdraft.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:air_tier_4_spell_2_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.air_tier_4_spell_2_root.title"
     }
   },
   "bard_boost": {
@@ -3391,7 +3724,7 @@
         "data": {
           "containers": [
             {
-              "access": "NONE",
+              "access": "MAGIC",
               "access_param": "",
               "extra_tier_binding": 0,
               "max_spell_count": 0,
@@ -3762,6 +4095,117 @@
       "translate": "skill.mrpgc_skill_tree.earth_tier_2_spell_1_root.title"
     }
   },
+  "earth_tier_2_spell_2_modifier_1": {
+    "description": {
+      "skill_definition_id": "earth_tier_2_spell_2_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/terra_impale.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:earth_tier_2_spell_2_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.earth_tier_2_spell_2_modifier_1.title"
+    }
+  },
+  "earth_tier_2_spell_2_modifier_2": {
+    "description": {
+      "skill_definition_id": "earth_tier_2_spell_2_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/terra_impale.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:earth_tier_2_spell_2_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.earth_tier_2_spell_2_modifier_2.title"
+    }
+  },
+  "earth_tier_2_spell_2_root": {
+    "description": {
+      "skill_definition_id": "earth_tier_2_spell_2_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/terra_impale.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:earth_tier_2_spell_2_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.earth_tier_2_spell_2_root.title"
+    }
+  },
   "earth_tier_3_passive_1": {
     "description": {
       "skill_definition_id": "earth_tier_3_passive_1"
@@ -3947,6 +4391,117 @@
       "translate": "skill.mrpgc_skill_tree.earth_tier_3_spell_1_root.title"
     }
   },
+  "earth_tier_3_spell_2_modifier_1": {
+    "description": {
+      "skill_definition_id": "earth_tier_3_spell_2_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/terra_shattering_stone.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:earth_tier_3_spell_2_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.earth_tier_3_spell_2_modifier_1.title"
+    }
+  },
+  "earth_tier_3_spell_2_modifier_2": {
+    "description": {
+      "skill_definition_id": "earth_tier_3_spell_2_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/terra_shattering_stone.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:earth_tier_3_spell_2_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.earth_tier_3_spell_2_modifier_2.title"
+    }
+  },
+  "earth_tier_3_spell_2_root": {
+    "description": {
+      "skill_definition_id": "earth_tier_3_spell_2_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/terra_shattering_stone.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:earth_tier_3_spell_2_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.earth_tier_3_spell_2_root.title"
+    }
+  },
   "earth_tier_4_spell_1_modifier_1": {
     "description": {
       "skill_definition_id": "earth_tier_4_spell_1_modifier_1"
@@ -4056,6 +4611,117 @@
     ],
     "title": {
       "translate": "skill.mrpgc_skill_tree.earth_tier_4_spell_1_root.title"
+    }
+  },
+  "earth_tier_4_spell_2_modifier_1": {
+    "description": {
+      "skill_definition_id": "earth_tier_4_spell_2_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/terra_earth_golem.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:earth_tier_4_spell_2_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.earth_tier_4_spell_2_modifier_1.title"
+    }
+  },
+  "earth_tier_4_spell_2_modifier_2": {
+    "description": {
+      "skill_definition_id": "earth_tier_4_spell_2_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/terra_earth_golem.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:earth_tier_4_spell_2_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.earth_tier_4_spell_2_modifier_2.title"
+    }
+  },
+  "earth_tier_4_spell_2_root": {
+    "description": {
+      "skill_definition_id": "earth_tier_4_spell_2_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/terra_earth_golem.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:earth_tier_4_spell_2_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.earth_tier_4_spell_2_root.title"
     }
   },
   "forcemaster_boost": {
@@ -4374,6 +5040,117 @@
       "translate": "skill.mrpgc_skill_tree.forcemaster_tier_2_spell_1_root.title"
     }
   },
+  "forcemaster_tier_2_spell_2_modifier_1": {
+    "description": {
+      "skill_definition_id": "forcemaster_tier_2_spell_2_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "forcemaster_rpg:textures/spell/baraqijal_esna.png"
+      }
+    },
+    "required_mods": [
+      "forcemaster_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:forcemaster_tier_2_spell_2_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.forcemaster_tier_2_spell_2_modifier_1.title"
+    }
+  },
+  "forcemaster_tier_2_spell_2_modifier_2": {
+    "description": {
+      "skill_definition_id": "forcemaster_tier_2_spell_2_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "forcemaster_rpg:textures/spell/baraqijal_esna.png"
+      }
+    },
+    "required_mods": [
+      "forcemaster_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:forcemaster_tier_2_spell_2_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.forcemaster_tier_2_spell_2_modifier_2.title"
+    }
+  },
+  "forcemaster_tier_2_spell_2_root": {
+    "description": {
+      "skill_definition_id": "forcemaster_tier_2_spell_2_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "forcemaster_rpg:textures/spell/baraqijal_esna.png"
+      }
+    },
+    "required_mods": [
+      "forcemaster_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:forcemaster_tier_2_spell_2_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.forcemaster_tier_2_spell_2_root.title"
+    }
+  },
   "forcemaster_tier_3_passive_1": {
     "description": {
       "skill_definition_id": "forcemaster_tier_3_passive_1"
@@ -4668,6 +5445,117 @@
     ],
     "title": {
       "translate": "skill.mrpgc_skill_tree.forcemaster_tier_3_spell_2_root.title"
+    }
+  },
+  "forcemaster_tier_4_spell_1_modifier_1": {
+    "description": {
+      "skill_definition_id": "forcemaster_tier_4_spell_1_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "forcemaster_rpg:textures/spell/sonic_hand.png"
+      }
+    },
+    "required_mods": [
+      "forcemaster_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:forcemaster_tier_4_spell_1_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.forcemaster_tier_4_spell_1_modifier_1.title"
+    }
+  },
+  "forcemaster_tier_4_spell_1_modifier_2": {
+    "description": {
+      "skill_definition_id": "forcemaster_tier_4_spell_1_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "forcemaster_rpg:textures/spell/sonic_hand.png"
+      }
+    },
+    "required_mods": [
+      "forcemaster_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:forcemaster_tier_4_spell_1_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.forcemaster_tier_4_spell_1_modifier_2.title"
+    }
+  },
+  "forcemaster_tier_4_spell_1_root": {
+    "description": {
+      "skill_definition_id": "forcemaster_tier_4_spell_1_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "forcemaster_rpg:textures/spell/sonic_hand.png"
+      }
+    },
+    "required_mods": [
+      "forcemaster_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:forcemaster_tier_4_spell_1_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.forcemaster_tier_4_spell_1_root.title"
     }
   },
   "forcemaster_tier_4_spell_2_modifier_1": {
@@ -6987,6 +7875,117 @@
       "translate": "skill.mrpgc_skill_tree.water_tier_2_spell_1_root.title"
     }
   },
+  "water_tier_2_spell_2_modifier_1": {
+    "description": {
+      "skill_definition_id": "water_tier_2_spell_2_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_waterball.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:water_tier_2_spell_2_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.water_tier_2_spell_2_modifier_1.title"
+    }
+  },
+  "water_tier_2_spell_2_modifier_2": {
+    "description": {
+      "skill_definition_id": "water_tier_2_spell_2_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_waterball.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:water_tier_2_spell_2_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.water_tier_2_spell_2_modifier_2.title"
+    }
+  },
+  "water_tier_2_spell_2_root": {
+    "description": {
+      "skill_definition_id": "water_tier_2_spell_2_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_waterball.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:water_tier_2_spell_2_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.water_tier_2_spell_2_root.title"
+    }
+  },
   "water_tier_3_passive_1": {
     "description": {
       "skill_definition_id": "water_tier_3_passive_1"
@@ -7281,6 +8280,1984 @@
     ],
     "title": {
       "translate": "skill.mrpgc_skill_tree.water_tier_3_spell_2_root.title"
+    }
+  },
+  "water_tier_4_spell_1_modifier_1": {
+    "description": {
+      "skill_definition_id": "water_tier_4_spell_1_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_healing_rain.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:water_tier_4_spell_1_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.water_tier_4_spell_1_modifier_1.title"
+    }
+  },
+  "water_tier_4_spell_1_modifier_2": {
+    "description": {
+      "skill_definition_id": "water_tier_4_spell_1_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_healing_rain.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:water_tier_4_spell_1_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.water_tier_4_spell_1_modifier_2.title"
+    }
+  },
+  "water_tier_4_spell_1_root": {
+    "description": {
+      "skill_definition_id": "water_tier_4_spell_1_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_healing_rain.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:water_tier_4_spell_1_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.water_tier_4_spell_1_root.title"
+    }
+  },
+  "water_tier_4_spell_2_modifier_1": {
+    "description": {
+      "skill_definition_id": "water_tier_4_spell_2_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_tidal_wave.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:water_tier_4_spell_2_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.water_tier_4_spell_2_modifier_1.title"
+    }
+  },
+  "water_tier_4_spell_2_modifier_2": {
+    "description": {
+      "skill_definition_id": "water_tier_4_spell_2_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_tidal_wave.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:water_tier_4_spell_2_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.water_tier_4_spell_2_modifier_2.title"
+    }
+  },
+  "water_tier_4_spell_2_root": {
+    "description": {
+      "skill_definition_id": "water_tier_4_spell_2_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_tidal_wave.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:water_tier_4_spell_2_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.water_tier_4_spell_2_root.title"
+    }
+  },
+  "witcher_boost": {
+    "description": {
+      "skill_definition_id": "witcher_boost"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "witcher_rpg:iron_witcher_sword"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "minecraft:generic.attack_damage",
+          "operation": "multiply_base",
+          "value": 0.01
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_boost.title"
+    }
+  },
+  "witcher_root": {
+    "description": {
+      "skill_definition_id": "witcher_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "witcher_rpg:master_spell_book"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "puffish_skills:attribute",
+        "data": {
+          "attribute": "minecraft:generic.attack_damage",
+          "operation": "multiply_base",
+          "value": 0.01
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_root.title"
+    }
+  },
+  "witcher_tier_1_passive_1": {
+    "description": {
+      "skill_definition_id": "witcher_tier_1_passive_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/passives/strong_crippling_strikes.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:passives/strong_crippling_strikes"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_1_passive_1.title"
+    }
+  },
+  "witcher_tier_1_passive_2": {
+    "description": {
+      "skill_definition_id": "witcher_tier_1_passive_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/passives/strong_sunder_armor.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:passives/strong_sunder_armor"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_1_passive_2.title"
+    }
+  },
+  "witcher_tier_2_aard_modifier_1": {
+    "description": {
+      "skill_definition_id": "witcher_tier_2_aard_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/aard_far_reach.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/aard_far_reach"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_2_aard_modifier_1.title"
+    }
+  },
+  "witcher_tier_2_aard_modifier_2": {
+    "description": {
+      "skill_definition_id": "witcher_tier_2_aard_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/aard_shockwave.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/aard_shockwave"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_2_aard_modifier_2.title"
+    }
+  },
+  "witcher_tier_2_aard_root": {
+    "description": {
+      "skill_definition_id": "witcher_tier_2_aard_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/aard.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:witcher_tier_2_aard_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_2_aard_root.title"
+    }
+  },
+  "witcher_tier_2_fast_attack_modifier_1": {
+    "description": {
+      "skill_definition_id": "witcher_tier_2_fast_attack_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/fast_precise_blows.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/fast_precise_blows"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_2_fast_attack_modifier_1.title"
+    }
+  },
+  "witcher_tier_2_fast_attack_modifier_2": {
+    "description": {
+      "skill_definition_id": "witcher_tier_2_fast_attack_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/muscle_memory.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/muscle_memory"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_2_fast_attack_modifier_2.title"
+    }
+  },
+  "witcher_tier_2_fast_attack_root": {
+    "description": {
+      "skill_definition_id": "witcher_tier_2_fast_attack_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/fast_attack.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:witcher_tier_2_fast_attack_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_2_fast_attack_root.title"
+    }
+  },
+  "witcher_tier_2_igni_modifier_1": {
+    "description": {
+      "skill_definition_id": "witcher_tier_2_igni_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/igni_melt_armor.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/igni_melt_armor"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_2_igni_modifier_1.title"
+    }
+  },
+  "witcher_tier_2_igni_modifier_2": {
+    "description": {
+      "skill_definition_id": "witcher_tier_2_igni_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/igni_combustion.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/igni_combustion"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_2_igni_modifier_2.title"
+    }
+  },
+  "witcher_tier_2_igni_root": {
+    "description": {
+      "skill_definition_id": "witcher_tier_2_igni_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/igni.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:witcher_tier_2_igni_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_2_igni_root.title"
+    }
+  },
+  "witcher_tier_2_strong_attack_modifier_1": {
+    "description": {
+      "skill_definition_id": "witcher_tier_2_strong_attack_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/strong_crushing_blows.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/strong_crushing_blows"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_2_strong_attack_modifier_1.title"
+    }
+  },
+  "witcher_tier_2_strong_attack_modifier_2": {
+    "description": {
+      "skill_definition_id": "witcher_tier_2_strong_attack_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/strength_training.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/strength_training"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_2_strong_attack_modifier_2.title"
+    }
+  },
+  "witcher_tier_2_strong_attack_root": {
+    "description": {
+      "skill_definition_id": "witcher_tier_2_strong_attack_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/strong_attack.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:witcher_tier_2_strong_attack_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_2_strong_attack_root.title"
+    }
+  },
+  "witcher_tier_3_axii_modifier_1": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_axii_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/axii_link.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/axii_link"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_axii_modifier_1.title"
+    }
+  },
+  "witcher_tier_3_axii_modifier_2": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_axii_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/axii_lethargy.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/axii_lethargy"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_axii_modifier_2.title"
+    }
+  },
+  "witcher_tier_3_axii_root": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_axii_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/axii.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:witcher_tier_3_axii_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_axii_root.title"
+    }
+  },
+  "witcher_tier_3_battle_trance_modifier_1": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_battle_trance_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/battle_trance_resolve.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/battle_trance_resolve"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_battle_trance_modifier_1.title"
+    }
+  },
+  "witcher_tier_3_battle_trance_modifier_2": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_battle_trance_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/battle_trance_undying.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/battle_trance_undying"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_battle_trance_modifier_2.title"
+    }
+  },
+  "witcher_tier_3_battle_trance_root": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_battle_trance_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/battle_trance.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:witcher_tier_3_battle_trance_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_battle_trance_root.title"
+    }
+  },
+  "witcher_tier_3_passive_1": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_passive_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/passives/griffin_school_technique.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:passives/griffin_school_technique"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_passive_1.title"
+    }
+  },
+  "witcher_tier_3_passive_2": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_passive_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/passives/wolf_school_technique.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:passives/wolf_school_technique"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_passive_2.title"
+    }
+  },
+  "witcher_tier_3_passive_3": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_passive_3"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/passives/cat_school_technique.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:passives/cat_school_technique"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_passive_3.title"
+    }
+  },
+  "witcher_tier_3_passive_4": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_passive_4"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/passives/bear_school_technique.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:passives/bear_school_technique"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_passive_4.title"
+    }
+  },
+  "witcher_tier_3_quen_modifier_1": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_quen_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/quen_exploding_shield.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/quen_exploding_shield"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_quen_modifier_1.title"
+    }
+  },
+  "witcher_tier_3_quen_modifier_2": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_quen_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/quen_discharge.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/quen_discharge"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_quen_modifier_2.title"
+    }
+  },
+  "witcher_tier_3_quen_root": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_quen_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/quen.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:witcher_tier_3_quen_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_quen_root.title"
+    }
+  },
+  "witcher_tier_3_roll_1": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_roll_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/passives/yrden_roll.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:passives/yrden_roll"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_roll_1.title"
+    }
+  },
+  "witcher_tier_3_roll_2": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_roll_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/passives/igni_roll.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:passives/igni_roll"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_roll_2.title"
+    }
+  },
+  "witcher_tier_3_roll_3": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_roll_3"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/passives/footwork.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:passives/footwork"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_roll_3.title"
+    }
+  },
+  "witcher_tier_3_roll_4": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_roll_4"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/passives/flood_of_anger.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:passives/flood_of_anger"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_roll_4.title"
+    }
+  },
+  "witcher_tier_3_witcher_senses_modifier_1": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_witcher_senses_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/witcher_senses_monster_expert.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/witcher_senses_monster_expert"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_witcher_senses_modifier_1.title"
+    }
+  },
+  "witcher_tier_3_witcher_senses_modifier_2": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_witcher_senses_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/witcher_senses_enemy_knowledge.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/witcher_senses_enemy_knowledge"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_witcher_senses_modifier_2.title"
+    }
+  },
+  "witcher_tier_3_witcher_senses_root": {
+    "description": {
+      "skill_definition_id": "witcher_tier_3_witcher_senses_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/witcher_senses.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:witcher_tier_3_witcher_senses_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_3_witcher_senses_root.title"
+    }
+  },
+  "witcher_tier_4_aard_modifier_1": {
+    "description": {
+      "skill_definition_id": "witcher_tier_4_aard_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/aard_frostbite.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/aard_frostbite"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_4_aard_modifier_1.title"
+    }
+  },
+  "witcher_tier_4_aard_modifier_2": {
+    "description": {
+      "skill_definition_id": "witcher_tier_4_aard_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/aard_whirlwind.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/aard_whirlwind"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_4_aard_modifier_2.title"
+    }
+  },
+  "witcher_tier_4_igni_modifier_1": {
+    "description": {
+      "skill_definition_id": "witcher_tier_4_igni_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/igni_pyromaniac.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/igni_pyromaniac"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_4_igni_modifier_1.title"
+    }
+  },
+  "witcher_tier_4_igni_modifier_2": {
+    "description": {
+      "skill_definition_id": "witcher_tier_4_igni_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/igni_firestreams.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/igni_firestreams"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_4_igni_modifier_2.title"
+    }
+  },
+  "witcher_tier_4_rend_modifier_1": {
+    "description": {
+      "skill_definition_id": "witcher_tier_4_rend_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/rend_heavy_swing.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/rend_heavy_swing"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_4_rend_modifier_1.title"
+    }
+  },
+  "witcher_tier_4_rend_modifier_2": {
+    "description": {
+      "skill_definition_id": "witcher_tier_4_rend_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/rend_devastating_slash.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/rend_devastating_slash"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_4_rend_modifier_2.title"
+    }
+  },
+  "witcher_tier_4_rend_root": {
+    "description": {
+      "skill_definition_id": "witcher_tier_4_rend_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/rend.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:witcher_tier_4_rend_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_4_rend_root.title"
+    }
+  },
+  "witcher_tier_4_whirl_modifier_1": {
+    "description": {
+      "skill_definition_id": "witcher_tier_4_whirl_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/whirl_quick_hands.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/whirl_quick_hands"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_4_whirl_modifier_1.title"
+    }
+  },
+  "witcher_tier_4_whirl_modifier_2": {
+    "description": {
+      "skill_definition_id": "witcher_tier_4_whirl_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/whirl_precise_slasher.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/whirl_precise_slasher"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_4_whirl_modifier_2.title"
+    }
+  },
+  "witcher_tier_4_whirl_root": {
+    "description": {
+      "skill_definition_id": "witcher_tier_4_whirl_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/whirl.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:witcher_tier_4_whirl_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_tier_4_whirl_root.title"
+    }
+  },
+  "witcher_yrden_modifier_1": {
+    "description": {
+      "skill_definition_id": "witcher_yrden_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/yrden_binding_glyphs.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/yrden_binding_glyphs"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_yrden_modifier_1.title"
+    }
+  },
+  "witcher_yrden_modifier_2": {
+    "description": {
+      "skill_definition_id": "witcher_yrden_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/yrden_supercharged_glyphs.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/yrden_supercharged_glyphs"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.witcher_yrden_modifier_2.title"
     }
   }
 }

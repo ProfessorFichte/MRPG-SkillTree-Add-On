@@ -1,43 +1,56 @@
 {
   "school": "spell_power:physical_ranged",
-  "range": 0.0,
+  "range": 4.0,
   "tier": 1,
-  "type": "MODIFIER",
-  "modifiers": [
+  "tooltip": {
+    "show_activation": false
+  },
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "target_override": "CASTER",
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "spell": {
+          "id": "archers_expansion:alter_ego_explosion"
+        },
+        "impact": {
+          "impact_type": "DAMAGE"
+        }
+      }
+    ]
+  },
+  "target": {
+    "type": "AREA",
+    "area": {
+      "distance_dropoff": "SQUARED"
+    }
+  },
+  "impacts": [
     {
-      "spell_pattern": "archers_expansion:alter_ego",
-      "mutate_impacts": "APPEND",
-      "impacts": [
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "spell_engine:stun",
+          "duration": 2.0
+        }
+      },
+      "particles": [
         {
-          "action": {
-            "type": "STATUS_EFFECT",
-            "status_effect": {
-              "effect_id": "spell_engine:stun",
-              "duration": 2.0
-            }
-          },
-          "sound": {
-            "id": "spell_engine:stun_generic"
-          }
+          "particle_id": "spell_engine:smoke_large",
+          "origin": "CENTER",
+          "shape": "SPHERE",
+          "count": 20.0,
+          "min_speed": 0.2,
+          "max_speed": 0.4
         }
       ],
-      "replacing_area_impact": {
-        "execute_action_type": "STATUS_EFFECT",
-        "radius": 4.0,
-        "area": {
-          "distance_dropoff": "SQUARED"
-        },
-        "particles": [
-          {
-            "particle_id": "spell_engine:smoke_large",
-            "origin": "CENTER",
-            "shape": "SPHERE",
-            "count": 20.0,
-            "min_speed": 0.2,
-            "max_speed": 0.4
-          }
-        ]
+      "sound": {
+        "id": "spell_engine:stun_generic"
       }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0
+  }
 }

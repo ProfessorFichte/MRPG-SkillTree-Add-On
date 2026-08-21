@@ -126,13 +126,17 @@ public class BerserkerSkillSpells {
     private static MrpgSkillSpells.Entry berserker_tier_2_spell_2_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_spell_2_modifier_2");
         var title = "Weakening Grasp";
-        var description = "Apprehend's damage taken debuff lasts {effect_duration_add} sec longer.";
+        var description = "Apprehend also inflicts Grievous Wounds, increasing damage taken for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.berserkerSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "berserker_rpg:apprehend";
-        modifier.effect_duration_add = 4;
+
+        var debuff = SpellBuilder.Impacts.effectSet(MRPGCEffects.GRIEVOUS_WOUNDS.id.toString(), 6, 0);
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(debuff);
+
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
@@ -270,19 +274,15 @@ public class BerserkerSkillSpells {
     private static MrpgSkillSpells.Entry berserker_tier_4_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_4_spell_1_modifier_1");
         var title = "Pain Transmission";
-        var description = "Taking damage has {trigger_chance} chance to deal {damage} damage and inflict bleeding to nearby enemies.";
+        var description = "Taking damage has {trigger_chance} chance to reflect {damage} damage and bleeding back to the attacker.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.berserkerSchool;
-        float radius = 4F;
-        spell.range = radius;
+        spell.range = 0;
 
-        spell.target.type = Spell.Target.Type.AREA;
-        spell.target.area = new Spell.Target.Area();
-        spell.target.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
+        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
         var trigger = SpellBuilder.Triggers.damageTaken();
         trigger.chance = 0.25F;
-        trigger.aoe_source_override = Spell.Trigger.TargetSelector.CASTER;
         var condition = new Spell.TargetCondition();
         condition.entity_predicate_id = SpellEntityPredicates.HAS_BAD_EFFECT.id().toString();
         trigger.caster_conditions = List.of(condition);

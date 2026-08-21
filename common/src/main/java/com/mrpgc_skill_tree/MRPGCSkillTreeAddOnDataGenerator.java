@@ -13,6 +13,7 @@ import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.puffish.skillsmod.reward.builtin.AttributeReward;
 import net.skill_tree_rpgs.data_gen.SkillDefinitionGenerator;
+import net.skill_tree_rpgs.node.ConditionalAttributeReward;
 import net.skill_tree_rpgs.node.SpellContainerReward;
 import net.skill_tree_rpgs.utils.ResolvableTextContent;
 import net.spell_engine.api.datagen.SimpleSoundGeneratorV2;
@@ -67,6 +68,10 @@ public class MRPGCSkillTreeAddOnDataGenerator implements DataGeneratorEntrypoint
 				translationBuilder.add(entry.effect.getTranslationKey(), entry.title);
 				translationBuilder.add(entry.effect.getTranslationKey() + ".description", entry.description);
 			});
+			translationBuilder.add("modifier_condition.mrpgc_skill_tree.witcher_swords", "While wielding a Witcher Sword:");
+			translationBuilder.add("modifier_condition.mrpgc_skill_tree.harp_crossbow", "While wielding a Harp Crossbow:");
+			translationBuilder.add("modifier_condition.mrpgc_skill_tree.knuckles", "While wielding Knuckles:");
+			translationBuilder.add("modifier_condition.mrpgc_skill_tree.berserker_axe", "While wielding a Berserker Axe:");
 		}
 	}
 	public static class SoundGen extends SimpleSoundGeneratorV2 {
@@ -137,6 +142,9 @@ public class MRPGCSkillTreeAddOnDataGenerator implements DataGeneratorEntrypoint
 				}
 				if(skill.spellReward() != null) {
 					rewards.add(new Reward(SpellContainerReward.ID.toString(), new SpellContainerReward.DataStructure(skill.spellReward())));
+				}
+				if (skill.conditionalAttributeReward() != null) {
+					rewards.add(new Reward(ConditionalAttributeReward.ID.toString(), skill.conditionalAttributeReward()));
 				}
 				var format = new Format(title, description, icon, rewards, skill.required_mods());
 				skillDefinitions.put(skill.id(), format);
