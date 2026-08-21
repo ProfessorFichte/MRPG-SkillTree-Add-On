@@ -21,7 +21,7 @@ public class MrpgSkillsCommon {
         modifier.spell_pattern = spellPattern;
         configure.accept(modifier);
         spell.modifiers = List.of(modifier);
-        return new MrpgSkillSpells.Entry(id, spell, "Improved " + spellName, description, null, EnumSet.of(category));
+        return new MrpgSkillSpells.Entry(id, spell, "Improved " + spellName, description, EnumSet.of(category));
     }
 
     public static MrpgSkillSpells.Entry critRoot(MrpgSkillSpells.Category category, SpellSchool school,
@@ -113,7 +113,11 @@ public class MrpgSkillsCommon {
     public static MrpgSkillSpells.Entry heftRoot(MrpgSkillSpells.Category category, SpellSchool school,
                                                  String path, String spellPattern, String spellName, float scale) {
         return spellRoot(category, school, path, spellPattern, spellName,
-                spellName + " projectile is " + Math.round(scale * 100) + "% larger.",
+                // `%%`, not `%`: the description becomes a lang value and `I18n.translate` feeds it
+                // to `String.format`, which would choke on a bare `% l`. No entry uses this helper
+                // yet, so nothing generated changes - it is the same trap that was live in
+                // `bard_tier_2_spell_1_modifier_2`.
+                spellName + " projectile is " + Math.round(scale * 100) + "%% larger.",
                 modifier -> modifier.projectile_scale_multiply = scale);
     }
 

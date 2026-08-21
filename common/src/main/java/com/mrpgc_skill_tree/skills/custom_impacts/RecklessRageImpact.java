@@ -8,7 +8,7 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.registry.entry.RegistryEntry;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.event.SpellHandlers;
-import net.spell_engine.internals.SpellHelper;
+import net.spell_engine.internals.SpellExecution;
 import net.spell_power.api.SpellPower;
 
 public class RecklessRageImpact implements SpellHandlers.CustomImpact {
@@ -18,7 +18,7 @@ public class RecklessRageImpact implements SpellHandlers.CustomImpact {
             SpellPower.Result powerResult,
             LivingEntity caster,
             Entity target,
-            SpellHelper.ImpactContext context
+            SpellExecution.ImpactContext context
     ) {
         if(caster instanceof PlayerEntity playerEntity){
             var max_health = playerEntity.getAttributeValue(EntityAttributes.GENERIC_MAX_HEALTH);

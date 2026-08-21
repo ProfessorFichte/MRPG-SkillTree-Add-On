@@ -28,29 +28,41 @@
           "duration": 5.0
         }
       },
-      "particles": [
-        {
-          "particle_id": "spell_engine:magic_stripe_decelerate",
-          "origin": "CENTER",
-          "shape": "WIDE_PIPE",
-          "count": 25.0,
-          "min_speed": 0.3,
-          "max_speed": 0.8,
-          "extent": 1.0,
-          "color_rgba": 3208659199,
-          "follow_entity": true
-        },
-        {
-          "particle_id": "spell_engine:area_effect_658",
-          "origin": "CENTER",
-          "shape": "SPHERE",
-          "count": 1.0,
-          "max_speed": 0.0,
-          "color_rgba": 3208659199,
-          "scale": 1.5,
-          "follow_entity": true
-        }
-      ],
+      "visuals": {
+        "particles": [
+          {
+            "id": "spell_engine:magic_stripe",
+            "appearance": {
+              "color": 3208659199,
+              "motion": "DECELERATE",
+              "attachment": "POSITION"
+            },
+            "batch": {
+              "count": 25.0,
+              "shape": "PIPE",
+              "anchor": "ENTITY",
+              "min_speed": 0.3,
+              "max_speed": 0.8,
+              "extent": 1.0,
+              "width_factor": 2.0
+            }
+          },
+          {
+            "id": "spell_engine:area_effect_658",
+            "appearance": {
+              "color": 3208659199,
+              "scale": 1.5,
+              "facing": "GROUND",
+              "attachment": "POSITION"
+            },
+            "batch": {
+              "count": 1.0,
+              "shape": "NONE",
+              "anchor": "ENTITY"
+            }
+          }
+        ]
+      },
       "sound": {
         "id": "mrpgc_skill_tree:burst_of_aggression"
       }

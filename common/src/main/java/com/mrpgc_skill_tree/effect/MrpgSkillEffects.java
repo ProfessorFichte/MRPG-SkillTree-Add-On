@@ -8,14 +8,13 @@ import net.minecraft.entity.effect.StatusEffectCategory;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.custom.MoreSpellSchools;
 import net.more_rpg_classes.entity.attribute.MRPGCEntityAttributes;
-import net.spell_engine.api.config.AttributeModifier;
-import net.spell_engine.api.config.ConfigFile;
-import net.spell_engine.api.config.EffectConfig;
+import net.spell_engine.rpg_series.config.AttributeModifier;
+import net.spell_engine.rpg_series.config.ConfigFile;
+import net.spell_engine.rpg_series.config.EffectConfig;
 import net.spell_engine.api.effect.*;
 import net.spell_engine.api.entity.SpellEngineAttributes;
 import net.spell_engine.api.event.CombatEvents;
 import net.spell_engine.api.spell.event.SpellEvents;
-import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_power.api.SpellPower;
 import net.spell_power.api.SpellPowerMechanics;
 import net.spell_power.api.SpellSchools;
@@ -838,7 +837,8 @@ public class MrpgSkillEffects {
         }
         Effects.register(entries, config.effects);
 
-        RemoveOnHit.configure(SHADOWS_REFUGE.effect,true);
+        // The deprecated boolean overload was removed in 1.10; in 1.9 it delegated to ANY_HIT.
+        RemoveOnHit.configure(SHADOWS_REFUGE.effect, RemoveOnHit.Trigger.ANY_HIT);
 
         SpellEvents.SPELL_CAST.register((args) -> {
             var caster = args.caster();
@@ -872,11 +872,11 @@ public class MrpgSkillEffects {
 
         ActionImpairing.configure(SURYS_TENACITY.effect, EntityActionsAllowed.SILENCE);
         Protection.register(OBSIDIAN_SKIN.entry, new Protection.Pop(
-                new ParticleBatch[]{  },
+                List.of(),
                 MrpgSkillSounds.obsidian_skin.soundEvent()
         ));
         Protection.register(MELODIC_PROTECTION.entry, new Protection.Pop(
-                new ParticleBatch[]{  },
+                List.of(),
                 MrpgSkillSounds.obsidian_skin.soundEvent()
         ));
 

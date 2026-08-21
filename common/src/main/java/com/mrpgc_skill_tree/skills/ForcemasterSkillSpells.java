@@ -13,14 +13,17 @@ import net.spell_engine.api.entity.SpellEntityPredicates;
 import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.Fx;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.api.util.TriState;
-import net.spell_engine.client.gui.SpellTooltip;
+import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
 import net.spell_engine.internals.target.SpellTarget;
+import net.spell_power.api.SpellPowerMechanics;
 import net.spell_power.api.SpellSchool;
 import net.spell_power.api.SpellSchools;
 import com.mrpgc_skill_tree.effect.MrpgSkillEffects;
@@ -63,20 +66,16 @@ public class ForcemasterSkillSpells {
 
         var damage = SpellBuilder.Impacts.damage(0.2F, 0F);
         damage.action.allow_on_center_target = false;
-        damage.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
-                        15, 0.1F, 0.7F)
-                        .color(Color.ARCANE.toRGBA()),
-        };
+        damage.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.BURST, Color.ARCANE)
+                        .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE)
+                                .count(15).speed(0.1F, 0.7F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)));
         spell.impacts = List.of(damage);
 
         SpellBuilder.Cost.cooldown(spell, 1F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
     public static final MrpgSkillSpells.Entry forcemaster_tier_2_spell_1_modifier_2 = add(forcemaster_tier_2_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry forcemaster_tier_2_spell_1_modifier_2() {
@@ -91,31 +90,22 @@ public class ForcemasterSkillSpells {
         spell.target.area = new Spell.Target.Area();
         spell.target.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
 
-        spell.release.particles =  new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
-                        15, 0.1F, 0.7F)
-                        .color(Color.ARCANE.toRGBA()),
-        };
+        spell.release.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.BURST, Color.ARCANE)
+                        .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE)
+                                .count(15).speed(0.1F, 0.7F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)));
         var trigger = SpellBuilder.Triggers.specificSpellCast("forcemaster_rpg:stonehand");
         spell.passive.triggers = List.of(trigger);
 
         var damage = SpellBuilder.Impacts.damage(0.5F, 0.1F);
-        damage.particles =  new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.ARCANE,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        15, 0.1F, 0.4F)
-                        .color(Color.ARCANE.toRGBA()),
-        };
+        damage.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_arcane, ParticleGroup.Motion.DECELERATE, Color.ARCANE)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(15).speed(0.1F, 0.4F)));
         spell.impacts = List.of(damage);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
     public static final MrpgSkillSpells.Entry forcemaster_tier_3_spell_1_root = add(MrpgSkillsCommon.critRoot(
             MrpgSkillSpells.Category.FORCEMASTER, MrpgSkillSpells.forcemasterFighterSchool,
@@ -141,19 +131,18 @@ public class ForcemasterSkillSpells {
         custom.action.type = Spell.Impact.Action.Type.CUSTOM;
         custom.action.custom.intent = SpellTarget.Intent.HARMFUL;
         custom.action.custom.handler = "more_rpg_classes:knock_up_fixed";
-        custom.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                SpellEngineParticles.smoke_medium.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.FEET,
-                        20, 0.1F, 0.3F)
-                        .extent(0.25F)
-                        .color(Color.WHITE.toRGBA()),
-        };
+        custom.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.smoke_medium)
+                        .color(Color.WHITE)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(20).speed(0.1F, 0.3F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
+                                .extent(0.25F)));
 
         spell.impacts = List.of(custom);
         SpellBuilder.Cost.cooldown(spell, 0.5F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
     public static final MrpgSkillSpells.Entry forcemaster_tier_3_spell_1_modifier_2 = add(forcemaster_tier_3_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry forcemaster_tier_3_spell_1_modifier_2() {
@@ -168,7 +157,7 @@ public class ForcemasterSkillSpells {
         modifier.range_add = 1.5F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
     public static final MrpgSkillSpells.Entry forcemaster_tier_4_spell_2_root = add(MrpgSkillsCommon.critRoot(
             MrpgSkillSpells.Category.FORCEMASTER, MrpgSkillSpells.forcemasterFighterSchool,
@@ -187,13 +176,17 @@ public class ForcemasterSkillSpells {
         modifier.power_modifier.critical_chance_bonus = 0.15F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
     public static final MrpgSkillSpells.Entry forcemaster_tier_4_spell_2_modifier_2 = add(forcemaster_tier_4_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry forcemaster_tier_4_spell_2_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_4_spell_2_modifier_2");
         var title = "Arcane Regeneration";
-        var description = "Killing a target with Asalraalaikum heals you for {power_multiplier} of your max health.";
+        // `{power_multiplier}` rendered literally here: it resolves from a `Spell.Modifier`'s
+        // `power_modifier`, and this spell has no modifiers at all - the value is the heal impact's
+        // own coefficient against max health. Resolved by `MrpgSkillSpells.registerTooltipTokens`.
+        var description = "Killing a target with Asalraalaikum heals you for " + MrpgSkillSpells.maxHealthPercentToken
+                + " of your max health.";
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
         spell.school = MrpgSkillSpells.forcemasterCasterSchool;
 
@@ -206,18 +199,13 @@ public class ForcemasterSkillSpells {
         heal.attribute = EntityAttributes.GENERIC_MAX_HEALTH.getIdAsString();
         heal.attribute_from_target = false;
         heal.action.apply_to_caster = true;
-        heal.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.HEAL,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        25, 0.25F, 0.6F)
-                        .color(Color.ARCANE.toRGBA())
-        };
+        heal.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_heal, ParticleGroup.Motion.BURST, Color.ARCANE)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(25).speed(0.25F, 0.6F)));
         spell.impacts = List.of(heal);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
     public static final MrpgSkillSpells.Entry forcemaster_tier_3_spell_2_root = add(MrpgSkillsCommon.critRoot(
             MrpgSkillSpells.Category.FORCEMASTER, MrpgSkillSpells.forcemasterFighterSchool,
@@ -236,7 +224,7 @@ public class ForcemasterSkillSpells {
         modifier.power_modifier.critical_chance_bonus = 0.15F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
     public static final MrpgSkillSpells.Entry forcemaster_tier_3_spell_2_modifier_2 = add(forcemaster_tier_3_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry forcemaster_tier_3_spell_2_modifier_2() {
@@ -257,20 +245,15 @@ public class ForcemasterSkillSpells {
         spell.deliver.custom.handler = "forcemaster_rpg:nen_sphere";
 
         var damage = SpellBuilder.Impacts.damage(0.35F);
-        damage.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.ARCANE,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.2F, 0.4F)
-                        .color(Color.ARCANE.toRGBA()),
-        };
+        damage.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_arcane, ParticleGroup.Motion.BURST, Color.ARCANE)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(10).speed(0.2F, 0.4F)));
         spell.impacts = List.of(damage);
 
         SpellBuilder.Cost.cooldown(spell, 1F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
     ///FORCEMASTER PASSIVES
     public static final MrpgSkillSpells.Entry forcemaster_tier_1_passive_1 = add(forcemaster_tier_1_passive_1());
@@ -293,31 +276,26 @@ public class ForcemasterSkillSpells {
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 7F, 0,3);
         MrpgSkillSpells.bleedingDeny(impact);
         impact.action.status_effect.refresh_duration = true;
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.dripping_blood.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        20, 0.15F, 0.15F
-                )
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.dripping_blood)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(20).speed(0.15F, 0.15F)));
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 5F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
     public static final MrpgSkillSpells.Entry forcemaster_tier_1_passive_2 = add(forcemaster_tier_1_passive_2());
     private static MrpgSkillSpells.Entry forcemaster_tier_1_passive_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_1_passive_2");
         var title = "Force Release";
-        var description = "Arcane spell impacts have {trigger_chance} chance to increase spell haste & spell crit chance by {bonus} for {effect_duration} sec. The effect can be stacked {effect_amplifier_cap} times.";
         var effect = MrpgSkillEffects.FORCE_RELEASE;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description()
-                    .replace("{bonus}", bonus);
-        };
+        // Two modifiers (spell haste, spell crit chance), both +2%. The status effect's modifier map
+        // is unordered, so the attribute is named explicitly rather than read by list position.
+        var description = "Arcane spell impacts have {trigger_chance} chance to increase spell haste & spell crit chance by "
+                + TooltipTokens.effect(effect.id, 0, SpellPowerMechanics.HASTE.id)
+                + " for {effect_duration} sec. The effect can be stacked {effect_amplifier_cap} times.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.forcemasterCasterSchool;
@@ -331,35 +309,32 @@ public class ForcemasterSkillSpells {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 10F, 1,5);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.area_circle_1.id().toString(),
-                        ParticleBatch.Shape.LINE_VERTICAL, ParticleBatch.Origin.FEET,
-                        1, 0.2F, 0.2F)
-                        .followEntity(true)
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.area_circle_1)
+                        .color(Color.ARCANE)
                         .scale(0.8F)
-                        .maxAge(0.8F)
-                        .color(Color.ARCANE.toRGBA()),
-        };
+                        // V1 max_age 0.8 -> playback_speed is its reciprocal
+                        .playbackSpeed(1.25F)
+                        .attached()
+                        .batch(b -> b.shape(ParticleGroup.Shape.LINE_VERTICAL)
+                                .count(1).speed(0.2F, 0.2F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)));
         impact.sound = new Sound(SkillSounds.arcane_radiance.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 1F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
     public static final MrpgSkillSpells.Entry forcemaster_tier_2_passive_1 = add(forcemaster_tier_2_passive_1());
     private static MrpgSkillSpells.Entry forcemaster_tier_2_passive_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_2_passive_1");
         var title = "Flying Fists";
-        var description = "Upon rolling, attack speed gets increased by {bonus} for {effect_duration} sec.";
         var effect = MrpgSkillEffects.FLYING_FISTS;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description()
-                    .replace("{bonus}", bonus);
-        };
+        // Single modifier (attack speed), so the token's blank-attribute fallback is unambiguous.
+        var description = "Upon rolling, attack speed gets increased by "
+                + TooltipTokens.effect(effect.id)
+                + " for {effect_duration} sec.";
 
 
         var spell = SpellBuilder.createSpellPassive();
@@ -370,19 +345,16 @@ public class ForcemasterSkillSpells {
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 5, 0, 0);
         impact.sound = new Sound(MrpgSkillSounds.flying_fists.id());
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
-                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        20, 0.05F, 0.1F)
-                        .color(MIGHT_COLOR.toRGBA()),
-                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_fist.id(), MIGHT_COLOR)
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.FLOAT, MIGHT_COLOR)
+                        // V1 WIDE_PIPE = PIPE at double the entity radius
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
+                                .count(20).speed(0.05F, 0.1F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)),
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_fist.id(), MIGHT_COLOR));
         spell.impacts = List.of(impact);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
     public static final MrpgSkillSpells.Entry forcemaster_tier_2_passive_2 = add(forcemaster_tier_2_passive_2());
     private static MrpgSkillSpells.Entry forcemaster_tier_2_passive_2() {
@@ -406,35 +378,33 @@ public class ForcemasterSkillSpells {
         impact.action.cooldown.actives = new Spell.Impact.Action.Cooldown.Modify();
         impact.action.cooldown.actives.school = "arcane";
         impact.action.cooldown.actives.duration_multiplier = 0.75F;
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
-                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        20, 0.05F, 0.1F)
-                        .color(Color.ARCANE.toRGBA()),
-                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), Color.ARCANE)
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.FLOAT, Color.ARCANE)
+                        // V1 WIDE_PIPE = PIPE at double the entity radius
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
+                                .count(20).speed(0.05F, 0.1F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)),
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), Color.ARCANE));
         spell.impacts = List.of(impact);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
     public static final MrpgSkillSpells.Entry forcemaster_tier_3_passive_1 = add(forcemaster_tier_3_passive_1());
     private static MrpgSkillSpells.Entry forcemaster_tier_3_passive_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_3_passive_1");
         var title = "Sury's Tenacity";
         final var healthThreshold = 0.3F;
-        var description = "When taking damage below {threshold}, attack & movement speed gets increased by {bonus} and the caster is immune to harmful effects for {effect_duration} sec.";
         var effect = MrpgSkillEffects.SURYS_TENACITY;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var threshold = SpellTooltip.percent(healthThreshold);
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description()
-                    .replace("{bonus}", bonus)
-                    .replace("{threshold}", threshold);
-        };
+        // Three modifiers that do NOT all share a value: attack speed +20%, movement speed +20% and
+        // tenacity +100%. The old `firstModifier()` read happened to land on attack speed, but the
+        // status effect's modifier map is unordered, so it is named explicitly - picking tenacity
+        // would print "100%". The health threshold is a compile-time constant of this mod, so it is
+        // baked in (`bakedPercent` doubles the `%` for `I18n.translate` -> `String.format`).
+        var description = "When taking damage below " + TooltipTokens.bakedPercent(healthThreshold)
+                + ", attack & movement speed gets increased by "
+                + TooltipTokens.effect(effect.id, 0,
+                        Identifier.of(EntityAttributes.GENERIC_ATTACK_SPEED.getIdAsString()))
+                + " and the caster is immune to harmful effects for {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.forcemasterFighterSchool;
@@ -445,40 +415,34 @@ public class ForcemasterSkillSpells {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 5, 0, 0);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.ARCANE,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE
-                        ).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        30, 0.5F, 0.5F)
-                        .color(MIGHT_COLOR.toRGBA()),
-                new ParticleBatch(
-                        SpellEngineParticles.aura_effect_642.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        1, 0, 0)
-                        .color(MIGHT_COLOR.toRGBA()),
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_arcane, ParticleGroup.Motion.DECELERATE, MIGHT_COLOR)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(30).speed(0.5F, 0.5F)),
+                // V1 `aura_effect_642` was zone/effect_642 registered a second time camera-facing.
+                // 1.10 keeps one entry, so the aura role is the facing override.
+                ParticleGroupBuilder.of(SpellEngineParticles.area_effect_642)
+                        .facing(ParticleGroup.Facing.CAMERA)
+                        .color(MIGHT_COLOR)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(1).speed(0F, 0F)));
         impact.sound = new Sound(MrpgSkillSounds.surys_tenacity.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell,40);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
     public static final MrpgSkillSpells.Entry forcemaster_tier_3_passive_2 = add(forcemaster_tier_3_passive_2());
     private static MrpgSkillSpells.Entry forcemaster_tier_3_passive_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_3_passive_2");
         var title = "Sury's Grace";
-        var description = "Casting Forcemaster Spells has a {trigger_chance} to increase arcane spell power & spell haste by {bonus} for {effect_duration} sec.";
         var effect = MrpgSkillEffects.SURYS_GRACE;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description()
-                    .replace("{bonus}", bonus);
-        };
+        // Two modifiers (arcane spell power, spell haste), both +20%. The status effect's modifier map
+        // is unordered, so the attribute is named explicitly rather than read by list position.
+        var description = "Casting Forcemaster Spells has a {trigger_chance} to increase arcane spell power & spell haste by "
+                + TooltipTokens.effect(effect.id, 0, SpellSchools.ARCANE.id)
+                + " for {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.forcemasterCasterSchool;
@@ -490,25 +454,21 @@ public class ForcemasterSkillSpells {
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 10, 0, 0);
         impact.sound = new Sound(MrpgSkillSounds.surys_grace.id());
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.ARCANE,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE
-                        ).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        30, 0.5F, 0.5F)
-                        .color(Color.from(SpellSchools.ARCANE.color).toRGBA()),
-                new ParticleBatch(
-                        SpellEngineParticles.aura_effect_642.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        1, 0, 0)
-                        .color(Color.from(SpellSchools.ARCANE.color).toRGBA()),
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_arcane, ParticleGroup.Motion.DECELERATE,
+                                Color.from(SpellSchools.ARCANE.color))
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(30).speed(0.5F, 0.5F)),
+                // V1 `aura_effect_642` was zone/effect_642 registered a second time camera-facing.
+                ParticleGroupBuilder.of(SpellEngineParticles.area_effect_642)
+                        .facing(ParticleGroup.Facing.CAMERA)
+                        .color(Color.from(SpellSchools.ARCANE.color))
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(1).speed(0F, 0F)));
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell,60);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
 }
