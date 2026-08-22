@@ -9,6 +9,7 @@ import com.mrpgc_skill_tree.skills.ForcemasterSkillSpells;
 import com.mrpgc_skill_tree.skills.WarArcherSkillSpells;
 import com.mrpgc_skill_tree.skills.DeadeyeSkillSpells;
 import com.mrpgc_skill_tree.skills.TundraHunterSkillSpells;
+import com.mrpgc_skill_tree.skills.WitcherSkillSpells;
 import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
@@ -18,8 +19,10 @@ import net.minecraft.util.Identifier;
 import net.more_rpg_classes.custom.MoreSpellSchools;
 import net.more_rpg_classes.entity.attribute.MRPGCEntityAttributes;
 import net.puffish.skillsmod.common.IconType;
+import net.skill_tree_rpgs.node.ConditionalAttributeReward;
 import net.spell_engine.api.spell.container.SpellContainer;
 import net.spell_engine.api.spell.container.SpellContainers;
+import net.spell_power.api.SpellPowerMechanics;
 import net.spell_power.api.SpellSchools;
 
 import java.util.ArrayList;
@@ -53,16 +56,17 @@ public class MrpgSkillDefinitions {
             return new EntityAttributeReward(attribute, new EntityAttributeModifier(Identifier.of(MOD_ID + ":attribute_reward"), value, operation));
         }
     }
-    public record Entry(String id, String title, String description, Icon icon, List<SpellContainer> spellReward, EntityAttributeReward attributeReward, List<String> required_mods) {
+    public record Entry(String id, String title, String description, Icon icon, List<SpellContainer> spellReward, EntityAttributeReward attributeReward,
+                         ConditionalAttributeReward.DataStructure conditionalAttributeReward, List<String> required_mods) {
         public static Entry spell(String id, String title, String description, Icon icon, List<SpellContainer> spellReward) {
-            return new Entry(id, title, description, icon, spellReward, null, null);
+            return new Entry(id, title, description, icon, spellReward, null, null, null);
         }
         public static Entry attribute(String id, String title, String description, Icon icon,
                                       RegistryEntry<EntityAttribute> attribute, double value, EntityAttributeModifier.Operation operation) {
             return attribute(id, title, description, icon, EntityAttributeReward.of(attribute, value, operation));
         }
         public static Entry attribute(String id, String title, String description, Icon icon, EntityAttributeReward attributeReward) {
-            return new Entry(id, title, description, icon, null, attributeReward, null);
+            return new Entry(id, title, description, icon, null, attributeReward, null, null);
         }
         public String titleTranslationKey() {
             return "skill." + MOD_ID + "." + id + ".title";
@@ -71,10 +75,16 @@ public class MrpgSkillDefinitions {
             return "skill." + MOD_ID + "." + id + ".description";
         }
         public Entry withIcon(Icon icon) {
-            return new Entry(id, title, description, icon, spellReward, attributeReward, required_mods);
+            return new Entry(id, title, description, icon, spellReward, attributeReward, conditionalAttributeReward, required_mods);
         }
         public Entry require(String modId) {
-            return new Entry(id, title, description, icon, spellReward, attributeReward, List.of(modId));
+            return new Entry(id, title, description, icon, spellReward, attributeReward, conditionalAttributeReward, List.of(modId));
+        }
+        public Entry withConditionalAttribute(String attribute, String fallbackAttribute, double value, String equipmentTag, String translationKey) {
+            var equipment = new ConditionalAttributeReward.DataStructure.ConditionData.EquipmentData("mainhand", equipmentTag);
+            var condition = new ConditionalAttributeReward.DataStructure.ConditionData(translationKey, equipment);
+            var reward = new ConditionalAttributeReward.DataStructure(attribute, fallbackAttribute, value, "multiply_base", condition);
+            return new Entry(id, title, description, icon, spellReward, attributeReward, reward, required_mods);
         }
     }
     public static final ArrayList<Entry> ENTRIES = new ArrayList<>();
@@ -105,11 +115,21 @@ public class MrpgSkillDefinitions {
     }
 
     private static Entry modifierSpell(MrpgSkillSpells.Entry entry) {
-        var modifiedSpellId = Identifier.of(entry.spell().modifiers.getFirst().spell_pattern);
+        var pattern = entry.spell().modifiers.getFirst().spell_pattern;
+        var icon = pattern.startsWith("#") ? null : Icon.spell(Identifier.of(pattern));
         return Entry.spell(entry.id().getPath(),
                 entry.title(),
                 null,
-                Icon.spell(modifiedSpellId),
+                icon,
+                List.of(SpellContainers.forModifier(entry.id()))
+        );
+    }
+
+    private static Entry emptyModifierSpell(MrpgSkillSpells.Entry entry) {
+        return Entry.spell(entry.id().getPath(),
+                entry.title(),
+                null,
+                null,
                 List.of(SpellContainers.forModifier(entry.id()))
         );
     }
@@ -158,6 +178,15 @@ public class MrpgSkillDefinitions {
     public static final Entry AIR_TIER_2_PASSIVE_2 = add(passiveSpell(AirSkillSpells.air_tier_2_passive_2).require(ELEMENTAL_WIZARDS));
     public static final Entry AIR_TIER_3_PASSIVE_1 = add(passiveSpell(AirSkillSpells.air_tier_3_passive_1).require(ELEMENTAL_WIZARDS));
     public static final Entry AIR_TIER_3_PASSIVE_2 = add(passiveSpell(AirSkillSpells.air_tier_3_passive_2).require(ELEMENTAL_WIZARDS));
+    public static final Entry AIR_TIER_2_SPELL_2_ROOT = add(modifierSpell(AirSkillSpells.air_tier_2_spell_2_root).require(ELEMENTAL_WIZARDS));
+    public static final Entry AIR_TIER_2_SPELL_2_MODIFIER_1 = add(modifierSpell(AirSkillSpells.air_tier_2_spell_2_modifier_1).require(ELEMENTAL_WIZARDS));
+    public static final Entry AIR_TIER_2_SPELL_2_MODIFIER_2 = add(modifierSpell(AirSkillSpells.air_tier_2_spell_2_modifier_2).require(ELEMENTAL_WIZARDS));
+    public static final Entry AIR_TIER_3_SPELL_2_ROOT = add(modifierSpell(AirSkillSpells.air_tier_3_spell_2_root).require(ELEMENTAL_WIZARDS));
+    public static final Entry AIR_TIER_3_SPELL_2_MODIFIER_1 = add(modifierSpell(AirSkillSpells.air_tier_3_spell_2_modifier_1).require(ELEMENTAL_WIZARDS));
+    public static final Entry AIR_TIER_3_SPELL_2_MODIFIER_2 = add(modifierSpell(AirSkillSpells.air_tier_3_spell_2_modifier_2).require(ELEMENTAL_WIZARDS));
+    public static final Entry AIR_TIER_4_SPELL_2_ROOT = add(modifierSpell(AirSkillSpells.air_tier_4_spell_2_root).require(ELEMENTAL_WIZARDS));
+    public static final Entry AIR_TIER_4_SPELL_2_MODIFIER_1 = add(modifierSpell(AirSkillSpells.air_tier_4_spell_2_modifier_1).require(ELEMENTAL_WIZARDS));
+    public static final Entry AIR_TIER_4_SPELL_2_MODIFIER_2 = add(modifierSpell(AirSkillSpells.air_tier_4_spell_2_modifier_2).require(ELEMENTAL_WIZARDS));
 
     ///EARTH WIZARD
     public static final Entry EARTH_ROOT = add(
@@ -192,6 +221,15 @@ public class MrpgSkillDefinitions {
     public static final Entry EARTH_TIER_2_PASSIVE_2 = add(passiveSpell(EarthSkillSpells.earth_tier_2_passive_2).require(ELEMENTAL_WIZARDS));
     public static final Entry EARTH_TIER_3_PASSIVE_1 = add(passiveSpell(EarthSkillSpells.earth_tier_3_passive_1).require(ELEMENTAL_WIZARDS));
     public static final Entry EARTH_TIER_3_PASSIVE_2 = add(passiveSpell(EarthSkillSpells.earth_tier_3_passive_2).require(ELEMENTAL_WIZARDS));
+    public static final Entry EARTH_TIER_2_SPELL_2_ROOT = add(modifierSpell(EarthSkillSpells.earth_tier_2_spell_2_root).require(ELEMENTAL_WIZARDS));
+    public static final Entry EARTH_TIER_2_SPELL_2_MODIFIER_1 = add(modifierSpell(EarthSkillSpells.earth_tier_2_spell_2_modifier_1).require(ELEMENTAL_WIZARDS));
+    public static final Entry EARTH_TIER_2_SPELL_2_MODIFIER_2 = add(modifierSpell(EarthSkillSpells.earth_tier_2_spell_2_modifier_2).require(ELEMENTAL_WIZARDS));
+    public static final Entry EARTH_TIER_3_SPELL_2_ROOT = add(modifierSpell(EarthSkillSpells.earth_tier_3_spell_2_root).require(ELEMENTAL_WIZARDS));
+    public static final Entry EARTH_TIER_3_SPELL_2_MODIFIER_1 = add(modifierSpell(EarthSkillSpells.earth_tier_3_spell_2_modifier_1).require(ELEMENTAL_WIZARDS));
+    public static final Entry EARTH_TIER_3_SPELL_2_MODIFIER_2 = add(modifierSpell(EarthSkillSpells.earth_tier_3_spell_2_modifier_2).require(ELEMENTAL_WIZARDS));
+    public static final Entry EARTH_TIER_4_SPELL_2_ROOT = add(modifierSpell(EarthSkillSpells.earth_tier_4_spell_2_root).require(ELEMENTAL_WIZARDS));
+    public static final Entry EARTH_TIER_4_SPELL_2_MODIFIER_1 = add(modifierSpell(EarthSkillSpells.earth_tier_4_spell_2_modifier_1).require(ELEMENTAL_WIZARDS));
+    public static final Entry EARTH_TIER_4_SPELL_2_MODIFIER_2 = add(modifierSpell(EarthSkillSpells.earth_tier_4_spell_2_modifier_2).require(ELEMENTAL_WIZARDS));
     ///WATER WIZARD
     public static final Entry WATER_ROOT = add(
             Entry.attribute("water_root",
@@ -228,6 +266,15 @@ public class MrpgSkillDefinitions {
     public static final Entry WATER_TIER_2_PASSIVE_2 = add(passiveSpell(WaterSkillSpells.water_tier_2_passive_2).require(ELEMENTAL_WIZARDS));
     public static final Entry WATER_TIER_3_PASSIVE_1 = add(passiveSpell(WaterSkillSpells.water_tier_3_passive_1).require(ELEMENTAL_WIZARDS));
     public static final Entry WATER_TIER_3_PASSIVE_2 = add(passiveSpell(WaterSkillSpells.water_tier_3_passive_2).require(ELEMENTAL_WIZARDS));
+    public static final Entry WATER_TIER_2_SPELL_2_ROOT = add(modifierSpell(WaterSkillSpells.water_tier_2_spell_2_root).require(ELEMENTAL_WIZARDS));
+    public static final Entry WATER_TIER_2_SPELL_2_MODIFIER_1 = add(modifierSpell(WaterSkillSpells.water_tier_2_spell_2_modifier_1).require(ELEMENTAL_WIZARDS));
+    public static final Entry WATER_TIER_2_SPELL_2_MODIFIER_2 = add(modifierSpell(WaterSkillSpells.water_tier_2_spell_2_modifier_2).require(ELEMENTAL_WIZARDS));
+    public static final Entry WATER_TIER_4_SPELL_1_ROOT = add(modifierSpell(WaterSkillSpells.water_tier_4_spell_1_root).require(ELEMENTAL_WIZARDS));
+    public static final Entry WATER_TIER_4_SPELL_1_MODIFIER_1 = add(modifierSpell(WaterSkillSpells.water_tier_4_spell_1_modifier_1).require(ELEMENTAL_WIZARDS));
+    public static final Entry WATER_TIER_4_SPELL_1_MODIFIER_2 = add(modifierSpell(WaterSkillSpells.water_tier_4_spell_1_modifier_2).require(ELEMENTAL_WIZARDS));
+    public static final Entry WATER_TIER_4_SPELL_2_ROOT = add(modifierSpell(WaterSkillSpells.water_tier_4_spell_2_root).require(ELEMENTAL_WIZARDS));
+    public static final Entry WATER_TIER_4_SPELL_2_MODIFIER_1 = add(modifierSpell(WaterSkillSpells.water_tier_4_spell_2_modifier_1).require(ELEMENTAL_WIZARDS));
+    public static final Entry WATER_TIER_4_SPELL_2_MODIFIER_2 = add(modifierSpell(WaterSkillSpells.water_tier_4_spell_2_modifier_2).require(ELEMENTAL_WIZARDS));
     ///BERSERKER
     public static final Entry BERSERKER_ROOT = add(
             Entry.attribute("berserker_root",
@@ -318,6 +365,12 @@ public class MrpgSkillDefinitions {
     public static final Entry FORCEMASTER_TIER_2_PASSIVE_2 = add(passiveSpell(ForcemasterSkillSpells.forcemaster_tier_2_passive_2).require(FORCEMASTER));
     public static final Entry FORCEMASTER_TIER_3_PASSIVE_1 = add(passiveSpell(ForcemasterSkillSpells.forcemaster_tier_3_passive_1).require(FORCEMASTER));
     public static final Entry FORCEMASTER_TIER_3_PASSIVE_2 = add(passiveSpell(ForcemasterSkillSpells.forcemaster_tier_3_passive_2).require(FORCEMASTER));
+    public static final Entry FORCEMASTER_TIER_2_SPELL_2_ROOT = add(modifierSpell(ForcemasterSkillSpells.forcemaster_tier_2_spell_2_root).require(FORCEMASTER));
+    public static final Entry FORCEMASTER_TIER_2_SPELL_2_MODIFIER_1 = add(modifierSpell(ForcemasterSkillSpells.forcemaster_tier_2_spell_2_modifier_1).require(FORCEMASTER));
+    public static final Entry FORCEMASTER_TIER_2_SPELL_2_MODIFIER_2 = add(modifierSpell(ForcemasterSkillSpells.forcemaster_tier_2_spell_2_modifier_2).require(FORCEMASTER));
+    public static final Entry FORCEMASTER_TIER_4_SPELL_1_ROOT = add(modifierSpell(ForcemasterSkillSpells.forcemaster_tier_4_spell_1_root).require(FORCEMASTER));
+    public static final Entry FORCEMASTER_TIER_4_SPELL_1_MODIFIER_1 = add(modifierSpell(ForcemasterSkillSpells.forcemaster_tier_4_spell_1_modifier_1).require(FORCEMASTER));
+    public static final Entry FORCEMASTER_TIER_4_SPELL_1_MODIFIER_2 = add(modifierSpell(ForcemasterSkillSpells.forcemaster_tier_4_spell_1_modifier_2).require(FORCEMASTER));
     ///WAR ARCHER
     public static final Entry WAR_ARCHER_ROOT = add(
             Entry.attribute("war_archer_root",
@@ -401,7 +454,8 @@ public class MrpgSkillDefinitions {
     public static final Entry DEADEYE_TIER_4_SPELL_1_MODIFIER_2 = add(modifierSpell(DeadeyeSkillSpells.deadeye_tier_4_spell_1_modifier_2).require(ARCHERS_EXPANSION));
     public static final Entry DEADEYE_TIER_4_SPELL_2_ROOT = add(modifierSpell(DeadeyeSkillSpells.deadeye_tier_4_spell_2_root).require(ARCHERS_EXPANSION));
     public static final Entry DEADEYE_TIER_4_SPELL_2_MODIFIER_1 = add(modifierSpell(DeadeyeSkillSpells.deadeye_tier_4_spell_2_modifier_1).require(ARCHERS_EXPANSION));
-    public static final Entry DEADEYE_TIER_4_SPELL_2_MODIFIER_2 = add(modifierSpell(DeadeyeSkillSpells.deadeye_tier_4_spell_2_modifier_2).require(ARCHERS_EXPANSION));
+    public static final Entry DEADEYE_TIER_4_SPELL_2_MODIFIER_2 = add(passiveSpell(DeadeyeSkillSpells.deadeye_tier_4_spell_2_modifier_2)
+            .withIcon(Icon.spell(Identifier.of("archers_expansion", "alter_ego"))).require(ARCHERS_EXPANSION));
     public static final Entry DEADEYE_TIER_1_PASSIVE_1 = add(passiveSpell(DeadeyeSkillSpells.deadeye_tier_1_passive_1).require(ARCHERS_EXPANSION));
     public static final Entry DEADEYE_TIER_1_PASSIVE_2 = add(passiveSpell(DeadeyeSkillSpells.deadeye_tier_1_passive_2).require(ARCHERS_EXPANSION));
     public static final Entry DEADEYE_TIER_2_PASSIVE_1 = add(passiveSpell(DeadeyeSkillSpells.deadeye_tier_2_passive_1).require(ARCHERS_EXPANSION));
@@ -508,54 +562,281 @@ public class MrpgSkillDefinitions {
     public static final Entry WEAPON_TERRA_STAFF_ROOT = addWeapon(modifierSpell(MrpgWeaponSkills.weapon_terra_staff_root).require(ELEMENTAL_WIZARDS));
     public static final Entry WEAPON_TERRA_STAFF_MODIFIER_1 = addWeapon(modifierSpell(MrpgWeaponSkills.weapon_terra_staff_modifier_1).require(ELEMENTAL_WIZARDS));
     public static final Entry WEAPON_TERRA_STAFF_MODIFIER_2 = addWeapon(modifierSpell(MrpgWeaponSkills.weapon_terra_staff_modifier_2).require(ELEMENTAL_WIZARDS));
-    public static final Entry WEAPON_KNUCKLE_ROOT = addWeapon(modifierSpell(MrpgWeaponSkills.weapon_knuckle_root).require(FORCEMASTER));
+    public static final Entry WEAPON_KNUCKLE_ROOT = addWeapon(modifierSpell(MrpgWeaponSkills.weapon_knuckle_root)
+            .withConditionalAttribute("minecraft:generic.attack_damage", null, 0.05,
+                    "forcemaster_rpg:knuckles", "modifier_condition.mrpgc_skill_tree.knuckles").require(FORCEMASTER));
     public static final Entry WEAPON_KNUCKLE_MODIFIER_1 = addWeapon(modifierSpell(MrpgWeaponSkills.weapon_knuckle_modifier_1).require(FORCEMASTER));
-    public static final Entry WEAPON_KNUCKLE_MODIFIER_2 = addWeapon(modifierSpell(MrpgWeaponSkills.weapon_knuckle_modifier_2).require(FORCEMASTER));
+    public static final Entry WEAPON_KNUCKLE_MODIFIER_2 = addWeapon(passiveSpell(MrpgWeaponSkills.weapon_knuckle_modifier_2)
+            .withIcon(Icon.spell(Identifier.of("forcemaster_rpg", "burstcrack"))).require(FORCEMASTER));
 
-    /*
-    ///WITCHER
-    /// TO DO WILL BE POSTPONED
-    public static final Entry WITCHER_ROOT = add(
-            Entry.attribute("witcher_root",
-                    "Path of the Witcher",
-                    null,
+    public static final Entry WEAPON_BERSERKER_AXE_ROOT = addWeapon(modifierSpell(MrpgWeaponSkills.weapon_berserker_axe_root)
+            .withConditionalAttribute("minecraft:generic.attack_damage", null, 0.05,
+                    "berserker_rpg:berserker_axes", "modifier_condition.mrpgc_skill_tree.berserker_axe").require(BERSERKER));
+    public static final Entry WEAPON_BERSERKER_AXE_MODIFIER_1 = addWeapon(passiveSpell(MrpgWeaponSkills.weapon_berserker_axe_modifier_1)
+            .withIcon(Icon.spell(Identifier.of("more_rpg_classes", "decapitate"))).require(BERSERKER));
+    public static final Entry WEAPON_BERSERKER_AXE_MODIFIER_2 = addWeapon(modifierSpell(MrpgWeaponSkills.weapon_berserker_axe_modifier_2).require(BERSERKER));
+
+    public static final Entry WEAPON_RAPIER_ROOT = addWeapon(modifierSpell(MrpgWeaponSkills.weapon_rapier_root).require(BARD));
+    public static final Entry WEAPON_RAPIER_MODIFIER_1 = addWeapon(passiveSpell(MrpgWeaponSkills.weapon_rapier_modifier_1)
+            .withIcon(Icon.spell(Identifier.of("more_rpg_classes", "puncture"))).require(BARD));
+    public static final Entry WEAPON_RAPIER_MODIFIER_2 = addWeapon(modifierSpell(MrpgWeaponSkills.weapon_rapier_modifier_2).require(BARD));
+
+    public static final Entry WEAPON_LUTE_ROOT = addWeapon(modifierSpell(MrpgWeaponSkills.weapon_lute_root)
+            .withIcon(Icon.item("bards_rpg:wooden_lute")).require(BARD));
+    public static final Entry WEAPON_LUTE_MODIFIER_1 = addWeapon(passiveSpell(MrpgWeaponSkills.weapon_lute_modifier_1)
+            .withIcon(Icon.item("bards_rpg:wooden_lute")).require(BARD));
+    public static final Entry WEAPON_LUTE_MODIFIER_2 = addWeapon(modifierSpell(MrpgWeaponSkills.weapon_lute_modifier_2)
+            .withIcon(Icon.item("bards_rpg:wooden_lute")).require(BARD));
+
+    public static final Entry WEAPON_LYRE_ROOT = addWeapon(modifierSpell(MrpgWeaponSkills.weapon_lyre_root)
+            .withIcon(Icon.item("bards_rpg:golden_lyre")).require(BARD));
+    public static final Entry WEAPON_LYRE_MODIFIER_1 = addWeapon(modifierSpell(MrpgWeaponSkills.weapon_lyre_modifier_1)
+            .withIcon(Icon.item("bards_rpg:golden_lyre")).require(BARD));
+    public static final Entry WEAPON_LYRE_MODIFIER_2 = addWeapon(modifierSpell(MrpgWeaponSkills.weapon_lyre_modifier_2)
+            .withIcon(Icon.item("bards_rpg:golden_lyre")).require(BARD));
+
+    public static final Entry WEAPON_HARP_CROSSBOW_ROOT = addWeapon(emptyModifierSpell(MrpgWeaponSkills.weapon_harp_crossbow_root)
+            .withIcon(Icon.item("bards_rpg:harp_crossbow"))
+            .withConditionalAttribute("ranged_weapon:damage", "minecraft:generic.attack_damage", 0.05,
+                    "bards_rpg:harp_crossbows", "modifier_condition.mrpgc_skill_tree.harp_crossbow").require(BARD));
+    public static final Entry WEAPON_HARP_CROSSBOW_MODIFIER_1 = addWeapon(passiveSpell(MrpgWeaponSkills.weapon_harp_crossbow_modifier_1)
+            .withIcon(Icon.item("bards_rpg:harp_crossbow")).require(BARD));
+    public static final Entry WEAPON_HARP_CROSSBOW_MODIFIER_2 = addWeapon(passiveSpell(MrpgWeaponSkills.weapon_harp_crossbow_modifier_2)
+            .withIcon(Icon.item("bards_rpg:harp_crossbow")).require(BARD));
+
+    public static final Entry WEAPON_WITCHER_SWORDS_ROOT = addWeapon(emptyModifierSpell(MrpgWeaponSkills.weapon_witcher_swords_root)
+            .withIcon(Icon.item("witcher_rpg:iron_witcher_sword"))
+            .withConditionalAttribute("minecraft:generic.attack_damage", null, 0.05,
+                    "witcher_rpg:witcher_swords", "modifier_condition.mrpgc_skill_tree.witcher_swords").require(WITCHER));
+    public static final Entry WEAPON_WITCHER_SWORDS_MODIFIER_1 = addWeapon(
+            Entry.spell("weapon_witcher_swords_modifier_1", "Counterattack", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/counterattack")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/counterattack")))
+            ).require(WITCHER));
+    public static final Entry WEAPON_WITCHER_SWORDS_MODIFIER_2 = addWeapon(
+            Entry.spell("weapon_witcher_swords_modifier_2", "Arrow Deflection", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/arrow_deflection")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/arrow_deflection")))
+            ).require(WITCHER));
+
+    ///WITCHER SIGNS
+    public static final Entry WITCHER_SIGN_ROOT = add(
+            Entry.attribute("witcher_root", "Path of the Witcher", null,
                     Icon.item("witcher_rpg:master_spell_book"),
-                    EntityAttributes.GENERIC_ATTACK_DAMAGE,
-                    0.01,
-                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
-            )
+                    SpellPowerMechanics.HASTE.attributeEntry, 0.01, EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+            ).require(WITCHER)
     );
-    public static final Entry WITCHER_BOOST = add(
-            Entry.attribute("witcher_boost",
-                    "Witcher Empowerment",
-                    null,
-                    Icon.item("witcher_rpg:iron_witcher_sword"),
-                    WITCHER_ROOT.attributeReward())
+    public static final Entry WITCHER_SIGN_BOOST = add(
+            Entry.attribute("witcher_sign_boost", "Sign Empowerment", null,
+                    Icon.item("witcher_rpg:silver_witcher_sword"),
+                    WITCHER_SIGN_ROOT.attributeReward()).require(WITCHER)
     );
-    public static final Entry WITCHER_TIER_1_SPELL_1_MODIFIER_1 = add(modifierSpell());
-    public static final Entry WITCHER_TIER_1_SPELL_1_MODIFIER_2 = add(modifierSpell());
-    public static final Entry WITCHER_TIER_2_SPELL_1_MODIFIER_1 = add(modifierSpell());
-    public static final Entry WITCHER_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell());
-    public static final Entry WITCHER_TIER_3_SPELL_1_MODIFIER_1 = add(modifierSpell());
-    public static final Entry WITCHER_TIER_3_SPELL_1_MODIFIER_2 = add(modifierSpell());
-    public static final Entry WITCHER_TIER_4_SPELL_1_MODIFIER_1 = add(modifierSpell());
-    public static final Entry WITCHER_TIER_4_SPELL_1_MODIFIER_2 = add(modifierSpell());
-    public static final Entry WITCHER_TIER_1_PASSIVE_1 = add(modifierSpell());
-    public static final Entry WITCHER_TIER_1_PASSIVE_2 = add(modifierSpell());
-    public static final Entry WITCHER_TIER_2_PASSIVE_1 = add(modifierSpell());
-    public static final Entry WITCHER_TIER_2_PASSIVE_2 = add(modifierSpell());
-    public static final Entry WITCHER_TIER_3_PASSIVE_1 = add(modifierSpell());
-    public static final Entry WITCHER_TIER_3_PASSIVE_2 = add(modifierSpell());
 
-    /*
+    public static final Entry WITCHER_TIER_2_IGNI_ROOT = add(modifierSpell(WitcherSkillSpells.signs_tier_2_spell_1_root).require(WITCHER));
+    public static final Entry WITCHER_TIER_2_IGNI_MODIFIER_1 = add(
+            Entry.spell("witcher_tier_2_igni_modifier_1", "Molten Armor", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "igni")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/igni_melt_armor")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_TIER_2_IGNI_MODIFIER_2 = add(
+            Entry.spell("witcher_tier_2_igni_modifier_2", "Combustion", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "igni")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/igni_combustion")))
+            ).require(WITCHER));
+
+    public static final Entry WITCHER_TIER_2_AARD_ROOT = add(modifierSpell(WitcherSkillSpells.signs_tier_2_spell_2_root).require(WITCHER));
+    public static final Entry WITCHER_TIER_2_AARD_MODIFIER_1 = add(
+            Entry.spell("witcher_tier_2_aard_modifier_1", "Far-Reaching Aard", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/aard_far_reach")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "aard")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_TIER_2_AARD_MODIFIER_2 = add(
+            Entry.spell("witcher_tier_2_aard_modifier_2", "Shockwave", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "aard")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/aard_shockwave")))
+            ).require(WITCHER));
+
+    public static final Entry WITCHER_TIER_2_FAST_ATTACK_ROOT = add(modifierSpell(WitcherSkillSpells.fencing_tier_2_spell_1_root).require(WITCHER));
+    public static final Entry WITCHER_TIER_2_FAST_ATTACK_MODIFIER_1 = add(
+            Entry.spell("witcher_tier_2_fast_attack_modifier_1", "Precise Blows", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/fast_precise_blows")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/fast_precise_blows")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_TIER_2_FAST_ATTACK_MODIFIER_2 = add(
+            Entry.spell("witcher_tier_2_fast_attack_modifier_2", "Muscle Memory", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/muscle_memory")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/muscle_memory")))
+            ).require(WITCHER));
+
+    public static final Entry WITCHER_TIER_2_STRONG_ATTACK_ROOT = add(modifierSpell(WitcherSkillSpells.fencing_tier_2_spell_2_root).require(WITCHER));
+    public static final Entry WITCHER_TIER_2_STRONG_ATTACK_MODIFIER_1 = add(
+            Entry.spell("witcher_tier_2_strong_attack_modifier_1", "Crushing Blows", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/strong_crushing_blows")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/strong_crushing_blows")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_TIER_2_STRONG_ATTACK_MODIFIER_2 = add(
+            Entry.spell("witcher_tier_2_strong_attack_modifier_2", "Strength Training", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/strength_training")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/strength_training")))
+            ).require(WITCHER));
+
+    public static final Entry WITCHER_TIER_3_WITCHER_SENSES_ROOT = add(modifierSpell(WitcherSkillSpells.fencing_tier_3_spell_1_root).require(WITCHER));
+    public static final Entry WITCHER_TIER_3_WITCHER_SENSES_MODIFIER_1 = add(
+            Entry.spell("witcher_tier_3_witcher_senses_modifier_1", "Monster Expert", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/witcher_senses_monster_expert")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/witcher_senses_monster_expert")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_TIER_3_WITCHER_SENSES_MODIFIER_2 = add(
+            Entry.spell("witcher_tier_3_witcher_senses_modifier_2", "Enemy Knowledge", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/witcher_senses_enemy_knowledge")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/witcher_senses_enemy_knowledge")))
+            ).require(WITCHER));
+
+    public static final Entry WITCHER_TIER_3_BATTLE_TRANCE_ROOT = add(modifierSpell(WitcherSkillSpells.fencing_tier_3_spell_2_root).require(WITCHER));
+    public static final Entry WITCHER_TIER_3_BATTLE_TRANCE_MODIFIER_1 = add(
+            Entry.spell("witcher_tier_3_battle_trance_modifier_1", "Resolve", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/battle_trance_resolve")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/battle_trance_resolve")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_TIER_3_BATTLE_TRANCE_MODIFIER_2 = add(
+            Entry.spell("witcher_tier_3_battle_trance_modifier_2", "Undying", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/battle_trance_undying")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/battle_trance_undying")))
+            ).require(WITCHER));
+
+    public static final Entry WITCHER_TIER_3_QUEN_ROOT = add(modifierSpell(WitcherSkillSpells.signs_tier_3_spell_1_root).require(WITCHER));
+    public static final Entry WITCHER_TIER_3_QUEN_MODIFIER_1 = add(
+            Entry.spell("witcher_tier_3_quen_modifier_1", "Explosive Shield", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/quen_exploding_shield")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/quen_exploding_shield")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_TIER_3_QUEN_MODIFIER_2 = add(
+            Entry.spell("witcher_tier_3_quen_modifier_2", "Discharge", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/quen_discharge")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/quen_discharge")))
+            ).require(WITCHER));
+
+    public static final Entry WITCHER_TIER_3_AXII_ROOT = add(modifierSpell(WitcherSkillSpells.signs_tier_3_spell_2_root).require(WITCHER));
+    public static final Entry WITCHER_TIER_3_AXII_MODIFIER_1 = add(
+            Entry.spell("witcher_tier_3_axii_modifier_1", "Link", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/axii_link")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/axii_link")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_TIER_3_AXII_MODIFIER_2 = add(
+            Entry.spell("witcher_tier_3_axii_modifier_2", "Lethargy", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/axii_lethargy")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/axii_lethargy")))
+            ).require(WITCHER));
+
+    public static final Entry WITCHER_TIER_4_IGNI_MODIFIER_1 = add(
+            Entry.spell("witcher_tier_4_igni_modifier_1", "Pyromaniac", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/igni_pyromaniac")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/igni_pyromaniac")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_TIER_4_IGNI_MODIFIER_2 = add(
+            Entry.spell("witcher_tier_4_igni_modifier_2", "Firestreams", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/igni_firestreams")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/igni_firestreams")))
+            ).require(WITCHER));
+
+    public static final Entry WITCHER_TIER_4_AARD_MODIFIER_1 = add(
+            Entry.spell("witcher_tier_4_aard_modifier_1", "Frostbite", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/aard_frostbite")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/aard_frostbite")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_TIER_4_AARD_MODIFIER_2 = add(
+            Entry.spell("witcher_tier_4_aard_modifier_2", "Aard Whirlwind", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/aard_whirlwind")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/aard_whirlwind")))
+            ).require(WITCHER));
+
+    public static final Entry WITCHER_TIER_4_WHIRL_ROOT = add(modifierSpell(WitcherSkillSpells.fencing_tier_4_spell_1_root).require(WITCHER));
+    public static final Entry WITCHER_TIER_4_WHIRL_MODIFIER_1 = add(
+            Entry.spell("witcher_tier_4_whirl_modifier_1", "Quick Hands", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/whirl_quick_hands")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/whirl_quick_hands")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_TIER_4_WHIRL_MODIFIER_2 = add(
+            Entry.spell("witcher_tier_4_whirl_modifier_2", "Precise Slasher", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/whirl_precise_slasher")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/whirl_precise_slasher")))
+            ).require(WITCHER));
+
+    public static final Entry WITCHER_TIER_4_REND_ROOT = add(modifierSpell(WitcherSkillSpells.fencing_tier_4_spell_2_root).require(WITCHER));
+    public static final Entry WITCHER_TIER_4_REND_MODIFIER_1 = add(
+            Entry.spell("witcher_tier_4_rend_modifier_1", "Heavy Swing", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/rend_heavy_swing")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/rend_heavy_swing")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_TIER_4_REND_MODIFIER_2 = add(
+            Entry.spell("witcher_tier_4_rend_modifier_2", "Devastating Slash", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/rend_devastating_slash")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/rend_devastating_slash")))
+            ).require(WITCHER));
+
+    ///WITCHER YRDEN (standalone pair, no dedicated active-spell root in this addon)
+    public static final Entry WITCHER_YRDEN_MODIFIER_1 = add(
+            Entry.spell("witcher_yrden_modifier_1", "Binding Glyphs", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/yrden_binding_glyphs")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/yrden_binding_glyphs")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_YRDEN_MODIFIER_2 = add(
+            Entry.spell("witcher_yrden_modifier_2", "Super Charged Glyphs", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "spell_modifiers/yrden_supercharged_glyphs")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/yrden_supercharged_glyphs")))
+            ).require(WITCHER));
+
+    ///WITCHER PASSIVES
     public static final Entry WITCHER_TIER_1_PASSIVE_1 = add(
-            Entry.spell("witcher_tier_1_passive_1",
-                    "Witcher Spec A Passive 1",
-                    "Placeholder",
-                    Icon.spell(Identifier.of("witcher_rpg", "witcher_tier_1_passive_1")),
-                    dummyContainer()
-            )
-    );
-     */
+            Entry.spell("witcher_tier_1_passive_1", "Crippling Strikes", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "passives/strong_crippling_strikes")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "passives/strong_crippling_strikes")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_TIER_1_PASSIVE_2 = add(
+            Entry.spell("witcher_tier_1_passive_2", "Sunder Armor", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "passives/strong_sunder_armor")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "passives/strong_sunder_armor")))
+            ).require(WITCHER));
 
+    public static final Entry WITCHER_TIER_3_PASSIVE_1 = add(
+            Entry.spell("witcher_tier_3_passive_1", "Griffin School Techniques", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "passives/griffin_school_technique")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "passives/griffin_school_technique")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_TIER_3_PASSIVE_2 = add(
+            Entry.spell("witcher_tier_3_passive_2", "Wolf School Techniques", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "passives/wolf_school_technique")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "passives/wolf_school_technique")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_TIER_3_PASSIVE_3 = add(
+            Entry.spell("witcher_tier_3_passive_3", "Cat School Techniques", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "passives/cat_school_technique")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "passives/cat_school_technique")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_TIER_3_PASSIVE_4 = add(
+            Entry.spell("witcher_tier_3_passive_4", "Bear School Techniques", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "passives/bear_school_technique")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "passives/bear_school_technique")))
+            ).require(WITCHER));
+
+    public static final Entry WITCHER_TIER_3_ROLL_1 = add(
+            Entry.spell("witcher_tier_3_roll_1", "Yrden Roll", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "passives/yrden_roll")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "passives/yrden_roll")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_TIER_3_ROLL_2 = add(
+            Entry.spell("witcher_tier_3_roll_2", "Igni Roll", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "passives/igni_roll")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "passives/igni_roll")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_TIER_3_ROLL_3 = add(
+            Entry.spell("witcher_tier_3_roll_3", "Footwork", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "passives/footwork")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "passives/footwork")))
+            ).require(WITCHER));
+    public static final Entry WITCHER_TIER_3_ROLL_4 = add(
+            Entry.spell("witcher_tier_3_roll_4", "Flood of Anger", null,
+                    Icon.spell(Identifier.of("witcher_rpg", "passives/flood_of_anger")),
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "passives/flood_of_anger")))
+            ).require(WITCHER));
 }

@@ -1,18 +1,9 @@
 package com.mrpgc_skill_tree.skills;
 
-import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
-import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
-import net.more_rpg_classes.custom.MoreSpellSchools;
-import net.more_rpg_classes.effect.MRPGCEffects;
-import net.skill_tree_rpgs.skills.SkillSounds;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.effect.SpellEngineEffects;
 import net.spell_engine.api.entity.SpellEntityPredicates;
-import net.spell_engine.api.render.LightEmission;
-import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.fx.Fx;
 import net.spell_engine.api.spell.fx.ParticleGroup;
@@ -20,21 +11,15 @@ import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.api.util.TriState;
 import net.spell_engine.api.spell.tooltip.TooltipTokens;
+import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
-import net.spell_engine.internals.target.SpellTarget;
-import net.spell_power.api.SpellSchool;
-import net.spell_power.api.SpellSchools;
 import com.mrpgc_skill_tree.effect.MrpgSkillEffects;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
-
-import static com.mrpgc_skill_tree.MRPGCSkillTreeAddOn.MOD_ID;
-import static net.skill_tree_rpgs.skills.SkillsCommon.*;
 
 public class WarArcherSkillSpells {
     public static final List<MrpgSkillSpells.Entry> all = new ArrayList<>();
@@ -105,12 +90,12 @@ public class WarArcherSkillSpells {
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_2_root = add(MrpgSkillsCommon.critRoot(
             MrpgSkillSpells.Category.WAR_ARCHER, MrpgSkillSpells.warArcherSchool,
-            "war_archer_tier_2_spell_2_root", "archers_expansion:dual_shot", "Double Shot", 0.05F));
+            "war_archer_tier_2_spell_2_root", "archers_expansion:dual_shot", "Dual Shot", 0.05F));
     public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_2_modifier_1 = add(war_archer_tier_2_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry war_archer_tier_2_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_2_modifier_1");
         var title = "Instant Reload";
-        var description = "Double Shot has {trigger_chance} chance to reset its own cooldown.";
+        var description = "Dual Shot has {trigger_chance} chance to reset its own cooldown.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.warArcherSchool;
         spell.range = 0;
@@ -135,7 +120,7 @@ public class WarArcherSkillSpells {
     private static MrpgSkillSpells.Entry war_archer_tier_2_spell_2_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_2_modifier_2");
         var title = "Heavy Arrow Tips";
-        var description = "Increases the knockback of Double Shot by {knockback_multiply_base}.";
+        var description = "Increases the knockback of Dual Shot by {knockback_multiply_base}.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.warArcherSchool;
 
@@ -245,17 +230,27 @@ public class WarArcherSkillSpells {
     public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_1_root = add(MrpgSkillsCommon.radiusRoot(
             MrpgSkillSpells.Category.WAR_ARCHER, MrpgSkillSpells.warArcherSchool,
             "war_archer_tier_4_spell_1_root", "archers_expansion:scorched_earth", "Scorched Earth", 0.5F));
+    private static List<Spell.EntityPlacement> scorchedEarthTrailPlacements(float fromOffset, float toOffset) {
+        var placements = new ArrayList<Spell.EntityPlacement>();
+        for (float offset = fromOffset; offset <= toOffset; offset += 3F) {
+            var placement = new Spell.EntityPlacement();
+            placement.delay_ticks = 2;
+            placement.location_offset_by_look = offset;
+            placements.add(placement);
+        }
+        return placements;
+    }
     public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_1_modifier_1 = add(war_archer_tier_4_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry war_archer_tier_4_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_4_spell_1_modifier_1");
         var title = "Wild Flames";
-        var description = "Increases the range of Scorched Earth by {range_add} blocks.";
+        var description = "Extends the flame trail left behind by Scorched Earth much further.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.warArcherSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:scorched_earth";
-        modifier.range_add = 10F;
+        modifier.additional_placements = scorchedEarthTrailPlacements(53F, 80F);
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
@@ -269,18 +264,42 @@ public class WarArcherSkillSpells {
         var description = "Casting Scorched Earth grants you and nearby allies Bloodflow, increasing attack damage by "
                 + TooltipTokens.effect(effect.id)
                 + " for {effect_duration} sec.";
+        var description = "Standing within Scorched Earth's flame trail grants you and nearby allies Bloodflow, increasing attack damage by {bonus} for {effect_duration} sec.";
+        SpellTooltip.DescriptionMutator mutator = (args) -> {
+            var modifier = effect.config().firstModifier();
+            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
+            return args.description().replace("{bonus}", bonus);
+        };
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
         spell.school = MrpgSkillSpells.warArcherSchool;
-        spell.range = 6F;
-
-        spell.target.type = Spell.Target.Type.AREA;
-        spell.target.area = new Spell.Target.Area();
 
         var trigger = SpellBuilder.Triggers.specificSpellCast("archers_expansion:scorched_earth");
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         spell.passive.triggers = List.of(trigger);
 
-        var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 8, 0);
+        spell.deliver.type = Spell.Delivery.Type.CLOUD;
+        var cloud = new Spell.Delivery.Cloud();
+        cloud.volume.radius = 3.0F;
+        cloud.volume.area.vertical_range_multiplier = 0.5F;
+        cloud.time_to_live_seconds = 1.5F;
+        cloud.impact_tick_interval = 10;
+        cloud.placement = new Spell.EntityPlacement();
+        cloud.placement.location_offset_by_look = 2.0F;
+        cloud.additional_placements = scorchedEarthTrailPlacements(5F, 50F);
+        cloud.client_data = new Spell.Delivery.Cloud.ClientData();
+        cloud.client_data.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
+                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
+                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
+                        5, 0.1F, 0.2F)
+                        .color(Color.RED.toRGBA())
+        };
+        spell.deliver.clouds = List.of(cloud);
+
+        var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 4, 0);
+        buff.action.status_effect.refresh_duration = true;
         spell.impacts = List.of(buff);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));

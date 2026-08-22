@@ -21,7 +21,7 @@ import static com.mrpgc_skill_tree.MRPGCSkillTreeAddOn.MOD_ID;
 public class MrpgSkillSpells {
     public static final String NAMESPACE = MOD_ID;
     public enum Category {
-        AIR, EARTH, WATER, BERSERKER, FORCEMASTER, WAR_ARCHER, DEADEYE, TUNDRA_HUNTER, BARD, WEAPON
+        AIR, EARTH, WATER, BERSERKER, FORCEMASTER, WAR_ARCHER, DEADEYE, TUNDRA_HUNTER, BARD, WITCHER, WEAPON
     }
     public record Entry(Identifier id, Spell spell, String title, String description,
                         EnumSet<Category> categories) {
@@ -137,6 +137,8 @@ public class MrpgSkillSpells {
     public static final SpellSchool deadeyeSchool = ExternalSpellSchools.PHYSICAL_RANGED;
     public static final SpellSchool tundraHunterSchool = MoreSpellSchools.FROST_RANGED;
     public static final SpellSchool bardSchool = SpellSchools.ARCANE;
+    public static final SpellSchool witcherSignSchool = SpellSchools.ARCANE;
+    public static final SpellSchool witcherFencingSchool = ExternalSpellSchools.PHYSICAL_MELEE;
 
     public static final List<Entry> all;
     static {
@@ -150,6 +152,7 @@ public class MrpgSkillSpells {
         all.addAll(DeadeyeSkillSpells.all);
         all.addAll(TundraHunterSkillSpells.all);
         all.addAll(BardSkillSpells.all);
+        all.addAll(WitcherSkillSpells.all);
         all.addAll(MrpgWeaponSkills.all);
     }
 }

@@ -1,0 +1,41 @@
+{
+  "school": "spell_power:arcane",
+  "range": 6.0,
+  "tier": 1,
+  "tooltip": {
+    "show_activation": false
+  },
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "ARROW_SHOT",
+        "chance": 0.2,
+        "weapon_condition": "#bards_rpg:harp_crossbows"
+      }
+    ]
+  },
+  "target": {
+    "type": "AREA",
+    "area": {
+      "include_caster": true
+    }
+  },
+  "impacts": [
+    {
+      "school": "spell_power:healing",
+      "action": {
+        "type": "HEAL",
+        "heal": {
+          "spell_power_coefficient": 0.15
+        }
+      }
+    }
+  ],
+  "cost": {
+    "durability": 0,
+    "cooldown": {
+      "duration": 4.0
+    }
+  }
+}

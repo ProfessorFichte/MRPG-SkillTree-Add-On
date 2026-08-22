@@ -1,0 +1,38 @@
+{
+  "school": "spell_power:arcane",
+  "range": 0.0,
+  "tier": 1,
+  "tooltip": {
+    "show_activation": false
+  },
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "MELEE_IMPACT",
+        "chance": 0.1,
+        "weapon_condition": "#bards_rpg:lutes"
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "impacts": [
+    {
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "spell_engine:stun",
+          "duration": 1.5
+        }
+      },
+      "sound": {
+        "id": "spell_engine:stun_generic"
+      }
+    }
+  ],
+  "cost": {
+    "durability": 0
+  }
+}

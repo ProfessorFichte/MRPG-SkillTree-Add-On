@@ -198,7 +198,6 @@ public class WaterSkillSpells {
     public static final MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_1 = add(water_tier_3_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_spell_2_modifier_1");
-        var effect = MrpgSkillEffects.HYDRO_BOOST;
         var title = "Hydro Boost";
         // Single modifier (movement speed), so the token's blank-attribute fallback is unambiguous.
         // FIXME: the impact below applies this effect at amplifier *1*, so the player actually gets
@@ -207,20 +206,39 @@ public class WaterSkillSpells {
         var description = "Hydro Beam increases the movement speed of allies by "
                 + TooltipTokens.effect(effect.id)
                 + " for {effect_duration} seconds.";
+        var description = "Hydro Beam scalds enemies, setting them ablaze, and stacks Weakness on them up to 3 times.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.waterWizardSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "elemental_wizards_rpg:aqua_hydro_beam";
 
-        var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(),10,1);
+        var scald = new Spell.Impact();
+        scald.action = new Spell.Impact.Action();
+        scald.action.type = Spell.Impact.Action.Type.FIRE;
+        scald.action.fire = new Spell.Impact.Action.Fire();
+        scald.action.fire.duration = 4F;
+        scald.particles = new ParticleBatch[]{
+                new ParticleBatch(
+                        SpellEngineParticles.MagicParticles.get(
+                                SpellEngineParticles.MagicParticles.Shape.SPARK,
+                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
+                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
+                        10, 0.1F, 0.2F)
+                        .color(Color.RED.toRGBA())
+        };
+        scald.sound = new Sound(SpellEngineSounds.GENERIC_FIRE_IGNITE.id());
+
+        var weaken = SpellBuilder.Impacts.effectAdd(StatusEffects.WEAKNESS.getIdAsString(), 6, 0, 2);
+        weaken.action.status_effect.refresh_duration = true;
 
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(impact);
+        modifier.impacts = List.of(scald, weaken);
 
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     public static final MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_2 = add(water_tier_3_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_2() {
@@ -488,5 +506,108 @@ public class WaterSkillSpells {
         SpellBuilder.Cost.cooldown(spell, 20F);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
+    }
+    public static final MrpgSkillSpells.Entry water_tier_2_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+            MrpgSkillSpells.Category.WATER, MrpgSkillSpells.waterWizardSchool,
+            "water_tier_2_spell_2_root", "elemental_wizards_rpg:aqua_waterball", "Waterballs", 0.15F));
+    public static final MrpgSkillSpells.Entry water_tier_2_spell_2_modifier_1 = add(water_tier_2_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry water_tier_2_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_2_spell_2_modifier_1");
+        var title = "Soothing Balls";
+        var description = "Increases the healing of Waterballs by {power_multiplier}.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.waterWizardSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "elemental_wizards_rpg:aqua_waterball";
+        modifier.power_modifier = new Spell.Impact.Modifier();
+        modifier.power_modifier.power_multiplier = 0.2F;
+        var filter = new Spell.Modifier.ImpactFilter();
+        filter.type = Spell.Impact.Action.Type.HEAL;
+        modifier.impact_filters = List.of(filter);
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+    }
+    public static final MrpgSkillSpells.Entry water_tier_2_spell_2_modifier_2 = add(water_tier_2_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry water_tier_2_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_2_spell_2_modifier_2");
+        var title = "Rapid Currents";
+        var description = "Reduces the cooldown of Waterballs by {cooldown_duration_deduct} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.waterWizardSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "elemental_wizards_rpg:aqua_waterball";
+        modifier.cooldown_duration_deduct = 2F;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+    }
+    public static final MrpgSkillSpells.Entry water_tier_4_spell_1_root = add(MrpgSkillsCommon.powerRoot(
+            MrpgSkillSpells.Category.WATER, MrpgSkillSpells.waterWizardSchool,
+            "water_tier_4_spell_1_root", "elemental_wizards_rpg:aqua_healing_rain", "Healing Rain", 0.15F));
+    public static final MrpgSkillSpells.Entry water_tier_4_spell_1_modifier_1 = add(water_tier_4_spell_1_modifier_1());
+    private static MrpgSkillSpells.Entry water_tier_4_spell_1_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_4_spell_1_modifier_1");
+        var title = "Persistent Downpour";
+        var description = "Healing Rain's cloud lasts {spawn_duration_add} sec longer.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.waterWizardSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "elemental_wizards_rpg:aqua_healing_rain";
+        modifier.spawn_duration_add = 6F;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+    }
+    public static final MrpgSkillSpells.Entry water_tier_4_spell_1_modifier_2 = add(water_tier_4_spell_1_modifier_2());
+    private static MrpgSkillSpells.Entry water_tier_4_spell_1_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_4_spell_1_modifier_2");
+        var title = "Cleansing Storm";
+        var description = "Reduces the cooldown of Healing Rain by {cooldown_duration_deduct} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.waterWizardSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "elemental_wizards_rpg:aqua_healing_rain";
+        modifier.cooldown_duration_deduct = 8F;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+    }
+    public static final MrpgSkillSpells.Entry water_tier_4_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+            MrpgSkillSpells.Category.WATER, MrpgSkillSpells.waterWizardSchool,
+            "water_tier_4_spell_2_root", "elemental_wizards_rpg:aqua_tidal_wave", "Tidal Wave", 0.15F));
+    public static final MrpgSkillSpells.Entry water_tier_4_spell_2_modifier_1 = add(water_tier_4_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry water_tier_4_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_4_spell_2_modifier_1");
+        var title = "Endless Tide";
+        var description = "Tidal Wave travels {spawn_duration_add} sec longer.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.waterWizardSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "elemental_wizards_rpg:aqua_tidal_wave";
+        modifier.spawn_duration_add = 6F;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+    }
+    public static final MrpgSkillSpells.Entry water_tier_4_spell_2_modifier_2 = add(water_tier_4_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry water_tier_4_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_4_spell_2_modifier_2");
+        var title = "Rising Tide";
+        var description = "Reduces the cooldown of Tidal Wave by {cooldown_duration_deduct} sec.";
+        var spell = SpellBuilder.createSpellModifier();
+        spell.school = MrpgSkillSpells.waterWizardSchool;
+
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "elemental_wizards_rpg:aqua_tidal_wave";
+        modifier.cooldown_duration_deduct = 8F;
+        spell.modifiers = List.of(modifier);
+
+        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
 }

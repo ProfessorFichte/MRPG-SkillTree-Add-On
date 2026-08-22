@@ -110,6 +110,259 @@
       "translate": "skill.mrpgc_skill_tree.weapon_aqua_staff_root.title"
     }
   },
+  "weapon_berserker_axe_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_berserker_axe_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "more_rpg_classes:textures/spell/decapitate.png"
+      }
+    },
+    "required_mods": [
+      "berserker_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_berserker_axe_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_berserker_axe_modifier_1.title"
+    }
+  },
+  "weapon_berserker_axe_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_berserker_axe_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "more_rpg_classes:textures/spell/decapitate.png"
+      }
+    },
+    "required_mods": [
+      "berserker_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_berserker_axe_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_berserker_axe_modifier_2.title"
+    }
+  },
+  "weapon_berserker_axe_root": {
+    "description": {
+      "skill_definition_id": "weapon_berserker_axe_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "more_rpg_classes:textures/spell/decapitate.png"
+      }
+    },
+    "required_mods": [
+      "berserker_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_berserker_axe_root"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "berserker_rpg:berserker_axes"
+            },
+            "translationKey": "modifier_condition.mrpgc_skill_tree.berserker_axe"
+          },
+          "operation": "multiply_base",
+          "value": 0.05
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_berserker_axe_root.title"
+    }
+  },
+  "weapon_harp_crossbow_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_harp_crossbow_modifier_1"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:harp_crossbow"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_harp_crossbow_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_harp_crossbow_modifier_1.title"
+    }
+  },
+  "weapon_harp_crossbow_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_harp_crossbow_modifier_2"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:harp_crossbow"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_harp_crossbow_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_harp_crossbow_modifier_2.title"
+    }
+  },
+  "weapon_harp_crossbow_root": {
+    "description": {
+      "skill_definition_id": "weapon_harp_crossbow_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:harp_crossbow"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_harp_crossbow_root"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "ranged_weapon:damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "bards_rpg:harp_crossbows"
+            },
+            "translationKey": "modifier_condition.mrpgc_skill_tree.harp_crossbow"
+          },
+          "fallbackAttribute": "minecraft:generic.attack_damage",
+          "operation": "multiply_base",
+          "value": 0.05
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_harp_crossbow_root.title"
+    }
+  },
   "weapon_knuckle_modifier_1": {
     "description": {
       "skill_definition_id": "weapon_knuckle_modifier_1"
@@ -166,7 +419,7 @@
         "data": {
           "containers": [
             {
-              "access": "NONE",
+              "access": "MAGIC",
               "access_param": "",
               "extra_tier_binding": 0,
               "max_spell_count": 0,
@@ -215,10 +468,358 @@
             }
           ]
         }
+      },
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "forcemaster_rpg:knuckles"
+            },
+            "translationKey": "modifier_condition.mrpgc_skill_tree.knuckles"
+          },
+          "operation": "multiply_base",
+          "value": 0.05
+        }
       }
     ],
     "title": {
       "translate": "skill.mrpgc_skill_tree.weapon_knuckle_root.title"
+    }
+  },
+  "weapon_lute_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_lute_modifier_1"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:wooden_lute"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_lute_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_lute_modifier_1.title"
+    }
+  },
+  "weapon_lute_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_lute_modifier_2"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:wooden_lute"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_lute_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_lute_modifier_2.title"
+    }
+  },
+  "weapon_lute_root": {
+    "description": {
+      "skill_definition_id": "weapon_lute_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:wooden_lute"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_lute_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_lute_root.title"
+    }
+  },
+  "weapon_lyre_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_lyre_modifier_1"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:golden_lyre"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_lyre_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_lyre_modifier_1.title"
+    }
+  },
+  "weapon_lyre_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_lyre_modifier_2"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:golden_lyre"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_lyre_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_lyre_modifier_2.title"
+    }
+  },
+  "weapon_lyre_root": {
+    "description": {
+      "skill_definition_id": "weapon_lyre_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:golden_lyre"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_lyre_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_lyre_root.title"
+    }
+  },
+  "weapon_rapier_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_rapier_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "more_rpg_classes:textures/spell/puncture.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_rapier_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_rapier_modifier_1.title"
+    }
+  },
+  "weapon_rapier_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_rapier_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "more_rpg_classes:textures/spell/puncture.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_rapier_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_rapier_modifier_2.title"
+    }
+  },
+  "weapon_rapier_root": {
+    "description": {
+      "skill_definition_id": "weapon_rapier_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "more_rpg_classes:textures/spell/puncture.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_rapier_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_rapier_root.title"
     }
   },
   "weapon_terra_staff_modifier_1": {
@@ -441,6 +1042,132 @@
     ],
     "title": {
       "translate": "skill.mrpgc_skill_tree.weapon_wind_staff_root.title"
+    }
+  },
+  "weapon_witcher_swords_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_witcher_swords_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/counterattack.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/counterattack"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_witcher_swords_modifier_1.title"
+    }
+  },
+  "weapon_witcher_swords_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_witcher_swords_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/spell_modifiers/arrow_deflection.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:spell_modifiers/arrow_deflection"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_witcher_swords_modifier_2.title"
+    }
+  },
+  "weapon_witcher_swords_root": {
+    "description": {
+      "skill_definition_id": "weapon_witcher_swords_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "witcher_rpg:iron_witcher_sword"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_witcher_swords_root"
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "witcher_rpg:witcher_swords"
+            },
+            "translationKey": "modifier_condition.mrpgc_skill_tree.witcher_swords"
+          },
+          "operation": "multiply_base",
+          "value": 0.05
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_witcher_swords_root.title"
     }
   }
 }

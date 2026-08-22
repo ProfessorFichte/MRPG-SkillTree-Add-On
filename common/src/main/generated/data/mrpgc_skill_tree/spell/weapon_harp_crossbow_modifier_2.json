@@ -1,0 +1,45 @@
+{
+  "school": "spell_power:arcane",
+  "range": 0.0,
+  "tier": 1,
+  "tooltip": {
+    "show_activation": false
+  },
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "ARROW_IMPACT",
+        "chance": 0.25,
+        "weapon_condition": "#bards_rpg:harp_crossbows"
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "impacts": [
+    {
+      "school": "spell_power:arcane",
+      "action": {
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.3
+        }
+      },
+      "particles": [
+        {
+          "particle_id": "more_rpg_classes:music_note",
+          "origin": "CENTER",
+          "shape": "SPHERE",
+          "count": 6.0,
+          "min_speed": 0.1,
+          "max_speed": 0.2
+        }
+      ]
+    }
+  ],
+  "cost": {
+    "durability": 0
+  }
+}

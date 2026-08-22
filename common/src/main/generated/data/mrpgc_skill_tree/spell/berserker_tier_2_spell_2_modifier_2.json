@@ -6,7 +6,18 @@
   "modifiers": [
     {
       "spell_pattern": "berserker_rpg:apprehend",
-      "effect_duration_add": 4.0
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "action": {
+            "type": "STATUS_EFFECT",
+            "status_effect": {
+              "effect_id": "more_rpg_classes:grievous_wounds",
+              "duration": 6.0
+            }
+          }
+        }
+      ]
     }
   ]
 }
