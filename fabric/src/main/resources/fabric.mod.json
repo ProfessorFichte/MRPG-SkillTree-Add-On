@@ -28,13 +28,13 @@
 		"mrpgc-skill-tree-add-on.mixins.json"
 	],
 	"depends": {
-		"minecraft": "~1.21",
-		"fabricloader": ">=0.14.21",
-		"spell_engine": ">=1.7.0",
-		"spell_power": "*",
-		"puffish_skills": "*",
-		"skill_tree_rpgs": "*",
-		"ranged_weapon_api": "*"
+		"minecraft": ">=${minecraft_compat_version}",
+		"fabricloader": ">=${fabric_loader_version}",
+		"spell_engine": ">=${spell_engine_version}",
+		"spell_power": ">=${spell_power_version}",
+		"puffish_skills": ">=${pufferfish_skills_version}",
+		"skill_tree_rpgs": ">=${skill_tree_version}",
+		"ranged_weapon_api": ">=${ranged_weapon_api_version}"
 	},
 	"custom": {
 		"modmenu": {

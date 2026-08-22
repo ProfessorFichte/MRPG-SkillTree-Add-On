@@ -23,8 +23,15 @@ side = "BOTH"
 [[dependencies.mrpgc_skill_tree]]
 modId = "minecraft"
 type = "required"
-versionRange = "[1.21.1,)"
+versionRange = "[${minecraft_compat_version},)"
 ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.mrpgc_skill_tree]]
+modId = "spell_engine"
+type = "required"
+versionRange = "[${spell_engine_version},)"
+ordering = "BEFORE"
 side = "BOTH"
 
 [[dependencies.mrpgc_skill_tree]]
