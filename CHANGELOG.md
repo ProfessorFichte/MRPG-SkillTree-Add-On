@@ -1,3 +1,5 @@
+# 1.3.0 - 1.21.1
+- Adopt Spell Engine 1.10
 # 1.1.2 - 1.21.1
 - Fixed a crash due to a wrong model_id path in the tundra_hunter_spec_a_passive_1 spell
 

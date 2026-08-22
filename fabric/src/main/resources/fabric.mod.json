@@ -29,7 +29,7 @@
 	],
 	"depends": {
 		"minecraft": ">=${minecraft_compat_version}",
-		"fabricloader": ">=${fabric_loader_version}",
+		"fabricloader": ">=${fabric_loader_compat_version}",
 		"spell_engine": ">=${spell_engine_version}",
 		"spell_power": ">=${spell_power_version}",
 		"puffish_skills": ">=${pufferfish_skills_version}",
