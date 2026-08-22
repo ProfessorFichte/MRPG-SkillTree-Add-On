@@ -41,19 +41,28 @@
           "handler": "mrpgc_skill_tree:reckless_rage"
         }
       },
-      "particles": [
-        {
-          "particle_id": "spell_engine:magic_stripe_ascend",
-          "origin": "FEET",
-          "shape": "WIDE_PIPE",
-          "count": 20.0,
-          "min_speed": 0.2,
-          "max_speed": 0.25,
-          "extent": 0.25,
-          "invert": true,
-          "color_rgba": 3208659199
-        }
-      ]
+      "visuals": {
+        "particles": [
+          {
+            "id": "spell_engine:magic_stripe",
+            "appearance": {
+              "color": 3208659199,
+              "motion": "ASCEND"
+            },
+            "batch": {
+              "count": 20.0,
+              "shape": "PIPE",
+              "anchor": "ENTITY",
+              "vertical_origin": 0.1,
+              "min_speed": 0.2,
+              "max_speed": 0.25,
+              "extent": 0.25,
+              "width_factor": 2.0,
+              "invert": true
+            }
+          }
+        ]
+      }
     },
     {
       "action": {

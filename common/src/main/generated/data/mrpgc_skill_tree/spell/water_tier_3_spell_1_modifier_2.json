@@ -34,12 +34,15 @@
         "client_data": {
           "particles": [
             {
-              "particle_id": "more_rpg_classes:bubble",
-              "origin": "GROUND",
-              "shape": "PILLAR",
-              "count": 10.0,
-              "min_speed": 0.05,
-              "max_speed": 0.1
+              "id": "more_rpg_classes:bubble",
+              "appearance": {},
+              "batch": {
+                "count": 10.0,
+                "shape": "PILLAR",
+                "anchor": "GROUND",
+                "min_speed": 0.05,
+                "max_speed": 0.1
+              }
             }
           ]
         }
@@ -55,24 +58,32 @@
           "knockback": 0.3
         }
       },
-      "particles": [
-        {
-          "particle_id": "bubble_pop",
-          "origin": "CENTER",
-          "shape": "CIRCLE",
-          "count": 10.0,
-          "min_speed": 0.1,
-          "max_speed": 0.2
-        },
-        {
-          "particle_id": "more_rpg_classes:bubble",
-          "origin": "CENTER",
-          "shape": "SPHERE",
-          "count": 5.0,
-          "min_speed": 0.1,
-          "max_speed": 0.2
-        }
-      ]
+      "visuals": {
+        "particles": [
+          {
+            "id": "minecraft:bubble_pop",
+            "appearance": {},
+            "batch": {
+              "count": 10.0,
+              "shape": "CIRCLE",
+              "anchor": "ENTITY",
+              "min_speed": 0.1,
+              "max_speed": 0.2
+            }
+          },
+          {
+            "id": "more_rpg_classes:bubble",
+            "appearance": {},
+            "batch": {
+              "count": 5.0,
+              "shape": "SPHERE",
+              "anchor": "ENTITY",
+              "min_speed": 0.1,
+              "max_speed": 0.2
+            }
+          }
+        ]
+      }
     }
   ],
   "cost": {

@@ -4,8 +4,12 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.util.Identifier;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.spell.Spell;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.Fx;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.Sound;
+import net.more_rpg_classes.client.particle.MoreParticles;
+import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_power.api.SpellSchools;
 import com.mrpgc_skill_tree.effect.MrpgSkillEffects;
@@ -41,7 +45,7 @@ public class MrpgWeaponSkills {
         modifier.knockback_multiply_base = bonus;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
     public static final MrpgSkillSpells.Entry weapon_aqua_staff_modifier_2 = add(weapon_aqua_staff_modifier_2());
@@ -64,18 +68,14 @@ public class MrpgWeaponSkills {
         area_impact.radius = radius;
         area_impact.area = new Spell.Target.Area();
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-        area_impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        "more_rpg_classes:big_splash",
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        20, 0.35F, 0.35F
-                ),
-                new ParticleBatch(
-                        "more_rpg_classes:splash",
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        20, 0.15F, 0.15F
-                )
-        };
+        area_impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(MoreParticles.BIG_SPLASH)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(20F).speed(0.35F, 0.35F)),
+                ParticleGroupBuilder.of(MoreParticles.SPLASH)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(20F).speed(0.15F, 0.15F))
+        );
 
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
@@ -83,7 +83,7 @@ public class MrpgWeaponSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
     public static final MrpgSkillSpells.Entry weapon_wind_staff_root = add(MrpgSkillsCommon.powerRoot(
@@ -105,7 +105,7 @@ public class MrpgWeaponSkills {
         modifier.knockback_multiply_base = bonus;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
     public static final MrpgSkillSpells.Entry weapon_wind_staff_modifier_2 = add(weapon_wind_staff_modifier_2());
@@ -124,7 +124,7 @@ public class MrpgWeaponSkills {
         modifier.power_modifier.power_multiplier = bonus;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
     public static final MrpgSkillSpells.Entry weapon_terra_staff_root = add(MrpgSkillsCommon.powerRoot(
@@ -144,7 +144,7 @@ public class MrpgWeaponSkills {
         modifier.effect_duration_add = 2;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
     public static final MrpgSkillSpells.Entry weapon_terra_staff_modifier_2 = add(weapon_terra_staff_modifier_2());
@@ -152,13 +152,11 @@ public class MrpgWeaponSkills {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "weapon_terra_staff_modifier_2");
         var title = "Earthen Blast";
         var bonus = 0.5F;
-        var description = "Increases the area of effect of Stone Spear by {bonus}.";
-        var mutator = new SpellTooltip.DescriptionMutator() {
-            @Override
-            public String mutate(Args args) {
-                return args.description().replace("{bonus}", SpellTooltip.percent(bonus));
-            }
-        };
+        // A compile-time constant of this mod, not anything the spell data carries, so it is baked
+        // into the description (`bakedPercent` doubles the `%`: the lang value goes through
+        // `I18n.translate` -> `String.format`).
+        var description = "Increases the area of effect of Stone Spear by "
+                + TooltipTokens.bakedPercent(bonus) + ".";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.earthWizardSchool;
 
@@ -168,13 +166,23 @@ public class MrpgWeaponSkills {
         Spell.AreaImpact area_impact = new Spell.AreaImpact();
         area_impact.radius = extendedRadius;
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-        area_impact.particles = new ParticleBatch[]{(new ParticleBatch("more_rpg_classes:stone_explosion", ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 1.0F, 0.0F, 0.0F)).scale(extendedRadius/2)};
+        // NOTE: in V1 this `.scale(...)` was dead. `more_rpg_classes:stone_explosion` was drawn by
+        // a hand-written `CustomSpellExplosionParticle` that hard-set `scale = 0.8F` and never read
+        // the batch appearance, so the explosion rendered at a fixed size whatever the radius. In
+        // 1.10 that id is a generic `SpellParticle` entry, so the authored value now applies (and
+        // multiplies the entry's own 0.8). Kept as authored — the intent is clearly "grow with the
+        // enlarged radius" — but it is a visible size increase over what shipped.
+        area_impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(MoreParticles.STONE_EXPLOSION)
+                        .scale(extendedRadius / 2)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(1.0F).speed(0.0F, 0.0F)));
         area_impact.sound = Sound.withVolume(Identifier.of("block.pointed_dripstone.break"),1.5F);
         modifier.replacing_area_impact = area_impact;
 
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
     public static final MrpgSkillSpells.Entry weapon_knuckle_root = add(MrpgSkillsCommon.powerRoot(
@@ -185,16 +193,13 @@ public class MrpgWeaponSkills {
     private static MrpgSkillSpells.Entry weapon_knuckle_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "weapon_knuckle_modifier_1");
         var title = "Pumped Up";
-        var description = "Burstcrack increases your attack damage by {bonus} for {effect_duration} seconds.";
+        var effect = MrpgSkillEffects.PUMPED_UP;
+        // Single modifier (attack damage), so the token's blank-attribute fallback is unambiguous.
+        var description = "Burstcrack increases your attack damage by "
+                + TooltipTokens.effect(effect.id)
+                + " for {effect_duration} seconds.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.forcemasterFighterSchool;
-        var effect = MrpgSkillEffects.PUMPED_UP;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description()
-                    .replace("{bonus}", bonus);
-        };
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "forcemaster_rpg:burstcrack";
@@ -206,7 +211,7 @@ public class MrpgWeaponSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
     public static final MrpgSkillSpells.Entry weapon_knuckle_modifier_2 = add(weapon_knuckle_modifier_2());
@@ -369,7 +374,7 @@ public class MrpgWeaponSkills {
         modifier.effect_duration_add = 2F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
     public static final MrpgSkillSpells.Entry weapon_berserker_axe_root = add(MrpgSkillsCommon.powerRoot(

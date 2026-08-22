@@ -5,6 +5,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
+import net.more_rpg_classes.client.particle.MoreParticles;
 import net.more_rpg_classes.custom.MoreSpellSchools;
 import net.more_rpg_classes.effect.MRPGCEffects;
 import net.skill_tree_rpgs.skills.SkillSounds;
@@ -13,14 +14,17 @@ import net.spell_engine.api.entity.SpellEntityPredicates;
 import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.Fx;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.api.util.TriState;
-import net.spell_engine.client.gui.SpellTooltip;
+import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
 import net.spell_engine.internals.target.SpellTarget;
+import net.spell_power.api.SpellPowerMechanics;
 import net.spell_power.api.SpellSchool;
 import net.spell_power.api.SpellSchools;
 import com.mrpgc_skill_tree.effect.MrpgSkillEffects;
@@ -66,21 +70,23 @@ public class WaterSkillSpells {
 
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     public static final MrpgSkillSpells.Entry water_tier_2_spell_1_modifier_2 = add(water_tier_2_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry water_tier_2_spell_1_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_2_spell_1_modifier_2");
         var title = "Persistent Bubbles";
         var effect = MrpgSkillEffects.PERSISTENT_BUBBLES;
-        var description = "Bubble Beam hits have {trigger_chance} chance to decrease movement speed and attack speed by {bonus} for {effect_duration} seconds.";
+        // Two modifiers (movement speed, attack speed), both -20%. The status effect's modifier map
+        // is unordered, so the attribute is named explicitly rather than read by list position. Both
+        // are stored negative and the prose says "decrease ... by", hence `ABS` - the old mutator
+        // passed the raw value and rendered "-20%".
+        var description = "Bubble Beam hits have {trigger_chance} chance to decrease movement speed and attack speed by "
+                + TooltipTokens.effect(effect.id, 0,
+                        Identifier.of(EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString()),
+                        TooltipTokens.Format.ABS)
+                + " for {effect_duration} seconds.";
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description()
-                    .replace("{bonus}", bonus);
-        };
         spell.school = MrpgSkillSpells.waterWizardSchool;
         spell.range = 0;
 
@@ -96,7 +102,7 @@ public class WaterSkillSpells {
         SpellBuilder.Cost.cooldown(spell, 1F);
 
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.WATER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     public static final MrpgSkillSpells.Entry water_tier_3_spell_1_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.WATER, MrpgSkillSpells.waterWizardSchool,
@@ -113,43 +119,36 @@ public class WaterSkillSpells {
         modifier.spell_pattern = "elemental_wizards_rpg:aqua_springwater";
 
         var impact = SpellBuilder.Impacts.effectCleanse();
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        15, 0.6F, 0.6F)
-                        .color(WATER_SPELL_COLOR.toRGBA()),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
-                        ParticleBatch.Shape.PIPE, ParticleBatch.Origin.CENTER,
-                        10, 0.2F, 0.4F)
-                        .color(WATER_SPELL_COLOR.toRGBA())
-        };
+        // NOTE (pre-existing, ported as-is): this bundle is overwritten a few lines below by a
+        // second assignment to the same `impact`, so in V1 only the white SPELL/BURST burst ever
+        // rendered. `impactUndead` was most likely the intended target of that second assignment.
+        // Repairing it would change behaviour, so the shadowing is preserved verbatim.
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.BURST,
+                                WATER_SPELL_COLOR)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(15).speed(0.6F, 0.6F)),
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.ASCEND,
+                                WATER_SPELL_COLOR)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE)
+                                .count(10).speed(0.2F, 0.4F)));
         impact.sound = new Sound(SpellEngineSounds.GENERIC_DISPEL_1.id());
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
 
         var impactUndead = SpellBuilder.Impacts.damage(0.15F, 0);
         MrpgSkillSpells.undeadAllow(impactUndead);
         impactUndead.target_modifiers = List.of(SpellBuilder.ImpactModifiers.alwaysCritAgainstUndead());
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPELL,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        15, 0.5F, 0.8F)
-                        .color(Color.WHITE.toRGBA())
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spell, ParticleGroup.Motion.BURST,
+                                Color.WHITE)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(15).speed(0.5F, 0.8F)));
 
 
         modifier.impacts = List.of(impact, impactUndead);
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     public static final MrpgSkillSpells.Entry water_tier_3_spell_1_modifier_2 = add(water_tier_3_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry water_tier_3_spell_1_modifier_2() {
@@ -170,30 +169,28 @@ public class WaterSkillSpells {
         cloud.volume.radius = 2.0F;
         cloud.impact_tick_interval = 10;
         cloud.time_to_live_seconds = 3;
-        cloud.client_data.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        "more_rpg_classes:bubble",
-                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.GROUND,
-                        10, 0.05F, 0.1F)
-        };
+        cloud.client_data.particles = List.of(
+                ParticleGroupBuilder.of(MoreParticles.BUBBLE)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PILLAR)
+                                .count(10).speed(0.05F, 0.1F)
+                                .anchor(ParticleGroup.Anchor.GROUND)));
         spell.deliver.clouds = List.of(cloud);
 
         var impact = SpellBuilder.Impacts.damage(0.2F, 0.3F);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        "bubble_pop",
-                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.CENTER,
-                        10, 0.1F, 0.2F),
-                new ParticleBatch(
-                        "more_rpg_classes:bubble",
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        5, 0.1F, 0.2F),
-        };
+        impact.visuals = Fx.Visuals.of(
+                // Unnamespaced "bubble_pop" resolved to the vanilla particle, not
+                // more_rpg_classes:bubble_pop — spelled out here, behaviour unchanged.
+                ParticleGroupBuilder.of("minecraft:bubble_pop")
+                        .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE)
+                                .count(10).speed(0.1F, 0.2F)),
+                ParticleGroupBuilder.of(MoreParticles.BUBBLE)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(5).speed(0.1F, 0.2F)));
         spell.impacts = List.of(impact);
 
 
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     public static final MrpgSkillSpells.Entry water_tier_3_spell_2_root = add(MrpgSkillsCommon.channelRoot(
             MrpgSkillSpells.Category.WATER, MrpgSkillSpells.waterWizardSchool,
@@ -202,6 +199,13 @@ public class WaterSkillSpells {
     private static MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_spell_2_modifier_1");
         var title = "Hydro Boost";
+        // Single modifier (movement speed), so the token's blank-attribute fallback is unambiguous.
+        // FIXME: the impact below applies this effect at amplifier *1*, so the player actually gets
+        // double the value shown. Amplifier 0 is kept here because it reproduces the old mutator's
+        // output exactly; whether the number or the amplifier is the mistake is a balance call.
+        var description = "Hydro Beam increases the movement speed of allies by "
+                + TooltipTokens.effect(effect.id)
+                + " for {effect_duration} seconds.";
         var description = "Hydro Beam scalds enemies, setting them ablaze, and stacks Weakness on them up to 3 times.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.waterWizardSchool;
@@ -233,6 +237,7 @@ public class WaterSkillSpells {
 
         spell.modifiers = List.of(modifier);
 
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
         return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     public static final MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_2 = add(water_tier_3_spell_2_modifier_2());
@@ -254,7 +259,7 @@ public class WaterSkillSpells {
         spell.impacts = List.of(impact);
         SpellBuilder.Cost.cooldown(spell, 2F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     ///WATER PASSIVES
     public static final MrpgSkillSpells.Entry water_tier_1_passive_1 = add(water_tier_1_passive_1());
@@ -274,27 +279,26 @@ public class WaterSkillSpells {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 4, 0, 3);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.area_circle_1.id().toString(),
-                        ParticleBatch.Shape.LINE_VERTICAL, ParticleBatch.Origin.FEET,
-                        1, 0.15F, 0.16F)
-                        .followEntity(true)
+        impact.visuals = Fx.Visuals.of(
+                // V1 maxAge 0.8 (a lifetime multiplier) is the reciprocal as a playback speed.
+                ParticleGroupBuilder.of(SpellEngineParticles.area_circle_1)
+                        .color(WATER_SPELL_COLOR)
                         .scale(0.8F)
-                        .maxAge(0.8F)
-                        .color(WATER_SPELL_COLOR.toRGBA()),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.HEAL ,
-                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.GROUND,
-                        15, 0.02F, 0.15F)
-                        .color(WATER_SPELL_COLOR.toRGBA()).extent(1.0F)
-        };
+                        .playbackSpeed(1.25F)
+                        .attached()
+                        .batch(b -> b.shape(ParticleGroup.Shape.LINE_VERTICAL)
+                                .count(1).speed(0.15F, 0.16F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)),
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_heal, ParticleGroup.Motion.ASCEND,
+                                WATER_SPELL_COLOR)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
+                                .count(15).speed(0.02F, 0.15F)
+                                .anchor(ParticleGroup.Anchor.GROUND)
+                                .extent(1.0F)));
         impact.sound = new Sound(SpellEngineSounds.GENERIC_HEALING_IMPACT_4.id());
         spell.impacts = List.of(impact);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     public static final MrpgSkillSpells.Entry water_tier_1_passive_2 = add(water_tier_1_passive_2());
     private static MrpgSkillSpells.Entry water_tier_1_passive_2() {
@@ -312,17 +316,17 @@ public class WaterSkillSpells {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.damage(0.0F,1.5F);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        "more_rpg_classes:splash",
-                        ParticleBatch.Shape.CIRCLE, ParticleBatch.Origin.FEET,
-                        50, 0.1F, 0.3F).extent(0.5F)
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(MoreParticles.SPLASH)
+                        .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE)
+                                .count(50).speed(0.1F, 0.3F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
+                                .extent(0.5F)));
         impact.sound = new Sound(MrpgSkillSounds.second_wave.id());
         spell.impacts = List.of(impact);
         SpellBuilder.Cost.cooldown(spell, 5F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     public static final MrpgSkillSpells.Entry water_tier_2_passive_1 = add(water_tier_2_passive_1());
     private static MrpgSkillSpells.Entry water_tier_2_passive_1() {
@@ -347,25 +351,26 @@ public class WaterSkillSpells {
         cloud.time_to_live_seconds = 5;
         cloud.client_data = new Spell.Delivery.Cloud.ClientData();
         cloud.client_data.light_level = 0;
-        cloud.client_data.particles = new ParticleBatch[]{
-                (new ParticleBatch("more_rpg_classes:water_mist",
-                ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.GROUND, 20.0F, 0.0F, 0.0F))};
+        cloud.client_data.particles = List.of(
+                ParticleGroupBuilder.of(MoreParticles.WATER_MIST)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PILLAR)
+                                .count(20F).speed(0.0F, 0.0F)
+                                .anchor(ParticleGroup.Anchor.GROUND)));
         spell.deliver.clouds = List.of(cloud);
         Spell.Impact cleanse = SpellBuilder.Impacts.effectCleanse();
-        cleanse.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.area_circle_1.id().toString(),
-                        ParticleBatch.Shape.LINE_VERTICAL, ParticleBatch.Origin.FEET,
-                        1, 0.15F, 0.16F)
-                        .followEntity(true)
+        cleanse.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.area_circle_1)
+                        .color(Color.WHITE)
                         .scale(0.8F)
-                        .maxAge(0.8F)
-                        .color(Color.WHITE.toRGBA()),
-        };
+                        .playbackSpeed(1.25F)   // V1 maxAge 0.8
+                        .attached()
+                        .batch(b -> b.shape(ParticleGroup.Shape.LINE_VERTICAL)
+                                .count(1).speed(0.15F, 0.16F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)));
         cleanse.sound = new Sound(MrpgSkillSounds.soothing_mist_cleanse.id());
         spell.impacts = List.of(cleanse);
         SpellBuilder.Cost.cooldown(spell, 20F);
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     public static final MrpgSkillSpells.Entry water_tier_2_passive_2 = add(water_tier_2_passive_2());
     private static MrpgSkillSpells.Entry water_tier_2_passive_2() {
@@ -382,13 +387,20 @@ public class WaterSkillSpells {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        spell.release.particles_scaled_with_ranged = new ParticleBatch[]{
-                new ParticleBatch(SpellEngineParticles.area_effect_480.texture().id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.GROUND,
-                        1, 0.0F, 0.F)
-                        .scale(2.5F)
-                        .color(WATER_SPELL_COLOR.alpha(0.75F).toRGBA())
-        };
+        // Ported from `release.particles_scaled_with_ranged`: range scaling is now declared on the
+        // effect itself. The authored `scale(2.5F)` is dropped because V1's SpellHelper overwrote
+        // it with the range (`particles.copy().scale(range)`), so it never rendered.
+        // WARNING (pre-existing): the id is `area_effect_480.texture().id()` = the TEXTURE id
+        // `spell_engine:zone/effect_480`, not the particle id `spell_engine:area_effect_480`.
+        // No such particle type is registered, so this batch renders nothing — as in V1. Kept
+        // unrepaired because fixing it would make a never-seen effect start appearing.
+        spell.release.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.area_effect_480.texture().id())
+                        .color(WATER_SPELL_COLOR.alpha(0.75F))
+                        .scaleWith(Fx.ScaleWith.RANGE)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(1).speed(0.0F, 0.0F)
+                                .anchor(ParticleGroup.Anchor.GROUND)));
 
         var stashEffect = MrpgSkillEffects.SPLASHDOWN;
         var stashTrigger = SpellBuilder.Triggers.effectTick(stashEffect.id.toString());
@@ -396,12 +408,11 @@ public class WaterSkillSpells {
         spell.deliver.stash_effect.consume = 0;
 
         var impact = SpellBuilder.Impacts.damage(0.0F, 2.5F);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        "more_rpg_classes:splash",
-                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET,
-                        20, 0, 0)
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(MoreParticles.SPLASH)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PILLAR)
+                                .count(20).speed(0F, 0F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)));
         spell.impacts = List.of(impact);
         var areaImpact = new Spell.AreaImpact();
         areaImpact.radius = 2.5F;
@@ -409,7 +420,7 @@ public class WaterSkillSpells {
         areaImpact.sound = new Sound(MrpgSkillSounds.splashdown.id());
         spell.area_impact = areaImpact;
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     public static final MrpgSkillSpells.Entry water_tier_3_passive_1 = add(water_tier_3_passive_1());
     private static MrpgSkillSpells.Entry water_tier_3_passive_1() {
@@ -443,14 +454,13 @@ public class WaterSkillSpells {
         impact.action.cooldown.actives.school = "water";
         impact.action.cooldown.actives.duration_multiplier = 0.8F;
 
-        impact.particles = new ParticleBatch[]{
-                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), WATER_SPELL_COLOR),
-        };
+        impact.visuals = Fx.Visuals.of(
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_hourglass.id(), WATER_SPELL_COLOR));
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 45F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     public static final MrpgSkillSpells.Entry water_tier_3_passive_2 = add(water_tier_3_passive_2());
     private static MrpgSkillSpells.Entry water_tier_3_passive_2() {
@@ -458,17 +468,17 @@ public class WaterSkillSpells {
         var effect = MrpgSkillEffects.TORRENT;
         var title = effect.title;
         var healthThreshold = 0.3F;
-        var description = "Falling under {threshold} health increases your water spell power by {bonus2} and spell crit chance & spell haste by {bonus} for {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().attributes().get(1);
-            var modifier2 = effect.config().attributes().get(0);
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            var bonus2 = SpellTooltip.bonus(modifier2.value, modifier2.operation);
-            return args.description()
-                    .replace("{bonus}", bonus)
-                    .replace("{bonus2}", bonus2)
-                    .replace("{threshold}", SpellTooltip.percent(healthThreshold));
-        };
+        // Three modifiers (water spell power +30%, spell crit chance +10%, spell haste +10%), read
+        // by list position via `attributes().get(0)` / `.get(1)`. The status effect's modifier map is
+        // unordered, so each is now named explicitly. The health threshold is a compile-time constant
+        // of this mod, so it is baked in (`bakedPercent` doubles the `%`: the lang value goes through
+        // `I18n.translate` -> `String.format`).
+        var description = "Falling under " + TooltipTokens.bakedPercent(healthThreshold)
+                + " health increases your water spell power by "
+                + TooltipTokens.effect(effect.id, 0, MoreSpellSchools.WATER.id)
+                + " and spell crit chance & spell haste by "
+                + TooltipTokens.effect(effect.id, 0, SpellPowerMechanics.CRITICAL_CHANCE.id)
+                + " for {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.waterWizardSchool;
@@ -483,21 +493,19 @@ public class WaterSkillSpells {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 10, 0);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.GROUND,
-                        30, 0.2F, 0.8F).extent(2.0F).invert()
-                        .color(WATER_SPELL_COLOR.toRGBA())
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.DECELERATE,
+                                WATER_SPELL_COLOR)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
+                                .count(30).speed(0.2F, 0.8F)
+                                .anchor(ParticleGroup.Anchor.GROUND)
+                                .extent(2.0F).invert(true)));
         impact.sound = new Sound(MrpgSkillSounds.torrent.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 20F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.WATER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     public static final MrpgSkillSpells.Entry water_tier_2_spell_2_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.WATER, MrpgSkillSpells.waterWizardSchool,

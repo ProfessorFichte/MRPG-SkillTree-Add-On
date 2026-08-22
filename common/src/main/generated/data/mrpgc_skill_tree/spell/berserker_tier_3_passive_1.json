@@ -29,28 +29,41 @@
           "duration": 5.0
         }
       },
-      "particles": [
-        {
-          "particle_id": "spell_engine:aura_effect_728",
-          "origin": "CENTER",
-          "shape": "LINE",
-          "count": 1.0,
-          "max_speed": 0.0,
-          "color_rgba": 3208659071,
-          "scale": 1.2,
-          "follow_entity": true
-        },
-        {
-          "particle_id": "spell_engine:magic_stripe_float",
-          "origin": "FEET",
-          "shape": "WIDE_PIPE",
-          "count": 25.0,
-          "min_speed": 0.2,
-          "max_speed": 0.6,
-          "extent": -0.2,
-          "color_rgba": 3208659199
-        }
-      ],
+      "visuals": {
+        "particles": [
+          {
+            "id": "spell_engine:area_effect_728",
+            "appearance": {
+              "color": 3208659071,
+              "scale": 1.2,
+              "facing": "CAMERA",
+              "attachment": "POSITION"
+            },
+            "batch": {
+              "count": 1.0,
+              "shape": "LINE",
+              "anchor": "ENTITY"
+            }
+          },
+          {
+            "id": "spell_engine:magic_stripe",
+            "appearance": {
+              "color": 3208659199,
+              "motion": "FLOAT"
+            },
+            "batch": {
+              "count": 25.0,
+              "shape": "PIPE",
+              "anchor": "ENTITY",
+              "vertical_origin": 0.1,
+              "min_speed": 0.2,
+              "max_speed": 0.6,
+              "extent": -0.2,
+              "width_factor": 2.0
+            }
+          }
+        ]
+      },
       "sound": {
         "id": "mrpgc_skill_tree:ragnarok_release"
       }

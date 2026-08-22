@@ -29,22 +29,32 @@
         "client_data": {
           "particles": [
             {
-              "particle_id": "spell_engine:magic_stripe_float",
-              "origin": "FEET",
-              "shape": "PILLAR",
-              "count": 20.0,
-              "min_speed": 0.3,
-              "max_speed": 0.6,
-              "extent": 3.5
+              "id": "spell_engine:magic_stripe",
+              "appearance": {
+                "motion": "FLOAT"
+              },
+              "batch": {
+                "count": 20.0,
+                "shape": "PILLAR",
+                "anchor": "ENTITY",
+                "vertical_origin": 0.1,
+                "min_speed": 0.3,
+                "max_speed": 0.6,
+                "extent": 3.5
+              }
             },
             {
-              "particle_id": "more_rpg_classes:small_gust",
-              "origin": "FEET",
-              "shape": "PILLAR",
-              "count": 15.0,
-              "min_speed": 0.1,
-              "max_speed": 0.3,
-              "extent": 3.5
+              "id": "more_rpg_classes:small_gust",
+              "appearance": {},
+              "batch": {
+                "count": 15.0,
+                "shape": "PILLAR",
+                "anchor": "ENTITY",
+                "vertical_origin": 0.1,
+                "min_speed": 0.1,
+                "max_speed": 0.3,
+                "extent": 3.5
+              }
             }
           ]
         },
@@ -65,17 +75,26 @@
           "duration": 6.0
         }
       },
-      "particles": [
-        {
-          "particle_id": "spell_engine:magic_stripe_float",
-          "origin": "FEET",
-          "shape": "WIDE_PIPE",
-          "count": 5.0,
-          "min_speed": 1.0,
-          "max_speed": 2.0,
-          "extent": 3.5
-        }
-      ]
+      "visuals": {
+        "particles": [
+          {
+            "id": "spell_engine:magic_stripe",
+            "appearance": {
+              "motion": "FLOAT"
+            },
+            "batch": {
+              "count": 5.0,
+              "shape": "PIPE",
+              "anchor": "ENTITY",
+              "vertical_origin": 0.1,
+              "min_speed": 1.0,
+              "max_speed": 2.0,
+              "extent": 3.5,
+              "width_factor": 2.0
+            }
+          }
+        ]
+      }
     }
   ],
   "cost": {

@@ -5,7 +5,9 @@ import net.minecraft.util.Identifier;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.Spell;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.Fx;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
@@ -42,13 +44,16 @@ public class BardSkillSpells {
         modifier.projectile_perks.pierce = 2;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BARD));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
     public static final MrpgSkillSpells.Entry bard_tier_2_spell_1_modifier_2 = add(bard_tier_2_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry bard_tier_2_spell_1_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_2_spell_1_modifier_2");
         var title = "Evocative Ballad";
-        var description = "Magical Ballad's projectile is 40% larger, increasing its hitbox size.";
+        // The literal `%` MUST be doubled: `I18n.translate` feeds the lang value to `String.format`,
+        // and `"% l"` is not a valid conversion - this shipped rendering the whole tooltip line as
+        // "Format error: Magical Ballad's projectile is 40% larger...".
+        var description = "Magical Ballad's projectile is 40%% larger, increasing its hitbox size.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.bardSchool;
 
@@ -57,7 +62,7 @@ public class BardSkillSpells {
         modifier.projectile_scale_multiply = 0.4F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BARD));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
 
     /// VICIOUS MOCKERY
@@ -80,7 +85,7 @@ public class BardSkillSpells {
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BARD));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
     public static final MrpgSkillSpells.Entry bard_tier_2_spell_2_modifier_2 = add(bard_tier_2_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry bard_tier_2_spell_2_modifier_2() {
@@ -95,7 +100,7 @@ public class BardSkillSpells {
         modifier.range_add = 5F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BARD));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
 
     /// ENCORE
@@ -121,7 +126,7 @@ public class BardSkillSpells {
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 4, 0, 0);
         spell.impacts = List.of(impact);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BARD));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
     public static final MrpgSkillSpells.Entry bard_tier_3_spell_1_modifier_2 = add(bard_tier_3_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry bard_tier_3_spell_1_modifier_2() {
@@ -144,17 +149,14 @@ public class BardSkillSpells {
         heal.attribute = EntityAttributes.GENERIC_MAX_HEALTH.getIdAsString();
         heal.attribute_from_target = true;
         heal.school = SpellSchools.HEALING;
-        heal.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.HEAL,
-                                SpellEngineParticles.MagicParticles.Motion.BURST).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        20, 0.2F, 0.5F).color(Color.ARCANE.toRGBA())
-        };
+        heal.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_heal, ParticleGroup.Motion.BURST)
+                        .color(Color.ARCANE.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(20F).speed(0.2F, 0.5F)));
         spell.impacts = List.of(heal);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BARD));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
 
     /// WARDEN'S PAEAN
@@ -180,7 +182,7 @@ public class BardSkillSpells {
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BARD));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
     public static final MrpgSkillSpells.Entry bard_tier_3_spell_2_modifier_2 = add(bard_tier_3_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry bard_tier_3_spell_2_modifier_2() {
@@ -201,7 +203,7 @@ public class BardSkillSpells {
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BARD));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
 
     /// ARMY'S PAEON
@@ -225,13 +227,15 @@ public class BardSkillSpells {
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BARD));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
     public static final MrpgSkillSpells.Entry bard_tier_4_spell_1_modifier_2 = add(bard_tier_4_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry bard_tier_4_spell_1_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_4_spell_1_modifier_2");
         var title = "Army's Muse";
-        var description = "Dealing damage with melee hits, arrows or spells has {trigger_chance} chance to slightly reduce your active spell cooldowns.";
+        // Three triggers (melee, arrow and spell impact), all at the same chance, so the renderer
+        // emits `{trigger_chance_1..3}` and the bare token would render literally.
+        var description = "Dealing damage with melee hits, arrows or spells has {trigger_chance_1} chance to slightly reduce your active spell cooldowns.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.bardSchool;
         spell.range = 0;
@@ -253,7 +257,7 @@ public class BardSkillSpells {
 
         SpellBuilder.Cost.cooldown(spell, 4F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BARD));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
 
     /// CRESCENDO
@@ -301,7 +305,7 @@ public class BardSkillSpells {
 
         SpellBuilder.Cost.cooldown(spell, 1F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BARD));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
     public static final MrpgSkillSpells.Entry bard_tier_4_spell_2_modifier_2 = add(bard_tier_4_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry bard_tier_4_spell_2_modifier_2() {
@@ -316,7 +320,7 @@ public class BardSkillSpells {
         modifier.effect_duration_add = 3F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BARD));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
 
     private static Spell.Trigger withChance(Spell.Trigger trigger, float chance) {
@@ -352,13 +356,15 @@ public class BardSkillSpells {
 
         SpellBuilder.Cost.cooldown(spell, 2F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BARD));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
     public static final MrpgSkillSpells.Entry bard_tier_1_passive_2 = add(bard_tier_1_passive_2());
     private static MrpgSkillSpells.Entry bard_tier_1_passive_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_1_passive_2");
         var title = "Irresistible Dance";
-        var description = "Dealing damage has a low {trigger_chance} chance to briefly stun the target.";
+        // Two triggers (melee impact + spell impact), both at the same chance, so the renderer emits
+        // `{trigger_chance_1}` / `{trigger_chance_2}` and the bare token would render literally.
+        var description = "Dealing damage has a low {trigger_chance_1} chance to briefly stun the target.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.bardSchool;
@@ -376,7 +382,7 @@ public class BardSkillSpells {
 
         SpellBuilder.Cost.cooldown(spell, 8F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BARD));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
     public static final MrpgSkillSpells.Entry bard_tier_2_passive_1 = add(bard_tier_2_passive_1());
     private static MrpgSkillSpells.Entry bard_tier_2_passive_1() {
@@ -402,14 +408,13 @@ public class BardSkillSpells {
         cloud.time_to_live_seconds = 6;
         cloud.client_data = new Spell.Delivery.Cloud.ClientData();
         cloud.client_data.light_level = 0;
-        cloud.client_data.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
-                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET,
-                        15, 0.2F, 0.4F).color(Color.ARCANE.toRGBA()).extent(4F)
-        };
+        cloud.client_data.particles = List.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.FLOAT)
+                        .color(Color.ARCANE.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.PILLAR)
+                                .count(15F).speed(0.2F, 0.4F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
+                                .extent(4F)));
         spell.deliver.clouds = List.of(cloud);
 
         var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 4, 0);
@@ -417,14 +422,17 @@ public class BardSkillSpells {
         heal.school = SpellSchools.HEALING;
         spell.impacts = List.of(buff, heal);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BARD));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
     public static final MrpgSkillSpells.Entry bard_tier_2_passive_2 = add(bard_tier_2_passive_2());
     private static MrpgSkillSpells.Entry bard_tier_2_passive_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_2_passive_2");
         var effect = MrpgSkillEffects.DANCING_FEET;
         var title = "Dancing Feet";
-        var description = "{trigger_chance} chance upon rolling to highly increase movement speed and jumping height for {effect_duration} sec.";
+        // Two status-effect impacts (Dancing Feet + jump boost), so the renderer emits
+        // `{effect_duration_1}` / `{effect_duration_2}` and the bare token would render literally.
+        // Both last 3 sec, so the first one is the one to show.
+        var description = "{trigger_chance} chance upon rolling to highly increase movement speed and jumping height for {effect_duration_1} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.bardSchool;
@@ -438,14 +446,16 @@ public class BardSkillSpells {
         var jump = SpellBuilder.Impacts.effectAdd("minecraft:jump_boost", 3, 1, 1);
         spell.impacts = List.of(speed, jump);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BARD));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
     public static final MrpgSkillSpells.Entry bard_tier_3_passive_1 = add(bard_tier_3_passive_1());
     private static MrpgSkillSpells.Entry bard_tier_3_passive_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_3_passive_1");
         var effect = MrpgSkillEffects.MELODIC_PROTECTION;
         var title = "Melodic Protection";
-        var description = "Applying status effects or healing has {trigger_chance} chance to grant a stack of Melodic Protection, nullifying the next hit. Healing Spell Power increases the amount of stacks.";
+        // Two triggers (status-effect impact + heal impact), both at the same chance, so the
+        // renderer emits `{trigger_chance_1}` / `{trigger_chance_2}` and the bare token would render literally.
+        var description = "Applying status effects or healing has {trigger_chance_1} chance to grant a stack of Melodic Protection, nullifying the next hit. Healing Spell Power increases the amount of stacks.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.bardSchool;
@@ -475,14 +485,16 @@ public class BardSkillSpells {
 
         SpellBuilder.Cost.cooldown(spell, 3F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BARD));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
     public static final MrpgSkillSpells.Entry bard_tier_3_passive_2 = add(bard_tier_3_passive_2());
     private static MrpgSkillSpells.Entry bard_tier_3_passive_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_3_passive_2");
         var effect = MrpgSkillEffects.COUNTERCHARM;
         var title = "Countercharm";
-        var description = "Dealing damage has a low {trigger_chance} chance to turn the target against its allies for {effect_duration} sec.";
+        // Two triggers (melee impact + spell impact), both at the same chance, so the renderer emits
+        // `{trigger_chance_1}` / `{trigger_chance_2}` and the bare token would render literally.
+        var description = "Dealing damage has a low {trigger_chance_1} chance to turn the target against its allies for {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.bardSchool;
@@ -500,6 +512,6 @@ public class BardSkillSpells {
 
         SpellBuilder.Cost.cooldown(spell, 15F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BARD));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
 }

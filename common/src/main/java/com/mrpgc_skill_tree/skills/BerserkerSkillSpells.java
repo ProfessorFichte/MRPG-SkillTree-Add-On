@@ -14,10 +14,12 @@ import net.spell_engine.api.entity.SpellEntityPredicates;
 import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.Fx;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.api.util.TriState;
-import net.spell_engine.client.gui.SpellTooltip;
+import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
@@ -66,30 +68,27 @@ public class BerserkerSkillSpells {
         var debuff = SpellBuilder.Impacts.effectAdd(SpellEngineEffects.BLEED.id.toString(), 6, 0, 3);
         MrpgSkillSpells.bleedingDeny(debuff);
         debuff.action.status_effect.refresh_duration = true;
-        debuff.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.dripping_blood.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.01F, 0.1F)
-                        .color(Color.BLOOD.toRGBA())
-        };
+        debuff.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.dripping_blood)
+                        .color(Color.BLOOD)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(10).speed(0.01F, 0.1F)));
         spell.impacts = List.of(debuff);
 
         SpellBuilder.Cost.cooldown(spell, 1F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
     public static final MrpgSkillSpells.Entry berserker_tier_2_spell_1_modifier_2 = add(berserker_tier_2_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry berserker_tier_2_spell_1_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_spell_1_modifier_2");
         var title = "Blind with Rage";
         var effect = MrpgSkillEffects.BLIND_WITH_RAGE;
-        var description = "Melee Hits with Wild Rage reduce incoming damage by {bonus} for {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description().replace("{bonus}", bonus);
-        };
+        // Single modifier (damage taken -15%), stored negative while the prose already says
+        // "reduce ... by", hence `ABS` - the old mutator passed the raw value and rendered "-15%".
+        var description = "Melee Hits with Wild Rage reduce incoming damage by "
+                + TooltipTokens.effect(effect.id, 0, null, TooltipTokens.Format.ABS)
+                + " for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.berserkerSchool;
 
@@ -102,7 +101,7 @@ public class BerserkerSkillSpells {
 
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
     public static final MrpgSkillSpells.Entry berserker_tier_2_spell_2_root = add(MrpgSkillsCommon.radiusRoot(
             MrpgSkillSpells.Category.BERSERKER, MrpgSkillSpells.berserkerSchool,
@@ -120,7 +119,7 @@ public class BerserkerSkillSpells {
         modifier.range_add = 1.5F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
     public static final MrpgSkillSpells.Entry berserker_tier_2_spell_2_modifier_2 = add(berserker_tier_2_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry berserker_tier_2_spell_2_modifier_2() {
@@ -139,7 +138,7 @@ public class BerserkerSkillSpells {
 
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
     public static final MrpgSkillSpells.Entry berserker_tier_3_spell_1_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.BERSERKER, MrpgSkillSpells.berserkerSchool,
@@ -148,7 +147,11 @@ public class BerserkerSkillSpells {
     private static MrpgSkillSpells.Entry berserker_tier_3_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_3_spell_1_modifier_1");
         var title = "Deadly Precision";
-        var description = "Bloody Strike deals an additional {power_multiplier} of the target's max health as damage.";
+        // `{power_multiplier}` rendered literally here: it resolves from a `Spell.Modifier`'s
+        // `power_modifier`, and this modifier has none - the value is the appended impact's own
+        // coefficient against the target's max health. Resolved by `MrpgSkillSpells.registerTooltipTokens`.
+        var description = "Bloody Strike deals an additional " + MrpgSkillSpells.maxHealthPercentToken
+                + " of the target's max health as damage.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.berserkerSchool;
 
@@ -162,7 +165,7 @@ public class BerserkerSkillSpells {
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
     public static final MrpgSkillSpells.Entry berserker_tier_3_spell_1_modifier_2 = add(berserker_tier_3_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry berserker_tier_3_spell_1_modifier_2() {
@@ -182,13 +185,10 @@ public class BerserkerSkillSpells {
         area_impact.radius = radius;
         area_impact.area = new Spell.Target.Area();
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-        area_impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.dripping_blood.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        20, 0.15F, 0.15F
-                )
-        };
+        area_impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.dripping_blood)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(20).speed(0.15F, 0.15F)));
 
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
 
@@ -202,7 +202,7 @@ public class BerserkerSkillSpells {
 
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
     public static final MrpgSkillSpells.Entry berserker_tier_3_spell_2_root = add(MrpgSkillsCommon.cooldownRoot(
             MrpgSkillSpells.Category.BERSERKER, MrpgSkillSpells.berserkerSchool,
@@ -221,7 +221,7 @@ public class BerserkerSkillSpells {
         modifier.power_modifier.critical_damage_bonus = 0.3F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
     public static final MrpgSkillSpells.Entry berserker_tier_3_spell_2_modifier_2 = add(berserker_tier_3_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry berserker_tier_3_spell_2_modifier_2() {
@@ -246,17 +246,14 @@ public class BerserkerSkillSpells {
         custom.action.type = Spell.Impact.Action.Type.CUSTOM;
         custom.action.custom.intent = SpellTarget.Intent.HARMFUL;
         custom.action.custom.handler = "mrpgc_skill_tree:reckless_rage";
-        custom.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
-                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        20, 0.2F, 0.25F)
-                        .extent(0.25F)
-                        .invert()
-                        .color(Color.RAGE.toRGBA()),
-        };
+        custom.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.ASCEND, Color.RAGE)
+                        // V1 WIDE_PIPE = PIPE at double the entity radius
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
+                                .count(20).speed(0.2F, 0.25F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
+                                .extent(0.25F)
+                                .invert(true)));
 
         var buff = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 12, 1,9);
         buff.action.status_effect.refresh_duration = false;
@@ -265,7 +262,7 @@ public class BerserkerSkillSpells {
 
         spell.impacts = List.of(custom,buff);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
     public static final MrpgSkillSpells.Entry berserker_tier_4_spell_1_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.BERSERKER, MrpgSkillSpells.berserkerSchool,
@@ -289,13 +286,11 @@ public class BerserkerSkillSpells {
         spell.passive.triggers = List.of(trigger);
 
         var damage = SpellBuilder.Impacts.damage(0.3F, 0F);
-        damage.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.dripping_blood.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        20, 0.2F, 0.4F)
-                        .color(Color.BLOOD.toRGBA())
-        };
+        damage.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.dripping_blood)
+                        .color(Color.BLOOD)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(20).speed(0.2F, 0.4F)));
         var debuff = SpellBuilder.Impacts.effectAdd(SpellEngineEffects.BLEED.id.toString(), 6, 0, 3);
         MrpgSkillSpells.bleedingDeny(debuff);
         debuff.action.status_effect.refresh_duration = true;
@@ -303,7 +298,7 @@ public class BerserkerSkillSpells {
 
         SpellBuilder.Cost.cooldown(spell, 3F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
     public static final MrpgSkillSpells.Entry berserker_tier_4_spell_1_modifier_2 = add(berserker_tier_4_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry berserker_tier_4_spell_1_modifier_2() {
@@ -328,7 +323,7 @@ public class BerserkerSkillSpells {
         debuff.target_modifiers.get(0).execute = TriState.ALLOW;
         spell.impacts = List.of(debuff);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
     public static final MrpgSkillSpells.Entry berserker_tier_4_spell_2_root = add(MrpgSkillsCommon.critDamageRoot(
             MrpgSkillSpells.Category.BERSERKER, MrpgSkillSpells.berserkerSchool,
@@ -338,12 +333,10 @@ public class BerserkerSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_4_spell_2_modifier_1");
         var effect = MrpgSkillEffects.BLOODFLOW;
         var title = "Norse Warmonger";
-        var description = "Killing a target with Northerners Guillotine grants you Bloodflow, increasing attack damage by {bonus} for {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description().replace("{bonus}", bonus);
-        };
+        // Single modifier (attack damage), so the token's blank-attribute fallback is unambiguous.
+        var description = "Killing a target with Northerners Guillotine grants you Bloodflow, increasing attack damage by "
+                + TooltipTokens.effect(effect.id)
+                + " for {effect_duration} sec.";
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
         spell.school = MrpgSkillSpells.berserkerSchool;
 
@@ -356,7 +349,7 @@ public class BerserkerSkillSpells {
         buff.action.apply_to_caster = true;
         spell.impacts = List.of(buff);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
     public static final MrpgSkillSpells.Entry berserker_tier_4_spell_2_modifier_2 = add(berserker_tier_4_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry berserker_tier_4_spell_2_modifier_2() {
@@ -376,7 +369,7 @@ public class BerserkerSkillSpells {
         reset.sound = new Sound(SpellEngineSounds.SPELL_COOLDOWN_IMPACT.id());
         spell.impacts = List.of(reset);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
     ///BERSERKER PASSIVES
     public static final MrpgSkillSpells.Entry berserker_tier_1_passive_1 = add(berserker_tier_1_passive_1());
@@ -394,33 +387,31 @@ public class BerserkerSkillSpells {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.damage(0.2F, 0F);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.dripping_blood.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.01F, 0.1F)
-                        .color(Color.BLOOD.toRGBA()),
-                SpellBuilder.Particles.aura(SpellEngineParticles.aura_effect_409.id())
-                        .color(Color.RAGE.toRGBA())
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.dripping_blood)
+                        .color(Color.BLOOD)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(10).speed(0.01F, 0.1F)),
+                // V1 `aura_effect_409` was zone/effect_409 registered a second time camera-facing;
+                // 1.10 keeps one entry and `Particles.aura` supplies the camera facing + attachment.
+                SpellBuilder.Particles.aura(SpellEngineParticles.area_effect_409.id())
+                        .appearance(a -> a.color(Color.RAGE.toRGBA())));
         impact.sound = new Sound(MrpgSkillSounds.cleave_impact.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 1F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
     public static final MrpgSkillSpells.Entry berserker_tier_1_passive_2 = add(berserker_tier_1_passive_2());
     private static MrpgSkillSpells.Entry berserker_tier_1_passive_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_1_passive_2");
         var effect = MrpgSkillEffects.BLOODFLOW;
         var title = "Bloodfrenzy";
-        var description = "Melee hits against Bleeding targets grant you Bloodflow, increasing attack damage by {bonus} for {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description().replace("{bonus}", bonus);
-        };
+        // Single modifier (attack damage), so the token's blank-attribute fallback is unambiguous.
+        var description = "Melee hits against Bleeding targets grant you Bloodflow, increasing attack damage by "
+                + TooltipTokens.effect(effect.id)
+                + " for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.berserkerSchool;
         spell.range = 0;
@@ -435,21 +426,16 @@ public class BerserkerSkillSpells {
 
         var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 8, 0);
         buff.action.apply_to_caster = true;
-        buff.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                        SpellEngineParticles.MagicParticles.Shape.HEAL,
-                                        SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.01F, 0.1F)
-                        .color(Color.RAGE.toRGBA())
-        };
+        buff.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_heal, ParticleGroup.Motion.DECELERATE, Color.RAGE)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(10).speed(0.01F, 0.1F)));
         buff.sound = new Sound(MrpgSkillSounds.blood_frenzy_heal.id());
         spell.impacts = List.of(buff);
 
         SpellBuilder.Cost.cooldown(spell, 2F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
     public static final MrpgSkillSpells.Entry berserker_tier_2_passive_1 = add(berserker_tier_2_passive_1());
     private static MrpgSkillSpells.Entry berserker_tier_2_passive_1() {
@@ -480,20 +466,19 @@ public class BerserkerSkillSpells {
         areaImpact.sound = new Sound(MrpgSkillSounds.spinning_slash_impact.id());
         spell.area_impact = areaImpact;
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
     public static final MrpgSkillSpells.Entry berserker_tier_2_passive_2 = add(berserker_tier_2_passive_2());
     private static MrpgSkillSpells.Entry berserker_tier_2_passive_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_passive_2");
         var title = "Burst of Aggression";
         var effect = MrpgSkillEffects.BURST_OF_AGGRESSION;
-        var description = "When the player is in rage and is rolling, you gain {bonus} movement speed and rage for {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description()
-                    .replace("{bonus}", bonus);
-        };
+        // Two modifiers (movement speed, rage), both +15%. The status effect's modifier map is
+        // unordered, so the attribute is named explicitly rather than read by list position.
+        var description = "When the player is in rage and is rolling, you gain "
+                + TooltipTokens.effect(effect.id, 0,
+                        Identifier.of(EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString()))
+                + " movement speed and rage for {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.berserkerSchool;
@@ -510,36 +495,36 @@ public class BerserkerSkillSpells {
 
         var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 5F, 0);
         buff.action.status_effect.refresh_duration = true;
-        buff.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
-                        25, 0.3F, 0.8F).extent(1.0F)
-                        .color(Color.RAGE.toRGBA()).followEntity(true),
+        buff.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.DECELERATE, Color.RAGE)
+                        .attached()
+                        // V1 WIDE_PIPE = PIPE at double the entity radius
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
+                                .count(25).speed(0.3F, 0.8F)
+                                .extent(1.0F)),
                 SpellBuilder.Particles.area(SpellEngineParticles.area_effect_658.id())
-                        .origin(ParticleBatch.Origin.CENTER)
-                        .scale(1.5F)
-                        .color(Color.RAGE.toRGBA()).followEntity(true)
-        };
+                        .appearance(a -> a.scale(1.5F)
+                                .color(Color.RAGE.toRGBA())
+                                .attachment(ParticleGroup.Attachment.POSITION))
+                        // V1 `.origin(CENTER)` moved it off the ground, onto the entity's centre
+                        .batch(b -> b.origin(ParticleGroup.Anchor.ENTITY, ParticleGroupBuilder.Batches.CENTER)));
         buff.sound = new Sound(MrpgSkillSounds.burst_of_aggression.id());
         spell.impacts = List.of(buff);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
     public static final MrpgSkillSpells.Entry berserker_tier_3_passive_1 = add(berserker_tier_3_passive_1());
     private static MrpgSkillSpells.Entry berserker_tier_3_passive_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_3_passive_1");
         var effect = MrpgSkillEffects.RAGNAROK;
         var title = effect.title;
-        var description = "Taking damage with a harmful effect grants you immunity to harmful effects and {bonus} increased movement speed for {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description()
-                    .replace("{bonus}", bonus);
-        };
+        // Two modifiers that do NOT share a value: movement speed +30% and tenacity +100%. The old
+        // `firstModifier()` read happened to land on movement speed, but the status effect's modifier
+        // map is unordered, so it is named explicitly here - picking the wrong one would print "100%".
+        var description = "Taking damage with a harmful effect grants you immunity to harmful effects and "
+                + TooltipTokens.effect(effect.id, 0,
+                        Identifier.of(EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString()))
+                + " increased movement speed for {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.berserkerSchool;
@@ -556,25 +541,24 @@ public class BerserkerSkillSpells {
 
         var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 5, 0);
         buff.action.apply_to_caster = true;
-        buff.particles = new ParticleBatch[]{
-                SpellBuilder.Particles.aura(SpellEngineParticles.aura_effect_728.id())
-                        .scale(1.2F)
-                        .color(Color.RAGE.alpha(0.5F).toRGBA()),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
-                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        25, 0.2F, 0.6F)
-                        .extent(-0.2F)
-                        .color(Color.RAGE.toRGBA()),
-        };
+        buff.visuals = Fx.Visuals.of(
+                // V1 `aura_effect_728` was zone/effect_728 registered a second time camera-facing;
+                // 1.10 keeps one entry and `Particles.aura` supplies the camera facing + attachment.
+                SpellBuilder.Particles.aura(SpellEngineParticles.area_effect_728.id())
+                        .appearance(a -> a.scale(1.2F)
+                                .color(Color.RAGE.alpha(0.5F).toRGBA())),
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.FLOAT, Color.RAGE)
+                        // V1 WIDE_PIPE = PIPE at double the entity radius
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
+                                .count(25).speed(0.2F, 0.6F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
+                                .extent(-0.2F)));
         buff.sound = new Sound(MrpgSkillSounds.ragnarok_release.id());
         spell.impacts = List.of(buff);
 
         SpellBuilder.Cost.cooldown(spell, 60F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
     public static final MrpgSkillSpells.Entry berserker_tier_3_passive_2 = add(berserker_tier_3_passive_2());
     private static MrpgSkillSpells.Entry berserker_tier_3_passive_2() {
@@ -595,29 +579,29 @@ public class BerserkerSkillSpells {
 
         var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 3, 0);
         buff.action.apply_to_caster = true;
-        buff.particles = new ParticleBatch[]{
+        buff.visuals = Fx.Visuals.of(
                 SpellBuilder.Particles.area(SpellEngineParticles.area_effect_658.id())
-                        .origin(ParticleBatch.Origin.CENTER)
-                        .scale(1.5F)
-                        .color(Color.RAGE.toRGBA()),
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
-                                SpellEngineParticles.MagicParticles.Motion.DECELERATE).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.CENTER,
-                        15, 0.3F, 0.5F)
-                        .invert()
-                        .color(Color.RAGE.toRGBA()),
-                new ParticleBatch("berserker_rpg:rage_particle",
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.1F, 0.5F)
-                        .preSpawnTravel(7)
-        };
+                        .appearance(a -> a.scale(1.5F).color(Color.RAGE.toRGBA()))
+                        // V1 `.origin(CENTER)` moved it off the ground, onto the entity's centre
+                        .batch(b -> b.origin(ParticleGroup.Anchor.ENTITY, ParticleGroupBuilder.Batches.CENTER)),
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.DECELERATE, Color.RAGE)
+                        // V1 WIDE_PIPE = PIPE at double the entity radius
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
+                                .count(15).speed(0.3F, 0.5F)
+                                .invert(true)),
+                // NOTE: `berserker_rpg:rage_particle` is a DEAD id — nothing registers a particle
+                // in the `berserker_rpg` namespace; the real one is `more_rpg_classes:rage_particle`
+                // (MoreParticles.RAGE_PAR). This has never rendered, in V1 or V2. Ported verbatim
+                // rather than repaired, because repairing it is a behaviour change.
+                ParticleGroupBuilder.of("berserker_rpg:rage_particle")
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(10).speed(0.1F, 0.5F)
+                                .preTravel(7F)));
         buff.sound = Sound.withVolume(Identifier.of("berserker_rpg:wild_rage"), 1.3F);
         spell.impacts = List.of(buff);
 
         SpellBuilder.Cost.cooldown(spell, 60F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
 }

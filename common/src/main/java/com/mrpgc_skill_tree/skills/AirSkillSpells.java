@@ -5,6 +5,7 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
+import net.more_rpg_classes.client.particle.MoreParticles;
 import net.more_rpg_classes.custom.MoreSpellSchools;
 import net.more_rpg_classes.effect.MRPGCEffects;
 import net.skill_tree_rpgs.skills.SkillSounds;
@@ -13,12 +14,15 @@ import net.spell_engine.api.entity.SpellEntityPredicates;
 import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
+import net.spell_engine.api.spell.fx.Easing;
+import net.spell_engine.api.spell.fx.Fx;
 import net.spell_engine.api.spell.fx.ModelEffect;
 import net.spell_engine.api.spell.fx.ModelEffectBuilder;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.api.util.TriState;
-import net.spell_engine.client.gui.SpellTooltip;
+import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
@@ -68,7 +72,7 @@ public class AirSkillSpells {
 
         SpellBuilder.Cost.cooldown(spell, 0.5F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
     public static final MrpgSkillSpells.Entry air_tier_2_spell_1_modifier_2 = add(air_tier_2_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry air_tier_2_spell_1_modifier_2() {
@@ -90,11 +94,12 @@ public class AirSkillSpells {
         area_impact.radius = radius;
         area_impact.area = new Spell.Target.Area();
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-        area_impact.particles = new ParticleBatch[]{
-                new ParticleBatch("more_rpg_classes:small_gust",
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        25, 0.2F, 1.0F).extent(2)
-        };
+        area_impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(MoreParticles.SMALL_GUST)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
+                                .count(25).speed(0.2F, 1.0F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
+                                .extent(2F)));
 
 
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
@@ -103,7 +108,7 @@ public class AirSkillSpells {
 
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
     public static final MrpgSkillSpells.Entry air_tier_3_spell_1_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.AIR, MrpgSkillSpells.airWizardSchool,
@@ -121,7 +126,7 @@ public class AirSkillSpells {
         modifier.cooldown_duration_deduct = 4;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
     public static final MrpgSkillSpells.Entry air_tier_3_spell_1_modifier_2 = add(air_tier_3_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry air_tier_3_spell_1_modifier_2() {
@@ -137,7 +142,7 @@ public class AirSkillSpells {
         modifier.power_modifier.critical_damage_bonus = 0.25F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
     public static final MrpgSkillSpells.Entry air_tier_4_spell_1_root = add(MrpgSkillsCommon.radiusRoot(
             MrpgSkillSpells.Category.AIR, MrpgSkillSpells.airWizardSchool,
@@ -155,7 +160,7 @@ public class AirSkillSpells {
         modifier.spawn_duration_add = 3;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
     public static final MrpgSkillSpells.Entry air_tier_4_spell_1_modifier_2 = add(air_tier_4_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry air_tier_4_spell_1_modifier_2() {
@@ -198,7 +203,7 @@ public class AirSkillSpells {
 
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
     ///AIR PASSIVES
     public static final MrpgSkillSpells.Entry air_tier_1_passive_1 = add(air_tier_1_passive_1());
@@ -206,14 +211,11 @@ public class AirSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "air_tier_1_passive_1");
         var effect = MrpgSkillEffects.IMPETUS;
         var title = effect.title;
-        var description = "Air spell impacts have {trigger_chance} chance to increase the casters Spell Haste by {bonus} for {effect_duration} sec.";
+        // Single modifier (spell haste), so the token's blank-attribute fallback is unambiguous.
+        var description = "Air spell impacts have {trigger_chance} chance to increase the casters Spell Haste by "
+                + TooltipTokens.effect(effect.id)
+                + " for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description()
-                    .replace("{bonus}", bonus);
-        };
         spell.school = MrpgSkillSpells.airWizardSchool;
         spell.range = 0;
 
@@ -224,21 +226,19 @@ public class AirSkillSpells {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 5F, 0);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
-                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        20, 0.05F, 0.1F)
-                        .color(Colors.WHITE)
-        };
+        // V1 `.color(Colors.WHITE)` passed -1, which ParticleBatch reads as "no colour" — it never
+        // tinted anything, so no colour is carried over here.
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.FLOAT)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
+                                .count(20).speed(0.05F, 0.1F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)));
         impact.sound = new Sound(MrpgSkillSounds.air_impetus_buff.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 1F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.AIR));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
     public static final MrpgSkillSpells.Entry air_tier_1_passive_2 = add(air_tier_1_passive_2());
     private static MrpgSkillSpells.Entry air_tier_1_passive_2() {
@@ -246,13 +246,12 @@ public class AirSkillSpells {
         var effect = MrpgSkillEffects.EYE_OF_THE_STORM;
         var title = "Eye of the Storm";
         float healthThreshold = 0.3F;
-        var description = "Air spell impacts on targets below {threshold} makes the target more vulnerable to spell crits.";
+        // The threshold is a compile-time constant of this mod, not anything the spell data carries,
+        // so it is baked into the description instead of resolved at render time. `bakedPercent`
+        // doubles the `%`: the lang value goes through `I18n.translate` -> `String.format`.
+        var description = "Air spell impacts on targets below " + TooltipTokens.bakedPercent(healthThreshold)
+                + " makes the target more vulnerable to spell crits.";
         var spell = SpellBuilder.createSpellPassive();
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var threshold = SpellTooltip.percent(healthThreshold);
-            return args.description()
-                    .replace("{threshold}", threshold);
-        };
         spell.school = MrpgSkillSpells.airWizardSchool;
         spell.range = 0;
 
@@ -268,14 +267,18 @@ public class AirSkillSpells {
 
         SpellBuilder.Cost.cooldown(spell, 1F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.AIR));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
     public static final MrpgSkillSpells.Entry air_tier_2_passive_1 = add(air_tier_2_passive_1());
     private static MrpgSkillSpells.Entry air_tier_2_passive_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "air_tier_2_passive_1");
         var effect = MrpgSkillEffects.TAILWIND;
         var title = "Tailwind";
-        var description = "{trigger_chance} chance upon rolling to leave tailwind behind for {cloud_duration} sec, increasing movement speed by {bonus} for {effect_duration} sec.";
+        // `{bonus}` used to render literally here - no mutator was ever registered for this spell.
+        // Tailwind has a single modifier (movement speed +20%).
+        var description = "{trigger_chance} chance upon rolling to leave tailwind behind for {cloud_duration} sec, increasing movement speed by "
+                + TooltipTokens.effect(effect.id)
+                + " for {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.airWizardSchool;
@@ -296,34 +299,29 @@ public class AirSkillSpells {
         cloud.spawn.sound = new Sound(MrpgSkillSounds.air_tailwind_release.id());
         cloud.client_data = new Spell.Delivery.Cloud.ClientData();
         cloud.client_data.light_level = 0;
-        cloud.client_data.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
-                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
-                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET,
-                        20, 0.3F, 0.6F)
-                        .color(Colors.WHITE).extent(3.5F),
-                new ParticleBatch(
-                        "more_rpg_classes:small_gust",
-                        ParticleBatch.Shape.PILLAR, ParticleBatch.Origin.FEET,
-                        15, 0.1F, 0.3F)
-                        .color(Colors.WHITE).extent(3.5F)
-        };
+        // Continuous cloud presence FX — stays a plain list. `Colors.WHITE` was -1, i.e. no tint.
+        cloud.client_data.particles = List.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.FLOAT)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PILLAR)
+                                .count(20).speed(0.3F, 0.6F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
+                                .extent(3.5F)),
+                ParticleGroupBuilder.of(MoreParticles.SMALL_GUST)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PILLAR)
+                                .count(15).speed(0.1F, 0.3F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
+                                .extent(3.5F)));
         spell.deliver.clouds = List.of(cloud);
         Spell.Impact buff = SpellBuilder.Impacts.effectSet(effect.id.toString(),6,0);
-        buff.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
-                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        5, 1.0F, 2.0F)
-                        .color(Colors.WHITE).extent(3.5F)
-        };
+        buff.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.FLOAT)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
+                                .count(5).speed(1.0F, 2.0F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
+                                .extent(3.5F)));
         spell.impacts = List.of(buff);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
     public static final MrpgSkillSpells.Entry air_tier_2_passive_2 = add(air_tier_2_passive_2());
     private static MrpgSkillSpells.Entry air_tier_2_passive_2() {
@@ -339,6 +337,37 @@ public class AirSkillSpells {
         trigger.chance = 0.5F;
         spell.passive.triggers = List.of(trigger);
 
+        spell.deliver.type = Spell.Delivery.Type.CLOUD;
+        Spell.Delivery.Cloud cloud = new Spell.Delivery.Cloud();
+        cloud.volume.radius = 2.0F;
+        cloud.volume.area.vertical_range_multiplier = 1.5F;
+        cloud.delay_ticks = 5;
+        cloud.impact_tick_interval = 20;
+        cloud.time_to_live_seconds = 5;
+        cloud.spawn = new Spell.Delivery.Cloud.Spawn();
+        cloud.client_data = new Spell.Delivery.Cloud.ClientData();
+        cloud.presence_sound = Sound.withVolume(Identifier.of("more_rpg_classes:air_magic_cast1"),0.5F);
+        int tornadoDurationTicks = (int) (cloud.time_to_live_seconds * 20);
+        cloud.client_data.model_fx = List.of(
+                ModelEffectBuilder.create("elemental_wizards_rpg:effect/tornado")
+                        .scale(1.5F)
+                        .light(LightEmission.NONE)
+                        .duration(tornadoDurationTicks)
+                        .rotate(0, -20 * tornadoDurationTicks, 0, 0, tornadoDurationTicks, Easing.LINEAR)
+                        .build()
+        );
+        cloud.client_data.particles = List.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.smoke_medium)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(10).speed(0.1F, 0.5F)));
+        spell.deliver.clouds = List.of(cloud);
+        Spell.Impact damage = SpellBuilder.Impacts.damage(0.3F,0.0F);
+        damage.sound = Sound.withVolume(Identifier.of("spell_engine:generic_wind_charging"),0.7F);
+        damage.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.smoke_medium)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(10).speed(0.2F, 0.2F)));
+        spell.impacts = List.of(damage);
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
         var spawn = new Spell.Impact();
@@ -359,7 +388,7 @@ public class AirSkillSpells {
         };
         spell.impacts = List.of(spawn);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
     public static final MrpgSkillSpells.Entry air_tier_3_passive_1 = add(air_tier_3_passive_1());
     private static MrpgSkillSpells.Entry air_tier_3_passive_1() {
@@ -393,18 +422,16 @@ public class AirSkillSpells {
         spell.deliver.stash_effect.triggers = List.of(stash_trigger);
 
         var damage = SpellBuilder.Impacts.damage(0.0F, 1.5F);
-        damage.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.smoke_medium.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.2F, 0.2F)
-        };
+        damage.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.smoke_medium)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(10).speed(0.2F, 0.2F)));
         damage.sound = new Sound( "more_rpg_classes:air_magic_impact2");
         spell.impacts = List.of(damage);
 
         SpellBuilder.Cost.cooldown(spell, duration * 2);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
     public static final MrpgSkillSpells.Entry air_tier_3_passive_2 = add(air_tier_3_passive_2()); //
     private static MrpgSkillSpells.Entry air_tier_3_passive_2() {
@@ -444,18 +471,16 @@ public class AirSkillSpells {
 
 
         var impact = SpellBuilder.Impacts.damage(0.3F, 0F);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        "more_rpg_classes:small_gust",
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.2F, 0.2F)
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(MoreParticles.SMALL_GUST)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(10).speed(0.2F, 0.2F)));
         impact.sound = new Sound("more_rpg_classes:air_magic_impact3");
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 20F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
     public static final MrpgSkillSpells.Entry air_tier_2_spell_2_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.AIR, MrpgSkillSpells.airWizardSchool,

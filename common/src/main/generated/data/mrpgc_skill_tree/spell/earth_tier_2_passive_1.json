@@ -27,11 +27,14 @@
         "client_data": {
           "particles": [
             {
-              "particle_id": "more_rpg_classes:stone_trap",
-              "origin": "FEET",
-              "shape": "PILLAR",
-              "count": 2.0,
-              "max_speed": 0.0
+              "id": "more_rpg_classes:stone_trap",
+              "appearance": {},
+              "batch": {
+                "count": 2.0,
+                "shape": "PILLAR",
+                "anchor": "ENTITY",
+                "vertical_origin": 0.1
+              }
             }
           ]
         },
@@ -52,16 +55,22 @@
           "duration": 3.0
         }
       },
-      "particles": [
-        {
-          "particle_id": "spell_engine:smoke_medium",
-          "origin": "FEET",
-          "shape": "CIRCLE",
-          "count": 10.0,
-          "min_speed": 0.3,
-          "max_speed": 0.3
-        }
-      ]
+      "visuals": {
+        "particles": [
+          {
+            "id": "spell_engine:smoke_medium",
+            "appearance": {},
+            "batch": {
+              "count": 10.0,
+              "shape": "CIRCLE",
+              "anchor": "ENTITY",
+              "vertical_origin": 0.1,
+              "min_speed": 0.3,
+              "max_speed": 0.3
+            }
+          }
+        ]
+      }
     },
     {
       "action": {

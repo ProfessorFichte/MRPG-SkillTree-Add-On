@@ -44,16 +44,22 @@
           "duration": 3.0
         }
       },
-      "particles": [
-        {
-          "particle_id": "spell_engine:snowflake",
-          "origin": "FEET",
-          "shape": "CIRCLE",
-          "count": 30.0,
-          "min_speed": 0.4,
-          "max_speed": 0.4
-        }
-      ],
+      "visuals": {
+        "particles": [
+          {
+            "id": "spell_engine:snowflake",
+            "appearance": {},
+            "batch": {
+              "count": 30.0,
+              "shape": "CIRCLE",
+              "anchor": "ENTITY",
+              "vertical_origin": 0.1,
+              "min_speed": 0.4,
+              "max_speed": 0.4
+            }
+          }
+        ]
+      },
       "sound": {
         "id": "mrpgc_skill_tree:winters_cloak_freeze"
       }

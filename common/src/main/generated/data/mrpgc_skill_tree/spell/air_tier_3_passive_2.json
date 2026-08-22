@@ -59,16 +59,21 @@
           "knockback": 0.0
         }
       },
-      "particles": [
-        {
-          "particle_id": "more_rpg_classes:small_gust",
-          "origin": "CENTER",
-          "shape": "SPHERE",
-          "count": 10.0,
-          "min_speed": 0.2,
-          "max_speed": 0.2
-        }
-      ],
+      "visuals": {
+        "particles": [
+          {
+            "id": "more_rpg_classes:small_gust",
+            "appearance": {},
+            "batch": {
+              "count": 10.0,
+              "shape": "SPHERE",
+              "anchor": "ENTITY",
+              "min_speed": 0.2,
+              "max_speed": 0.2
+            }
+          }
+        ]
+      },
       "sound": {
         "id": "more_rpg_classes:air_magic_impact3"
       }

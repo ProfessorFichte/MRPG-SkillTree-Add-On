@@ -29,17 +29,23 @@
           "knockback": 1.5
         }
       },
-      "particles": [
-        {
-          "particle_id": "more_rpg_classes:splash",
-          "origin": "FEET",
-          "shape": "CIRCLE",
-          "count": 50.0,
-          "min_speed": 0.1,
-          "max_speed": 0.3,
-          "extent": 0.5
-        }
-      ],
+      "visuals": {
+        "particles": [
+          {
+            "id": "more_rpg_classes:splash",
+            "appearance": {},
+            "batch": {
+              "count": 50.0,
+              "shape": "CIRCLE",
+              "anchor": "ENTITY",
+              "vertical_origin": 0.1,
+              "min_speed": 0.1,
+              "max_speed": 0.3,
+              "extent": 0.5
+            }
+          }
+        ]
+      },
       "sound": {
         "id": "mrpgc_skill_tree:second_wave"
       }

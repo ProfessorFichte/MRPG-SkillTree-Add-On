@@ -5,8 +5,12 @@ import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.effect.SpellEngineEffects;
 import net.spell_engine.api.entity.SpellEntityPredicates;
 import net.spell_engine.api.spell.Spell;
-import net.spell_engine.api.spell.fx.ParticleBatch;
+import net.spell_engine.api.spell.fx.Fx;
+import net.spell_engine.api.spell.fx.ParticleGroup;
+import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.Sound;
+import net.spell_engine.api.util.TriState;
+import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
@@ -35,13 +39,11 @@ public class WarArcherSkillSpells {
 
         var bonus = 0.5F;
 
-        var description = "Increases the area of effect of Smoldering Arrow by {bonus}.";
-        var mutator = new SpellTooltip.DescriptionMutator() {
-            @Override
-            public String mutate(Args args) {
-                return args.description().replace("{bonus}", SpellTooltip.percent(bonus));
-            }
-        };
+        // A compile-time constant of this mod, not anything the spell data carries, so it is baked
+        // into the description (`bakedPercent` doubles the `%`: the lang value goes through
+        // `I18n.translate` -> `String.format`).
+        var description = "Increases the area of effect of Smoldering Arrow by "
+                + TooltipTokens.bakedPercent(bonus) + ".";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.warArcherSchool;
 
@@ -52,18 +54,22 @@ public class WarArcherSkillSpells {
         Spell.AreaImpact area_impact = new Spell.AreaImpact();
         area_impact.radius = extendedRadius;
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-        area_impact.particles = new ParticleBatch[]{(new ParticleBatch("spell_engine:fire_explosion",
-                ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 1.0F, 0.0F, 0.0F)).scale(extendedRadius/2),
-               new ParticleBatch("spell_engine:flame_medium_b",
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 25.0F, 0.1F, 0.3F).preSpawnTravel(2),
-                new ParticleBatch("spell_engine:flame_medium_b",
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER, 25.0F, 0.2F, 0.4F).preSpawnTravel(4)
-        };
+        area_impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.fire_explosion)
+                        .scale(extendedRadius / 2)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(1.0F).speed(0.0F, 0.0F)),
+                ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_b)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(25.0F).speed(0.1F, 0.3F).preTravel(2)),
+                ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_b)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(25.0F).speed(0.2F, 0.4F).preTravel(4)));
         modifier.replacing_area_impact.sound = new Sound("entity.generic.explode");
 
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_1_modifier_2 = add(war_archer_tier_2_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry war_archer_tier_2_spell_1_modifier_2() {
@@ -80,7 +86,7 @@ public class WarArcherSkillSpells {
         modifier.knockback_multiply_base = bonus;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_2_root = add(MrpgSkillsCommon.critRoot(
             MrpgSkillSpells.Category.WAR_ARCHER, MrpgSkillSpells.warArcherSchool,
@@ -108,7 +114,7 @@ public class WarArcherSkillSpells {
 
         SpellBuilder.Cost.cooldown(spell, 5F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_2_modifier_2 = add(war_archer_tier_2_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry war_archer_tier_2_spell_2_modifier_2() {
@@ -125,7 +131,7 @@ public class WarArcherSkillSpells {
         modifier.knockback_multiply_base = bonus;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_3_spell_1_root = add(MrpgSkillsCommon.cooldownRoot(
             MrpgSkillSpells.Category.WAR_ARCHER, MrpgSkillSpells.warArcherSchool,
@@ -143,7 +149,7 @@ public class WarArcherSkillSpells {
         modifier.range_add = 2F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_3_spell_1_modifier_2 = add(war_archer_tier_3_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry war_archer_tier_3_spell_1_modifier_2() {
@@ -179,7 +185,7 @@ public class WarArcherSkillSpells {
         modifier.impacts = List.of(spawnImpact);
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_3_spell_2_root = add(MrpgSkillsCommon.critRoot(
             MrpgSkillSpells.Category.WAR_ARCHER, MrpgSkillSpells.warArcherSchool,
@@ -198,7 +204,7 @@ public class WarArcherSkillSpells {
         modifier.power_modifier.power_multiplier = 0.3F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_3_spell_2_modifier_2 = add(war_archer_tier_3_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry war_archer_tier_3_spell_2_modifier_2() {
@@ -219,7 +225,7 @@ public class WarArcherSkillSpells {
         spell.impacts = List.of(impact);
         SpellBuilder.Cost.cooldown(spell, 1F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_1_root = add(MrpgSkillsCommon.radiusRoot(
             MrpgSkillSpells.Category.WAR_ARCHER, MrpgSkillSpells.warArcherSchool,
@@ -247,13 +253,17 @@ public class WarArcherSkillSpells {
         modifier.additional_placements = scorchedEarthTrailPlacements(53F, 80F);
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_1_modifier_2 = add(war_archer_tier_4_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry war_archer_tier_4_spell_1_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_4_spell_1_modifier_2");
         var effect = MrpgSkillEffects.BLOODFLOW;
         var title = "Charge from the Flames";
+        // Single modifier (attack damage), so the token's blank-attribute fallback is unambiguous.
+        var description = "Casting Scorched Earth grants you and nearby allies Bloodflow, increasing attack damage by "
+                + TooltipTokens.effect(effect.id)
+                + " for {effect_duration} sec.";
         var description = "Standing within Scorched Earth's flame trail grants you and nearby allies Bloodflow, increasing attack damage by {bonus} for {effect_duration} sec.";
         SpellTooltip.DescriptionMutator mutator = (args) -> {
             var modifier = effect.config().firstModifier();
@@ -292,7 +302,7 @@ public class WarArcherSkillSpells {
         buff.action.status_effect.refresh_duration = true;
         spell.impacts = List.of(buff);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_2_root = add(MrpgSkillsCommon.lingerRoot(
             MrpgSkillSpells.Category.WAR_ARCHER, MrpgSkillSpells.warArcherSchool,
@@ -315,7 +325,7 @@ public class WarArcherSkillSpells {
 
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_2_modifier_2 = add(war_archer_tier_4_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry war_archer_tier_4_spell_2_modifier_2() {
@@ -330,7 +340,7 @@ public class WarArcherSkillSpells {
         modifier.effect_duration_add = 3;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
     ///WAR ARCHER PASSIVES
     public static final MrpgSkillSpells.Entry war_archer_tier_1_passive_1 = add(war_archer_tier_1_passive_1());
@@ -353,22 +363,19 @@ public class WarArcherSkillSpells {
 
 
         var impact = SpellBuilder.Impacts.damage(0.35F, 0.75F);
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.flame_medium_a.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.1F, 0.5F),
-                new ParticleBatch(
-                        SpellEngineParticles.flame_medium_b.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.1F, 0.5F)
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_a)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(10).speed(0.1F, 0.5F)),
+                ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_b)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .count(10).speed(0.1F, 0.5F)));
         impact.sound = new Sound("entity.generic.explode");
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 5F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_1_passive_2 = add(war_archer_tier_1_passive_2());
     private static MrpgSkillSpells.Entry war_archer_tier_1_passive_2() {
@@ -388,15 +395,14 @@ public class WarArcherSkillSpells {
 
 
         var impact = SpellBuilder.Impacts.effectAdd(MrpgSkillEffects.TOWER_PROTECTOR.id.toString(), 8,1,5);
-        impact.particles = new ParticleBatch[]{
-                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_shield.id(), Color.RED),
-        };
+        impact.visuals = Fx.Visuals.of(
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_shield.id(), Color.RED));
         impact.sound = new Sound(MrpgSkillSounds.protector_of_the_tower.id());
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 1F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_2_passive_1 = add(war_archer_tier_2_passive_1());
     private static MrpgSkillSpells.Entry war_archer_tier_2_passive_1() {
@@ -412,13 +418,12 @@ public class WarArcherSkillSpells {
 
         var impact = SpellBuilder.Impacts.effectAdd("archers_expansion:smoldering_arrows", 10, 1,4);
         impact.action.status_effect.refresh_duration = true;
-        impact.particles = new ParticleBatch[]{
-                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_arrow.id(), Color.RED),
-        };
+        impact.visuals = Fx.Visuals.of(
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_arrow.id(), Color.RED));
         impact.sound = new Sound(SpellEngineSounds.GENERIC_FIRE_IGNITE.id());
         spell.impacts = List.of(impact);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_2_passive_2 = add(war_archer_tier_2_passive_2());
     private static MrpgSkillSpells.Entry war_archer_tier_2_passive_2() {
@@ -434,19 +439,14 @@ public class WarArcherSkillSpells {
         spell.passive.triggers = List.of(trigger);
 
         var impact = SpellBuilder.Impacts.effectCleanse();
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
-                        ParticleBatch.Shape.PIPE, ParticleBatch.Origin.CENTER,
-                        20, 0.2F, 0.4F)
-                        .color(Color.RED.toRGBA())
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.ASCEND, Color.RED)
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE)
+                                .count(20).speed(0.2F, 0.4F)));
         impact.sound = new Sound(SpellEngineSounds.GENERIC_DISPEL_1.id());
         spell.impacts = List.of(impact);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
     public static MrpgSkillSpells.Entry war_archer_tier_3_passive_1 = add(war_archer_tier_3_passive_1());
     private static MrpgSkillSpells.Entry war_archer_tier_3_passive_1() {
@@ -461,9 +461,8 @@ public class WarArcherSkillSpells {
         trigger.chance = 0.2F;
         spell.passive.triggers = List.of(trigger);
 
-        spell.release.particles = new ParticleBatch[]{
-                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_arrow.id(), Color.RED),
-        };
+        spell.release.visuals = Fx.Visuals.of(
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_arrow.id(), Color.RED));
 
         spell.target.type = Spell.Target.Type.AIM;
         spell.target.aim = new Spell.Target.Aim();
@@ -481,20 +480,18 @@ public class WarArcherSkillSpells {
 
         SpellBuilder.Cost.cooldown(spell, 20);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, MrpgSkillSpells.Category.WAR_ARCHER);
+        return new MrpgSkillSpells.Entry(id, spell, title, description, MrpgSkillSpells.Category.WAR_ARCHER);
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_3_passive_2 = add(war_archer_tier_3_passive_2());
     private static MrpgSkillSpells.Entry war_archer_tier_3_passive_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_3_passive_2");
         var title = "Last Stand";
         final var healthThreshold = 0.3F;
-        var description = "Upon taking damage below {threshold} health you gain Last Stand effect, increasing your size, ranged haste & decreasing incoming damage for {effect_duration} sec.";
         var effect = MrpgSkillEffects.LAST_STAND;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var threshold = SpellTooltip.percent(healthThreshold);
-            return args.description()
-                    .replace("{threshold}", threshold);
-        };
+        // The threshold is a compile-time constant of this mod, so it is baked into the description
+        // (`bakedPercent` doubles the `%`: `I18n.translate` feeds the lang value to `String.format`).
+        var description = "Upon taking damage below " + TooltipTokens.bakedPercent(healthThreshold)
+                + " health you gain Last Stand effect, increasing your size, ranged haste & decreasing incoming damage for {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.warArcherSchool;
@@ -507,14 +504,13 @@ public class WarArcherSkillSpells {
         spell.passive.triggers = List.of(trigger);
 
         var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 7, 0);
-        buff.particles = new ParticleBatch[]{
-                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_shield.id(), Color.RED),
-        };
+        buff.visuals = Fx.Visuals.of(
+                SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_shield.id(), Color.RED));
         buff.sound = new Sound(MrpgSkillSounds.last_stand.id());
         spell.impacts = List.of(buff);
 
         SpellBuilder.Cost.cooldown(spell, 30F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
 }
