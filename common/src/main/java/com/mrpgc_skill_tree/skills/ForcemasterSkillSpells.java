@@ -487,7 +487,7 @@ public class ForcemasterSkillSpells {
         modifier.effect_duration_add = 3F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
     public static final MrpgSkillSpells.Entry forcemaster_tier_2_spell_2_modifier_2 = add(forcemaster_tier_2_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry forcemaster_tier_2_spell_2_modifier_2() {
@@ -503,7 +503,7 @@ public class ForcemasterSkillSpells {
         modifier.projectile_perks.pierce = 2;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
     public static final MrpgSkillSpells.Entry forcemaster_tier_4_spell_1_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.FORCEMASTER, MrpgSkillSpells.forcemasterFighterSchool,
@@ -512,16 +512,12 @@ public class ForcemasterSkillSpells {
     private static MrpgSkillSpells.Entry forcemaster_tier_4_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_4_spell_1_modifier_1");
         var title = "Focused Palms";
-        var description = "Casting Sonic Hand increases your attack damage by {bonus} for {effect_duration} seconds.";
+        var effect = MrpgSkillEffects.PUMPED_UP;
+        var description = "Casting Sonic Hand increases your attack damage by "
+                + TooltipTokens.effect(effect.id)
+                + " for {effect_duration} seconds.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.forcemasterFighterSchool;
-        var effect = MrpgSkillEffects.PUMPED_UP;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description()
-                    .replace("{bonus}", bonus);
-        };
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "forcemaster_rpg:sonic_hand";
@@ -533,7 +529,7 @@ public class ForcemasterSkillSpells {
 
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
     public static final MrpgSkillSpells.Entry forcemaster_tier_4_spell_1_modifier_2 = add(forcemaster_tier_4_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry forcemaster_tier_4_spell_1_modifier_2() {
@@ -548,6 +544,6 @@ public class ForcemasterSkillSpells {
         modifier.cooldown_duration_deduct = 6F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
     }
 }

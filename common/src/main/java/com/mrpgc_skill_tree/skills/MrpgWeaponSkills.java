@@ -10,7 +10,6 @@ import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.Sound;
 import net.more_rpg_classes.client.particle.MoreParticles;
 import net.spell_engine.api.spell.tooltip.TooltipTokens;
-import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_power.api.SpellSchools;
 import com.mrpgc_skill_tree.effect.MrpgSkillEffects;
 
@@ -234,15 +233,15 @@ public class MrpgWeaponSkills {
         spell.deliver.delay = 10;
 
         var damage = SpellBuilder.Impacts.damage(0.35F, 0F);
-        damage.particles = new ParticleBatch[]{
-                new ParticleBatch("spell_engine:smoke_medium",
-                        ParticleBatch.Shape.PIPE, ParticleBatch.Origin.CENTER,
-                        20, 0.1F, 3.0F)
-        };
+        damage.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of("spell_engine:smoke_medium")
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.CENTER)
+                                .count(20).speed(0.1F, 3.0F)));
         damage.sound = new Sound("minecraft:entity.generic.explode");
         spell.impacts = List.of(damage);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
     public static final MrpgSkillSpells.Entry weapon_rapier_root = add(MrpgSkillsCommon.powerRoot(
@@ -266,23 +265,19 @@ public class MrpgWeaponSkills {
         reset.action.apply_to_caster = true;
         spell.impacts = List.of(reset);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
     public static final MrpgSkillSpells.Entry weapon_rapier_modifier_2 = add(weapon_rapier_modifier_2());
     private static MrpgSkillSpells.Entry weapon_rapier_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "weapon_rapier_modifier_2");
         var title = "Sword Mark";
-        var description = "Damaging a target with Puncture increases your attack damage by {bonus} for {effect_duration} seconds.";
+        var effect = MrpgSkillEffects.PUMPED_UP;
+        var description = "Damaging a target with Puncture increases your attack damage by "
+                + TooltipTokens.effect(effect.id)
+                + " for {effect_duration} seconds.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.forcemasterFighterSchool;
-        var effect = MrpgSkillEffects.PUMPED_UP;
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description()
-                    .replace("{bonus}", bonus);
-        };
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "more_rpg_classes:puncture";
@@ -294,7 +289,7 @@ public class MrpgWeaponSkills {
 
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, mutator, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
     public static final MrpgSkillSpells.Entry weapon_lute_root = add(MrpgSkillsCommon.powerRoot(
@@ -317,7 +312,7 @@ public class MrpgWeaponSkills {
 
         spell.impacts = List.of(SpellBuilder.Impacts.stun(1.5F));
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
     public static final MrpgSkillSpells.Entry weapon_lute_modifier_2 = add(weapon_lute_modifier_2());
@@ -333,7 +328,7 @@ public class MrpgWeaponSkills {
         modifier.effect_amplifier_cap_add = 1;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
     public static final MrpgSkillSpells.Entry weapon_lyre_root = add(MrpgSkillsCommon.powerRoot(
@@ -358,7 +353,7 @@ public class MrpgWeaponSkills {
         modifier.impact_filters = List.of(filter);
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
     public static final MrpgSkillSpells.Entry weapon_lyre_modifier_2 = add(weapon_lyre_modifier_2());
@@ -401,7 +396,7 @@ public class MrpgWeaponSkills {
 
         spell.impacts = List.of(heal);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
     public static final MrpgSkillSpells.Entry weapon_berserker_axe_modifier_2 = add(weapon_berserker_axe_modifier_2());
@@ -436,18 +431,18 @@ public class MrpgWeaponSkills {
         bossModifier.execute = net.spell_engine.api.util.TriState.DENY;
 
         execute.target_modifiers = List.of(healthModifier, bossModifier);
-        execute.particles = new ParticleBatch[]{
-                new ParticleBatch("more_rpg_classes:stone_explosion",
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        1.0F, 0.5F, 0.5F)
-        };
+        execute.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of("more_rpg_classes:stone_explosion")
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.CENTER)
+                                .count(1.0F).speed(0.5F, 0.5F)));
         execute.sound = new Sound("entity.wither.break_block");
 
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(execute);
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
     public static final MrpgSkillSpells.Entry weapon_harp_crossbow_root = add(weapon_harp_crossbow_root());
@@ -458,7 +453,7 @@ public class MrpgWeaponSkills {
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.bardSchool;
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
     public static final MrpgSkillSpells.Entry weapon_harp_crossbow_modifier_1 = add(weapon_harp_crossbow_modifier_1());
@@ -486,7 +481,7 @@ public class MrpgWeaponSkills {
 
         SpellBuilder.Cost.cooldown(spell, 4F);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
     public static final MrpgSkillSpells.Entry weapon_harp_crossbow_modifier_2 = add(weapon_harp_crossbow_modifier_2());
@@ -506,15 +501,15 @@ public class MrpgWeaponSkills {
 
         var damage = SpellBuilder.Impacts.damage(0.3F);
         damage.school = SpellSchools.ARCANE;
-        damage.particles = new ParticleBatch[]{
-                new ParticleBatch("more_rpg_classes:music_note",
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        6, 0.1F, 0.2F)
-        };
+        damage.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of("more_rpg_classes:music_note")
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.CENTER)
+                                .count(6).speed(0.1F, 0.2F)));
 
         spell.impacts = List.of(damage);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
     public static final MrpgSkillSpells.Entry weapon_witcher_swords_root = add(weapon_witcher_swords_root());
@@ -525,6 +520,6 @@ public class MrpgWeaponSkills {
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.witcherFencingSchool;
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 }

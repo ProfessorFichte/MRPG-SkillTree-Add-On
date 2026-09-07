@@ -319,28 +319,23 @@ public class DeadeyeSkillSpells {
         spell.passive.triggers = List.of(trigger);
 
         var stun = SpellBuilder.Impacts.stun(2F);
+        stun.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.smoke_large)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.CENTER)
+                                .count(20).speed(0.2F, 0.4F)));
+        spell.impacts = List.of(stun);
+
         var area_impact = new Spell.AreaImpact();
         area_impact.execute_action_type = Spell.Impact.Action.Type.STATUS_EFFECT;
-        area_impact.radius = radius;
+        area_impact.radius = spell.range;
         area_impact.area = new Spell.Target.Area();
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
         area_impact.visuals = Fx.Visuals.of(
                 ParticleGroupBuilder.of(SpellEngineParticles.smoke_large)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .count(20).speed(0.2F, 0.4F)));
-
-        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(stun);
-        modifier.replacing_area_impact = area_impact;
-
-        spell.modifiers = List.of(modifier);
-        stun.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.smoke_large.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        20, 0.2F, 0.4F)
-        };
-        spell.impacts = List.of(stun);
+        spell.area_impact = area_impact;
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
     }

@@ -12,16 +12,22 @@ import static com.mrpgc_skill_tree.MRPGCSkillTreeAddOn.MOD_ID;
 public final class FabricMod implements ModInitializer {
     @Override
     public void onInitialize() {
-        FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(modContainer -> {
-            ResourceManagerHelper.registerBuiltinResourcePack(
-                    Identifier.of(MOD_ID, "mrpgc_skill_tree_changes"),
-                    modContainer,
-                    ResourcePackActivationType.ALWAYS_ENABLED
-            );
-        });
         MRPGCSkillTreeAddOn.init();
-        MRPGCSkillTreeAddOn.registerResourcePack();
+        registerResourcePack();
         MRPGCSkillTreeAddOn.registerSounds();
         MRPGCSkillTreeAddOn.registerEffects();
+    }
+
+    private void registerResourcePack() {
+        if (!MRPGCSkillTreeAddOn.tweaksConfig.value.disable_mrpgc_skilltree_changes) {
+            FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(modContainer -> {
+                ResourceManagerHelper.registerBuiltinResourcePack(
+                        Identifier.of(MOD_ID, "mrpgc_skill_tree_changes"),
+                        modContainer,
+                        ResourcePackActivationType.ALWAYS_ENABLED
+                );
+            });
+        }
+        MRPGCSkillTreeAddOn.tweaksConfig.save();
     }
 }

@@ -1,16 +1,17 @@
 package com.mrpgc_skill_tree.neoforge;
 
 import com.mrpgc_skill_tree.MRPGCSkillTreeAddOn;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
-import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.registry.RegistryKeys;
+import net.minecraft.resource.ResourcePackProfile;
+import net.minecraft.resource.ResourcePackSource;
+import net.minecraft.resource.ResourceType;
+import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
 import net.neoforged.bus.api.EventPriority;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.fml.common.Mod;
-import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.event.AddPackFindersEvent;
 import net.neoforged.neoforge.event.server.ServerStartedEvent;
 import net.neoforged.neoforge.registries.RegisterEvent;
 
@@ -22,28 +23,27 @@ public final class NeoForgeMod {
     public NeoForgeMod(IEventBus modBus) {
         MRPGCSkillTreeAddOn.init();
 
-        modBus.addListener(EventPriority.LOWEST, this::onCommonSetup);
         modBus.addListener(RegisterEvent.class, NeoForgeMod::register);
+        modBus.addListener(this::onAddPackFinders);
         NeoForge.EVENT_BUS.addListener(EventPriority.LOWEST, this::onServerStarted);
 
         MRPGCSkillTreeAddOn.tweaksConfig.save();
     }
 
-    private void onCommonSetup(FMLCommonSetupEvent event) {
-        // Register early so it's available
-        event.enqueueWork(() -> {
-            if (!datapackRegistered && !MRPGCSkillTreeAddOn.tweaksConfig.value.disable_mrpgc_skilltree_changes) {
-                FabricLoader.getInstance().getModContainer(MRPGCSkillTreeAddOn.MOD_ID).ifPresent(modContainer -> {
-                    ResourceManagerHelper.registerBuiltinResourcePack(
-                            Identifier.of(MRPGCSkillTreeAddOn.MOD_ID, "mrpgc_skill_tree_changes"),
-                            modContainer,
-                            ResourcePackActivationType.ALWAYS_ENABLED
-                    );
-                    datapackRegistered = true;
-                    MRPGCSkillTreeAddOn.LOGGER.info("Registered MRPGC Skill Tree Changes datapack");
-                });
-            }
-        });
+    private void onAddPackFinders(AddPackFindersEvent event) {
+        if (datapackRegistered || MRPGCSkillTreeAddOn.tweaksConfig.value.disable_mrpgc_skilltree_changes) {
+            return;
+        }
+        event.addPackFinders(
+                Identifier.of(MRPGCSkillTreeAddOn.MOD_ID, "resourcepacks/mrpgc_skill_tree_changes"),
+                ResourceType.SERVER_DATA,
+                Text.of("MRPGC Skill Tree Changes"),
+                ResourcePackSource.BUILTIN,
+                true,
+                ResourcePackProfile.InsertionPosition.TOP
+        );
+        datapackRegistered = true;
+        MRPGCSkillTreeAddOn.LOGGER.info("Registered MRPGC Skill Tree Changes datapack");
     }
 
     private void onServerStarted(ServerStartedEvent event) {

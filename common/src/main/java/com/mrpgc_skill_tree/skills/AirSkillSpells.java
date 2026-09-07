@@ -177,25 +177,25 @@ public class AirSkillSpells {
 
         var impact = SpellBuilder.Impacts.damage(0.2F, 0);
         impact.action.allow_on_center_target = false;
-        impact.particles = new ParticleBatch[]{
-                new ParticleBatch("more_rpg_classes:stone_particle",
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.FEET,
-                        ParticleBatch.Rotation.LOOK,
-                        1.5F, 0.5F, 1.0F, 0)
-        };
+        impact.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of("more_rpg_classes:stone_particle")
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
+                                .alignment(ParticleGroup.Alignment.LOOK)
+                                .count(1.5F).speed(0.5F, 1.0F)));
 
         var area_impact = new Spell.AreaImpact();
         area_impact.execute_action_type = Spell.Impact.Action.Type.DAMAGE;
         area_impact.radius = radius;
         area_impact.area = new Spell.Target.Area();
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-        area_impact.model_fx = List.of(
+        area_impact.visuals = Fx.Visuals.of().models(List.of(
                 ModelEffectBuilder.create("elemental_wizards_rpg:spell_effect/tornado")
                         .scale(5.5F)
                         .light(LightEmission.RADIATE)
                         .duration(140)
                         .build()
-        );
+        ));
 
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
@@ -380,12 +380,11 @@ public class AirSkillSpells {
         twister.placement.apply_yaw = true;
         spawn.action.spawns = List.of(twister);
         spawn.sound = Sound.withVolume(Identifier.of("more_rpg_classes:air_magic_cast1"), 0.5F);
-        spawn.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.smoke_medium.id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.1F, 0.5F)
-        };
+        spawn.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.of(SpellEngineParticles.smoke_medium)
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.CENTER)
+                                .count(10).speed(0.1F, 0.5F)));
         spell.impacts = List.of(spawn);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
@@ -498,7 +497,7 @@ public class AirSkillSpells {
         modifier.spawn_duration_add = 4F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
     public static final MrpgSkillSpells.Entry air_tier_2_spell_2_modifier_2 = add(air_tier_2_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry air_tier_2_spell_2_modifier_2() {
@@ -513,7 +512,7 @@ public class AirSkillSpells {
         modifier.range_add = 6F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
     public static final MrpgSkillSpells.Entry air_tier_3_spell_2_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.AIR, MrpgSkillSpells.airWizardSchool,
@@ -531,7 +530,7 @@ public class AirSkillSpells {
         modifier.effect_duration_add = 3F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
     public static final MrpgSkillSpells.Entry air_tier_3_spell_2_modifier_2 = add(air_tier_3_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry air_tier_3_spell_2_modifier_2() {
@@ -547,7 +546,7 @@ public class AirSkillSpells {
         modifier.power_modifier.critical_chance_bonus = 0.15F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
     public static final MrpgSkillSpells.Entry air_tier_4_spell_2_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.AIR, MrpgSkillSpells.airWizardSchool,
@@ -565,7 +564,7 @@ public class AirSkillSpells {
         modifier.channel_ticks_add = 2;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
     public static final MrpgSkillSpells.Entry air_tier_4_spell_2_modifier_2 = add(air_tier_4_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry air_tier_4_spell_2_modifier_2() {
@@ -580,6 +579,6 @@ public class AirSkillSpells {
         modifier.effect_duration_add = 1F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.AIR));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
 }

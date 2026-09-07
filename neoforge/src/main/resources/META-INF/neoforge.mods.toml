@@ -31,21 +31,21 @@ side = "BOTH"
 modId = "spell_engine"
 type = "required"
 versionRange = "[${spell_engine_version},)"
-ordering = "BEFORE"
+ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.mrpgc_skill_tree]]
 modId = "skill_tree_rpgs"
 type = "required"
 versionRange = "[${skill_tree_version},)"
-ordering = "BEFORE"
+ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.mrpgc_skill_tree]]
 modId = "more_rpg_classes"
 type = "required"
 versionRange = "[${more_rpg_library_version},)"
-ordering = "BEFORE"
+ordering = "AFTER"
 side = "BOTH"
 
 

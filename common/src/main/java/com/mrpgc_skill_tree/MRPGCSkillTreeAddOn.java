@@ -5,10 +5,7 @@ import com.mrpgc_skill_tree.effect.MrpgSkillEffects;
 import com.mrpgc_skill_tree.skills.CustomSpellImpacts;
 import com.mrpgc_skill_tree.skills.MrpgSkillSounds;
 import com.mrpgc_skill_tree.config.TweaksConfig;
-import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
-import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
-import net.fabricmc.loader.api.FabricLoader;
-import net.minecraft.util.Identifier;
+import net.spell_engine.Platform;
 import net.spell_engine.rpg_series.config.ConfigFile;
 import net.tiny_config.ConfigManager;
 import org.slf4j.Logger;
@@ -34,23 +31,11 @@ public class MRPGCSkillTreeAddOn{
 	public static void init() {
 		effectConfig.refresh();
 		tweaksConfig.refresh();
-		if (FabricLoader.getInstance().isModLoaded("combat_roll")) {
+		if (Platform.util().isModLoaded("combat_roll")) {
 			CombatRollCompat.register();
 		}
 		CustomSpellImpacts.registerCustomImpacts();
 
-	}
-	public static void registerResourcePack() {
-		if (!MRPGCSkillTreeAddOn.tweaksConfig.value.disable_mrpgc_skilltree_changes) {
-			FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(modContainer -> {
-				ResourceManagerHelper.registerBuiltinResourcePack(
-						Identifier.of(MOD_ID, "mrpgc_skill_tree_changes"),
-						modContainer,
-						ResourcePackActivationType.ALWAYS_ENABLED
-				);
-			});
-		}
-		tweaksConfig.save();
 	}
 	public static void registerSounds() {
 		MrpgSkillSounds.register();

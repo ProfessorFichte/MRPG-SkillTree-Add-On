@@ -11,7 +11,6 @@ import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.api.util.TriState;
 import net.spell_engine.api.spell.tooltip.TooltipTokens;
-import net.spell_engine.client.gui.SpellTooltip;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
@@ -264,12 +263,6 @@ public class WarArcherSkillSpells {
         var description = "Casting Scorched Earth grants you and nearby allies Bloodflow, increasing attack damage by "
                 + TooltipTokens.effect(effect.id)
                 + " for {effect_duration} sec.";
-        var description = "Standing within Scorched Earth's flame trail grants you and nearby allies Bloodflow, increasing attack damage by {bonus} for {effect_duration} sec.";
-        SpellTooltip.DescriptionMutator mutator = (args) -> {
-            var modifier = effect.config().firstModifier();
-            var bonus = SpellTooltip.bonus(modifier.value, modifier.operation);
-            return args.description().replace("{bonus}", bonus);
-        };
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
         spell.school = MrpgSkillSpells.warArcherSchool;
 
@@ -287,15 +280,12 @@ public class WarArcherSkillSpells {
         cloud.placement.location_offset_by_look = 2.0F;
         cloud.additional_placements = scorchedEarthTrailPlacements(5F, 50F);
         cloud.client_data = new Spell.Delivery.Cloud.ClientData();
-        cloud.client_data.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.STRIPE,
-                                SpellEngineParticles.MagicParticles.Motion.FLOAT).id().toString(),
-                        ParticleBatch.Shape.WIDE_PIPE, ParticleBatch.Origin.FEET,
-                        5, 0.1F, 0.2F)
+        cloud.client_data.particles = List.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.FLOAT)
                         .color(Color.RED.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
+                                .count(5).speed(0.1F, 0.2F)));
         spell.deliver.clouds = List.of(cloud);
 
         var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 4, 0);

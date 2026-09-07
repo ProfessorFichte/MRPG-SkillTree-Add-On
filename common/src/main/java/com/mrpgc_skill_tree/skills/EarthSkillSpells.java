@@ -19,7 +19,6 @@ import net.spell_engine.api.spell.fx.Fx;
 import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.summon.AttributeScaling;
-import net.spell_engine.api.spell.fx.ParticleBatch;
 import net.spell_engine.api.spell.fx.Sound;
 import net.spell_engine.api.util.TriState;
 import net.spell_engine.api.spell.tooltip.TooltipTokens;
@@ -422,7 +421,7 @@ public class EarthSkillSpells {
         modifier.effect_duration_add = 2F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.EARTH));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.EARTH));
     }
     public static final MrpgSkillSpells.Entry earth_tier_2_spell_2_modifier_2 = add(earth_tier_2_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry earth_tier_2_spell_2_modifier_2() {
@@ -437,7 +436,7 @@ public class EarthSkillSpells {
         modifier.cooldown_duration_deduct = 3F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.EARTH));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.EARTH));
     }
     public static final MrpgSkillSpells.Entry earth_tier_3_spell_2_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.EARTH, MrpgSkillSpells.earthWizardSchool,
@@ -455,7 +454,7 @@ public class EarthSkillSpells {
         modifier.effect_amplifier_cap_add = 1;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.EARTH));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.EARTH));
     }
     public static final MrpgSkillSpells.Entry earth_tier_3_spell_2_modifier_2 = add(earth_tier_3_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry earth_tier_3_spell_2_modifier_2() {
@@ -470,7 +469,7 @@ public class EarthSkillSpells {
         modifier.range_add = 8F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.EARTH));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.EARTH));
     }
     public static final MrpgSkillSpells.Entry earth_tier_4_spell_2_root = add(MrpgSkillsCommon.companionRoot(
             MrpgSkillSpells.Category.EARTH, MrpgSkillSpells.earthWizardSchool,
@@ -499,7 +498,7 @@ public class EarthSkillSpells {
 
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.EARTH));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.EARTH));
     }
     public static final MrpgSkillSpells.Entry earth_tier_4_spell_2_modifier_2 = add(earth_tier_4_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry earth_tier_4_spell_2_modifier_2() {
@@ -525,6 +524,6 @@ public class EarthSkillSpells {
 
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.EARTH));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.EARTH));
     }
 }

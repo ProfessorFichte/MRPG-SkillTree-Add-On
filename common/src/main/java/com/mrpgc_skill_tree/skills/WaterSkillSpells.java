@@ -199,13 +199,6 @@ public class WaterSkillSpells {
     private static MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_spell_2_modifier_1");
         var title = "Hydro Boost";
-        // Single modifier (movement speed), so the token's blank-attribute fallback is unambiguous.
-        // FIXME: the impact below applies this effect at amplifier *1*, so the player actually gets
-        // double the value shown. Amplifier 0 is kept here because it reproduces the old mutator's
-        // output exactly; whether the number or the amplifier is the mistake is a balance call.
-        var description = "Hydro Beam increases the movement speed of allies by "
-                + TooltipTokens.effect(effect.id)
-                + " for {effect_duration} seconds.";
         var description = "Hydro Beam scalds enemies, setting them ablaze, and stacks Weakness on them up to 3 times.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.waterWizardSchool;
@@ -218,15 +211,12 @@ public class WaterSkillSpells {
         scald.action.type = Spell.Impact.Action.Type.FIRE;
         scald.action.fire = new Spell.Impact.Action.Fire();
         scald.action.fire.duration = 4F;
-        scald.particles = new ParticleBatch[]{
-                new ParticleBatch(
-                        SpellEngineParticles.MagicParticles.get(
-                                SpellEngineParticles.MagicParticles.Shape.SPARK,
-                                SpellEngineParticles.MagicParticles.Motion.ASCEND).id().toString(),
-                        ParticleBatch.Shape.SPHERE, ParticleBatch.Origin.CENTER,
-                        10, 0.1F, 0.2F)
+        scald.visuals = Fx.Visuals.of(
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.ASCEND)
                         .color(Color.RED.toRGBA())
-        };
+                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.CENTER)
+                                .count(10).speed(0.1F, 0.2F)));
         scald.sound = new Sound(SpellEngineSounds.GENERIC_FIRE_IGNITE.id());
 
         var weaken = SpellBuilder.Impacts.effectAdd(StatusEffects.WEAKNESS.getIdAsString(), 6, 0, 2);
@@ -238,7 +228,6 @@ public class WaterSkillSpells {
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     public static final MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_2 = add(water_tier_3_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_2() {
@@ -527,7 +516,7 @@ public class WaterSkillSpells {
         modifier.impact_filters = List.of(filter);
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     public static final MrpgSkillSpells.Entry water_tier_2_spell_2_modifier_2 = add(water_tier_2_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry water_tier_2_spell_2_modifier_2() {
@@ -542,7 +531,7 @@ public class WaterSkillSpells {
         modifier.cooldown_duration_deduct = 2F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     public static final MrpgSkillSpells.Entry water_tier_4_spell_1_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.WATER, MrpgSkillSpells.waterWizardSchool,
@@ -560,7 +549,7 @@ public class WaterSkillSpells {
         modifier.spawn_duration_add = 6F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     public static final MrpgSkillSpells.Entry water_tier_4_spell_1_modifier_2 = add(water_tier_4_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry water_tier_4_spell_1_modifier_2() {
@@ -575,7 +564,7 @@ public class WaterSkillSpells {
         modifier.cooldown_duration_deduct = 8F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     public static final MrpgSkillSpells.Entry water_tier_4_spell_2_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.WATER, MrpgSkillSpells.waterWizardSchool,
@@ -593,7 +582,7 @@ public class WaterSkillSpells {
         modifier.spawn_duration_add = 6F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     public static final MrpgSkillSpells.Entry water_tier_4_spell_2_modifier_2 = add(water_tier_4_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry water_tier_4_spell_2_modifier_2() {
@@ -608,6 +597,6 @@ public class WaterSkillSpells {
         modifier.cooldown_duration_deduct = 8F;
         spell.modifiers = List.of(modifier);
 
-        return new MrpgSkillSpells.Entry(id, spell, title, description, null, EnumSet.of(MrpgSkillSpells.Category.WATER));
+        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
 }
