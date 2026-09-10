@@ -25,18 +25,26 @@ public class MRPGCSkillTreeClient {
         MrpgSkillSpells.registerTooltipTokens();
 
         for (var entry: MrpgSkillDefinitions.ENTRIES) {
-            var skillId = entry.id();
-            if (entry.spellReward() != null) {
-                var container = entry.spellReward().get(0);
-                var id = Identifier.of(container.spell_ids().getFirst());
-                TranslationUtil.resolvers.put(skillId, () -> TranslationUtil.resolveSpellDetails(id));
-            }
-            else if (entry.attributeReward() != null) {
-                var attribute = entry.attributeReward();
-                TranslationUtil.resolvers.put(skillId, () -> MrpgTranslationUtil.resolveAttributeModifierTooltip(attribute));
-            }
+            registerTooltipResolver(entry);
+        }
+        for (var entry: MrpgSkillDefinitions.WEAPON_ENTRIES) {
+            registerTooltipResolver(entry);
         }
         registerEffectRenderers();
+    }
+
+    private static void registerTooltipResolver(MrpgSkillDefinitions.Entry entry) {
+        var skillId = entry.id();
+        if (entry.spellReward() != null) {
+            var id = Identifier.of(entry.spellReward().get(0).spell_ids().getFirst());
+            TranslationUtil.resolvers.put(skillId, () -> TranslationUtil.resolveSpellDetails(id));
+        } else if (entry.attributeReward() != null) {
+            var attribute = entry.attributeReward();
+            TranslationUtil.resolvers.put(skillId, () -> MrpgTranslationUtil.resolveAttributeModifierTooltip(attribute));
+        } else if (entry.conditionalAttributeReward() != null) {
+            var conditional = entry.conditionalAttributeReward();
+            TranslationUtil.resolvers.put(skillId, () -> TranslationUtil.resolveConditionalAttributeTooltip(conditional));
+        }
     }
 
     // MARK: - Shared buff particle shapes

@@ -1,41 +1,26 @@
 package com.mrpgc_skill_tree.skills;
 
-import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.client.particle.MoreParticles;
 import net.more_rpg_classes.custom.MoreSpellSchools;
-import net.more_rpg_classes.effect.MRPGCEffects;
-import net.skill_tree_rpgs.skills.SkillSounds;
 import net.spell_engine.api.datagen.SpellBuilder;
-import net.spell_engine.api.entity.SpellEntityPredicates;
 import net.spell_engine.api.render.LightEmission;
-import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.fx.Fx;
 import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.Sound;
-import net.spell_engine.api.util.TriState;
 import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_engine.fx.SpellEngineSounds;
-import net.spell_engine.internals.target.SpellTarget;
 import net.spell_power.api.SpellPowerMechanics;
-import net.spell_power.api.SpellSchool;
-import net.spell_power.api.SpellSchools;
 import com.mrpgc_skill_tree.effect.MrpgSkillEffects;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
-
-import static com.mrpgc_skill_tree.MRPGCSkillTreeAddOn.MOD_ID;
-import static net.skill_tree_rpgs.skills.SkillsCommon.*;
 
 public class WaterSkillSpells {
     public static final List<MrpgSkillSpells.Entry> all = new ArrayList<>();
@@ -198,8 +183,8 @@ public class WaterSkillSpells {
     public static final MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_1 = add(water_tier_3_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_spell_2_modifier_1");
-        var title = "Hydro Boost";
-        var description = "Hydro Beam scalds enemies, setting them ablaze, and stacks Weakness on them up to 3 times.";
+        var title = "Scald";
+        var description = "Hydro Beam scalds enemies, setting them ablaze, and stacks Scald on them up to 3 times, each stack lowering their spell power, attack damage and ranged weapon damage by 10%.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.waterWizardSchool;
 
@@ -219,11 +204,11 @@ public class WaterSkillSpells {
                                 .count(10).speed(0.1F, 0.2F)));
         scald.sound = new Sound(SpellEngineSounds.GENERIC_FIRE_IGNITE.id());
 
-        var weaken = SpellBuilder.Impacts.effectAdd(StatusEffects.WEAKNESS.getIdAsString(), 6, 0, 2);
-        weaken.action.status_effect.refresh_duration = true;
+        var scaldStack = SpellBuilder.Impacts.effectAdd(MrpgSkillEffects.SCALD.id.toString(), 6, 0, 2);
+        scaldStack.action.status_effect.refresh_duration = true;
 
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
-        modifier.impacts = List.of(scald, weaken);
+        modifier.impacts = List.of(scald, scaldStack);
 
         spell.modifiers = List.of(modifier);
 
@@ -293,27 +278,46 @@ public class WaterSkillSpells {
     private static MrpgSkillSpells.Entry water_tier_1_passive_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_1_passive_2");
         var title = "Second Wave";
-        var description = "Water Spells have {trigger_chance} chance to knock the target back.";
+        var description = "Casting a Water spell sends a wave rushing along the ground, dealing {damage} damage and knocking back every target it passes through.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.waterWizardSchool;
-        spell.range = 0;
+        spell.range = 12;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
-        var trigger = SpellBuilder.Triggers.spellHit(0.3F,"water");
+        var trigger = SpellBuilder.Triggers.activeSpellCast(MrpgSkillSpells.waterWizardSchool);
+        trigger.chance = 1F;
         spell.passive.triggers = List.of(trigger);
 
-        var impact = SpellBuilder.Impacts.damage(0.0F,1.5F);
+        spell.deliver.type = Spell.Delivery.Type.PROJECTILE;
+        spell.deliver.projectile = new Spell.Delivery.ShootProjectile();
+        spell.deliver.projectile.inherit_shooter_pitch = false;
+        spell.deliver.projectile.launch_properties.velocity = 1.0F;
+        spell.deliver.projectile.launch_properties.sound = new Sound(MrpgSkillSounds.second_wave.id());
+        spell.deliver.projectile.projectile = new Spell.ProjectileData();
+        spell.deliver.projectile.projectile.homing_angle = 0F;
+        spell.deliver.projectile.projectile.perks = new Spell.ProjectileData.Perks();
+        spell.deliver.projectile.projectile.perks.pierce = 999;
+        spell.deliver.projectile.projectile.perks.ricochet = 0;
+        spell.deliver.projectile.projectile.perks.bounce = 0;
+        spell.deliver.projectile.projectile.hitbox = new Spell.ProjectileData.HitBox(2.6F, 1.4F);
+
+        var model = SpellBuilder.ProjectileModels.model("mrpgc_skill_tree:spell_projectile/water_wave", 1.0F, LightEmission.NONE);
+        model.rotate_degrees_per_tick = 0F;
+        spell.deliver.projectile.projectile.client_data = new Spell.ProjectileData.Client();
+        spell.deliver.projectile.projectile.client_data.composite_model = SpellBuilder.ProjectileModels.composite(model);
+
+        var impact = SpellBuilder.Impacts.damage(0.3F, 1.5F);
         impact.visuals = Fx.Visuals.of(
                 ParticleGroupBuilder.of(MoreParticles.SPLASH)
                         .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE)
-                                .count(50).speed(0.1F, 0.3F)
+                                .count(30).speed(0.1F, 0.3F)
                                 .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
                                 .extent(0.5F)));
         impact.sound = new Sound(MrpgSkillSounds.second_wave.id());
         spell.impacts = List.of(impact);
-        SpellBuilder.Cost.cooldown(spell, 5F);
+        SpellBuilder.Cost.cooldown(spell, 8F);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }

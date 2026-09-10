@@ -78,9 +78,9 @@
       "skill_definition_id": "weapon_aqua_staff_root"
     },
     "icon": {
-      "type": "texture",
+      "type": "item",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/aqua_water_whip.png"
+        "item": "elemental_wizards_rpg:staff_aqua"
       }
     },
     "required_mods": [
@@ -189,33 +189,15 @@
       "skill_definition_id": "weapon_berserker_axe_root"
     },
     "icon": {
-      "type": "texture",
+      "type": "item",
       "data": {
-        "texture": "more_rpg_classes:textures/spell/decapitate.png"
+        "item": "berserker_rpg:iron_berserker_axe"
       }
     },
     "required_mods": [
       "berserker_rpg"
     ],
     "rewards": [
-      {
-        "type": "skill_tree_rpgs:spell",
-        "data": {
-          "containers": [
-            {
-              "access": "NONE",
-              "access_param": "",
-              "extra_tier_binding": 0,
-              "max_spell_count": 0,
-              "pool": "",
-              "slot": "",
-              "spell_ids": [
-                "mrpgc_skill_tree:weapon_berserker_axe_root"
-              ]
-            }
-          ]
-        }
-      },
       {
         "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
@@ -325,24 +307,6 @@
     ],
     "rewards": [
       {
-        "type": "skill_tree_rpgs:spell",
-        "data": {
-          "containers": [
-            {
-              "access": "NONE",
-              "access_param": "",
-              "extra_tier_binding": 0,
-              "max_spell_count": 0,
-              "pool": "",
-              "slot": "",
-              "spell_ids": [
-                "mrpgc_skill_tree:weapon_harp_crossbow_root"
-              ]
-            }
-          ]
-        }
-      },
-      {
         "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
           "attribute": "ranged_weapon:damage",
@@ -442,33 +406,15 @@
       "skill_definition_id": "weapon_knuckle_root"
     },
     "icon": {
-      "type": "texture",
+      "type": "item",
       "data": {
-        "texture": "forcemaster_rpg:textures/spell/burstcrack.png"
+        "item": "forcemaster_rpg:iron_knuckle"
       }
     },
     "required_mods": [
       "forcemaster_rpg"
     ],
     "rewards": [
-      {
-        "type": "skill_tree_rpgs:spell",
-        "data": {
-          "containers": [
-            {
-              "access": "NONE",
-              "access_param": "",
-              "extra_tier_binding": 0,
-              "max_spell_count": 0,
-              "pool": "",
-              "slot": "",
-              "spell_ids": [
-                "mrpgc_skill_tree:weapon_knuckle_root"
-              ]
-            }
-          ]
-        }
-      },
       {
         "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
@@ -790,9 +736,9 @@
       "skill_definition_id": "weapon_rapier_root"
     },
     "icon": {
-      "type": "texture",
+      "type": "item",
       "data": {
-        "texture": "more_rpg_classes:textures/spell/puncture.png"
+        "item": "bards_rpg:iron_rapier"
       }
     },
     "required_mods": [
@@ -800,21 +746,18 @@
     ],
     "rewards": [
       {
-        "type": "skill_tree_rpgs:spell",
+        "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
-          "containers": [
-            {
-              "access": "NONE",
-              "access_param": "",
-              "extra_tier_binding": 0,
-              "max_spell_count": 0,
-              "pool": "",
-              "slot": "",
-              "spell_ids": [
-                "mrpgc_skill_tree:weapon_rapier_root"
-              ]
-            }
-          ]
+          "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "bards_rpg:rapiers"
+            },
+            "translationKey": "modifier_condition.mrpgc_skill_tree.rapier"
+          },
+          "operation": "multiply_base",
+          "value": 0.05
         }
       }
     ],
@@ -901,9 +844,9 @@
       "skill_definition_id": "weapon_terra_staff_root"
     },
     "icon": {
-      "type": "texture",
+      "type": "item",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/terra_stone_spear.png"
+        "item": "elemental_wizards_rpg:staff_terra"
       }
     },
     "required_mods": [
@@ -1012,9 +955,9 @@
       "skill_definition_id": "weapon_wind_staff_root"
     },
     "icon": {
-      "type": "texture",
+      "type": "item",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/wind_air_cutter.png"
+        "item": "elemental_wizards_rpg:staff_wind"
       }
     },
     "required_mods": [
@@ -1051,7 +994,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "witcher_rpg:textures/spell/spell_modifiers/counterattack.png"
+        "texture": "witcher_rpg:textures/spell/defensive_witcher_mechanics.png"
       }
     },
     "required_mods": [
@@ -1070,7 +1013,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "witcher_rpg:spell_modifiers/counterattack"
+                "witcher_rpg:defensive_witcher_mechanics"
               ]
             }
           ]
@@ -1088,7 +1031,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "witcher_rpg:textures/spell/spell_modifiers/arrow_deflection.png"
+        "texture": "witcher_rpg:textures/spell/defensive_witcher_mechanics.png"
       }
     },
     "required_mods": [
@@ -1107,7 +1050,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "witcher_rpg:spell_modifiers/arrow_deflection"
+                "witcher_rpg:defensive_witcher_mechanics"
               ]
             }
           ]
@@ -1132,24 +1075,6 @@
       "witcher_rpg"
     ],
     "rewards": [
-      {
-        "type": "skill_tree_rpgs:spell",
-        "data": {
-          "containers": [
-            {
-              "access": "NONE",
-              "access_param": "",
-              "extra_tier_binding": 0,
-              "max_spell_count": 0,
-              "pool": "",
-              "slot": "",
-              "spell_ids": [
-                "mrpgc_skill_tree:weapon_witcher_swords_root"
-              ]
-            }
-          ]
-        }
-      },
       {
         "type": "skill_tree_rpgs:conditional_attribute",
         "data": {

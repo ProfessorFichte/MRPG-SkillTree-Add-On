@@ -1,0 +1,2814 @@
+{
+  "weapon_arcane_blast_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_arcane_blast_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/arcane_blast.png"
+      }
+    },
+    "required_mods": [
+      "wizards"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_arcane_blast_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_arcane_blast_modifier_1.title"
+    }
+  },
+  "weapon_arcane_blast_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_arcane_blast_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/arcane_blast.png"
+      }
+    },
+    "required_mods": [
+      "wizards"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_arcane_blast_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_arcane_blast_modifier_2.title"
+    }
+  },
+  "weapon_arcane_root": {
+    "description": {
+      "skill_definition_id": "weapon_arcane_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "wizards:staff_arcane"
+      }
+    },
+    "required_mods": [
+      "wizards"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_arcane_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_arcane_root.title"
+    }
+  },
+  "weapon_axe_root": {
+    "description": {
+      "skill_definition_id": "weapon_axe_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "minecraft:iron_axe"
+      }
+    },
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "critical_strike:chance",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "minecraft:axes"
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.axe"
+          },
+          "fallbackAttribute": "minecraft:generic.attack_damage",
+          "operation": "multiply_base",
+          "value": 0.03999999910593033
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_axe_root.title"
+    }
+  },
+  "weapon_bow_passive_1": {
+    "description": {
+      "skill_definition_id": "weapon_bow_passive_1"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "minecraft:bow"
+      }
+    },
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_bow_passive_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_bow_passive_1.title"
+    }
+  },
+  "weapon_bow_passive_2": {
+    "description": {
+      "skill_definition_id": "weapon_bow_passive_2"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "minecraft:bow"
+      }
+    },
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_bow_passive_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_bow_passive_2.title"
+    }
+  },
+  "weapon_bow_root": {
+    "description": {
+      "skill_definition_id": "weapon_bow_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "minecraft:bow"
+      }
+    },
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "ranged_weapon:damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "minecraft:enchantable/bow"
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.bow"
+          },
+          "fallbackAttribute": "minecraft:generic.attack_damage",
+          "operation": "multiply_base",
+          "value": 0.05000000074505806
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_bow_root.title"
+    }
+  },
+  "weapon_claymore_root": {
+    "description": {
+      "skill_definition_id": "weapon_claymore_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "paladins:iron_claymore"
+      }
+    },
+    "required_mods": [
+      "paladins"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "rpg_series:weapon_type/claymore"
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.claymore"
+          },
+          "operation": "multiply_base",
+          "value": 0.05000000074505806
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_claymore_root.title"
+    }
+  },
+  "weapon_cleave_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_cleave_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/cleave.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_cleave_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_cleave_modifier_1.title"
+    }
+  },
+  "weapon_cleave_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_cleave_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/cleave.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_cleave_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_cleave_modifier_2.title"
+    }
+  },
+  "weapon_crossbow_passive_1": {
+    "description": {
+      "skill_definition_id": "weapon_crossbow_passive_1"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "minecraft:crossbow"
+      }
+    },
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_crossbow_passive_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_crossbow_passive_1.title"
+    }
+  },
+  "weapon_crossbow_passive_2": {
+    "description": {
+      "skill_definition_id": "weapon_crossbow_passive_2"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "minecraft:crossbow"
+      }
+    },
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_crossbow_passive_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_crossbow_passive_2.title"
+    }
+  },
+  "weapon_crossbow_root": {
+    "description": {
+      "skill_definition_id": "weapon_crossbow_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "minecraft:crossbow"
+      }
+    },
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "ranged_weapon:haste",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "minecraft:enchantable/crossbow"
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.crossbow"
+          },
+          "fallbackAttribute": "minecraft:generic.attack_damage",
+          "operation": "multiply_base",
+          "value": 0.05000000074505806
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_crossbow_root.title"
+    }
+  },
+  "weapon_dagger_root": {
+    "description": {
+      "skill_definition_id": "weapon_dagger_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "rogues:iron_dagger"
+      }
+    },
+    "required_mods": [
+      "rogues"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "rpg_series:weapon_type/dagger"
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.dagger"
+          },
+          "operation": "multiply_base",
+          "value": 0.05000000074505806
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_dagger_root.title"
+    }
+  },
+  "weapon_double_axe_root": {
+    "description": {
+      "skill_definition_id": "weapon_double_axe_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "rogues:iron_double_axe"
+      }
+    },
+    "required_mods": [
+      "rogues"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "critical_strike:chance",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "rpg_series:weapon_type/double_axe"
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.double_axe"
+          },
+          "fallbackAttribute": "minecraft:generic.attack_damage",
+          "operation": "multiply_base",
+          "value": 0.03999999910593033
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_double_axe_root.title"
+    }
+  },
+  "weapon_fan_of_knives_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_fan_of_knives_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/fan_of_knives.png"
+      }
+    },
+    "required_mods": [
+      "rogues"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_fan_of_knives_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_fan_of_knives_modifier_1.title"
+    }
+  },
+  "weapon_fan_of_knives_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_fan_of_knives_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/fan_of_knives.png"
+      }
+    },
+    "required_mods": [
+      "rogues"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_fan_of_knives_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_fan_of_knives_modifier_2.title"
+    }
+  },
+  "weapon_fire_blast_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_fire_blast_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/fire_blast.png"
+      }
+    },
+    "required_mods": [
+      "wizards"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_fire_blast_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_fire_blast_modifier_1.title"
+    }
+  },
+  "weapon_fire_blast_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_fire_blast_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/fire_blast.png"
+      }
+    },
+    "required_mods": [
+      "wizards"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_fire_blast_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_fire_blast_modifier_2.title"
+    }
+  },
+  "weapon_fire_root": {
+    "description": {
+      "skill_definition_id": "weapon_fire_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "wizards:staff_fire"
+      }
+    },
+    "required_mods": [
+      "wizards"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_fire_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_fire_root.title"
+    }
+  },
+  "weapon_flurry_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_flurry_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/flurry.png"
+      }
+    },
+    "required_mods": [
+      "paladins"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_flurry_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_flurry_modifier_1.title"
+    }
+  },
+  "weapon_flurry_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_flurry_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/flurry.png"
+      }
+    },
+    "required_mods": [
+      "paladins"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_flurry_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_flurry_modifier_2.title"
+    }
+  },
+  "weapon_frost_root": {
+    "description": {
+      "skill_definition_id": "weapon_frost_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "wizards:staff_frost"
+      }
+    },
+    "required_mods": [
+      "wizards"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_frost_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_frost_root.title"
+    }
+  },
+  "weapon_frostbolt_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_frostbolt_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/frostbolt.png"
+      }
+    },
+    "required_mods": [
+      "wizards"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_frostbolt_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_frostbolt_modifier_1.title"
+    }
+  },
+  "weapon_frostbolt_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_frostbolt_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "wizards:textures/spell/frostbolt.png"
+      }
+    },
+    "required_mods": [
+      "wizards"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_frostbolt_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_frostbolt_modifier_2.title"
+    }
+  },
+  "weapon_glaive_root": {
+    "description": {
+      "skill_definition_id": "weapon_glaive_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "rogues:iron_glaive"
+      }
+    },
+    "required_mods": [
+      "rogues"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "critical_strike:damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "rpg_series:weapon_type/glaive"
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.glaive"
+          },
+          "fallbackAttribute": "minecraft:generic.attack_damage",
+          "operation": "multiply_base",
+          "value": 0.07999999821186066
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_glaive_root.title"
+    }
+  },
+  "weapon_ground_slam_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_ground_slam_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/ground_slam.png"
+      }
+    },
+    "required_mods": [
+      "paladins"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_ground_slam_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_ground_slam_modifier_1.title"
+    }
+  },
+  "weapon_ground_slam_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_ground_slam_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/ground_slam.png"
+      }
+    },
+    "required_mods": [
+      "paladins"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_ground_slam_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_ground_slam_modifier_2.title"
+    }
+  },
+  "weapon_hammer_root": {
+    "description": {
+      "skill_definition_id": "weapon_hammer_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "paladins:iron_great_hammer"
+      }
+    },
+    "required_mods": [
+      "paladins"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "critical_strike:damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "rpg_series:weapon_type/hammer"
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.hammer"
+          },
+          "fallbackAttribute": "minecraft:generic.attack_damage",
+          "operation": "multiply_base",
+          "value": 0.07999999821186066
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_hammer_root.title"
+    }
+  },
+  "weapon_holy_root": {
+    "description": {
+      "skill_definition_id": "weapon_holy_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "paladins:holy_staff"
+      }
+    },
+    "required_mods": [
+      "paladins"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_holy_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_holy_root.title"
+    }
+  },
+  "weapon_holy_shock_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_holy_shock_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "paladins:textures/spell/holy_shock.png"
+      }
+    },
+    "required_mods": [
+      "paladins"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_holy_shock_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_holy_shock_modifier_1.title"
+    }
+  },
+  "weapon_holy_shock_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_holy_shock_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "paladins:textures/spell/holy_shock.png"
+      }
+    },
+    "required_mods": [
+      "paladins"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_holy_shock_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_holy_shock_modifier_2.title"
+    }
+  },
+  "weapon_impale_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_impale_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/impale.png"
+      }
+    },
+    "required_mods": [
+      "archers"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_impale_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_impale_modifier_1.title"
+    }
+  },
+  "weapon_impale_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_impale_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/impale.png"
+      }
+    },
+    "required_mods": [
+      "archers"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_impale_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_impale_modifier_2.title"
+    }
+  },
+  "weapon_mace_root": {
+    "description": {
+      "skill_definition_id": "weapon_mace_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "paladins:iron_mace"
+      }
+    },
+    "required_mods": [
+      "paladins"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "critical_strike:damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "rpg_series:weapon_type/mace"
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.mace"
+          },
+          "fallbackAttribute": "minecraft:generic.attack_damage",
+          "operation": "multiply_base",
+          "value": 0.07999999821186066
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_mace_root.title"
+    }
+  },
+  "weapon_sickle_root": {
+    "description": {
+      "skill_definition_id": "weapon_sickle_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "rogues:iron_sickle"
+      }
+    },
+    "required_mods": [
+      "rogues"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "critical_strike:chance",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "rpg_series:weapon_type/sickle"
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.sickle"
+          },
+          "fallbackAttribute": "minecraft:generic.attack_damage",
+          "operation": "multiply_base",
+          "value": 0.03999999910593033
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_sickle_root.title"
+    }
+  },
+  "weapon_smash_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_smash_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/smash.png"
+      }
+    },
+    "required_mods": [
+      "paladins"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_smash_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_smash_modifier_1.title"
+    }
+  },
+  "weapon_smash_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_smash_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/smash.png"
+      }
+    },
+    "required_mods": [
+      "paladins"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_smash_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_smash_modifier_2.title"
+    }
+  },
+  "weapon_spear_root": {
+    "description": {
+      "skill_definition_id": "weapon_spear_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "archers:iron_spear"
+      }
+    },
+    "required_mods": [
+      "archers"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "rpg_series:weapon_type/spear"
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.spear"
+          },
+          "operation": "multiply_base",
+          "value": 0.05000000074505806
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_spear_root.title"
+    }
+  },
+  "weapon_swift_strikes_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_swift_strikes_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/swift_strikes.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_swift_strikes_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_swift_strikes_modifier_1.title"
+    }
+  },
+  "weapon_swift_strikes_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_swift_strikes_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/swift_strikes.png"
+      }
+    },
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_swift_strikes_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_swift_strikes_modifier_2.title"
+    }
+  },
+  "weapon_swipe_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_swipe_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/swipe.png"
+      }
+    },
+    "required_mods": [
+      "rogues"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_swipe_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_swipe_modifier_1.title"
+    }
+  },
+  "weapon_swipe_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_swipe_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/swipe.png"
+      }
+    },
+    "required_mods": [
+      "rogues"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_swipe_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_swipe_modifier_2.title"
+    }
+  },
+  "weapon_sword_root": {
+    "description": {
+      "skill_definition_id": "weapon_sword_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "minecraft:iron_sword"
+      }
+    },
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "minecraft:swords"
+            },
+            "translationKey": "modifier_condition.skill_tree_rpgs.sword"
+          },
+          "operation": "multiply_base",
+          "value": 0.05000000074505806
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_sword_root.title"
+    }
+  },
+  "weapon_thrust_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_thrust_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/thrust.png"
+      }
+    },
+    "required_mods": [
+      "rogues"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_thrust_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_thrust_modifier_1.title"
+    }
+  },
+  "weapon_thrust_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_thrust_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/thrust.png"
+      }
+    },
+    "required_mods": [
+      "rogues"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_thrust_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_thrust_modifier_2.title"
+    }
+  },
+  "weapon_whirlwind_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_whirlwind_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/whirlwind.png"
+      }
+    },
+    "required_mods": [
+      "rogues"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_whirlwind_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_whirlwind_modifier_1.title"
+    }
+  },
+  "weapon_whirlwind_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_whirlwind_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "rpg_series:textures/spell/whirlwind.png"
+      }
+    },
+    "required_mods": [
+      "rogues"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "skill_tree_rpgs:weapon_whirlwind_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.skill_tree_rpgs.weapon_whirlwind_modifier_2.title"
+    }
+  },
+
+
+
+
+  "weapon_aqua_staff_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_aqua_staff_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_water_whip.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_aqua_staff_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_aqua_staff_modifier_1.title"
+    }
+  },
+  "weapon_aqua_staff_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_aqua_staff_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_water_whip.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_aqua_staff_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_aqua_staff_modifier_2.title"
+    }
+  },
+  "weapon_aqua_staff_root": {
+    "description": {
+      "skill_definition_id": "weapon_aqua_staff_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "elemental_wizards_rpg:staff_aqua"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_aqua_staff_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_aqua_staff_root.title"
+    }
+  },
+  "weapon_berserker_axe_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_berserker_axe_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "more_rpg_classes:textures/spell/decapitate.png"
+      }
+    },
+    "required_mods": [
+      "berserker_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_berserker_axe_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_berserker_axe_modifier_1.title"
+    }
+  },
+  "weapon_berserker_axe_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_berserker_axe_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "more_rpg_classes:textures/spell/decapitate.png"
+      }
+    },
+    "required_mods": [
+      "berserker_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_berserker_axe_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_berserker_axe_modifier_2.title"
+    }
+  },
+  "weapon_berserker_axe_root": {
+    "description": {
+      "skill_definition_id": "weapon_berserker_axe_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "berserker_rpg:iron_berserker_axe"
+      }
+    },
+    "required_mods": [
+      "berserker_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "berserker_rpg:berserker_axes"
+            },
+            "translationKey": "modifier_condition.mrpgc_skill_tree.berserker_axe"
+          },
+          "operation": "multiply_base",
+          "value": 0.05
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_berserker_axe_root.title"
+    }
+  },
+  "weapon_harp_crossbow_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_harp_crossbow_modifier_1"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:harp_crossbow"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_harp_crossbow_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_harp_crossbow_modifier_1.title"
+    }
+  },
+  "weapon_harp_crossbow_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_harp_crossbow_modifier_2"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:harp_crossbow"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_harp_crossbow_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_harp_crossbow_modifier_2.title"
+    }
+  },
+  "weapon_harp_crossbow_root": {
+    "description": {
+      "skill_definition_id": "weapon_harp_crossbow_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:harp_crossbow"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "ranged_weapon:damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "bards_rpg:harp_crossbows"
+            },
+            "translationKey": "modifier_condition.mrpgc_skill_tree.harp_crossbow"
+          },
+          "fallbackAttribute": "minecraft:generic.attack_damage",
+          "operation": "multiply_base",
+          "value": 0.05
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_harp_crossbow_root.title"
+    }
+  },
+  "weapon_knuckle_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_knuckle_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "forcemaster_rpg:textures/spell/burstcrack.png"
+      }
+    },
+    "required_mods": [
+      "forcemaster_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_knuckle_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_knuckle_modifier_1.title"
+    }
+  },
+  "weapon_knuckle_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_knuckle_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "forcemaster_rpg:textures/spell/burstcrack.png"
+      }
+    },
+    "required_mods": [
+      "forcemaster_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_knuckle_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_knuckle_modifier_2.title"
+    }
+  },
+  "weapon_knuckle_root": {
+    "description": {
+      "skill_definition_id": "weapon_knuckle_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "forcemaster_rpg:iron_knuckle"
+      }
+    },
+    "required_mods": [
+      "forcemaster_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "forcemaster_rpg:knuckles"
+            },
+            "translationKey": "modifier_condition.mrpgc_skill_tree.knuckles"
+          },
+          "operation": "multiply_base",
+          "value": 0.05
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_knuckle_root.title"
+    }
+  },
+  "weapon_lute_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_lute_modifier_1"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:wooden_lute"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_lute_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_lute_modifier_1.title"
+    }
+  },
+  "weapon_lute_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_lute_modifier_2"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:wooden_lute"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_lute_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_lute_modifier_2.title"
+    }
+  },
+  "weapon_lute_root": {
+    "description": {
+      "skill_definition_id": "weapon_lute_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:wooden_lute"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_lute_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_lute_root.title"
+    }
+  },
+  "weapon_lyre_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_lyre_modifier_1"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:golden_lyre"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_lyre_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_lyre_modifier_1.title"
+    }
+  },
+  "weapon_lyre_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_lyre_modifier_2"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:golden_lyre"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_lyre_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_lyre_modifier_2.title"
+    }
+  },
+  "weapon_lyre_root": {
+    "description": {
+      "skill_definition_id": "weapon_lyre_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:golden_lyre"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_lyre_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_lyre_root.title"
+    }
+  },
+  "weapon_rapier_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_rapier_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "more_rpg_classes:textures/spell/puncture.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_rapier_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_rapier_modifier_1.title"
+    }
+  },
+  "weapon_rapier_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_rapier_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "more_rpg_classes:textures/spell/puncture.png"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_rapier_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_rapier_modifier_2.title"
+    }
+  },
+  "weapon_rapier_root": {
+    "description": {
+      "skill_definition_id": "weapon_rapier_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "bards_rpg:iron_rapier"
+      }
+    },
+    "required_mods": [
+      "bards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "bards_rpg:rapiers"
+            },
+            "translationKey": "modifier_condition.mrpgc_skill_tree.rapier"
+          },
+          "operation": "multiply_base",
+          "value": 0.05
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_rapier_root.title"
+    }
+  },
+  "weapon_terra_staff_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_terra_staff_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/terra_stone_spear.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_terra_staff_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_terra_staff_modifier_1.title"
+    }
+  },
+  "weapon_terra_staff_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_terra_staff_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/terra_stone_spear.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_terra_staff_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_terra_staff_modifier_2.title"
+    }
+  },
+  "weapon_terra_staff_root": {
+    "description": {
+      "skill_definition_id": "weapon_terra_staff_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "elemental_wizards_rpg:staff_terra"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_terra_staff_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_terra_staff_root.title"
+    }
+  },
+  "weapon_wind_staff_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_wind_staff_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/wind_air_cutter.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_wind_staff_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_wind_staff_modifier_1.title"
+    }
+  },
+  "weapon_wind_staff_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_wind_staff_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "elemental_wizards_rpg:textures/spell/wind_air_cutter.png"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_wind_staff_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_wind_staff_modifier_2.title"
+    }
+  },
+  "weapon_wind_staff_root": {
+    "description": {
+      "skill_definition_id": "weapon_wind_staff_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "elemental_wizards_rpg:staff_wind"
+      }
+    },
+    "required_mods": [
+      "elemental_wizards_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:weapon_wind_staff_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_wind_staff_root.title"
+    }
+  },
+  "weapon_witcher_swords_modifier_1": {
+    "description": {
+      "skill_definition_id": "weapon_witcher_swords_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/defensive_witcher_mechanics.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:defensive_witcher_mechanics"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_witcher_swords_modifier_1.title"
+    }
+  },
+  "weapon_witcher_swords_modifier_2": {
+    "description": {
+      "skill_definition_id": "weapon_witcher_swords_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "witcher_rpg:textures/spell/defensive_witcher_mechanics.png"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "witcher_rpg:defensive_witcher_mechanics"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_witcher_swords_modifier_2.title"
+    }
+  },
+  "weapon_witcher_swords_root": {
+    "description": {
+      "skill_definition_id": "weapon_witcher_swords_root"
+    },
+    "icon": {
+      "type": "item",
+      "data": {
+        "item": "witcher_rpg:iron_witcher_sword"
+      }
+    },
+    "required_mods": [
+      "witcher_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:conditional_attribute",
+        "data": {
+          "attribute": "minecraft:generic.attack_damage",
+          "condition": {
+            "equipment": {
+              "slot": "mainhand",
+              "tag": "witcher_rpg:witcher_swords"
+            },
+            "translationKey": "modifier_condition.mrpgc_skill_tree.witcher_swords"
+          },
+          "operation": "multiply_base",
+          "value": 0.05
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.weapon_witcher_swords_root.title"
+    }
+  }
+}

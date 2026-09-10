@@ -17,7 +17,6 @@ import net.neoforged.neoforge.registries.RegisterEvent;
 
 @Mod(MRPGCSkillTreeAddOn.MOD_ID)
 public final class NeoForgeMod {
-    private static boolean datapackRegistered = false;
     private static boolean warningShown = false;
 
     public NeoForgeMod(IEventBus modBus) {
@@ -31,7 +30,8 @@ public final class NeoForgeMod {
     }
 
     private void onAddPackFinders(AddPackFindersEvent event) {
-        if (datapackRegistered || MRPGCSkillTreeAddOn.tweaksConfig.value.disable_mrpgc_skilltree_changes) {
+        if (event.getPackType() != ResourceType.SERVER_DATA
+                || MRPGCSkillTreeAddOn.tweaksConfig.value.disable_mrpgc_skilltree_changes) {
             return;
         }
         event.addPackFinders(
@@ -42,7 +42,6 @@ public final class NeoForgeMod {
                 true,
                 ResourcePackProfile.InsertionPosition.TOP
         );
-        datapackRegistered = true;
         MRPGCSkillTreeAddOn.LOGGER.info("Registered MRPGC Skill Tree Changes datapack");
     }
 

@@ -11,43 +11,43 @@ public class WitcherSkillSpells {
         return entry;
     }
     /// SIGN ROOTS
-    public static final MrpgSkillSpells.Entry signs_tier_2_spell_1_root = add(MrpgSkillsCommon.critRoot(
+    public static final MrpgSkillSpells.Entry sign_tier_spell_2_root_1 = add(MrpgSkillsCommon.critRoot(
             MrpgSkillSpells.Category.WITCHER, MrpgSkillSpells.witcherSignSchool,
-            "signs_tier_2_spell_1_root", "witcher_rpg:igni", "Igni", 0.1F));
-    public static final MrpgSkillSpells.Entry signs_tier_2_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+            "sign_tier_spell_2_root_1", "witcher_rpg:igni", "Igni", 0.1F));
+    public static final MrpgSkillSpells.Entry sign_tier_spell_2_root_2 = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.WITCHER, MrpgSkillSpells.witcherSignSchool,
-            "signs_tier_2_spell_2_root", "witcher_rpg:aard", "Aard", 0.1F));
-    public static final MrpgSkillSpells.Entry signs_tier_3_spell_1_root = add(MrpgSkillsCommon.cooldownRoot(
+            "sign_tier_spell_2_root_2", "witcher_rpg:aard", "Aard", 0.1F));
+    public static final MrpgSkillSpells.Entry sign_tier_spell_3_root_1 = add(MrpgSkillsCommon.cooldownRoot(
             MrpgSkillSpells.Category.WITCHER, MrpgSkillSpells.witcherSignSchool,
-            "signs_tier_3_spell_1_root", "witcher_rpg:quen", "Quen", 2F));
-    public static final MrpgSkillSpells.Entry signs_tier_3_spell_2_root = add(MrpgSkillsCommon.cooldownRoot(
+            "sign_tier_spell_3_root_1", "witcher_rpg:quen", "Quen", 2F));
+    public static final MrpgSkillSpells.Entry sign_tier_spell_3_root_2 = add(MrpgSkillsCommon.cooldownRoot(
             MrpgSkillSpells.Category.WITCHER, MrpgSkillSpells.witcherSignSchool,
-            "signs_tier_3_spell_2_root", "witcher_rpg:axii", "Axii", 2F));
-    public static final MrpgSkillSpells.Entry signs_tier_4_spell_1_root = add(MrpgSkillsCommon.critRoot(
+            "sign_tier_spell_3_root_2", "witcher_rpg:axii", "Axii", 2F));
+    public static final MrpgSkillSpells.Entry sign_tier_spell_4_root_1 = add(MrpgSkillsCommon.critRoot(
             MrpgSkillSpells.Category.WITCHER, MrpgSkillSpells.witcherSignSchool,
-            "signs_tier_2_spell_1_root", "witcher_rpg:igni_firestream", "Igni Firestream", 0.1F));
-    public static final MrpgSkillSpells.Entry signs_tier_4_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+            "sign_tier_spell_4_root_1", "witcher_rpg:igni_firestream", "Igni Firestream", 0.1F));
+    public static final MrpgSkillSpells.Entry sign_tier_spell_4_root_2 = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.WITCHER, MrpgSkillSpells.witcherSignSchool,
-            "signs_tier_2_spell_2_root", "witcher_rpg:aard_sweep", "Aard Sweep", 0.1F));
+            "sign_tier_spell_4_root_2", "witcher_rpg:aard_sweep", "Aard Sweep", 0.1F));
 
 
     /// FENCING ROOTS
-    public static final MrpgSkillSpells.Entry fencing_tier_2_spell_1_root = add(MrpgSkillsCommon.critRoot(
+    public static final MrpgSkillSpells.Entry fencing_tier_spell_2_root_1 = add(MrpgSkillsCommon.critRoot(
             MrpgSkillSpells.Category.WITCHER, MrpgSkillSpells.witcherFencingSchool,
-            "fencing_tier_2_spell_1_root", "witcher_rpg:fast_attack", "Fast Attacks", 0.08F));
-    public static final MrpgSkillSpells.Entry fencing_tier_2_spell_2_root = add(MrpgSkillsCommon.critDamageRoot(
+            "fencing_tier_spell_2_root_1", "witcher_rpg:fast_attack", "Fast Attacks", 0.08F));
+    public static final MrpgSkillSpells.Entry fencing_tier_spell_2_root_2 = add(MrpgSkillsCommon.critDamageRoot(
             MrpgSkillSpells.Category.WITCHER, MrpgSkillSpells.witcherFencingSchool,
-            "fencing_tier_2_spell_2_root", "witcher_rpg:strong_attack", "Strong Attacks", 0.15F));
-    public static final MrpgSkillSpells.Entry fencing_tier_3_spell_1_root = add(MrpgSkillsCommon.radiusRoot(
+            "fencing_tier_spell_2_root_2", "witcher_rpg:strong_attack", "Strong Attacks", 0.15F));
+    public static final MrpgSkillSpells.Entry fencing_tier_spell_3_root_1 = add(MrpgSkillsCommon.radiusRoot(
             MrpgSkillSpells.Category.WITCHER, MrpgSkillSpells.witcherFencingSchool,
-            "fencing_tier_3_spell_1_root", "witcher_rpg:witcher_senses", "Witcher Senses", 3F));
-    public static final MrpgSkillSpells.Entry fencing_tier_3_spell_2_root = add(MrpgSkillsCommon.cooldownRoot(
+            "fencing_tier_spell_3_root_1", "witcher_rpg:witcher_senses", "Witcher Senses", 3F));
+    public static final MrpgSkillSpells.Entry fencing_tier_spell_3_root_2 = add(MrpgSkillsCommon.cooldownRoot(
             MrpgSkillSpells.Category.WITCHER, MrpgSkillSpells.witcherFencingSchool,
-            "fencing_tier_3_spell_2_root", "witcher_rpg:battle_trance", "Battle Trance", 3F));
-    public static final MrpgSkillSpells.Entry fencing_tier_4_spell_1_root = add(MrpgSkillsCommon.critRoot(
+            "fencing_tier_spell_3_root_2", "witcher_rpg:battle_trance", "Battle Trance", 3F));
+    public static final MrpgSkillSpells.Entry fencing_tier_spell_4_root_1 = add(MrpgSkillsCommon.critRoot(
             MrpgSkillSpells.Category.WITCHER, MrpgSkillSpells.witcherFencingSchool,
-            "fencing_tier_4_spell_1_root", "witcher_rpg:whirl", "Whirl", 0.08F));
-    public static final MrpgSkillSpells.Entry fencing_tier_4_spell_2_root = add(MrpgSkillsCommon.critDamageRoot(
+            "fencing_tier_spell_4_root_1", "witcher_rpg:whirl", "Whirl", 0.08F));
+    public static final MrpgSkillSpells.Entry fencing_tier_spell_4_root_2 = add(MrpgSkillsCommon.critDamageRoot(
             MrpgSkillSpells.Category.WITCHER, MrpgSkillSpells.witcherFencingSchool,
-            "fencing_tier_4_spell_2_root", "witcher_rpg:rend", "Rend", 0.15F));
+            "fencing_tier_spell_4_root_2", "witcher_rpg:rend", "Rend", 0.15F));
 }

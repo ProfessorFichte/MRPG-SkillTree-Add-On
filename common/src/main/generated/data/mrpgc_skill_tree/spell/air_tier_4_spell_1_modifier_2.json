@@ -17,16 +17,23 @@
               "knockback": 0.0
             }
           },
-          "particles": [
-            {
-              "particle_id": "more_rpg_classes:stone_particle",
-              "origin": "FEET",
-              "shape": "SPHERE",
-              "rotation": "LOOK",
-              "count": 1.5,
-              "min_speed": 0.5
-            }
-          ]
+          "visuals": {
+            "particles": [
+              {
+                "id": "more_rpg_classes:stone_particle",
+                "appearance": {},
+                "batch": {
+                  "count": 1.5,
+                  "shape": "SPHERE",
+                  "anchor": "ENTITY",
+                  "vertical_origin": 0.1,
+                  "alignment": "LOOK",
+                  "min_speed": 0.5,
+                  "max_speed": 1.0
+                }
+              }
+            ]
+          }
         }
       ],
       "replacing_area_impact": {
@@ -35,14 +42,16 @@
         "area": {
           "distance_dropoff": "SQUARED"
         },
-        "model_fx": [
-          {
-            "model_id": "elemental_wizards_rpg:spell_effect/tornado",
-            "light_emission": "RADIATE",
-            "scale": 5.5,
-            "duration": 140
-          }
-        ]
+        "visuals": {
+          "models": [
+            {
+              "model_id": "elemental_wizards_rpg:spell_effect/tornado",
+              "light_emission": "RADIATE",
+              "scale": 5.5,
+              "duration": 140
+            }
+          ]
+        }
       }
     }
   ]

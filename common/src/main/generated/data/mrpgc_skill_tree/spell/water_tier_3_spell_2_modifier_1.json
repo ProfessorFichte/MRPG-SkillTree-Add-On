@@ -15,17 +15,24 @@
               "duration": 4.0
             }
           },
-          "particles": [
-            {
-              "particle_id": "spell_engine:magic_spark_ascend",
-              "origin": "CENTER",
-              "shape": "SPHERE",
-              "count": 10.0,
-              "min_speed": 0.1,
-              "max_speed": 0.2,
-              "color_rgba": 4278190335
-            }
-          ],
+          "visuals": {
+            "particles": [
+              {
+                "id": "spell_engine:magic_spark",
+                "appearance": {
+                  "color": 4278190335,
+                  "motion": "ASCEND"
+                },
+                "batch": {
+                  "count": 10.0,
+                  "shape": "SPHERE",
+                  "anchor": "ENTITY",
+                  "min_speed": 0.1,
+                  "max_speed": 0.2
+                }
+              }
+            ]
+          },
           "sound": {
             "id": "spell_engine:generic_fire_ignite"
           }
@@ -34,7 +41,7 @@
           "action": {
             "type": "STATUS_EFFECT",
             "status_effect": {
-              "effect_id": "minecraft:weakness",
+              "effect_id": "mrpgc_skill_tree:scald",
               "duration": 6.0,
               "amplifier_cap": 2,
               "apply_mode": "ADD"

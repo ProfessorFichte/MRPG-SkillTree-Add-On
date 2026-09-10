@@ -184,10 +184,6 @@ public class MrpgWeaponSkills {
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
-    public static final MrpgSkillSpells.Entry weapon_knuckle_root = add(MrpgSkillsCommon.powerRoot(
-            MrpgSkillSpells.Category.WEAPON, MrpgSkillSpells.forcemasterFighterSchool,
-            "weapon_knuckle_root", "forcemaster_rpg:burstcrack", "Burstcrack", 0.05F));
-
     public static final MrpgSkillSpells.Entry weapon_knuckle_modifier_1 = add(weapon_knuckle_modifier_1());
     private static MrpgSkillSpells.Entry weapon_knuckle_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "weapon_knuckle_modifier_1");
@@ -243,10 +239,6 @@ public class MrpgWeaponSkills {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
-
-    public static final MrpgSkillSpells.Entry weapon_rapier_root = add(MrpgSkillsCommon.powerRoot(
-            MrpgSkillSpells.Category.WEAPON, MrpgSkillSpells.forcemasterFighterSchool,
-            "weapon_rapier_root", "more_rpg_classes:puncture", "Puncture", 0.05F));
 
     public static final MrpgSkillSpells.Entry weapon_rapier_modifier_1 = add(weapon_rapier_modifier_1());
     private static MrpgSkillSpells.Entry weapon_rapier_modifier_1() {
@@ -372,10 +364,6 @@ public class MrpgWeaponSkills {
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
-    public static final MrpgSkillSpells.Entry weapon_berserker_axe_root = add(MrpgSkillsCommon.powerRoot(
-            MrpgSkillSpells.Category.WEAPON, MrpgSkillSpells.berserkerSchool,
-            "weapon_berserker_axe_root", "more_rpg_classes:decapitate", "Decapitate", 0.05F));
-
     public static final MrpgSkillSpells.Entry weapon_berserker_axe_modifier_1 = add(weapon_berserker_axe_modifier_1());
     private static MrpgSkillSpells.Entry weapon_berserker_axe_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "weapon_berserker_axe_modifier_1");
@@ -445,17 +433,6 @@ public class MrpgWeaponSkills {
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
-    public static final MrpgSkillSpells.Entry weapon_harp_crossbow_root = add(weapon_harp_crossbow_root());
-    private static MrpgSkillSpells.Entry weapon_harp_crossbow_root() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "weapon_harp_crossbow_root");
-        var title = "Harp Crossbow Specialisation";
-        var description = "";
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = MrpgSkillSpells.bardSchool;
-
-        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
-    }
-
     public static final MrpgSkillSpells.Entry weapon_harp_crossbow_modifier_1 = add(weapon_harp_crossbow_modifier_1());
     private static MrpgSkillSpells.Entry weapon_harp_crossbow_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "weapon_harp_crossbow_modifier_1");
@@ -512,14 +489,4 @@ public class MrpgWeaponSkills {
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
-    public static final MrpgSkillSpells.Entry weapon_witcher_swords_root = add(weapon_witcher_swords_root());
-    private static MrpgSkillSpells.Entry weapon_witcher_swords_root() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "weapon_witcher_swords_root");
-        var title = "Witcher Sword Specialisation";
-        var description = "";
-        var spell = SpellBuilder.createSpellModifier();
-        spell.school = MrpgSkillSpells.witcherFencingSchool;
-
-        return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
-    }
 }

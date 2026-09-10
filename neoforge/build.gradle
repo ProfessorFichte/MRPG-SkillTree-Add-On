@@ -104,6 +104,10 @@ dependencies {
     // Accessories - https://docs.wispforest.io/accessories/developer/dev_setup
     modImplementation "maven.modrinth:owo-lib:${project.owo_neo_version}" // AccessoryItem wouldn't compile without this
     modImplementation("io.wispforest:accessories-neoforge:${project.accessories_version}")
+
+    // Dev-client-only test mods. Drop production NeoForge jars into neoforge/local-mods/ - Loom
+    // remaps them to this dev run's mappings. Not compiled against, not shipped, not a real dependency.
+    modLocalRuntime(fileTree(dir: "local-mods", include: "*.jar"))
     forgeRuntimeLibrary("blue.endless:jankson:1.2.2")
     forgeRuntimeLibrary("io.wispforest:endec:0.1.5.1")
     forgeRuntimeLibrary("io.wispforest.endec:gson:0.1.3.1")

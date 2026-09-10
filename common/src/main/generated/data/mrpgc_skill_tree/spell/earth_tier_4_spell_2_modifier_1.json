@@ -6,32 +6,95 @@
   "modifiers": [
     {
       "spell_pattern": "elemental_wizards_rpg:terra_earth_golem",
-      "summon_attribute_scaling": {
-        "entries": [
-          {
-            "attribute_id": "minecraft:generic.attack_damage",
-            "modifiers": [
-              {
-                "attribute_id": "minecraft:generic.attack_damage",
-                "operation": "ADD_MULTIPLIED_BASE",
-                "base": 0.25,
-                "coefficient": 0.0
-              }
-            ]
-          },
-          {
-            "attribute_id": "minecraft:generic.attack_speed",
-            "modifiers": [
-              {
-                "attribute_id": "minecraft:generic.attack_speed",
-                "operation": "ADD_MULTIPLIED_BASE",
-                "base": 0.25,
-                "coefficient": 0.0
-              }
-            ]
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "action": {
+            "type": "SUMMON",
+            "summon": {
+              "entity_type_id": "elemental_wizards_rpg:earth_golem",
+              "behaviour": {
+                "dimensions": {
+                  "width": 0.45,
+                  "height": 1.2
+                },
+                "movement": {
+                  "follow": {
+                    "start_distance": 12.0,
+                    "stop_distance": 6.0,
+                    "teleport_after_distance": 32.0
+                  },
+                  "is_pushable": false
+                },
+                "targeting": {
+                  "automatic_targeting": "HOSTILE",
+                  "detection_range": {
+                    "mode": "MAXIMUM_ACTION_RANGE"
+                  }
+                },
+                "lifespan": {
+                  "spawn_ticks": 20,
+                  "active_seconds": 30,
+                  "despawn_ticks": 20
+                },
+                "actions": [
+                  {
+                    "type": "SPELL_CAST",
+                    "spell_cast": {
+                      "spell_id": "elemental_wizards_rpg:terra_stone_throw",
+                      "cooldown": 40
+                    }
+                  }
+                ]
+              },
+              "attribute_scaling": {
+                "entries": [
+                  {
+                    "attribute_id": "minecraft:generic.max_health",
+                    "modifiers": [
+                      {
+                        "attribute_id": "minecraft:generic.max_health",
+                        "operation": "ADD_MULTIPLIED_BASE",
+                        "base": -0.5,
+                        "coefficient": 0.0
+                      }
+                    ]
+                  },
+                  {
+                    "attribute_id": "spell_power:earth",
+                    "modifiers": [
+                      {
+                        "attribute_id": "spell_power:earth",
+                        "operation": "ADD_VALUE",
+                        "base": 1.0,
+                        "coefficient": 0.05
+                      }
+                    ]
+                  },
+                  {
+                    "attribute_id": "minecraft:generic.scale",
+                    "modifiers": [
+                      {
+                        "attribute_id": "minecraft:generic.scale",
+                        "operation": "ADD_MULTIPLIED_BASE",
+                        "base": -0.35,
+                        "coefficient": 0.0
+                      }
+                    ]
+                  }
+                ]
+              },
+              "placements": [
+                {
+                  "location_offset_by_look": 2.0,
+                  "apply_yaw": true
+                }
+              ],
+              "spawn_count": 2
+            }
           }
-        ]
-      }
+        }
+      ]
     }
   ]
 }

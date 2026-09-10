@@ -9,12 +9,12 @@
       "summon_attribute_scaling": {
         "entries": [
           {
-            "attribute_id": "spell_engine:damage_taken",
+            "attribute_id": "minecraft:generic.scale",
             "modifiers": [
               {
-                "attribute_id": "spell_engine:damage_taken",
-                "operation": "ADD_MULTIPLIED_TOTAL",
-                "base": -0.25,
+                "attribute_id": "minecraft:generic.scale",
+                "operation": "ADD_MULTIPLIED_BASE",
+                "base": 0.5,
                 "coefficient": 0.0
               }
             ]
@@ -25,7 +25,40 @@
               {
                 "attribute_id": "minecraft:generic.max_health",
                 "operation": "ADD_MULTIPLIED_BASE",
+                "base": 0.5,
+                "coefficient": 0.0
+              }
+            ]
+          },
+          {
+            "attribute_id": "minecraft:generic.attack_damage",
+            "modifiers": [
+              {
+                "attribute_id": "minecraft:generic.attack_damage",
+                "operation": "ADD_MULTIPLIED_BASE",
                 "base": 0.3,
+                "coefficient": 0.0
+              }
+            ]
+          },
+          {
+            "attribute_id": "spell_engine:damage_taken",
+            "modifiers": [
+              {
+                "attribute_id": "spell_engine:damage_taken",
+                "operation": "ADD_MULTIPLIED_TOTAL",
+                "base": -0.2,
+                "coefficient": 0.0
+              }
+            ]
+          },
+          {
+            "attribute_id": "minecraft:generic.knockback_resistance",
+            "modifiers": [
+              {
+                "attribute_id": "minecraft:generic.knockback_resistance",
+                "operation": "ADD_VALUE",
+                "base": 0.2,
                 "coefficient": 0.0
               }
             ]

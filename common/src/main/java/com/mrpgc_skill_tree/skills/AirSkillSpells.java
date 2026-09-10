@@ -1,42 +1,26 @@
 package com.mrpgc_skill_tree.skills;
 
-import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
-import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.client.particle.MoreParticles;
 import net.more_rpg_classes.custom.MoreSpellSchools;
-import net.more_rpg_classes.effect.MRPGCEffects;
-import net.skill_tree_rpgs.skills.SkillSounds;
 import net.spell_engine.api.datagen.SpellBuilder;
-import net.spell_engine.api.entity.SpellEntityPredicates;
 import net.spell_engine.api.render.LightEmission;
-import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.fx.Easing;
 import net.spell_engine.api.spell.fx.Fx;
-import net.spell_engine.api.spell.fx.ModelEffect;
 import net.spell_engine.api.spell.fx.ModelEffectBuilder;
 import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.Sound;
-import net.spell_engine.api.util.TriState;
 import net.spell_engine.api.spell.tooltip.TooltipTokens;
-import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
-import net.spell_engine.fx.SpellEngineSounds;
-import net.spell_engine.internals.target.SpellTarget;
-import net.spell_power.api.SpellSchool;
-import net.spell_power.api.SpellSchools;
 import com.mrpgc_skill_tree.effect.MrpgSkillEffects;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
-import static com.mrpgc_skill_tree.MRPGCSkillTreeAddOn.MOD_ID;
 import static net.skill_tree_rpgs.skills.SkillsCommon.*;
 
 public class AirSkillSpells {

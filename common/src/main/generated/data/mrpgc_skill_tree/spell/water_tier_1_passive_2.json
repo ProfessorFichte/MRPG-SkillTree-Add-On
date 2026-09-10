@@ -1,18 +1,15 @@
 {
   "school": "spell_power:water",
-  "range": 0.0,
+  "range": 12.0,
   "tier": 1,
   "type": "PASSIVE",
   "passive": {
     "triggers": [
       {
-        "type": "SPELL_IMPACT_SPECIFIC",
-        "chance": 0.3,
+        "type": "SPELL_CAST",
         "spell": {
-          "school": "water"
-        },
-        "impact": {
-          "impact_type": "DAMAGE"
+          "school": "spell_power:water",
+          "type": "ACTIVE"
         }
       }
     ]
@@ -20,12 +17,46 @@
   "target": {
     "type": "FROM_TRIGGER"
   },
+  "deliver": {
+    "type": "PROJECTILE",
+    "projectile": {
+      "inherit_shooter_pitch": false,
+      "launch_properties": {
+        "sound": {
+          "id": "mrpgc_skill_tree:second_wave"
+        }
+      },
+      "projectile": {
+        "homing_angle": 0.0,
+        "perks": {
+          "pierce": 999
+        },
+        "hitbox": {
+          "width": 2.6,
+          "height": 1.4
+        },
+        "client_data": {
+          "composite_model": {
+            "models": [
+              {
+                "rotate_degrees_per_tick": 0.0,
+                "fx": {
+                  "model_id": "mrpgc_skill_tree:spell_projectile/water_wave",
+                  "light_emission": "NONE"
+                }
+              }
+            ]
+          }
+        }
+      }
+    }
+  },
   "impacts": [
     {
       "action": {
         "type": "DAMAGE",
         "damage": {
-          "spell_power_coefficient": 0.0,
+          "spell_power_coefficient": 0.3,
           "knockback": 1.5
         }
       },
@@ -35,7 +66,7 @@
             "id": "more_rpg_classes:splash",
             "appearance": {},
             "batch": {
-              "count": 50.0,
+              "count": 30.0,
               "shape": "CIRCLE",
               "anchor": "ENTITY",
               "vertical_origin": 0.1,
@@ -54,7 +85,7 @@
   "cost": {
     "durability": 0,
     "cooldown": {
-      "duration": 5.0
+      "duration": 8.0
     }
   }
 }

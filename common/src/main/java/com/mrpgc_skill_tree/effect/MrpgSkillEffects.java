@@ -219,6 +219,30 @@ public class MrpgSkillEffects {
                     )
             )
     ));
+    public static Effects.Entry SCALD = add(new Effects.Entry(Identifier.of(MOD_ID, "scald"),
+            "Scald",
+            "Decreased spell power, attack damage & ranged weapon damage.",
+            new CustomStatusEffect(StatusEffectCategory.HARMFUL, MoreSpellSchools.WATER.color),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellSchools.GENERIC.id,
+                                    -0.10F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    -0.10F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes_RangedWeapon.DAMAGE.id,
+                                    -0.10F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
     public static Effects.Entry HYDRO_BOOST = add(new Effects.Entry(Identifier.of(MOD_ID, "hydro_boost"),
             "Hydro Boost",
             "Increased movement speed.",

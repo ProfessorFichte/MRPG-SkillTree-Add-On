@@ -1,0 +1,470 @@
+{
+	"hdp8z71mlgffw17t": {
+		"definition": "weapon_arcane_root",
+		"x": 138.56406460551017,
+		"y": 0,
+		"root": true
+	},
+	"3tz0p0i99qa1toq3": {
+		"definition": "weapon_arcane_blast_modifier_1",
+		"x": 121.2435565298214,
+		"y": -30,
+		"root": false
+	},
+	"5un3h9xi2no0o9tp": {
+		"definition": "weapon_arcane_blast_modifier_2",
+		"x": 155.88457268119893,
+		"y": -30,
+		"root": false
+	},
+	"o5e8ipv2xtpeksec": {
+		"definition": "weapon_fire_root",
+		"x": 69.28203230275508,
+		"y": -60,
+		"root": true
+	},
+	"p9307txpo765tp9v": {
+		"definition": "weapon_fire_blast_modifier_1",
+		"x": 51.96152422706631,
+		"y": -90,
+		"root": false
+	},
+	"t8aakkcbj7slx185": {
+		"definition": "weapon_fire_blast_modifier_2",
+		"x": 86.60254037844385,
+		"y": -90,
+		"root": false
+	},
+	"43fud5gyn1kww7k3": {
+		"definition": "weapon_frost_root",
+		"x": 51.96152422706631,
+		"y": 30,
+		"root": true
+	},
+	"sg7pzzwiwvd8469s": {
+		"definition": "weapon_flurry_modifier_1",
+		"x": -17.320508075688764,
+		"y": -150,
+		"root": false
+	},
+	"0k3ygcsvvzvp3vlq": {
+		"definition": "weapon_flurry_modifier_2",
+		"x": 17.320508075688778,
+		"y": -150,
+		"root": false
+	},
+	"fa5tmn9q8n2ujruy": {
+		"definition": "weapon_aqua_staff_root",
+		"x": 121.2435565298214,
+		"y": 90,
+		"root": true
+	},
+	"z5y9kvs72j2b6r2v": {
+		"definition": "weapon_aqua_staff_modifier_1",
+		"x": 103.92304845413263,
+		"y": 60,
+		"root": false
+	},
+	"tdzodhh7ruhd2f00": {
+		"definition": "weapon_aqua_staff_modifier_2",
+		"x": 138.56406460551017,
+		"y": 60,
+		"root": false
+	},
+	"paab7o9iixjwuqdj": {
+		"definition": "weapon_terra_staff_root",
+		"x": 225.16660498395402,
+		"y": 30,
+		"root": true
+	},
+	"6cmjehxn0feruiaq": {
+		"definition": "weapon_terra_staff_modifier_1",
+		"x": 207.84609690826525,
+		"y": 0,
+		"root": false
+	},
+	"6t7w7x1dh9vfbt0i": {
+		"definition": "weapon_terra_staff_modifier_2",
+		"x": 242.4871130596428,
+		"y": 0,
+		"root": false
+	},
+	"ywy3uz6mt474uxcu": {
+		"definition": "weapon_wind_staff_root",
+		"x": 155.88457268119893,
+		"y": -90,
+		"root": true
+	},
+	"p2msspugy4nc03zy": {
+		"definition": "weapon_wind_staff_modifier_1",
+		"x": 138.56406460551014,
+		"y": -120,
+		"root": false
+	},
+	"a0kqdwfnazqoyys5": {
+		"definition": "weapon_wind_staff_modifier_2",
+		"x": 173.20508075688767,
+		"y": -120,
+		"root": false
+	},
+	"etdoq234nbbk9jmb": {
+		"definition": "weapon_lyre_root",
+		"x": 17.320508075688778,
+		"y": 210,
+		"root": true
+	},
+	"52ttyfctfr74ppct": {
+		"definition": "weapon_lyre_modifier_1",
+		"x": 0,
+		"y": 180,
+		"root": false
+	},
+	"iio02or6yqpwtzx7": {
+		"definition": "weapon_lyre_modifier_2",
+		"x": 34.64101615137754,
+		"y": 180,
+		"root": false
+	},
+	"9a4ajj9s55z980hm": {
+		"definition": "weapon_lute_root",
+		"x": 103.92304845413263,
+		"y": 180,
+		"root": true
+	},
+	"rpg1vf4a2uvpr3ky": {
+		"definition": "weapon_lute_modifier_2",
+		"x": 86.60254037844385,
+		"y": 150,
+		"root": false
+	},
+	"hh4n01nqhrmezndw": {
+		"definition": "weapon_lute_modifier_1",
+		"x": 121.24355652982139,
+		"y": 150,
+		"root": false
+	},
+	"8jeweqbszxdkjec1": {
+		"definition": "weapon_rapier_root",
+		"x": 34.64101615137754,
+		"y": 120,
+		"root": true
+	},
+	"cx18ihhjaa16o4hs": {
+		"definition": "weapon_rapier_modifier_1",
+		"x": 17.32050807568877,
+		"y": 90,
+		"root": false
+	},
+	"v166q6fn0yf4q740": {
+		"definition": "weapon_rapier_modifier_2",
+		"x": 51.96152422706631,
+		"y": 90,
+		"root": false
+	},
+	"ilkpz2udlubebc6r": {
+		"definition": "weapon_harp_crossbow_root",
+		"x": -51.96152422706632,
+		"y": 150,
+		"root": true
+	},
+	"bzhp6da0ycydle3a": {
+		"definition": "weapon_harp_crossbow_modifier_2",
+		"x": -34.64101615137754,
+		"y": 120,
+		"root": false
+	},
+	"mp4yjcx2mgbcl975": {
+		"definition": "weapon_harp_crossbow_modifier_1",
+		"x": -69.28203230275508,
+		"y": 120,
+		"root": false
+	},
+	"9pokx13bowgou220": {
+		"definition": "weapon_axe_root",
+		"x": -17.32050807568877,
+		"y": -30,
+		"root": true
+	},
+	"6taxz5gbljn3xfku": {
+		"definition": "weapon_bow_root",
+		"x": -34.64101615137754,
+		"y": 60,
+		"root": true
+	},
+	"tcxccysqzinvwtkd": {
+		"definition": "weapon_bow_passive_1",
+		"x": -51.96152422706631,
+		"y": 30,
+		"root": false
+	},
+	"5bfgswyxypyn3gi7": {
+		"definition": "weapon_bow_passive_2",
+		"x": -17.32050807568877,
+		"y": 30,
+		"root": false
+	},
+	"we8wxv7rsbsl0js1": {
+		"definition": "weapon_cleave_modifier_1",
+		"x": -34.64101615137754,
+		"y": -60,
+		"root": false
+	},
+	"txg8x5ttx8vaqz23": {
+		"definition": "weapon_cleave_modifier_2",
+		"x": 0,
+		"y": -60,
+		"root": false
+	},
+	"pkne4ano08eqcy4s": {
+		"definition": "weapon_claymore_root",
+		"x": 0,
+		"y": -120,
+		"root": true
+	},
+	"y1a66xz5i124mfmx": {
+		"definition": "weapon_crossbow_root",
+		"x": -121.24355652982138,
+		"y": 90,
+		"root": true
+	},
+	"vtrckovn16kb7qc1": {
+		"definition": "weapon_crossbow_passive_2",
+		"x": -103.92304845413263,
+		"y": 60,
+		"root": false
+	},
+	"ofra3adglr4esrch": {
+		"definition": "weapon_crossbow_passive_1",
+		"x": -138.56406460551017,
+		"y": 60,
+		"root": false
+	},
+	"3oqwa67ju4z15ibv": {
+		"definition": "weapon_dagger_root",
+		"x": -155.88457268119896,
+		"y": -150,
+		"root": true
+	},
+	"2fmdz7g1n58lv5tc": {
+		"definition": "weapon_double_axe_root",
+		"x": -173.2050807568877,
+		"y": -60,
+		"root": true
+	},
+	"3erpbitpf3h881em": {
+		"definition": "weapon_fan_of_knives_modifier_1",
+		"x": -173.20508075688775,
+		"y": -180,
+		"root": false
+	},
+	"a3v46483sztcedyu": {
+		"definition": "weapon_fan_of_knives_modifier_2",
+		"x": -138.56406460551017,
+		"y": -180,
+		"root": false
+	},
+	"vgibautia72ywqv4": {
+		"definition": "weapon_frostbolt_modifier_1",
+		"x": 34.64101615137754,
+		"y": 0,
+		"root": false
+	},
+	"vs40k7m8vig8s6cb": {
+		"definition": "weapon_frostbolt_modifier_2",
+		"x": 69.28203230275508,
+		"y": 0,
+		"root": false
+	},
+	"4hcdz3kjdgfthpe9": {
+		"definition": "weapon_glaive_root",
+		"x": -86.60254037844385,
+		"y": -90,
+		"root": true
+	},
+	"htir4bxlgvx624m8": {
+		"definition": "weapon_thrust_modifier_1",
+		"x": -103.92304845413263,
+		"y": -120,
+		"root": false
+	},
+	"703u6kt9mqzjb8hf": {
+		"definition": "weapon_thrust_modifier_2",
+		"x": -69.28203230275508,
+		"y": -120,
+		"root": false
+	},
+	"kjhwog5cvu0fd423": {
+		"definition": "weapon_hammer_root",
+		"x": 17.320508075688764,
+		"y": -210,
+		"root": true
+	},
+	"pok3j408p7elbe5i": {
+		"definition": "weapon_ground_slam_modifier_2",
+		"x": 34.64101615137754,
+		"y": -240,
+		"root": false
+	},
+	"xjvpy11kqfjxiz8c": {
+		"definition": "weapon_ground_slam_modifier_1",
+		"x": -1.4210854715202004e-14,
+		"y": -240,
+		"root": false
+	},
+	"t99odhklai0v0udr": {
+		"definition": "weapon_holy_root",
+		"x": 86.60254037844385,
+		"y": -150,
+		"root": true
+	},
+	"10dwuldxy4v0rejy": {
+		"definition": "weapon_holy_shock_modifier_1",
+		"x": 69.28203230275511,
+		"y": -180,
+		"root": false
+	},
+	"636sydpvxvchj620": {
+		"definition": "weapon_holy_shock_modifier_2",
+		"x": 103.92304845413264,
+		"y": -180,
+		"root": false
+	},
+	"rvwkoplyotazu3n5": {
+		"definition": "weapon_mace_root",
+		"x": -69.28203230275508,
+		"y": -180,
+		"root": true
+	},
+	"8pfkxajvoxi9hm11": {
+		"definition": "weapon_sickle_root",
+		"x": -242.48711305964278,
+		"y": -120,
+		"root": true
+	},
+	"ztbdjgdnfdkrjd6f": {
+		"definition": "weapon_smash_modifier_1",
+		"x": -86.60254037844386,
+		"y": -210,
+		"root": false
+	},
+	"fzp7gbxbhvgb1758": {
+		"definition": "weapon_smash_modifier_2",
+		"x": -51.96152422706632,
+		"y": -210,
+		"root": false
+	},
+	"jg4rdekpojjpqgzp": {
+		"definition": "weapon_spear_root",
+		"x": -190.5255888325765,
+		"y": 30,
+		"root": true
+	},
+	"mv11rttm1p6dalpr": {
+		"definition": "weapon_impale_modifier_1",
+		"x": -207.84609690826525,
+		"y": 0,
+		"root": false
+	},
+	"ahq18v2wzy2b2x5b": {
+		"definition": "weapon_impale_modifier_2",
+		"x": -173.2050807568877,
+		"y": 0,
+		"root": false
+	},
+	"3gd4z8ipv6dd762q": {
+		"definition": "weapon_sword_root",
+		"x": -103.92304845413263,
+		"y": 0,
+		"root": true
+	},
+	"u32dz6o4se1372mn": {
+		"definition": "weapon_swift_strikes_modifier_1",
+		"x": -121.2435565298214,
+		"y": -30,
+		"root": false
+	},
+	"pyjwmexszfs979ga": {
+		"definition": "weapon_swift_strikes_modifier_2",
+		"x": -86.60254037844385,
+		"y": -30,
+		"root": false
+	},
+	"cxfj1quzdkamdtul": {
+		"definition": "weapon_swipe_modifier_1",
+		"x": -259.80762113533154,
+		"y": -150,
+		"root": false
+	},
+	"fx9azdf5p9s9l2ls": {
+		"definition": "weapon_swipe_modifier_2",
+		"x": -225.16660498395402,
+		"y": -150,
+		"root": false
+	},
+	"2z0dewuhp0qyd8o4": {
+		"definition": "weapon_whirlwind_modifier_1",
+		"x": -190.52558883257646,
+		"y": -90,
+		"root": false
+	},
+	"vhw819z02ezvywjk": {
+		"definition": "weapon_whirlwind_modifier_2",
+		"x": -155.88457268119893,
+		"y": -90,
+		"root": false
+	},
+	"eg55qphw7cctd24u": {
+		"definition": "weapon_berserker_axe_root",
+		"x": -259.8076211353316,
+		"y": -30,
+		"root": true
+	},
+	"9mnmk2j2h4vgb2go": {
+		"definition": "weapon_witcher_swords_root",
+		"x": -207.84609690826525,
+		"y": 120,
+		"root": true
+	},
+	"ku2kw9afkkuiazpo": {
+		"definition": "weapon_witcher_swords_modifier_2",
+		"x": -190.5255888325765,
+		"y": 90,
+		"root": false
+	},
+	"ukma1fwlau8es079": {
+		"definition": "weapon_witcher_swords_modifier_1",
+		"x": -225.16660498395402,
+		"y": 90,
+		"root": false
+	},
+	"oix3o2x7dfazvtzd": {
+		"definition": "weapon_knuckle_root",
+		"x": -277.12812921102034,
+		"y": 60,
+		"root": true
+	},
+	"whg7mn0s1l095dam": {
+		"definition": "weapon_knuckle_modifier_2",
+		"x": -259.80762113533154,
+		"y": 30,
+		"root": false
+	},
+	"lkxhay7zq0tmo5d9": {
+		"definition": "weapon_knuckle_modifier_1",
+		"x": -294.4486372867091,
+		"y": 30,
+		"root": false
+	},
+	"pa0wbjkf0xhlouw4": {
+		"definition": "weapon_berserker_axe_modifier_2",
+		"x": -242.4871130596428,
+		"y": -60,
+		"root": false
+	},
+	"d0woaqyp5mb23r7q": {
+		"definition": "weapon_berserker_axe_modifier_1",
+		"x": -277.12812921102034,
+		"y": -60,
+		"root": false
+	}
+}

@@ -14,6 +14,60 @@
   "target": {
     "type": "FROM_TRIGGER"
   },
+  "deliver": {
+    "type": "CLOUD",
+    "clouds": [
+      {
+        "volume": {
+          "radius": 2.0,
+          "area": {
+            "vertical_range_multiplier": 1.5
+          }
+        },
+        "time_to_live_seconds": 5.0,
+        "impact_tick_interval": 20,
+        "delay_ticks": 5,
+        "presence_sound": {
+          "id": "more_rpg_classes:air_magic_cast1",
+          "volume": 0.5
+        },
+        "client_data": {
+          "particles": [
+            {
+              "id": "spell_engine:smoke_medium",
+              "appearance": {},
+              "batch": {
+                "count": 10.0,
+                "shape": "SPHERE",
+                "anchor": "ENTITY",
+                "min_speed": 0.1,
+                "max_speed": 0.5
+              }
+            }
+          ],
+          "model_fx": [
+            {
+              "model_id": "elemental_wizards_rpg:effect/tornado",
+              "light_emission": "NONE",
+              "scale": 1.5,
+              "duration": 100,
+              "animations": [
+                {
+                  "start": 0,
+                  "end": 100,
+                  "easing": "LINEAR",
+                  "operation": "rotate",
+                  "x": 0.0,
+                  "y": -2000.0,
+                  "z": 0.0
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ]
+  },
   "impacts": [
     {
       "action": {
@@ -29,16 +83,21 @@
           }
         ]
       },
-      "particles": [
-        {
-          "particle_id": "spell_engine:smoke_medium",
-          "origin": "CENTER",
-          "shape": "SPHERE",
-          "count": 10.0,
-          "min_speed": 0.1,
-          "max_speed": 0.5
-        }
-      ],
+      "visuals": {
+        "particles": [
+          {
+            "id": "spell_engine:smoke_medium",
+            "appearance": {},
+            "batch": {
+              "count": 10.0,
+              "shape": "SPHERE",
+              "anchor": "ENTITY",
+              "min_speed": 0.1,
+              "max_speed": 0.5
+            }
+          }
+        ]
+      },
       "sound": {
         "id": "more_rpg_classes:air_magic_cast1",
         "volume": 0.5

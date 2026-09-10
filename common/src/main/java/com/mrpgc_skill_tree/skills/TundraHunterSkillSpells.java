@@ -264,7 +264,7 @@ public class TundraHunterSkillSpells {
     }
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_4_spell_2_root = add(MrpgSkillsCommon.companionRoot(
             MrpgSkillSpells.Category.TUNDRA_HUNTER, MrpgSkillSpells.tundraHunterSchool,
-            "tundra_hunter_tier_4_spell_2_root", "archers_expansion:bearward", "Polar Bearward", 10));
+            "tundra_hunter_tier_4_spell_2_root", "archers_expansion:bearward", "Polar Bearward", 5));
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_4_spell_2_modifier_1 = add(tundra_hunter_tier_4_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry tundra_hunter_tier_4_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_4_spell_2_modifier_1");

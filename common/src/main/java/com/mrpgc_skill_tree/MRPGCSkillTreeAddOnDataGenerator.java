@@ -72,6 +72,7 @@ public class MRPGCSkillTreeAddOnDataGenerator implements DataGeneratorEntrypoint
 			translationBuilder.add("modifier_condition.mrpgc_skill_tree.harp_crossbow", "While wielding a Harp Crossbow:");
 			translationBuilder.add("modifier_condition.mrpgc_skill_tree.knuckles", "While wielding Knuckles:");
 			translationBuilder.add("modifier_condition.mrpgc_skill_tree.berserker_axe", "While wielding a Berserker Axe:");
+			translationBuilder.add("modifier_condition.mrpgc_skill_tree.rapier", "While wielding a Rapier:");
 		}
 	}
 	public static class SoundGen extends SimpleSoundGeneratorV2 {
@@ -138,7 +139,10 @@ public class MRPGCSkillTreeAddOnDataGenerator implements DataGeneratorEntrypoint
 				ArrayList<Reward> rewards = new ArrayList<>();
 				if (skill.attributeReward() != null) {
 					var attribute = skill.attributeReward();
-					rewards.add(new Reward(AttributeReward.ID.toString(), RewardAttribute.from(attribute.attribute(),  attribute.modifier())));
+					RewardAttribute rewardAttribute = attribute.attributeId() != null
+							? new RewardAttribute(attribute.attributeId(), attribute.modifier().value(), operationName(attribute.modifier().operation()))
+							: RewardAttribute.from(attribute.attribute(), attribute.modifier());
+					rewards.add(new Reward(AttributeReward.ID.toString(), rewardAttribute));
 				}
 				if(skill.spellReward() != null) {
 					rewards.add(new Reward(SpellContainerReward.ID.toString(), new SpellContainerReward.DataStructure(skill.spellReward())));
@@ -150,6 +154,14 @@ public class MRPGCSkillTreeAddOnDataGenerator implements DataGeneratorEntrypoint
 				skillDefinitions.put(skill.id(), format);
 			}
 			return skillDefinitions;
+		}
+
+		private static String operationName(net.minecraft.entity.attribute.EntityAttributeModifier.Operation operation) {
+			return switch (operation) {
+				case ADD_VALUE -> "addition";
+				case ADD_MULTIPLIED_BASE -> "multiply_base";
+				case ADD_MULTIPLIED_TOTAL -> "multiply_total";
+			};
 		}
 	}
 }

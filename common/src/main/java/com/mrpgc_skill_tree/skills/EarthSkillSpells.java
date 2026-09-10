@@ -1,41 +1,28 @@
 package com.mrpgc_skill_tree.skills;
 
-import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
-import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.client.particle.MoreParticles;
-import net.more_rpg_classes.custom.MoreSpellSchools;
-import net.more_rpg_classes.effect.MRPGCEffects;
-import net.skill_tree_rpgs.skills.SkillSounds;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.entity.SpellEntityPredicates;
-import net.spell_engine.api.render.LightEmission;
-import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.fx.Fx;
 import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.summon.AttributeScaling;
+import net.spell_engine.api.spell.summon.SummonBehaviour;
 import net.spell_engine.api.spell.fx.Sound;
-import net.spell_engine.api.util.TriState;
 import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
-import net.spell_engine.fx.SpellEngineSounds;
 import net.spell_engine.internals.target.SpellTarget;
-import net.spell_power.api.SpellSchool;
-import net.spell_power.api.SpellSchools;
 import com.mrpgc_skill_tree.effect.MrpgSkillEffects;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
-import static com.mrpgc_skill_tree.MRPGCSkillTreeAddOn.MOD_ID;
 import static net.skill_tree_rpgs.skills.SkillsCommon.*;
 
 public class EarthSkillSpells {
@@ -473,54 +460,121 @@ public class EarthSkillSpells {
     }
     public static final MrpgSkillSpells.Entry earth_tier_4_spell_2_root = add(MrpgSkillsCommon.companionRoot(
             MrpgSkillSpells.Category.EARTH, MrpgSkillSpells.earthWizardSchool,
-            "earth_tier_4_spell_2_root", "elemental_wizards_rpg:terra_earth_golem", "Earth Golem", 10));
+            "earth_tier_4_spell_2_root", "elemental_wizards_rpg:terra_earth_golem", "Earth Golem", 5));
     public static final MrpgSkillSpells.Entry earth_tier_4_spell_2_modifier_1 = add(earth_tier_4_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry earth_tier_4_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_4_spell_2_modifier_1");
-        var title = "Boulder Fists";
-        var description = "The summoned Earth Golem has increased attack damage and attack speed.";
+        var title = "Miniature Golems";
+        var description = "Earth Golem also summons two smaller, weaker golems that can only hurl stones.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.earthWizardSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "elemental_wizards_rpg:terra_earth_golem";
-
-        var attackDamage = new AttributeScaling.Entry();
-        attackDamage.attribute_id = "minecraft:generic.attack_damage";
-        attackDamage.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
-                "minecraft:generic.attack_damage", EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE, 0.25, 0.0));
-        var attackSpeed = new AttributeScaling.Entry();
-        attackSpeed.attribute_id = "minecraft:generic.attack_speed";
-        attackSpeed.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
-                "minecraft:generic.attack_speed", EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE, 0.25, 0.0));
-        modifier.summon_attribute_scaling = new AttributeScaling();
-        modifier.summon_attribute_scaling.entries = List.of(attackDamage, attackSpeed);
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(miniGolemSummonImpact());
 
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.EARTH));
     }
+    private static Spell.Impact miniGolemSummonImpact() {
+        var behaviour = new SummonBehaviour();
+        behaviour.lifespan = new SummonBehaviour.Lifespan();
+        behaviour.lifespan.active_seconds = 30;
+        behaviour.lifespan.spawn_ticks = 20;
+        behaviour.lifespan.despawn_ticks = 20;
+        behaviour.movement = new SummonBehaviour.Movement();
+        behaviour.movement.can_move = true;
+        behaviour.movement.affected_by_gravity = true;
+        behaviour.movement.is_pushable = false;
+        behaviour.movement.collision = SummonBehaviour.Movement.CollisionMode.ENEMIES;
+        behaviour.movement.follow = new SummonBehaviour.Movement.Follow();
+        behaviour.movement.follow.start_distance = 12F;
+        behaviour.movement.follow.stop_distance = 6F;
+        behaviour.movement.follow.teleport_after_distance = 32F;
+        behaviour.targeting = new SummonBehaviour.Targeting();
+        behaviour.targeting.automatic_targeting = SummonBehaviour.Targeting.AutoTarget.HOSTILE;
+        behaviour.targeting.attack_with_owner = true;
+        behaviour.targeting.revenge = true;
+        behaviour.targeting.detection_range = new SummonBehaviour.Targeting.DetectionRange();
+        behaviour.targeting.detection_range.mode = SummonBehaviour.Targeting.DetectionRange.Mode.MAXIMUM_ACTION_RANGE;
+        behaviour.dimensions = new SummonBehaviour.Dimensions();
+        behaviour.dimensions.width = 0.45F;
+        behaviour.dimensions.height = 1.2F;
+
+        var stoneThrow = new SummonBehaviour.Action.SpellCast();
+        stoneThrow.spell_id = "elemental_wizards_rpg:terra_stone_throw";
+        stoneThrow.cooldown = 40;
+        stoneThrow.range = new SummonBehaviour.Action.SpellCast.Range();
+        stoneThrow.range.min = 0F;
+        stoneThrow.range.max = 1.0F;
+        behaviour.actions = List.of(SummonBehaviour.Action.spell(stoneThrow));
+
+        var health = new AttributeScaling.Entry();
+        health.attribute_id = "minecraft:generic.max_health";
+        health.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
+                "minecraft:generic.max_health", EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE, -0.5, 0.0));
+        var power = new AttributeScaling.Entry();
+        power.attribute_id = "spell_power:earth";
+        power.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
+                "spell_power:earth", EntityAttributeModifier.Operation.ADD_VALUE, 1.0, 0.05));
+        var size = new AttributeScaling.Entry();
+        size.attribute_id = "minecraft:generic.scale";
+        size.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
+                "minecraft:generic.scale", EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE, -0.35, 0.0));
+
+        var summon = new Spell.Impact.Action.Summon();
+        summon.entity_type_id = "elemental_wizards_rpg:earth_golem";
+        summon.behaviour = behaviour;
+        summon.spawn_count = 2;
+        summon.attribute_scaling = new AttributeScaling();
+        summon.attribute_scaling.entries = List.of(health, power, size);
+        var placement = new Spell.EntityPlacement();
+        placement.apply_yaw = true;
+        placement.location_offset_by_look = 2;
+        placement.force_onto_ground = true;
+        summon.placements = List.of(placement);
+
+        var impact = new Spell.Impact();
+        impact.action = new Spell.Impact.Action();
+        impact.action.type = Spell.Impact.Action.Type.SUMMON;
+        impact.action.summon = summon;
+        return impact;
+    }
     public static final MrpgSkillSpells.Entry earth_tier_4_spell_2_modifier_2 = add(earth_tier_4_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry earth_tier_4_spell_2_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_4_spell_2_modifier_2");
-        var title = "Bedrock Body";
-        var description = "The summoned Earth Golem takes reduced damage and has increased health.";
+        var title = "Giant Golem";
+        var description = "The summoned Earth Golem grows larger, gaining health and attack damage while taking reduced damage and knockback.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.earthWizardSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "elemental_wizards_rpg:terra_earth_golem";
 
-        var damageTaken = new AttributeScaling.Entry();
-        damageTaken.attribute_id = "spell_engine:damage_taken";
-        damageTaken.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
-                "spell_engine:damage_taken", EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL, -0.25, 0.0));
+        var scale = new AttributeScaling.Entry();
+        scale.attribute_id = "minecraft:generic.scale";
+        scale.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
+                "minecraft:generic.scale", EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE, 0.5, 0.0));
         var maxHealth = new AttributeScaling.Entry();
         maxHealth.attribute_id = "minecraft:generic.max_health";
         maxHealth.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
-                "minecraft:generic.max_health", EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE, 0.3, 0.0));
+                "minecraft:generic.max_health", EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE, 0.5, 0.0));
+        var attackDamage = new AttributeScaling.Entry();
+        attackDamage.attribute_id = "minecraft:generic.attack_damage";
+        attackDamage.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
+                "minecraft:generic.attack_damage", EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE, 0.3, 0.0));
+        var damageTaken = new AttributeScaling.Entry();
+        damageTaken.attribute_id = "spell_engine:damage_taken";
+        damageTaken.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
+                "spell_engine:damage_taken", EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL, -0.2, 0.0));
+        var knockbackResistance = new AttributeScaling.Entry();
+        knockbackResistance.attribute_id = "minecraft:generic.knockback_resistance";
+        knockbackResistance.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
+                "minecraft:generic.knockback_resistance", EntityAttributeModifier.Operation.ADD_VALUE, 0.2, 0.0));
         modifier.summon_attribute_scaling = new AttributeScaling();
-        modifier.summon_attribute_scaling.entries = List.of(damageTaken, maxHealth);
+        modifier.summon_attribute_scaling.entries = List.of(scale, maxHealth, attackDamage, damageTaken, knockbackResistance);
 
         spell.modifiers = List.of(modifier);
 
