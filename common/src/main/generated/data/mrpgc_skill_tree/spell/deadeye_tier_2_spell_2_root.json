@@ -6,9 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "archers_expansion:fast_shot",
-      "power_modifier": {
-        "power_multiplier": 0.1
-      }
+      "effect_duration_add": 2.0
     }
   ]
 }

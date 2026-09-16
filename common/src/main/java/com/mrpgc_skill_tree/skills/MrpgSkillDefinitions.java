@@ -109,6 +109,15 @@ public class MrpgSkillDefinitions {
     public static final float ROOT_MULTIPLIER = 0.01f;
     public static final float BOOST_MULTIPLIER = 0.01f;
 
+    public static final float WEAPON_ROOT_DAMAGE = 0.05f;
+    public static final float WEAPON_ROOT_CRIT_CHANCE = 0.04f;
+    public static final float WEAPON_ROOT_CRIT_DAMAGE = 0.08f;
+    public static final float WEAPON_ROOT_HASTE = 0.05f;
+
+    public static final String CRIT_CHANCE_ID = "critical_strike:chance";
+    public static final String CRIT_DAMAGE_ID = "critical_strike:damage";
+    public static final String ATTACK_DAMAGE_ID = EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString();
+
     private static List<SpellContainer> dummyContainer() {
         return List.of(SpellContainers.forWeapon(SpellContainer.ContentType.MAGIC, List.of(Identifier.of("wizards:fireball"))));
     }
@@ -576,7 +585,7 @@ public class MrpgSkillDefinitions {
     public static final Entry WEAPON_RAPIER_ROOT = addWeapon(
             Entry.conditionalAttribute("weapon_rapier_root", "Rapier Specialisation", null,
                     Icon.item("bards_rpg:iron_rapier"))
-            .withConditionalAttribute("minecraft:generic.attack_damage", null, 0.05,
+            .withConditionalAttribute(CRIT_CHANCE_ID, ATTACK_DAMAGE_ID, WEAPON_ROOT_CRIT_CHANCE,
                     "bards_rpg:rapiers", "modifier_condition.mrpgc_skill_tree.rapier").require(BARD));
     public static final Entry WEAPON_RAPIER_MODIFIER_1 = addWeapon(passiveSpell(MrpgWeaponSkills.weapon_rapier_modifier_1)
             .withIcon(Icon.spell(Identifier.of("more_rpg_classes", "puncture"))).require(BARD));
@@ -612,14 +621,14 @@ public class MrpgSkillDefinitions {
             .withConditionalAttribute("minecraft:generic.attack_damage", null, 0.05,
                     "witcher_rpg:witcher_swords", "modifier_condition.mrpgc_skill_tree.witcher_swords").require(WITCHER));
     public static final Entry WEAPON_WITCHER_SWORDS_MODIFIER_1 = addWeapon(
-            Entry.spell("weapon_witcher_swords_modifier_1", "Counterattack", null,
+            Entry.spell("weapon_witcher_swords_modifier_1", "Arrow Deflection", null,
                     Icon.spell(Identifier.of("witcher_rpg", "defensive_witcher_mechanics")),
-                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "defensive_witcher_mechanics")))
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/arrow_deflection")))
             ).require(WITCHER));
     public static final Entry WEAPON_WITCHER_SWORDS_MODIFIER_2 = addWeapon(
-            Entry.spell("weapon_witcher_swords_modifier_2", "Arrow Deflection", null,
+            Entry.spell("weapon_witcher_swords_modifier_2", "Counterattack", null,
                     Icon.spell(Identifier.of("witcher_rpg", "defensive_witcher_mechanics")),
-                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "defensive_witcher_mechanics")))
+                    List.of(SpellContainers.forModifier(Identifier.of("witcher_rpg", "spell_modifiers/counterattack")))
             ).require(WITCHER));
 
     ///WITCHER CLASS ANCHOR

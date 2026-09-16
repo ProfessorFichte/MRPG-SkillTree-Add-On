@@ -7,7 +7,7 @@
     {
       "spell_pattern": "witcher_rpg:rend",
       "power_modifier": {
-        "critical_damage_bonus": 0.15
+        "power_multiplier": 0.1
       }
     }
   ]

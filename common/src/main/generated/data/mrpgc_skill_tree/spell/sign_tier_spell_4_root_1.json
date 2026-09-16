@@ -7,7 +7,7 @@
     {
       "spell_pattern": "witcher_rpg:igni_firestream",
       "power_modifier": {
-        "critical_chance_bonus": 0.1
+        "critical_chance_bonus": 0.05
       }
     }
   ]

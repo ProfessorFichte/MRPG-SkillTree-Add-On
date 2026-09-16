@@ -3342,7 +3342,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "archers_expansion:textures/spell/venom_cask.png"
+        "texture": "archers_expansion:textures/spell/venom_cask_cloud.png"
       }
     },
     "required_mods": [
@@ -3379,7 +3379,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "archers_expansion:textures/spell/venom_cask.png"
+        "texture": "archers_expansion:textures/spell/venom_cask_cloud.png"
       }
     },
     "required_mods": [
@@ -3416,7 +3416,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "archers_expansion:textures/spell/venom_cask.png"
+        "texture": "archers_expansion:textures/spell/venom_cask_cloud.png"
       }
     },
     "required_mods": [

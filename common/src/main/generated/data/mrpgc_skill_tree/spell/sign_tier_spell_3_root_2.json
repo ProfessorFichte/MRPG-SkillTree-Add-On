@@ -6,7 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "witcher_rpg:axii",
-      "cooldown_duration_deduct": 2.0
+      "effect_duration_add": 1.0
     }
   ]
 }

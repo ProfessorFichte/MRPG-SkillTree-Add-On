@@ -334,7 +334,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "forcemaster_rpg:textures/spell/burstcrack.png"
+        "texture": "more_rpg_classes:textures/spell/burstcrack.png"
       }
     },
     "required_mods": [
@@ -748,7 +748,7 @@
       {
         "type": "skill_tree_rpgs:conditional_attribute",
         "data": {
-          "attribute": "minecraft:generic.attack_damage",
+          "attribute": "critical_strike:chance",
           "condition": {
             "equipment": {
               "slot": "mainhand",
@@ -756,8 +756,9 @@
             },
             "translationKey": "modifier_condition.mrpgc_skill_tree.rapier"
           },
+          "fallbackAttribute": "minecraft:generic.attack_damage",
           "operation": "multiply_base",
-          "value": 0.05
+          "value": 0.03999999910593033
         }
       }
     ],
@@ -1013,7 +1014,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "witcher_rpg:defensive_witcher_mechanics"
+                "witcher_rpg:spell_modifiers/arrow_deflection"
               ]
             }
           ]
@@ -1050,7 +1051,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "witcher_rpg:defensive_witcher_mechanics"
+                "witcher_rpg:spell_modifiers/counterattack"
               ]
             }
           ]

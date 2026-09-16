@@ -5,6 +5,7 @@ import net.minecraft.util.Identifier;
 import net.more_rpg_classes.effect.MRPGCEffects;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.effect.SpellEngineEffects;
+import net.spell_engine.api.entity.SpellEngineAttributes;
 import net.spell_engine.api.entity.SpellEntityPredicates;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.fx.Fx;
@@ -114,14 +115,19 @@ public class BerserkerSkillSpells {
     private static MrpgSkillSpells.Entry berserker_tier_2_spell_2_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_spell_2_modifier_2");
         var title = "Weakening Grasp";
-        var description = "Apprehend also inflicts Grievous Wounds, increasing damage taken for {effect_duration} sec.";
+        var effect = MRPGCEffects.GRIEVOUS_WOUNDS;
+        var description = "Apprehend also inflicts Grievous Wounds, increasing damage taken by "
+                + TooltipTokens.effect(effect.id, 0, SpellEngineAttributes.DAMAGE_TAKEN.id)
+                + " and reducing healing received by "
+                + TooltipTokens.effect(effect.id, 0, SpellEngineAttributes.HEALING_TAKEN.id, TooltipTokens.Format.ABS)
+                + " for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.berserkerSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "berserker_rpg:apprehend";
 
-        var debuff = SpellBuilder.Impacts.effectSet(MRPGCEffects.GRIEVOUS_WOUNDS.id.toString(), 6, 0);
+        var debuff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 6, 0);
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(debuff);
 
@@ -294,7 +300,11 @@ public class BerserkerSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_4_spell_1_modifier_2");
         var title = "Norse Blood Ritual";
         var effect = MRPGCEffects.GRIEVOUS_WOUNDS;
-        var description = "Bleeding targets near the caster receive Grievous Wounds, increasing damage taken and reducing healing received, for {effect_duration} sec.";
+        var description = "Bleeding targets near the caster receive Grievous Wounds, increasing damage taken by "
+                + TooltipTokens.effect(effect.id, 0, SpellEngineAttributes.DAMAGE_TAKEN.id)
+                + " and reducing healing received by "
+                + TooltipTokens.effect(effect.id, 0, SpellEngineAttributes.HEALING_TAKEN.id, TooltipTokens.Format.ABS)
+                + " for {effect_duration} sec.";
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
         spell.school = MrpgSkillSpells.berserkerSchool;
         spell.range = 6;

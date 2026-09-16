@@ -6,9 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "witcher_rpg:aard_sweep",
-      "power_modifier": {
-        "power_multiplier": 0.1
-      }
+      "range_add": 1.0
     }
   ]
 }

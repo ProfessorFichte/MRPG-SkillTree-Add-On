@@ -9,8 +9,10 @@ import net.spell_engine.api.spell.fx.Fx;
 import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.Sound;
+import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
+import net.spell_power.api.SpellPowerMechanics;
 import net.spell_power.api.SpellSchools;
 import com.mrpgc_skill_tree.effect.MrpgSkillEffects;
 
@@ -74,7 +76,9 @@ public class BardSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_2_spell_2_modifier_1");
         var title = "Dirty Tricks";
         var effect = MrpgSkillEffects.DIRTY_TRICKS;
-        var description = "Vicious Mockery additionally applies Dirty Tricks, reducing the target's Ranged Haste, Attack Speed & Spell Haste for {effect_duration} sec.";
+        var description = "Vicious Mockery additionally applies Dirty Tricks, reducing the target's Ranged Haste, Attack Speed & Spell Haste by "
+                + TooltipTokens.effect(effect.id, 0, null, TooltipTokens.Format.ABS)
+                + " for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.bardSchool;
 
@@ -189,7 +193,8 @@ public class BardSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_3_spell_2_modifier_2");
         var title = "Weakening Paean";
         var effect = MrpgSkillEffects.WEAKENING_PAEAN;
-        var description = "Warden's Paean additionally increases incoming damage for affected enemies for {effect_duration} sec.";
+        var description = "Warden's Paean additionally increases incoming damage for affected enemies by "
+                + TooltipTokens.effect(effect.id) + " for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.bardSchool;
 
@@ -215,7 +220,8 @@ public class BardSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_4_spell_1_modifier_1");
         var title = "Repertoire";
         var effect = MrpgSkillEffects.REPERTOIRE;
-        var description = "Army's Paeon additionally grants Repertoire, increasing Critical Chance and Spell Critical Chance.";
+        var description = "Army's Paeon additionally grants Repertoire, increasing Critical Chance and Spell Critical Chance by "
+                + TooltipTokens.effect(effect.id) + ", stacking up to {effect_amplifier_cap} times, for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.bardSchool;
 
@@ -334,7 +340,11 @@ public class BardSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_1_passive_1");
         var title = "Charismatic Performance";
         var effect = MrpgSkillEffects.CHARISMATIC_PERFORMANCE;
-        var description = "Applying a status effect has {trigger_chance} chance to increase your Healing Spell Power & Spell Haste for {effect_duration} sec.";
+        var description = "Applying a status effect has {trigger_chance} chance to increase your Healing Spell Power by "
+                + TooltipTokens.effect(effect.id, 0, SpellSchools.HEALING.id)
+                + " and Spell Haste by "
+                + TooltipTokens.effect(effect.id, 0, SpellPowerMechanics.HASTE.id)
+                + " for {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.bardSchool;
@@ -389,7 +399,8 @@ public class BardSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_2_passive_1");
         var effect = MrpgSkillEffects.JOLLY_TIME;
         var title = "Jolly Time";
-        var description = "{trigger_chance} chance upon rolling to create a buff zone for {cloud_duration} sec, increasing offensive haste and slightly healing allies within it.";
+        var description = "{trigger_chance} chance upon rolling to create a buff zone for {cloud_duration} sec, increasing offensive haste by "
+                + TooltipTokens.effect(effect.id) + " and slightly healing allies within it.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.bardSchool;
@@ -432,7 +443,8 @@ public class BardSkillSpells {
         // Two status-effect impacts (Dancing Feet + jump boost), so the renderer emits
         // `{effect_duration_1}` / `{effect_duration_2}` and the bare token would render literally.
         // Both last 3 sec, so the first one is the one to show.
-        var description = "{trigger_chance} chance upon rolling to highly increase movement speed and jumping height for {effect_duration_1} sec.";
+        var description = "{trigger_chance} chance upon rolling to highly increase movement speed by "
+                + TooltipTokens.effect(effect.id) + " and jumping height for {effect_duration_1} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.bardSchool;

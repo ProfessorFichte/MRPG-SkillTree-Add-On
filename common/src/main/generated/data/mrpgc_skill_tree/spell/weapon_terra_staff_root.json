@@ -7,7 +7,7 @@
     {
       "spell_pattern": "elemental_wizards_rpg:terra_stone_spear",
       "power_modifier": {
-        "power_multiplier": 0.05
+        "critical_chance_bonus": 0.04
       }
     }
   ]

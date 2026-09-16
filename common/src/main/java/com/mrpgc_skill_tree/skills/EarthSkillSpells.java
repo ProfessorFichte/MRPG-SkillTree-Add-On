@@ -514,15 +514,15 @@ public class EarthSkillSpells {
         var health = new AttributeScaling.Entry();
         health.attribute_id = "minecraft:generic.max_health";
         health.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
-                "minecraft:generic.max_health", EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE, -0.5, 0.0));
+                "minecraft:generic.max_health", EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE, -0.6, 0.0));
         var power = new AttributeScaling.Entry();
         power.attribute_id = "spell_power:earth";
         power.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
-                "spell_power:earth", EntityAttributeModifier.Operation.ADD_VALUE, 1.0, 0.05));
+                "spell_power:earth", EntityAttributeModifier.Operation.ADD_VALUE, 0.75, 0.05));
         var size = new AttributeScaling.Entry();
         size.attribute_id = "minecraft:generic.scale";
         size.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
-                "minecraft:generic.scale", EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE, -0.35, 0.0));
+                "minecraft:generic.scale", EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE, -0.5, 0.0));
 
         var summon = new Spell.Impact.Action.Summon();
         summon.entity_type_id = "elemental_wizards_rpg:earth_golem";

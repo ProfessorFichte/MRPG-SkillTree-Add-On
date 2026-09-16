@@ -1,10 +1,12 @@
 package com.mrpgc_skill_tree.skills;
 
+import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.effect.MRPGCEffects;
 import net.spell_engine.api.datagen.SpellBuilder;
+import net.spell_engine.api.entity.SpellEngineAttributes;
 import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.fx.Fx;
@@ -113,7 +115,7 @@ public class TundraHunterSkillSpells {
         var description = "Hitting a Frosted target with Frozen Shot grants "
                 + TooltipTokens.effect(effect.id, 0,
                         Identifier.of(EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString()))
-                + " increased movement speed for {effect_duration} sec.";
+                + " increased movement speed and ranged haste for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.tundraHunterSchool;
 
@@ -197,7 +199,11 @@ public class TundraHunterSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_3_spell_2_modifier_2");
         var title = "Field Advantage";
         var effect = MrpgSkillEffects.FIELD_ADVANTAGE;
-        var description = "Frozen Fusillade grants you Field Advantage, increasing Ranged Haste and reducing incoming damage for {effect_duration} sec.";
+        var description = "Frozen Fusillade grants you Field Advantage, increasing Ranged Haste by "
+                + TooltipTokens.effect(effect.id, 0, EntityAttributes_RangedWeapon.HASTE.id)
+                + " and reducing incoming damage by "
+                + TooltipTokens.effect(effect.id, 0, SpellEngineAttributes.DAMAGE_TAKEN.id, TooltipTokens.Format.ABS)
+                + " for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.tundraHunterSchool;
 

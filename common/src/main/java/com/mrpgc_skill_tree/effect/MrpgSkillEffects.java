@@ -655,6 +655,30 @@ public class MrpgSkillEffects {
             )
     ));
     /// WAR ARCHER EFFECTS
+    public static Effects.Entry CHARGE_FROM_THE_FLAMES = add(new Effects.Entry(Identifier.of(MOD_ID, "charge_from_the_flames"),
+            "Charge from the Flames",
+            "Increased Spell Power, Ranged Attack & Attack Damage",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    SpellSchools.GENERIC.id.toString(),
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes_RangedWeapon.DAMAGE.id.toString(),
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
     public static Effects.Entry TOWER_PROTECTOR = add(new Effects.Entry(Identifier.of(MOD_ID, "tower_protector"),
             "Tower's Watch",
             "Increased Armor and Knockback Resistance",
@@ -699,6 +723,20 @@ public class MrpgSkillEffects {
             )
     ));
     /// BARD EFFECTS
+    public static Effects.Entry SWORD_MARK = add(new Effects.Entry(Identifier.of(MOD_ID, "sword_mark"),
+            "Sword Mark",
+            "Increased Attack Damage",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    0.1F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
     public static Effects.Entry DIRTY_TRICKS = add(new Effects.Entry(Identifier.of(MOD_ID, "dirty_tricks"),
             "Dirty Tricks",
             "Reduces Ranged Haste, Attack Speed & Spell Haste.",

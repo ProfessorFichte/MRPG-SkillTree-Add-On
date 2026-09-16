@@ -39,7 +39,8 @@ public class WaterSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_2_spell_1_modifier_1");
         var effect = MrpgSkillEffects.BUBBLE_SHIELD;
         var title = "Protecting Bubbles";
-        var description = "Bubble Beam grants allies " + effect.title + ", absorbing damage, for {effect_duration} sec.";
+        var description = "Bubble Beam grants allies " + effect.title + ", absorbing "
+                + TooltipTokens.effect(effect.id) + " damage, for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.waterWizardSchool;
 
@@ -184,7 +185,9 @@ public class WaterSkillSpells {
     private static MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_spell_2_modifier_1");
         var title = "Scald";
-        var description = "Hydro Beam scalds enemies, setting them ablaze, and stacks Scald on them up to 3 times, each stack lowering their spell power, attack damage and ranged weapon damage by 10%.";
+        var description = "Hydro Beam scalds enemies, setting them ablaze, and applies " + MrpgSkillEffects.SCALD.title
+                + ", stacking up to {effect_amplifier_cap} times, each stack lowering spell power, attack damage and ranged weapon damage by "
+                + TooltipTokens.effect(MrpgSkillEffects.SCALD.id, 0, null, TooltipTokens.Format.ABS) + ".";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.waterWizardSchool;
 
@@ -218,7 +221,7 @@ public class WaterSkillSpells {
     private static MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_spell_2_modifier_2");
         var title = "High Water Pressure";
-        var description = "Hydro Beam has {trigger_chance} chance to stun the target.";
+        var description = "Hydro Beam has {trigger_chance} chance to stun the target for {effect_duration} sec.";
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
         spell.school = MrpgSkillSpells.waterWizardSchool;
         spell.range = 0;
@@ -241,7 +244,7 @@ public class WaterSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_1_passive_1");
         var effect = MrpgSkillEffects.HYDRATION;
         var title = "Hydration";
-        var description = "Healing spells applies Hydration regenerating health for {effect_duration} sec.";
+        var description = "Healing spells applies Hydration regenerating health for {effect_duration} sec, stacking up to {effect_amplifier_cap} times.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.waterWizardSchool;
@@ -420,7 +423,8 @@ public class WaterSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_passive_1");
         var effect = MrpgSkillEffects.CALMING_FLOW;
         var title = "Calming Flow";
-        var description = "Water Spell Hits and heals have {trigger_chance_1} chance to enter a calming flow, reducing active water spell cooldowns while casting spells for a {stash_duration} sec.";
+        var description = "Water Spell Hits and heals have {trigger_chance_1} chance to enter a calming flow, reducing active water spell cooldowns by "
+                + TooltipTokens.bakedPercent(0.2F) + " while casting spells for a {stash_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.waterWizardSchool;

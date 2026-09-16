@@ -7,7 +7,7 @@
     {
       "spell_pattern": "elemental_wizards_rpg:terra_stone_spear",
       "replacing_area_impact": {
-        "radius": 3.75,
+        "radius": 5.0,
         "area": {
           "distance_dropoff": "SQUARED"
         },
@@ -16,7 +16,7 @@
             {
               "id": "more_rpg_classes:stone_explosion",
               "appearance": {
-                "scale": 1.875
+                "scale": 2.5
               },
               "batch": {
                 "count": 1.0,

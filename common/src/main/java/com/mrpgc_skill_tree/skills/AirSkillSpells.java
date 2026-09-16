@@ -38,7 +38,7 @@ public class AirSkillSpells {
     private static MrpgSkillSpells.Entry air_tier_2_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "air_tier_2_spell_1_modifier_1");
         var title = "Slow Fall";
-        var description = "Aeroblast has a {trigger_chance} to apply slow falling.";
+        var description = "Aeroblast has a {trigger_chance} to apply slow falling for {effect_duration} sec.";
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
         spell.school = MrpgSkillSpells.airWizardSchool;
         spell.range = 0;
@@ -234,7 +234,7 @@ public class AirSkillSpells {
         // so it is baked into the description instead of resolved at render time. `bakedPercent`
         // doubles the `%`: the lang value goes through `I18n.translate` -> `String.format`.
         var description = "Air spell impacts on targets below " + TooltipTokens.bakedPercent(healthThreshold)
-                + " makes the target more vulnerable to spell crits.";
+                + " makes the target more vulnerable to spell crits for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.airWizardSchool;
         spell.range = 0;
@@ -258,8 +258,6 @@ public class AirSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "air_tier_2_passive_1");
         var effect = MrpgSkillEffects.TAILWIND;
         var title = "Tailwind";
-        // `{bonus}` used to render literally here - no mutator was ever registered for this spell.
-        // Tailwind has a single modifier (movement speed +20%).
         var description = "{trigger_chance} chance upon rolling to leave tailwind behind for {cloud_duration} sec, increasing movement speed by "
                 + TooltipTokens.effect(effect.id)
                 + " for {effect_duration} sec.";
@@ -378,7 +376,8 @@ public class AirSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "air_tier_3_passive_1");
         var effect = MrpgSkillEffects.AIR_BUBBLE;
         var title = effect.title;
-        var description = "Air spells have {trigger_chance_1} chance, to grant you " + effect.title + ", absorbing damage and knocking attackers back, lasts {stash_duration} sec.";
+        var description = "Air spells have {trigger_chance_1} chance, to grant you " + effect.title + ", absorbing "
+                + TooltipTokens.effect(effect.id) + " damage and knocking attackers back, lasts {stash_duration} sec.";
         var duration = WIZARD_WARD_DURATION;
 
         var spell = SpellBuilder.createSpellPassive();
