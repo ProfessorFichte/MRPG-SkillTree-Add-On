@@ -287,9 +287,9 @@ public class MrpgWeaponSkills {
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
-    public static final MrpgSkillSpells.Entry weapon_lute_root = add(MrpgSkillsCommon.powerRoot(
+    public static final MrpgSkillSpells.Entry weapon_lute_root = add(MrpgSkillsCommon.channelRoot(
             MrpgSkillSpells.Category.WEAPON, MrpgSkillSpells.bardSchool,
-            "weapon_lute_root", "#bards_rpg:weapon/all_lute_songs", "Lute Songs", 0.05F));
+            "weapon_lute_root", "#bards_rpg:weapon/all_lute_songs", "Lute Songs", 1));
 
     public static final MrpgSkillSpells.Entry weapon_lute_modifier_1 = add(weapon_lute_modifier_1());
     private static MrpgSkillSpells.Entry weapon_lute_modifier_1() {
@@ -301,11 +301,13 @@ public class MrpgWeaponSkills {
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
         var trigger = SpellBuilder.Triggers.meleeAttackImpact();
-        trigger.chance = 0.1F;
+        trigger.chance = 0.15F;
         trigger.weapon_condition = "#bards_rpg:lutes";
         spell.passive.triggers = List.of(trigger);
 
         spell.impacts = List.of(SpellBuilder.Impacts.stun(1.5F));
+
+        SpellBuilder.Cost.cooldown(spell, 5F);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
@@ -326,9 +328,9 @@ public class MrpgWeaponSkills {
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WEAPON));
     }
 
-    public static final MrpgSkillSpells.Entry weapon_lyre_root = add(MrpgSkillsCommon.powerRoot(
+    public static final MrpgSkillSpells.Entry weapon_lyre_root = add(MrpgSkillsCommon.cooldownRoot(
             MrpgSkillSpells.Category.WEAPON, MrpgSkillSpells.bardSchool,
-            "weapon_lyre_root", "#bards_rpg:weapon/all_lyre_songs", "Lyre Songs", 0.05F));
+            "weapon_lyre_root", "#bards_rpg:weapon/all_lyre_songs", "Lyre Songs", 2F));
 
     public static final MrpgSkillSpells.Entry weapon_lyre_modifier_1 = add(weapon_lyre_modifier_1());
     private static MrpgSkillSpells.Entry weapon_lyre_modifier_1() {

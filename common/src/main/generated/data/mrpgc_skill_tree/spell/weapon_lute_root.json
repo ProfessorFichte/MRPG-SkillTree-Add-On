@@ -6,9 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "#bards_rpg:weapon/all_lute_songs",
-      "power_modifier": {
-        "power_multiplier": 0.05
-      }
+      "channel_ticks_add": 1
     }
   ]
 }

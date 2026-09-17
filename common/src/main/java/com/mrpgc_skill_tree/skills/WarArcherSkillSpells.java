@@ -30,15 +30,15 @@ public class WarArcherSkillSpells {
         return entry;
     }
 
-    public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_1_root = add(MrpgSkillsCommon.radiusRoot(
+    public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_1_root = add(MrpgSkillsCommon.cooldownRoot(
             MrpgSkillSpells.Category.WAR_ARCHER, MrpgSkillSpells.warArcherSchool,
-            "war_archer_tier_2_spell_1_root", "archers_expansion:smoldering_arrow", "Smoldering Arrow", 1.0F));
+            "war_archer_tier_2_spell_1_root", "archers_expansion:smoldering_arrow", "Smoldering Arrow", 2.0F));
     public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_1_modifier_1 = add(war_archer_tier_2_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry war_archer_tier_2_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_1_modifier_1");
         var title = "Expanded Smoldering Arrow";
 
-        var bonus = 0.5F;
+        var bonus = 1.0F;
         var description = "Increases the area of effect of Smoldering Arrow by "
                 + TooltipTokens.bakedPercent(bonus) + ".";
         var spell = SpellBuilder.createSpellModifier();
@@ -47,21 +47,8 @@ public class WarArcherSkillSpells {
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:smoldering_arrow";
         var extendedRadius = 2.0F * (1F + bonus);
-        modifier.replacing_area_impact = new Spell.AreaImpact();
-        Spell.AreaImpact area_impact = new Spell.AreaImpact();
-        area_impact.radius = extendedRadius;
-        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-        area_impact.visuals = Fx.Visuals.of(
-                ParticleGroupBuilder.of(SpellEngineParticles.fire_explosion)
-                        .scale(extendedRadius / 2)
-                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
-                                .count(1.0F).speed(0.0F, 0.0F)),
-                ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_b)
-                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
-                                .count(25.0F).speed(0.1F, 0.3F).preTravel(2)),
-                ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_b)
-                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
-                                .count(25.0F).speed(0.2F, 0.4F).preTravel(4)));
+        modifier.replacing_area_impact = SpellBuilder.Complex.fireExplosion(extendedRadius);
+
         modifier.replacing_area_impact.sound = new Sound("entity.generic.explode");
 
         spell.modifiers = List.of(modifier);
@@ -71,16 +58,15 @@ public class WarArcherSkillSpells {
     public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_1_modifier_2 = add(war_archer_tier_2_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry war_archer_tier_2_spell_1_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_1_modifier_2");
-        var title = "Explosive Push";
-        var description = "Increases the knockback of Smoldering Arrow by {knockback_multiply_base}.";
+        var title = "Improved Smoldering Arrow";
+        var description = "Get {stash_amplifier_add} additional Smoldering Arrow stack.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.warArcherSchool;
 
-        var bonus = 0.5F;
-
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:smoldering_arrow";
-        modifier.knockback_multiply_base = bonus;
+        modifier.stash_amplifier_add = 1;
+        modifier.effect_amplifier_cap_add = 1;
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
@@ -255,7 +241,7 @@ public class WarArcherSkillSpells {
     public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_1_modifier_2 = add(war_archer_tier_4_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry war_archer_tier_4_spell_1_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_4_spell_1_modifier_2");
-        var effect = MrpgSkillEffects.BLOODFLOW;
+        var effect = MrpgSkillEffects.CHARGE_FROM_THE_FLAMES;
         var title = "Charge from the Flames";
         var description = "Casting Scorched Earth grants you and nearby allies a buff, increasing offensive stats by "
                 + TooltipTokens.effect(effect.id)

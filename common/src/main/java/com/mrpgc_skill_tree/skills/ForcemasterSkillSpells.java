@@ -32,9 +32,9 @@ public class ForcemasterSkillSpells {
         return entry;
     }
 
-    public static final MrpgSkillSpells.Entry forcemaster_tier_2_spell_1_root = add(MrpgSkillsCommon.powerRoot(
+    public static final MrpgSkillSpells.Entry forcemaster_tier_2_spell_1_root = add(MrpgSkillsCommon.lingerRoot(
             MrpgSkillSpells.Category.FORCEMASTER, MrpgSkillSpells.forcemasterFighterSchool,
-            "forcemaster_tier_2_spell_1_root", "forcemaster_rpg:stonehand", "Stonehand", 0.15F));
+            "forcemaster_tier_2_spell_1_root", "forcemaster_rpg:stonehand", "Stonehand", 2F));
     public static final MrpgSkillSpells.Entry forcemaster_tier_2_spell_1_modifier_1 = add(forcemaster_tier_2_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry forcemaster_tier_2_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_2_spell_1_modifier_1");
@@ -154,14 +154,14 @@ public class ForcemasterSkillSpells {
     private static MrpgSkillSpells.Entry forcemaster_tier_4_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_4_spell_2_modifier_1");
         var title = "Powerful Asalraalaikum";
-        var description = "Asalraalaikum has {critical_chance_bonus} increased critical strike chance.";
+        var description = "Asalraalaikum deals {power_multiplier} more damage.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.forcemasterFighterSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "forcemaster_rpg:asal";
         modifier.power_modifier = new Spell.Impact.Modifier();
-        modifier.power_modifier.critical_chance_bonus = 0.15F;
+        modifier.power_modifier.power_multiplier = 0.2F;
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
@@ -170,9 +170,6 @@ public class ForcemasterSkillSpells {
     private static MrpgSkillSpells.Entry forcemaster_tier_4_spell_2_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_4_spell_2_modifier_2");
         var title = "Arcane Regeneration";
-        // `{power_multiplier}` rendered literally here: it resolves from a `Spell.Modifier`'s
-        // `power_modifier`, and this spell has no modifiers at all - the value is the heal impact's
-        // own coefficient against max health. Resolved by `MrpgSkillSpells.registerTooltipTokens`.
         var description = "Killing a target with Asalraalaikum heals you for " + MrpgSkillSpells.maxHealthPercentToken
                 + " of your max health.";
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
@@ -202,14 +199,14 @@ public class ForcemasterSkillSpells {
     private static MrpgSkillSpells.Entry forcemaster_tier_3_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_3_spell_2_modifier_1");
         var title = "Sphere Mastery";
-        var description = "Nen Sphere has {critical_chance_bonus} increased critical strike chance.";
+        var description = "Nen Sphere has {critical_damage_bonus} increased critical strike chance.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.forcemasterFighterSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "forcemaster_rpg:nen_sphere";
         modifier.power_modifier = new Spell.Impact.Modifier();
-        modifier.power_modifier.critical_chance_bonus = 0.15F;
+        modifier.power_modifier.critical_damage_bonus = 0.15F;
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.FORCEMASTER));
@@ -383,11 +380,6 @@ public class ForcemasterSkillSpells {
         var title = "Sury's Tenacity";
         final var healthThreshold = 0.3F;
         var effect = MrpgSkillEffects.SURYS_TENACITY;
-        // Three modifiers that do NOT all share a value: attack speed +20%, movement speed +20% and
-        // tenacity +100%. The old `firstModifier()` read happened to land on attack speed, but the
-        // status effect's modifier map is unordered, so it is named explicitly - picking tenacity
-        // would print "100%". The health threshold is a compile-time constant of this mod, so it is
-        // baked in (`bakedPercent` doubles the `%` for `I18n.translate` -> `String.format`).
         var description = "When taking damage below " + TooltipTokens.bakedPercent(healthThreshold)
                 + ", attack & movement speed gets increased by "
                 + TooltipTokens.effect(effect.id, 0,
@@ -407,8 +399,6 @@ public class ForcemasterSkillSpells {
                 ParticleGroupBuilder.magic(SpellEngineParticles.magic_arcane, ParticleGroup.Motion.DECELERATE, MIGHT_COLOR)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .count(30).speed(0.5F, 0.5F)),
-                // V1 `aura_effect_642` was zone/effect_642 registered a second time camera-facing.
-                // 1.10 keeps one entry, so the aura role is the facing override.
                 ParticleGroupBuilder.of(SpellEngineParticles.area_effect_642)
                         .facing(ParticleGroup.Facing.CAMERA)
                         .color(MIGHT_COLOR)
@@ -426,8 +416,6 @@ public class ForcemasterSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_3_passive_2");
         var title = "Sury's Grace";
         var effect = MrpgSkillEffects.SURYS_GRACE;
-        // Two modifiers (arcane spell power, spell haste), both +20%. The status effect's modifier map
-        // is unordered, so the attribute is named explicitly rather than read by list position.
         var description = "Casting Forcemaster Spells has a {trigger_chance} to increase arcane spell power & spell haste by "
                 + TooltipTokens.effect(effect.id, 0, SpellSchools.ARCANE.id)
                 + " for {effect_duration} sec.";
@@ -447,7 +435,6 @@ public class ForcemasterSkillSpells {
                                 Color.from(SpellSchools.ARCANE.color))
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .count(30).speed(0.5F, 0.5F)),
-                // V1 `aura_effect_642` was zone/effect_642 registered a second time camera-facing.
                 ParticleGroupBuilder.of(SpellEngineParticles.area_effect_642)
                         .facing(ParticleGroup.Facing.CAMERA)
                         .color(Color.from(SpellSchools.ARCANE.color))
@@ -461,7 +448,7 @@ public class ForcemasterSkillSpells {
     }
     public static final MrpgSkillSpells.Entry forcemaster_tier_2_spell_2_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.FORCEMASTER, MrpgSkillSpells.forcemasterCasterSchool,
-            "forcemaster_tier_2_spell_2_root", "forcemaster_rpg:baraqijal_esna", "Baraqijal Esna", 0.15F));
+            "forcemaster_tier_2_spell_2_root", "forcemaster_rpg:baraqijal_esna", "Baraqijal Esna", 0.1F));
     public static final MrpgSkillSpells.Entry forcemaster_tier_2_spell_2_modifier_1 = add(forcemaster_tier_2_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry forcemaster_tier_2_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_2_spell_2_modifier_1");
@@ -495,7 +482,7 @@ public class ForcemasterSkillSpells {
     }
     public static final MrpgSkillSpells.Entry forcemaster_tier_4_spell_1_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.FORCEMASTER, MrpgSkillSpells.forcemasterFighterSchool,
-            "forcemaster_tier_4_spell_1_root", "forcemaster_rpg:sonic_hand", "Sonic Hand", 0.05F));
+            "forcemaster_tier_4_spell_1_root", "forcemaster_rpg:sonic_hand", "Sonic Hand", 0.1F));
     public static final MrpgSkillSpells.Entry forcemaster_tier_4_spell_1_modifier_1 = add(forcemaster_tier_4_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry forcemaster_tier_4_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "forcemaster_tier_4_spell_1_modifier_1");

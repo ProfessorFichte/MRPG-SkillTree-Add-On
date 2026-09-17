@@ -6,9 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "bards_rpg:wardens_paean",
-      "power_modifier": {
-        "power_multiplier": 0.15
-      }
+      "effect_duration_add": 2.0
     }
   ]
 }

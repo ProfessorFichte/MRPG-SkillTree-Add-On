@@ -6,7 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "berserker_rpg:outrage",
-      "cooldown_duration_deduct": 5.0
+      "cooldown_duration_deduct": 2.0
     }
   ]
 }

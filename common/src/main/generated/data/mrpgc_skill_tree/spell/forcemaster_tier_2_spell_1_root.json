@@ -6,9 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "forcemaster_rpg:stonehand",
-      "power_modifier": {
-        "power_multiplier": 0.15
-      }
+      "effect_duration_add": 2.0
     }
   ]
 }

@@ -351,6 +351,20 @@ public class MrpgSkillEffects {
                     )
             )
     ));
+    public static Effects.Entry NORSE_WARMONGER = add(new Effects.Entry(Identifier.of(MOD_ID, "norse_warmonger"),
+            "Norse Warmonger",
+            "Increased Attack Damage",
+            new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
+            new EffectConfig(
+                    List.of(
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString(),
+                                    0.25F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            )
+                    )
+            )
+    ));
     public static Effects.Entry RECKLESS_RAGE = add(new Effects.Entry(Identifier.of(MOD_ID, "reckless_rage"),
             "Reckless Rage",
             "Absorbs damage.",
@@ -862,13 +876,18 @@ public class MrpgSkillEffects {
     ));
     public static Effects.Entry DANCING_FEET = add(new Effects.Entry(Identifier.of(MOD_ID, "dancing_feet"),
             "Dancing Feet",
-            "Greatly increases Movement Speed.",
+            "Greatly increases Movement Speed and Jump Strength.",
             new CustomStatusEffect(StatusEffectCategory.BENEFICIAL, 0x9999ff),
             new EffectConfig(
                     List.of(
                             new AttributeModifier(
                                     EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString(),
-                                    0.6F,
+                                    0.25F,
+                                    EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
+                            ),
+                            new AttributeModifier(
+                                    EntityAttributes.GENERIC_JUMP_STRENGTH.getIdAsString(),
+                                    0.1F,
                                     EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE
                             )
                     )

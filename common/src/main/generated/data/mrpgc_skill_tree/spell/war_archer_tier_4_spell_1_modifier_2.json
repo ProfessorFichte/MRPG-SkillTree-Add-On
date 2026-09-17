@@ -126,7 +126,7 @@
       "action": {
         "type": "STATUS_EFFECT",
         "status_effect": {
-          "effect_id": "mrpgc_skill_tree:bloodflow",
+          "effect_id": "mrpgc_skill_tree:charge_from_the_flames",
           "duration": 4.0
         }
       }

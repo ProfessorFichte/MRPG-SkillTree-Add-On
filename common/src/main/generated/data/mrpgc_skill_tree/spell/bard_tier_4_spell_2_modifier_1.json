@@ -47,6 +47,7 @@
           "composite_model": {
             "models": [
               {
+                "rotate_degrees_per_tick": 0.0,
                 "fx": {
                   "model_id": "bards_rpg:spell_projectile/crescendo",
                   "light_emission": "RADIATE",

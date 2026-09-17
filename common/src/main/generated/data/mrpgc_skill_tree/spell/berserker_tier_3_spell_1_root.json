@@ -7,7 +7,7 @@
     {
       "spell_pattern": "berserker_rpg:bloody_strike",
       "power_modifier": {
-        "power_multiplier": 0.15
+        "power_multiplier": 0.1
       }
     }
   ]

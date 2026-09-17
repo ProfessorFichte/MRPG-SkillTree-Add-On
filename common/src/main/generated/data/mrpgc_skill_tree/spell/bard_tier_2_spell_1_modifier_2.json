@@ -6,7 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "bards_rpg:magical_ballad",
-      "projectile_scale_multiply": 0.4
+      "channel_ticks_add": 2
     }
   ]
 }

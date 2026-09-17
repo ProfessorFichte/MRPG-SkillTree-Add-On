@@ -10,7 +10,7 @@
     "triggers": [
       {
         "type": "MELEE_IMPACT",
-        "chance": 0.1,
+        "chance": 0.15,
         "weapon_condition": "#bards_rpg:lutes"
       }
     ]
@@ -33,6 +33,9 @@
     }
   ],
   "cost": {
-    "durability": 0
+    "durability": 0,
+    "cooldown": {
+      "duration": 5.0
+    }
   }
 }

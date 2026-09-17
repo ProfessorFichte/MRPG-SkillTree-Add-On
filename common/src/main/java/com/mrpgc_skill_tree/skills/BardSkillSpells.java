@@ -29,9 +29,9 @@ public class BardSkillSpells {
     }
 
     /// MAGICAL BALLAD
-    public static final MrpgSkillSpells.Entry bard_tier_2_spell_1_root = add(MrpgSkillsCommon.powerRoot(
+    public static final MrpgSkillSpells.Entry bard_tier_2_spell_1_root = add(MrpgSkillsCommon.reachRoot(
             MrpgSkillSpells.Category.BARD, MrpgSkillSpells.bardSchool,
-            "bard_tier_2_spell_1_root", "bards_rpg:magical_ballad", "Magical Ballad", 0.15F));
+            "bard_tier_2_spell_1_root", "bards_rpg:magical_ballad", "Magical Ballad", 5));
     public static final MrpgSkillSpells.Entry bard_tier_2_spell_1_modifier_1 = add(bard_tier_2_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry bard_tier_2_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_2_spell_1_modifier_1");
@@ -43,7 +43,7 @@ public class BardSkillSpells {
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "bards_rpg:magical_ballad";
         modifier.projectile_perks = Spell.ProjectileData.Perks.EMPTY();
-        modifier.projectile_perks.pierce = 2;
+        modifier.projectile_perks.pierce = 3;
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
@@ -52,25 +52,22 @@ public class BardSkillSpells {
     private static MrpgSkillSpells.Entry bard_tier_2_spell_1_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_2_spell_1_modifier_2");
         var title = "Evocative Ballad";
-        // The literal `%` MUST be doubled: `I18n.translate` feeds the lang value to `String.format`,
-        // and `"% l"` is not a valid conversion - this shipped rendering the whole tooltip line as
-        // "Format error: Magical Ballad's projectile is 40% larger...".
-        var description = "Magical Ballad's projectile is 40%% larger, increasing its hitbox size.";
+        var description = "Magical Ballad's  channels {channel_ticks_add} additional times.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.bardSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "bards_rpg:magical_ballad";
-        modifier.projectile_scale_multiply = 0.4F;
+        modifier.channel_ticks_add = 2;
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
 
     /// VICIOUS MOCKERY
-    public static final MrpgSkillSpells.Entry bard_tier_2_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+    public static final MrpgSkillSpells.Entry bard_tier_2_spell_2_root = add(MrpgSkillsCommon.lingerRoot(
             MrpgSkillSpells.Category.BARD, MrpgSkillSpells.bardSchool,
-            "bard_tier_2_spell_2_root", "bards_rpg:vicious_mockery", "Vicious Mockery", 0.15F));
+            "bard_tier_2_spell_2_root", "bards_rpg:vicious_mockery", "Vicious Mockery", 2F));
     public static final MrpgSkillSpells.Entry bard_tier_2_spell_2_modifier_1 = add(bard_tier_2_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry bard_tier_2_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_2_spell_2_modifier_1");
@@ -84,7 +81,7 @@ public class BardSkillSpells {
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "bards_rpg:vicious_mockery";
-        var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 5, 0, 0);
+        var impact = SpellBuilder.Impacts.effectAdd_ScaledAmplifier(effect.id.toString(), 5, 0, 0.1F);
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
@@ -108,9 +105,9 @@ public class BardSkillSpells {
     }
 
     /// ENCORE
-    public static final MrpgSkillSpells.Entry bard_tier_3_spell_1_root = add(MrpgSkillsCommon.powerRoot(
+    public static final MrpgSkillSpells.Entry bard_tier_3_spell_1_root = add(MrpgSkillsCommon.radiusRoot(
             MrpgSkillSpells.Category.BARD, MrpgSkillSpells.bardSchool,
-            "bard_tier_3_spell_1_root", "bards_rpg:encore", "Encore", 0.15F));
+            "bard_tier_3_spell_1_root", "bards_rpg:encore", "Encore", 2F));
     public static final MrpgSkillSpells.Entry bard_tier_3_spell_1_modifier_1 = add(bard_tier_3_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry bard_tier_3_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_3_spell_1_modifier_1");
@@ -122,12 +119,13 @@ public class BardSkillSpells {
         spell.range = 0;
 
         var trigger = SpellBuilder.Triggers.specificSpellCast("bards_rpg:encore");
-        trigger.chance = 0.3F;
-        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
+        trigger.chance = 0.25F;
         spell.passive.triggers = List.of(trigger);
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
+
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 4, 0, 0);
+        impact.action.apply_to_caster = true;
         spell.impacts = List.of(impact);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
@@ -142,7 +140,7 @@ public class BardSkillSpells {
         spell.range = 8;
 
         var trigger = SpellBuilder.Triggers.specificSpellCast("bards_rpg:encore");
-        trigger.chance = 0.3F;
+        trigger.chance = 0.5F;
         spell.passive.triggers = List.of(trigger);
 
         spell.target.type = Spell.Target.Type.AREA;
@@ -164,9 +162,9 @@ public class BardSkillSpells {
     }
 
     /// WARDEN'S PAEAN
-    public static final MrpgSkillSpells.Entry bard_tier_3_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+    public static final MrpgSkillSpells.Entry bard_tier_3_spell_2_root = add(MrpgSkillsCommon.lingerRoot(
             MrpgSkillSpells.Category.BARD, MrpgSkillSpells.bardSchool,
-            "bard_tier_3_spell_2_root", "bards_rpg:wardens_paean", "Warden's Paean", 0.15F));
+            "bard_tier_3_spell_2_root", "bards_rpg:wardens_paean", "Warden's Paean", 2F));
     public static final MrpgSkillSpells.Entry bard_tier_3_spell_2_modifier_1 = add(bard_tier_3_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry bard_tier_3_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_3_spell_2_modifier_1");
@@ -212,9 +210,9 @@ public class BardSkillSpells {
     }
 
     /// ARMY'S PAEON
-    public static final MrpgSkillSpells.Entry bard_tier_4_spell_1_root = add(MrpgSkillsCommon.powerRoot(
+    public static final MrpgSkillSpells.Entry bard_tier_4_spell_1_root = add(MrpgSkillsCommon.cooldownRoot(
             MrpgSkillSpells.Category.BARD, MrpgSkillSpells.bardSchool,
-            "bard_tier_4_spell_1_root", "bards_rpg:armys_paeon", "Army's Paeon", 0.15F));
+            "bard_tier_4_spell_1_root", "bards_rpg:armys_paeon", "Army's Paeon", 3F));
     public static final MrpgSkillSpells.Entry bard_tier_4_spell_1_modifier_1 = add(bard_tier_4_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry bard_tier_4_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_4_spell_1_modifier_1");
@@ -267,9 +265,9 @@ public class BardSkillSpells {
     }
 
     /// CRESCENDO
-    public static final MrpgSkillSpells.Entry bard_tier_4_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+    public static final MrpgSkillSpells.Entry bard_tier_4_spell_2_root = add(MrpgSkillsCommon.reachRoot(
             MrpgSkillSpells.Category.BARD, MrpgSkillSpells.bardSchool,
-            "bard_tier_4_spell_2_root", "bards_rpg:crescendo", "Crescendo", 0.15F));
+            "bard_tier_4_spell_2_root", "bards_rpg:crescendo", "Crescendo", 5F));
     public static final MrpgSkillSpells.Entry bard_tier_4_spell_2_modifier_1 = add(bard_tier_4_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry bard_tier_4_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_4_spell_2_modifier_1");
@@ -299,6 +297,7 @@ public class BardSkillSpells {
         projectile.client_data = new Spell.ProjectileData.Client();
         projectile.client_data.light_level = 12;
         var crescendoModel = SpellBuilder.ProjectileModels.model("bards_rpg:spell_projectile/crescendo", 2.5F, LightEmission.RADIATE);
+        crescendoModel.rotate_degrees_per_tick = 0F;
         projectile.client_data.composite_model = SpellBuilder.ProjectileModels.composite(crescendoModel);
         projectile.hitbox = new Spell.ProjectileData.HitBox(2.2F, 0.8F);
         spell.deliver.projectile.projectile = projectile;
@@ -415,17 +414,31 @@ public class BardSkillSpells {
         var cloud = new Spell.Delivery.Cloud();
         cloud.volume.radius = 4F;
         cloud.volume.area.vertical_range_multiplier = 1.5F;
-        cloud.impact_tick_interval = 20;
+        cloud.impact_tick_interval = 10;
         cloud.time_to_live_seconds = 6;
         cloud.client_data = new Spell.Delivery.Cloud.ClientData();
         cloud.client_data.light_level = 0;
         cloud.client_data.particles = List.of(
-                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.FLOAT)
-                        .color(Color.ARCANE.toRGBA())
-                        .batch(b -> b.shape(ParticleGroup.Shape.PILLAR)
-                                .count(15F).speed(0.2F, 0.4F)
+                ParticleGroupBuilder.magic(SpellEngineParticles.magic_spark, ParticleGroup.Motion.STATIC)
+                        .color(Color.ELECTRIC.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE)
+                                .count(20F).speed(0.05F, 0.1F)
                                 .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
-                                .extent(4F)));
+                                .extent(4F)),
+                ParticleGroupBuilder.magic(SpellEngineParticles.smoke_medium, ParticleGroup.Motion.STATIC)
+                        .color(Color.ELECTRIC.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE)
+                                .count(20F).speed(0.05F, 0.1F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
+                                .extent(4F)),
+                ParticleGroupBuilder.magic(SpellEngineParticles.smoke_medium, ParticleGroup.Motion.STATIC)
+                        .color(Color.WHITE.toRGBA())
+                        .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE)
+                                .count(20F).speed(0.05F, 0.1F)
+                                .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
+                                .extent(3.5F))
+
+        );
         spell.deliver.clouds = List.of(cloud);
 
         var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 4, 0);
@@ -440,11 +453,8 @@ public class BardSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_2_passive_2");
         var effect = MrpgSkillEffects.DANCING_FEET;
         var title = "Dancing Feet";
-        // Two status-effect impacts (Dancing Feet + jump boost), so the renderer emits
-        // `{effect_duration_1}` / `{effect_duration_2}` and the bare token would render literally.
-        // Both last 3 sec, so the first one is the one to show.
-        var description = "{trigger_chance} chance upon rolling to highly increase movement speed by "
-                + TooltipTokens.effect(effect.id) + " and jumping height for {effect_duration_1} sec.";
+        var description = "{trigger_chance} chance upon rolling to highly increase movement speed and jump height by "
+                + TooltipTokens.effect(effect.id) + " for {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.bardSchool;
@@ -455,8 +465,7 @@ public class BardSkillSpells {
         spell.passive.triggers = List.of(trigger);
 
         var speed = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 3, 0, 0);
-        var jump = SpellBuilder.Impacts.effectAdd("minecraft:jump_boost", 3, 1, 1);
-        spell.impacts = List.of(speed, jump);
+        spell.impacts = List.of(speed);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
@@ -465,8 +474,6 @@ public class BardSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_3_passive_1");
         var effect = MrpgSkillEffects.MELODIC_PROTECTION;
         var title = "Melodic Protection";
-        // Two triggers (status-effect impact + heal impact), both at the same chance, so the
-        // renderer emits `{trigger_chance_1}` / `{trigger_chance_2}` and the bare token would render literally.
         var description = "Applying status effects or healing has {trigger_chance_1} chance to grant a stack of Melodic Protection, nullifying the next hit. Healing Spell Power increases the amount of stacks.";
 
         var spell = SpellBuilder.createSpellPassive();
@@ -480,7 +487,7 @@ public class BardSkillSpells {
         effectTrigger.impact = new Spell.Trigger.ImpactCondition();
         effectTrigger.impact.impact_type = Spell.Impact.Action.Type.STATUS_EFFECT.toString();
         effectTrigger.target_override = Spell.Trigger.TargetSelector.CASTER;
-        effectTrigger.chance = 0.25F;
+        effectTrigger.chance = 0.2F;
         var healTrigger = new Spell.Trigger();
         healTrigger.type = Spell.Trigger.Type.SPELL_IMPACT_SPECIFIC;
         healTrigger.spell = new Spell.Trigger.SpellCondition();
@@ -488,14 +495,14 @@ public class BardSkillSpells {
         healTrigger.impact = new Spell.Trigger.ImpactCondition();
         healTrigger.impact.impact_type = Spell.Impact.Action.Type.HEAL.toString();
         healTrigger.target_override = Spell.Trigger.TargetSelector.CASTER;
-        healTrigger.chance = 0.25F;
+        healTrigger.chance = 0.2F;
         spell.passive.triggers = List.of(effectTrigger, healTrigger);
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
         var impact = SpellBuilder.Impacts.effectAdd_ScaledAmplifier(effect.id.toString(), 12, 0, 0.05F);
         spell.impacts = List.of(impact);
 
-        SpellBuilder.Cost.cooldown(spell, 3F);
+        SpellBuilder.Cost.cooldown(spell, 30F);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BARD));
     }
@@ -504,9 +511,7 @@ public class BardSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "bard_tier_3_passive_2");
         var effect = MrpgSkillEffects.COUNTERCHARM;
         var title = "Countercharm";
-        // Two triggers (melee impact + spell impact), both at the same chance, so the renderer emits
-        // `{trigger_chance_1}` / `{trigger_chance_2}` and the bare token would render literally.
-        var description = "Dealing damage has a low {trigger_chance_1} chance to turn the target against its allies for {effect_duration} sec.";
+        var description = "Dealing damage has a {trigger_chance_1} chance to turn the target against its allies for {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.bardSchool;
@@ -515,8 +520,8 @@ public class BardSkillSpells {
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
 
         var meleeTrigger = SpellBuilder.Triggers.meleeAttackImpact();
-        meleeTrigger.chance = 0.06F;
-        var spellTrigger = SpellBuilder.Triggers.spellHit(0.06F, null);
+        meleeTrigger.chance = 0.1F;
+        var spellTrigger = SpellBuilder.Triggers.spellHit(0.1F, null);
         spell.passive.triggers = List.of(meleeTrigger, spellTrigger);
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 6, 0, 0);

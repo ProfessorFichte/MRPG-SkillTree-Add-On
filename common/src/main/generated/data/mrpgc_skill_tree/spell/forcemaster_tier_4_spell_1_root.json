@@ -7,7 +7,7 @@
     {
       "spell_pattern": "forcemaster_rpg:sonic_hand",
       "power_modifier": {
-        "power_multiplier": 0.05
+        "power_multiplier": 0.1
       }
     }
   ]
