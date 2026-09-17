@@ -446,7 +446,7 @@ public class DeadeyeSkillSpells {
         cloud.spawn.sound = new Sound(SpellEngineSounds.POISON_CLOUD_SPAWN.id().toString());
         cloud.client_data = new Spell.Delivery.Cloud.ClientData();
         cloud.client_data.light_level = 0;
-        // Two identical smoke columns in V1 — kept as a pair, which is what doubles the density
+        // Two identical entries deliberately: this doubles the particle density, not a copy-paste duplicate.
         cloud.client_data.particles = List.of(
                 ParticleGroupBuilder.of(SpellEngineParticles.smoke_large)
                         .color(Color.POISON_DARK)
@@ -501,7 +501,7 @@ public class DeadeyeSkillSpells {
         cloud.spawn.sound = new Sound(MrpgSkillSounds.smokebomb_release.id());
         cloud.client_data = new Spell.Delivery.Cloud.ClientData();
         cloud.client_data.light_level = 0;
-        // Two identical smoke columns in V1 — kept as a pair, which is what doubles the density
+        // Two identical entries deliberately: this doubles the particle density, not a copy-paste duplicate.
         cloud.client_data.particles = List.of(
                 ParticleGroupBuilder.of(SpellEngineParticles.smoke_large)
                         .color(SMOKE_BOMB_COLOR)
@@ -610,8 +610,8 @@ public class DeadeyeSkillSpells {
                 ParticleGroupBuilder.of(areaParticle)
                         .scale(4)
                         .color(SHADOW_COLOR.alpha(0.75F).toRGBA())
-                        // SPHERE at zero speed = a single motionless particle on the ground,
-                        // exactly as in V1; the entry itself already faces GROUND
+                        // SPHERE at zero speed = a single motionless particle on the ground; the entry
+                        // already faces GROUND by default
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .count(1).speed(0.0F, 0.0F)
                                 .anchor(ParticleGroup.Anchor.GROUND)));

@@ -20,8 +20,6 @@ import static net.skill_tree_rpgs.skills.SkillsCommon.MIGHT_COLOR;
 
 public class MRPGCSkillTreeClient {
     public static void init() {
-        // Description values that aren't expressible as declarative `{token}`s. `TooltipTokens` is
-        // server-safe; it is registered here simply because the tooltip is a client concern.
         MrpgSkillSpells.registerTooltipTokens();
 
         for (var entry: MrpgSkillDefinitions.ENTRIES) {
@@ -60,14 +58,6 @@ public class MRPGCSkillTreeClient {
     // `barrierParticles`, `groundSeismicParticles` and `speedParticles` all copied correctly and
     // were never affected.
 
-    /// V1: the `magic_stripe_float` id, `WIDE_PIPE`, `Origin.FEET`, count `0.3`, speed
-    /// `0.05..0.15`, extent `-0.2`. 1.10 carries the motion as an appearance payload rather than
-    /// baking it into the id, so this has to be built through `ParticleGroupBuilder.magic` —
-    /// `magic_stripe_float` is no longer a registered type. `Batches.casting` is exactly
-    /// `PIPE` + `widthFactor(2)` + `verticalOrigin(FEET)`, i.e. V1's `WIDE_PIPE` from the feet.
-    ///
-    /// The fractional count stays a count: `BuffParticleSpawner` emits per tick and its default
-    /// `Spacing.RANDOM` turns the leftover fraction into a per-tick roll, which is what V1 did.
     private static ParticleGroup speedParticles(long color) {
         return ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.FLOAT)
                 .color(color)
@@ -75,12 +65,6 @@ public class MRPGCSkillTreeClient {
                         .andThen(b -> b.speed(0.05F, 0.15F).extent(-0.2F)));
     }
 
-    /// V1: an `aura_effect_<n>` id — the upright twin of the `area_effect_<n>` texture. 1.10
-    /// dropped the twins and keeps one entry per texture, orientation chosen at the call site,
-    /// so the `aura_*` look is `area_effect_<n>` + `Facing.CAMERA`.
-    ///
-    /// `LINE` at zero speed is a single billboard placed at the entity's centre, and
-    /// `followEntity(true)` is `Attachment.POSITION`.
     private static ParticleGroup auraEffect(SpellEngineParticles.Entry entry, long color) {
         return ParticleGroupBuilder.of(entry)
                 .facing(ParticleGroup.Facing.CAMERA)
@@ -90,8 +74,6 @@ public class MRPGCSkillTreeClient {
                 .batch(b -> b.shape(ParticleGroup.Shape.LINE).count(1F).speed(0F, 0F));
     }
 
-    /// V1: `area_effect_293`, `SPHERE` at zero speed anchored on the ground, scale `2.5`,
-    /// following the entity. `area_*` entries already default to `Facing.GROUND` in 1.10.
     private static ParticleGroup groundSeismicParticles(long color) {
         return ParticleGroupBuilder.of(SpellEngineParticles.area_effect_293)
                 .color(color)
@@ -101,8 +83,6 @@ public class MRPGCSkillTreeClient {
                         .anchor(ParticleGroup.Anchor.GROUND));
     }
 
-    /// V1: `area_circle_1`, `LINE_VERTICAL` from `Origin.FEET`, count `1`, speed `0.05`,
-    /// scale `0.75`, following the entity.
     private static ParticleGroup circleParticles(long color) {
         return ParticleGroupBuilder.of(SpellEngineParticles.area_circle_1)
                 .color(color)
@@ -237,13 +217,6 @@ public class MRPGCSkillTreeClient {
                                         .count(2F).speed(0.45F, 0.75F))
                 )
         );
-        // NOTE: in V1 `more_rpg_classes:rage_particle` was drawn by a hand-written `RageParticle`
-        // that set its own red tint and its own slow upward velocity in the constructor, ignoring
-        // the batch entirely — so neither the colour nor the `0.45..0.75` speed below did anything.
-        // In 1.10 that id is a generic `SpellParticle` entry and both now apply. The colour lands
-        // close to what V1 hard-coded, but the speed does not: these will be flung outward rather
-        // than drifting up. Ported as authored rather than inventing a replacement speed; worth
-        // re-tuning by eye.
         CustomParticleStatusEffect.register(
                 MrpgSkillEffects.BLIND_WITH_RAGE.effect,
                 new BuffParticleSpawner(

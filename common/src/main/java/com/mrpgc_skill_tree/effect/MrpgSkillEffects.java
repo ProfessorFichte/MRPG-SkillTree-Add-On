@@ -86,6 +86,14 @@ public class MrpgSkillEffects {
                     )
             )
     ));
+    public static Effects.Entry STRONGWIND = add(new Effects.Entry(Identifier.of(MOD_ID, "strongwind"),
+            "Strongwind",
+            "Summons a twister.",
+            new TickingStatusEffect(StatusEffectCategory.BENEFICIAL, MoreSpellSchools.AIR.color).interval(10),
+            new EffectConfig(
+                    List.of()
+            )
+    ));
     /// EARTH WIZARD EFFECTS
     public static Effects.Entry EARTH_BENDER = add(new Effects.Entry(Identifier.of(MOD_ID, "earth_bender"),
             "Earth Bender",

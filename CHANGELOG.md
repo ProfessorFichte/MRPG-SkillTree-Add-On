@@ -1,17 +1,19 @@
 # 1.2.0 - 1.21.1
-** New Content **
+- ** New Content Update **
 - Added a new layout for Weapon Skills & the Spell Skill Tree (Thanks LeDok!)
 - Added Nodes for all the new Spell Expansion Spells
 - Added Weapon Skill Modifiers for RPG Series Plus / More RPG Classes Weapons
 - The Bard and Witcher Class now also received their own Skill Tree Branches!
-**Technical Changes and Reworks**
+- **DISCLAIMER:** This is still a Beta Version for public testing and balancing feedback.
+- Some new Passives & Modifiers might have missing Sound Effects, Particle Effects and Models.
+- **Technical Changes and Reworks**
 - Adopt Spell Engine 1.10.* & Skill Tree (RPG-Series) Version 1.6.*
 - Remove Forgified Fabric API (FFAPI) as a dependency
 - The Witcher Passive and Modifiers Files are located in the Witcher mod itself, if you want to tweak those
 - "Second Wave" Water passive: casting a Water spell now launches a ground-hugging wave projectile that pierces every target, damaging and knocking them back
 - Cleave (Berserker): now a 30% chance on melee hits to deal flat bonus damage, instead of a 20% chance to stack Grievous Wounds
 - Bloodfrenzy (Berserker): melee hits against Bleeding targets now grant Bloodflow (attack damage buff), instead of a chance to inflict Bleeding and self-heal
-- Whirling Storm / "Strongwind" (Air): rolling now summons a real twister entity that chases and damages enemies, instead of a one-shot wind burst
+- Whirling Storm / "Strongwind" (Air): rolling now guarantees a real twister entity that spawns immediately at your position and chases and damages enemies, instead of a one-shot wind burst
 - Deadly Precision (Berserker): Bloody Strike now deals additional damage as a percentage of the target's max health, instead of a flat damage increase
 - Savage Outrage (Berserker): reworked into a modifier that gives Outrage +30% critical strike damage, instead of a passive that dealt AoE damage on cast
 - Norse Blood Ritual (Berserker): nearby Bleeding targets now receive Grievous Wounds, instead of flat AoE damage
@@ -25,6 +27,9 @@
 - Recurring Burst / "Powerful Burst" (Knuckle weapon skill): reworked into a passive that fires a second Burstcrack shortly after, instead of a flat critical chance modifier
 - Wounding Shot (Deadeye): Disabling Shot now has a 35% chance to stun the target, instead of inflicting Grievous Wounds on debuffed targets
 - Bleeding nodes (Barbed Arrows, Blood Fists, Bloodfrenzy, Slicing Maelstorm, ...) now apply Spell Engine's own Bleed effect instead of the More RPG Classes one
+- Sharpened Point (Earth): Impale now also inflicts a weak, stacking Bleed (up to 3 stacks), instead of reducing its cooldown by 3 seconds
+- Cleansing Storm (Water): Healing Rain impacts now have a 50% chance to remove a harmful effect from the target, instead of reducing its cooldown by 8 seconds
+- Endless Tide (Water): each Tidal Wave impact now reduces its own cooldown by 1 second, instead of increasing its travel duration by 6 seconds
 
 # 1.1.2 - 1.21.1
 - Fixed a crash due to a wrong model_id path in the tundra_hunter_spec_a_passive_1 spell

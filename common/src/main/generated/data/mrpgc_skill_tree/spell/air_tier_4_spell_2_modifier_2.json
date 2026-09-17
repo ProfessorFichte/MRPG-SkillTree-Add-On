@@ -6,7 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "elemental_wizards_rpg:wind_stormdraft",
-      "effect_duration_add": 1.0
+      "effect_duration_add": 2.0
     }
   ]
 }

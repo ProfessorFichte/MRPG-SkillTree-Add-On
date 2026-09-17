@@ -5,8 +5,22 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "elemental_wizards_rpg:aqua_tidal_wave",
-      "spawn_duration_add": 6.0
+      "spell_pattern": "elemental_wizards_rpg:helper/aqua_tidal_wave_impact",
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "action": {
+            "type": "COOLDOWN",
+            "apply_to_caster": true,
+            "cooldown": {
+              "actives": {
+                "id": "elemental_wizards_rpg:aqua_tidal_wave",
+                "duration_add": -20.0
+              }
+            }
+          }
+        }
+      ]
     }
   ]
 }

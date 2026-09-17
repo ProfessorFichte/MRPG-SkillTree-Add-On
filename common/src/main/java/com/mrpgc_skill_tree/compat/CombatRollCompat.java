@@ -13,7 +13,12 @@ public class CombatRollCompat {
     }
     public static void register() {
         ServerSideRollEvents.PLAYER_START_ROLLING.register((player, roll) -> {
-            if (SpellContainerSource.passiveSpellsOf(player).contains(SpellRegistry.from(player.getServerWorld()).getEntry(Identifier.of("mrpgc_skill_tree", "berserker_spec_a_passive_2")).get())) {
+            var spinningSlash = SpellRegistry.from(player.getServerWorld())
+                    .getEntry(Identifier.of("mrpgc_skill_tree", "berserker_tier_2_passive_1"));
+            if (spinningSlash.isEmpty()) {
+                return;
+            }
+            if (SpellContainerSource.passiveSpellsOf(player).contains(spinningSlash.get())) {
                 Packets.RollAnimation forwardPacket = new Packets.RollAnimation(player.getId(), new RollEffect.Visuals(Identifier.of("mrpgc_skill_tree", "spinning_slash").toString(), RollEffect.Particles.PUFF), roll);
                 Platform.tracking(player).forEach((serverPlayer) -> {
                     try {

@@ -298,7 +298,6 @@ public class ForcemasterSkillSpells {
                 ParticleGroupBuilder.of(SpellEngineParticles.area_circle_1)
                         .color(Color.ARCANE)
                         .scale(0.8F)
-                        // V1 max_age 0.8 -> playback_speed is its reciprocal
                         .playbackSpeed(1.25F)
                         .attached()
                         .batch(b -> b.shape(ParticleGroup.Shape.LINE_VERTICAL)
@@ -332,7 +331,6 @@ public class ForcemasterSkillSpells {
         impact.sound = new Sound(MrpgSkillSounds.flying_fists.id());
         impact.visuals = Fx.Visuals.of(
                 ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.FLOAT, MIGHT_COLOR)
-                        // V1 WIDE_PIPE = PIPE at double the entity radius
                         .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
                                 .count(20).speed(0.05F, 0.1F)
                                 .verticalOrigin(ParticleGroupBuilder.Batches.FEET)),
@@ -365,7 +363,6 @@ public class ForcemasterSkillSpells {
         impact.action.cooldown.actives.duration_multiplier = 0.75F;
         impact.visuals = Fx.Visuals.of(
                 ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.FLOAT, Color.ARCANE)
-                        // V1 WIDE_PIPE = PIPE at double the entity radius
                         .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
                                 .count(20).speed(0.05F, 0.1F)
                                 .verticalOrigin(ParticleGroupBuilder.Batches.FEET)),

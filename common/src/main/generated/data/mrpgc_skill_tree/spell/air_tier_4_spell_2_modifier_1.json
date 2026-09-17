@@ -6,7 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "elemental_wizards_rpg:wind_stormdraft",
-      "channel_ticks_add": 2
+      "channel_ticks_add": 3
     }
   ]
 }

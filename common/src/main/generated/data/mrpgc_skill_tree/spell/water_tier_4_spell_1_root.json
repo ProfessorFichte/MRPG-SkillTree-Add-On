@@ -6,8 +6,10 @@
   "modifiers": [
     {
       "spell_pattern": "elemental_wizards_rpg:aqua_healing_rain",
-      "power_modifier": {
-        "power_multiplier": 0.15
+      "summon_behaviour": {
+        "lifespan": {
+          "active_seconds_add": 5
+        }
       }
     }
   ]

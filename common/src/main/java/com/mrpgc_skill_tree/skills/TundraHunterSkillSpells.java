@@ -413,7 +413,6 @@ public class TundraHunterSkillSpells {
                 ParticleGroupBuilder.of(SpellEngineParticles.area_circle_1)
                         .attached()
                         .scale(0.8F)
-                        // V1 max_age 0.8 (a lifetime multiplier) = playback speed 1 / 0.8
                         .playbackSpeed(1F / 0.8F)
                         .color(Color.FROST)
                         .batch(b -> b.shape(ParticleGroup.Shape.LINE_VERTICAL)
@@ -527,8 +526,8 @@ public class TundraHunterSkillSpells {
                 ParticleGroupBuilder.of(SpellEngineParticles.area_effect_293)
                         .scale(3.5F)
                         .color(Color.FROST)
-                        // SPHERE at zero speed = a single motionless particle on the ground,
-                        // exactly as in V1; the entry itself already faces GROUND
+                        // SPHERE at zero speed = a single motionless particle on the ground; the entry
+                        // already faces GROUND by default
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .count(1).speed(0, 0)
                                 .anchor(ParticleGroup.Anchor.GROUND)));
@@ -553,7 +552,6 @@ public class TundraHunterSkillSpells {
         var damage = SpellBuilder.Impacts.damage(0.4F, 0);
         damage.visuals = Fx.Visuals.of(
                 ParticleGroupBuilder.of(SpellEngineParticles.snowflake)
-                        // V1 WIDE_PIPE = PIPE at double the radius
                         .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
                                 .count(25).speed(0.1F, 0.3F)));
         damage.sound = new Sound(SpellEngineSounds.GENERIC_FROST_IMPACT.id());

@@ -2729,7 +2729,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "witcher_rpg:defensive_witcher_mechanics"
+                "witcher_rpg:spell_modifiers/arrow_deflection"
               ]
             }
           ]
@@ -2766,7 +2766,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "witcher_rpg:defensive_witcher_mechanics"
+                "witcher_rpg:spell_modifiers/counterattack"
               ]
             }
           ]

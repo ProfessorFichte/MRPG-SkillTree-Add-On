@@ -396,7 +396,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/wind_twister.png"
+        "texture": "elemental_wizards_rpg:textures/spell/helper/wind_twister_impact.png"
       }
     },
     "required_mods": [
@@ -10216,7 +10216,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/aqua_healing_rain.png"
+        "texture": "elemental_wizards_rpg:textures/spell/helper/aqua_healing_rain_impact.png"
       }
     },
     "required_mods": [
@@ -10290,7 +10290,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/aqua_tidal_wave.png"
+        "texture": "elemental_wizards_rpg:textures/spell/helper/aqua_tidal_wave_impact.png"
       }
     },
     "required_mods": [
@@ -10364,7 +10364,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/aqua_tidal_wave.png"
+        "texture": "elemental_wizards_rpg:textures/spell/helper/aqua_tidal_wave_impact.png"
       }
     },
     "required_mods": [

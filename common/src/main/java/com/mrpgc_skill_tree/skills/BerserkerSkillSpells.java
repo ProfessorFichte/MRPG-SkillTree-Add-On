@@ -493,7 +493,6 @@ public class BerserkerSkillSpells {
         buff.visuals = Fx.Visuals.of(
                 ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.DECELERATE, Color.RAGE)
                         .attached()
-                        // V1 WIDE_PIPE = PIPE at double the entity radius
                         .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
                                 .count(25).speed(0.3F, 0.8F)
                                 .extent(1.0F)),
@@ -501,7 +500,6 @@ public class BerserkerSkillSpells {
                         .appearance(a -> a.scale(1.5F)
                                 .color(Color.RAGE.toRGBA())
                                 .attachment(ParticleGroup.Attachment.POSITION))
-                        // V1 `.origin(CENTER)` moved it off the ground, onto the entity's centre
                         .batch(b -> b.origin(ParticleGroup.Anchor.ENTITY, ParticleGroupBuilder.Batches.CENTER)));
         buff.sound = new Sound(MrpgSkillSounds.burst_of_aggression.id());
         spell.impacts = List.of(buff);
@@ -513,9 +511,9 @@ public class BerserkerSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_3_passive_1");
         var effect = MrpgSkillEffects.RAGNAROK;
         var title = effect.title;
-        // Two modifiers that do NOT share a value: movement speed +30% and tenacity +100%. The old
-        // `firstModifier()` read happened to land on movement speed, but the status effect's modifier
-        // map is unordered, so it is named explicitly here - picking the wrong one would print "100%".
+        // Two modifiers that do NOT share a value: movement speed +30% and tenacity +100%. The status
+        // effect's modifier map is unordered, so the attribute is named explicitly here - picking the
+        // wrong one would print "100%".
         var description = "Taking damage with a harmful effect grants you immunity to harmful effects and "
                 + TooltipTokens.effect(effect.id, 0,
                         Identifier.of(EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString()))
@@ -537,13 +535,10 @@ public class BerserkerSkillSpells {
         var buff = SpellBuilder.Impacts.effectSet(effect.id.toString(), 5, 0);
         buff.action.apply_to_caster = true;
         buff.visuals = Fx.Visuals.of(
-                // V1 `aura_effect_728` was zone/effect_728 registered a second time camera-facing;
-                // 1.10 keeps one entry and `Particles.aura` supplies the camera facing + attachment.
                 SpellBuilder.Particles.aura(SpellEngineParticles.area_effect_728.id())
                         .appearance(a -> a.scale(1.2F)
                                 .color(Color.RAGE.alpha(0.5F).toRGBA())),
                 ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.FLOAT, Color.RAGE)
-                        // V1 WIDE_PIPE = PIPE at double the entity radius
                         .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
                                 .count(25).speed(0.2F, 0.6F)
                                 .verticalOrigin(ParticleGroupBuilder.Batches.FEET)

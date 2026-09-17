@@ -4,6 +4,7 @@ import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.client.particle.MoreParticles;
+import net.spell_engine.api.effect.SpellEngineEffects;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.entity.SpellEntityPredicates;
 import net.spell_engine.api.spell.Spell;
@@ -35,9 +36,9 @@ public class EarthSkillSpells {
 
     public static final Color EARTH_SPELL_COLOR = new Color(255.0F, 165.0F, 0.0F);
     ///EARTH MODIFIERS
-    public static final MrpgSkillSpells.Entry earth_tier_2_spell_1_root = add(MrpgSkillsCommon.powerRoot(
+    public static final MrpgSkillSpells.Entry earth_tier_2_spell_1_root = add(MrpgSkillsCommon.lingerRoot(
             MrpgSkillSpells.Category.EARTH, MrpgSkillSpells.earthWizardSchool,
-            "earth_tier_2_spell_1_root", "elemental_wizards_rpg:terra_stone_flesh", "Stone Flesh", 0.15F));
+            "earth_tier_2_spell_1_root", "elemental_wizards_rpg:terra_stone_flesh", "Stone Flesh", 2F));
     public static final MrpgSkillSpells.Entry earth_tier_2_spell_1_modifier_1 = add(earth_tier_2_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry earth_tier_2_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_2_spell_1_modifier_1");
@@ -64,7 +65,6 @@ public class EarthSkillSpells {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_2_spell_1_modifier_2");
         var title = "Earthbender";
         var effect = MrpgSkillEffects.EARTH_BENDER;
-        // Single modifier (earth spell power), so the token's blank-attribute fallback is unambiguous.
         var description = "Stone Flesh grants you the Earthbender effect, increasing your earth spell power by "
                 + TooltipTokens.effect(effect.id)
                 + " for {effect_duration} seconds.";
@@ -83,17 +83,14 @@ public class EarthSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.EARTH));
     }
-    public static final MrpgSkillSpells.Entry earth_tier_3_spell_1_root = add(MrpgSkillsCommon.radiusRoot(
+    public static final MrpgSkillSpells.Entry earth_tier_3_spell_1_root = add(MrpgSkillsCommon.companionRoot(
             MrpgSkillSpells.Category.EARTH, MrpgSkillSpells.earthWizardSchool,
-            "earth_tier_3_spell_1_root", "elemental_wizards_rpg:terra_drip_circle", "Terra Circle", 1F));
+            "earth_tier_3_spell_1_root", "elemental_wizards_rpg:terra_drip_circle", "Terra Circle", 2));
     public static final MrpgSkillSpells.Entry earth_tier_3_spell_1_modifier_1 = add(earth_tier_3_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry earth_tier_3_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_3_spell_1_modifier_1");
         var title = "Obstacle Dripstones";
         var effect = MrpgSkillEffects.DRIPSTONE_OBSTACLES;
-        // Single modifier (movement speed -10%). The value is stored negative and the prose already
-        // says "reducing ... by", hence `ABS` - the old mutator passed the raw value and rendered
-        // "reducing movement speed by -10%".
         var description = "Terra Circle applies slowness, reducing movement speed by "
                 + TooltipTokens.effect(effect.id, 0, null, TooltipTokens.Format.ABS)
                 + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
@@ -128,16 +125,12 @@ public class EarthSkillSpells {
     }
     public static final MrpgSkillSpells.Entry earth_tier_4_spell_1_root = add(MrpgSkillsCommon.radiusRoot(
             MrpgSkillSpells.Category.EARTH, MrpgSkillSpells.earthWizardSchool,
-            "earth_tier_4_spell_1_root", "elemental_wizards_rpg:terra_earthquake", "Earthquake", 1F));
+            "earth_tier_4_spell_1_root", "elemental_wizards_rpg:terra_earthquake", "Earthquake", 5F));
     public static final MrpgSkillSpells.Entry earth_tier_4_spell_1_modifier_1 = add(earth_tier_4_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry earth_tier_4_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_4_spell_1_modifier_1");
         var title = "Earthquake Concussion";
         var effect = MrpgSkillEffects.CONCUSSION;
-        // Three modifiers (attack damage, ranged damage, spell power), all -30%. The status effect's
-        // modifier map is unordered, so the attribute is named explicitly rather than read by list
-        // position (`firstModifier()`). Values are stored negative and the prose says "reduces ...
-        // by", hence `ABS` - the old mutator rendered "reduces offensive attributes by -30%".
         var description = "Earthquake reduces offensive attributes by "
                 + TooltipTokens.effect(effect.id, 0,
                         Identifier.of(EntityAttributes.GENERIC_ATTACK_DAMAGE.getIdAsString()),
@@ -166,7 +159,7 @@ public class EarthSkillSpells {
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "elemental_wizards_rpg:terra_earthquake";
-        modifier.spawn_duration_add = 3;
+        modifier.spawn_duration_add = 5;
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.EARTH));
@@ -178,7 +171,7 @@ public class EarthSkillSpells {
         var effect = MrpgSkillEffects.EARTHEN_BLESSING;
         var title = effect.title;
         // Single modifier (armor), so the token's blank-attribute fallback is unambiguous. Amplifier
-        // 0 = the per-stack value, matching what the old mutator read straight off the config.
+        // 0 = the per-stack value.
         var description = "Earth spell impacts have {trigger_chance} chance to apply Earthen Blessing effect."
                 + " Increasing armor by " + TooltipTokens.effect(effect.id)
                 + ", stacking up to {effect_amplifier_cap} times, lasting {effect_duration} sec.";
@@ -370,8 +363,6 @@ public class EarthSkillSpells {
                         .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE)
                                 .count(20).speed(0.6F, 0.6F)
                                 .verticalOrigin(ParticleGroupBuilder.Batches.FEET)),
-                // `Particles.area` now returns a finished ParticleGroup, so scale/colour move
-                // onto its appearance block. Both are fixed sizes here, not range-scaled.
                 SpellBuilder.Particles.area(SpellEngineParticles.area_effect_658.id())
                         .appearance(a -> a.scale(radius * 0.8F).color(EARTH_SPELL_COLOR.toRGBA())),
                 SpellBuilder.Particles.area(SpellEngineParticles.area_effect_658.id())
@@ -392,9 +383,9 @@ public class EarthSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.EARTH));
     }
-    public static final MrpgSkillSpells.Entry earth_tier_2_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+    public static final MrpgSkillSpells.Entry earth_tier_2_spell_2_root = add(MrpgSkillsCommon.critRoot(
             MrpgSkillSpells.Category.EARTH, MrpgSkillSpells.earthWizardSchool,
-            "earth_tier_2_spell_2_root", "elemental_wizards_rpg:terra_impale", "Impale", 0.15F));
+            "earth_tier_2_spell_2_root", "elemental_wizards_rpg:terra_impale", "Impale", 0.05F));
     public static final MrpgSkillSpells.Entry earth_tier_2_spell_2_modifier_1 = add(earth_tier_2_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry earth_tier_2_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_2_spell_2_modifier_1");
@@ -414,20 +405,26 @@ public class EarthSkillSpells {
     private static MrpgSkillSpells.Entry earth_tier_2_spell_2_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_2_spell_2_modifier_2");
         var title = "Sharpened Point";
-        var description = "Reduces the cooldown of Impale by {cooldown_duration_deduct} sec.";
+        var description = "Impale additionally inflicts a weak Bleeding effect for {effect_duration} sec, stacking up to {effect_amplifier_cap} times.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.earthWizardSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "elemental_wizards_rpg:terra_impale";
-        modifier.cooldown_duration_deduct = 3F;
+
+        var debuff = SpellBuilder.Impacts.effectAdd(SpellEngineEffects.BLEED.id.toString(), 6, 0, 3);
+        debuff.action.status_effect.refresh_duration = true;
+        MrpgSkillSpells.bleedingDeny(debuff);
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(debuff);
+
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.EARTH));
     }
     public static final MrpgSkillSpells.Entry earth_tier_3_spell_2_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.EARTH, MrpgSkillSpells.earthWizardSchool,
-            "earth_tier_3_spell_2_root", "elemental_wizards_rpg:terra_shattering_stone", "Shattering Stone", 0.05F));
+            "earth_tier_3_spell_2_root", "elemental_wizards_rpg:terra_shattering_stone", "Shattering Stone", 0.1F));
     public static final MrpgSkillSpells.Entry earth_tier_3_spell_2_modifier_1 = add(earth_tier_3_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry earth_tier_3_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_3_spell_2_modifier_1");
@@ -438,7 +435,7 @@ public class EarthSkillSpells {
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "elemental_wizards_rpg:terra_shattering_stone";
-        modifier.effect_amplifier_cap_add = 1;
+        modifier.effect_amplifier_cap_add = 2;
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.EARTH));
@@ -530,11 +527,11 @@ public class EarthSkillSpells {
         summon.spawn_count = 2;
         summon.attribute_scaling = new AttributeScaling();
         summon.attribute_scaling.entries = List.of(health, power, size);
-        var placement = new Spell.EntityPlacement();
-        placement.apply_yaw = true;
-        placement.location_offset_by_look = 2;
-        placement.force_onto_ground = true;
-        summon.placements = List.of(placement);
+        // Main golem sits 2 blocks ahead by look; place the minis 2 blocks further behind that (4 total)
+        // and 3 blocks to either side, via polar offset from the caster: hypot(4, 3) = 5, atan(3/4) = 36.87deg
+        var placementLeft = SpellBuilder.Placements.pointAtAngle(5F, -36.87F);
+        var placementRight = SpellBuilder.Placements.pointAtAngle(5F, 36.87F);
+        summon.placements = List.of(placementLeft, placementRight);
 
         var impact = new Spell.Impact();
         impact.action = new Spell.Impact.Action();

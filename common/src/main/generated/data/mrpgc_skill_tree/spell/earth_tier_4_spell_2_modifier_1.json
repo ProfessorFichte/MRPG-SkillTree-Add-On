@@ -86,7 +86,13 @@
               },
               "placements": [
                 {
-                  "location_offset_by_look": 2.0,
+                  "location_offset_by_look": 5.0,
+                  "location_yaw_offset": -36.87,
+                  "apply_yaw": true
+                },
+                {
+                  "location_offset_by_look": 5.0,
+                  "location_yaw_offset": 36.87,
                   "apply_yaw": true
                 }
               ],

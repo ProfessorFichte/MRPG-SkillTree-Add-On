@@ -6,9 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "elemental_wizards_rpg:aqua_waterball",
-      "power_modifier": {
-        "power_multiplier": 0.15
-      }
+      "range_add": 5.0
     }
   ]
 }

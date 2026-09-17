@@ -114,9 +114,7 @@ public class MrpgSkillsCommon {
                                                  String path, String spellPattern, String spellName, float scale) {
         return spellRoot(category, school, path, spellPattern, spellName,
                 // `%%`, not `%`: the description becomes a lang value and `I18n.translate` feeds it
-                // to `String.format`, which would choke on a bare `% l`. No entry uses this helper
-                // yet, so nothing generated changes - it is the same trap that was live in
-                // `bard_tier_2_spell_1_modifier_2`.
+                // to `String.format`, which would choke on a bare `% l`.
                 spellName + " projectile is " + Math.round(scale * 100) + "%% larger.",
                 modifier -> modifier.projectile_scale_multiply = scale);
     }

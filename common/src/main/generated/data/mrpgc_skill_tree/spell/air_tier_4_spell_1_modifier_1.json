@@ -6,7 +6,9 @@
   "modifiers": [
     {
       "spell_pattern": "elemental_wizards_rpg:wind_tornado",
-      "spawn_duration_add": 3.0
+      "power_modifier": {
+        "power_multiplier": 0.2
+      }
     }
   ]
 }

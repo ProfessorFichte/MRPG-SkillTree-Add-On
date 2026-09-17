@@ -7,7 +7,7 @@
     {
       "spell_pattern": "elemental_wizards_rpg:aqua_springwater",
       "power_modifier": {
-        "power_multiplier": 0.15
+        "power_multiplier": 0.1
       }
     }
   ]

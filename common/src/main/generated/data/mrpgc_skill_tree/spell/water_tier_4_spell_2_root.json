@@ -5,9 +5,9 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "elemental_wizards_rpg:aqua_tidal_wave",
+      "spell_pattern": "elemental_wizards_rpg:helper/aqua_tidal_wave_impact",
       "power_modifier": {
-        "power_multiplier": 0.15
+        "power_multiplier": 0.1
       }
     }
   ]

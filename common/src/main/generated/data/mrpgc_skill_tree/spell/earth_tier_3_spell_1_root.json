@@ -6,7 +6,11 @@
   "modifiers": [
     {
       "spell_pattern": "elemental_wizards_rpg:terra_drip_circle",
-      "range_add": 1.0
+      "summon_behaviour": {
+        "lifespan": {
+          "active_seconds_add": 2
+        }
+      }
     }
   ]
 }

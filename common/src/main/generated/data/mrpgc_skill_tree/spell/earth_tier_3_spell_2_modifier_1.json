@@ -6,7 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "elemental_wizards_rpg:terra_shattering_stone",
-      "effect_amplifier_cap_add": 1
+      "effect_amplifier_cap_add": 2
     }
   ]
 }

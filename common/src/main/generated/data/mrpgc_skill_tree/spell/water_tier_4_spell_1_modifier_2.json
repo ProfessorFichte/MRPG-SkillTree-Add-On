@@ -5,8 +5,25 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "elemental_wizards_rpg:aqua_healing_rain",
-      "cooldown_duration_deduct": 8.0
+      "spell_pattern": "elemental_wizards_rpg:helper/aqua_healing_rain_impact",
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "chance": 0.5,
+          "action": {
+            "type": "STATUS_EFFECT",
+            "status_effect": {
+              "apply_mode": "REMOVE",
+              "remove": {
+                "id": "!minecraft:trial_omen"
+              }
+            }
+          },
+          "sound": {
+            "id": "spell_engine:generic_dispel_1"
+          }
+        }
+      ]
     }
   ]
 }

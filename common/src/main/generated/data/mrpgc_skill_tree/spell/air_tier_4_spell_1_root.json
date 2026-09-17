@@ -6,7 +6,11 @@
   "modifiers": [
     {
       "spell_pattern": "elemental_wizards_rpg:wind_tornado",
-      "range_add": 1.0
+      "summon_behaviour": {
+        "lifespan": {
+          "active_seconds_add": 5
+        }
+      }
     }
   ]
 }

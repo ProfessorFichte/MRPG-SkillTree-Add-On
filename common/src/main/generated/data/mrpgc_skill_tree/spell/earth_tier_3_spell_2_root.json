@@ -7,7 +7,7 @@
     {
       "spell_pattern": "elemental_wizards_rpg:terra_shattering_stone",
       "power_modifier": {
-        "power_multiplier": 0.05
+        "power_multiplier": 0.1
       }
     }
   ]
