@@ -6,7 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "elemental_wizards_rpg:aqua_healing_rain",
-      "spawn_duration_add": 6.0
+      "spawn_duration_add": 15.0
     }
   ]
 }

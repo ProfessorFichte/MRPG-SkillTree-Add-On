@@ -3,10 +3,13 @@ package com.mrpgc_skill_tree.utils;
 import com.mrpgc_skill_tree.skills.MrpgSkillDefinitions;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.item.ItemStack;
+import net.minecraft.registry.Registries;
+import net.minecraft.registry.entry.RegistryEntry;
+import net.minecraft.entity.attribute.EntityAttribute;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.spell_engine.client.gui.AttributeModifierTooltip;
 import net.spell_engine.client.gui.SpellTooltip;
-import net.spell_engine.mixin.client.ItemStackTooltipAccessor;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,16 +41,13 @@ public class MrpgTranslationUtil {
         if (player == null) {
             return List.of();
         }
-        var tooltipUtil = (ItemStackTooltipAccessor) (Object) ItemStack.EMPTY;
+        var attribute = attributeReward.attribute();
+        if (attribute == null) {
+            return List.of();
+        }
         var bonusLines = new ArrayList<Text>();
         var modifier = attributeReward.modifier();
-        tooltipUtil
-                .spellEngine_appendAttributeModifierTooltip(
-                        bonusLines::add,
-                        player,
-                        attributeReward.attribute(),
-                        modifier
-                );
+        AttributeModifierTooltip.append(bonusLines::add, player, attribute, modifier);
         return bonusLines;
     }
 }

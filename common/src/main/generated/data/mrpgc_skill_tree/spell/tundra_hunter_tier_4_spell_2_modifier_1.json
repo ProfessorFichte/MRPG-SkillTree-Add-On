@@ -13,8 +13,8 @@
             "modifiers": [
               {
                 "attribute_id": "minecraft:generic.movement_speed",
-                "operation": "ADD_MULTIPLIED_BASE",
-                "base": 0.25,
+                "operation": "MULTIPLY_BASE",
+                "base": 0.15,
                 "coefficient": 0.0
               }
             ]
@@ -23,8 +23,8 @@
             "attribute_id": "minecraft:generic.attack_speed",
             "modifiers": [
               {
-                "attribute_id": "minecraft:generic.attack_speed",
-                "operation": "ADD_MULTIPLIED_BASE",
+                "attribute_id": "minecraft:generic.knockback_resistance",
+                "operation": "MULTIPLY_BASE",
                 "base": 0.25,
                 "coefficient": 0.0
               }

@@ -10,7 +10,7 @@
     "triggers": [
       {
         "type": "SPELL_CAST",
-        "chance": 0.3,
+        "chance": 0.5,
         "spell": {
           "id": "bards_rpg:encore"
         }

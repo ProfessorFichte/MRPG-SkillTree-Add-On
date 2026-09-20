@@ -6,7 +6,9 @@
   "modifiers": [
     {
       "spell_pattern": "elemental_wizards_rpg:aqua_waterball",
-      "cooldown_duration_deduct": 2.0
+      "projectile_launch": {
+        "extra_launch_count": 2
+      }
     }
   ]
 }

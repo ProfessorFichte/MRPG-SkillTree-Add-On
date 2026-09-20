@@ -6,7 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "archers_expansion:smoldering_arrow",
-      "range_add": 0.5
+      "cooldown_duration_deduct": 2.0
     }
   ]
 }

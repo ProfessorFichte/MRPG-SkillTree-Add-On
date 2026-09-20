@@ -1,6 +1,7 @@
 package com.mrpgc_skill_tree.effect;
 
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 
@@ -9,11 +10,11 @@ import static net.more_rpg_classes.util.CustomMethods.clearNegativeEffects;
 public class RemoveHarmfulEffectsWhenAppliedStatusEffect extends StatusEffect {
     protected RemoveHarmfulEffectsWhenAppliedStatusEffect(StatusEffectCategory category, int color) {
         super(category, color);
-
-    }
-    public void onApplied(LivingEntity entity, int amplifier) {
-        super.onApplied(entity, amplifier);
-        clearNegativeEffects(entity,false);
     }
 
+    @Override
+    public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
+        super.onApplied(entity, attributes, amplifier);
+        clearNegativeEffects(entity, false);
+    }
 }

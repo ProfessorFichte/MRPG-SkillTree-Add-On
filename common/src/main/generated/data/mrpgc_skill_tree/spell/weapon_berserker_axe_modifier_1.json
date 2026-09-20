@@ -9,6 +9,7 @@
   "passive": {
     "triggers": [
       {
+        "target_override": "CASTER",
         "type": "SPELL_IMPACT_SPECIFIC",
         "target_conditions": [
           {

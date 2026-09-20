@@ -7,9 +7,9 @@ on:
         type: boolean
         description: 'Loader: Fabric'
         default: true
-      neoforge:
+      forge:
         type: boolean
-        description: 'Loader: NeoForge'
+        description: 'Loader: Forge'
         default: true
       release_type:
         type: choice
@@ -35,7 +35,7 @@ permissions:
   contents: read
 
 jobs:
-  # Separate job because an empty matrix would silently run zero jobs.
+  # Own job because an empty matrix would just run zero jobs without any error.
   plan:
     runs-on: ubuntu-latest
     outputs:
@@ -44,13 +44,12 @@ jobs:
     steps:
       - name: Resolve build plan
         id: plan
-        # `if` blocks, not `&&` chains: `${{ inputs.x }}` is a bare `false`, which aborts under `set -e`.
         run: |
           set -euo pipefail
 
           loaders=""
-          if [ "${{ inputs.fabric }}"   = "true" ]; then loaders="$loaders fabric";   fi
-          if [ "${{ inputs.neoforge }}" = "true" ]; then loaders="$loaders neoforge"; fi
+          if [ "${{ inputs.fabric }}" = "true" ]; then loaders="$loaders fabric"; fi
+          if [ "${{ inputs.forge }}"  = "true" ]; then loaders="$loaders forge";  fi
 
           destinations=""
           if [ "${{ inputs.curseforge }}" = "true" ]; then destinations="$destinations publishCurseforge"; fi
@@ -61,7 +60,7 @@ jobs:
           destinations="${destinations# }"
 
           if [ -z "$loaders" ]; then
-            echo "::error::No loader selected - tick at least one of Fabric / NeoForge."
+            echo "::error::No loader selected - tick at least one of Fabric / Forge."
             exit 1
           fi
           if [ -z "$destinations" ]; then
@@ -80,13 +79,13 @@ jobs:
     needs: plan
     runs-on: ubuntu-latest
     strategy:
-      fail-fast: false   # never cancel a sibling mid-upload
+      fail-fast: false
       matrix:
         loader: ${{ fromJSON(needs.plan.outputs.loaders) }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - name: Set up JDK
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: 'temurin'
@@ -94,7 +93,7 @@ jobs:
         run: chmod +x ./gradlew
       - name: Resolve Gradle tasks
         id: targets
-        # `build` is explicit: the publish tasks depend on remapJar, not on build/check.
+        # build has to be listed, the publish tasks only depend on remapJar.
         run: |
           set -euo pipefail
           tasks=":${{ matrix.loader }}:build"
@@ -111,7 +110,6 @@ jobs:
           CURSEFORGE_API_KEY: ${{ secrets.CURSEFORGE_API_KEY }}
           CURSEFORGE_PROJECT_ID: ${{ vars.CURSEFORGE_PROJECT_ID }}
           MODRINTH_API_KEY: ${{ secrets.MODRINTH_API_KEY }}
-          # Two names in use across the ecosystem; each repo defines only its own.
           MODRINTH_PROJECT_RAW_ID: ${{ vars.MODRINTH_PROJECT_RAW_ID }}
           MODRINTH_PROJECT_ID: ${{ vars.MODRINTH_PROJECT_ID }}
           GH_API_KEY: ${{ secrets.GH_API_KEY }}

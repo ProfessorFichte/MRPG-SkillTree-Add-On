@@ -6,7 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "archers_expansion:explosive_barrel_explosion",
-      "range_add": 2.0
+      "range_add": 4.0
     }
   ]
 }

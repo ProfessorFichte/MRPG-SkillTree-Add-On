@@ -1,54 +1,16 @@
-# 1.3.0 - 1.21.1
-- Adopt Spell Engine 1.10
-# 1.1.2 - 1.21.1
-- Fixed a crash due to a wrong model_id path in the tundra_hunter_spec_a_passive_1 spell
+# 1.3.0+1.20.1
 
-# 1.1.1 - 1.21.1
--  Github Issue: #5 Console log Spam with Blind with Rage: Fixed the Log Spam of the Blind with Rage Effect, because of a wrong particle id
+> ### ⚠️ Read this before updating
+>
+> This release is a **major technical overhaul and is not backwards compatible.**
+>
+> - **Requires the matching Spell Engine, More RPG Library and Skill Tree releases.**
+> - **Update the whole set together.** Mixing in an older add-on will break at startup or misbehave in play.
+>
+> **Back up your world before updating.**
 
-# 1.1.0 - 1.21.1
-- Update for the new Spell Engine 1.9 API Changes
-
-# 1.0.8 - 1.21.1
-- Add Logger with Instructions for NeoForge Servers where the Skill Tree Changes don't show up
-- Fix MRPGC Skill Node Descriptions not being shown
-- Fix Force Release Translation
-- Add Tenacity Attribute to Ragnarok, Sury's Tenacity & Terrain Mastery
-
-# 1.0.7 - 1.21.1
-- Bump tweaks config version because of several issues
-- Attempt to fix Skill Tree Change snot loading on Neoforge Server
-
-# 1.0.6 - 1.21.1
-- Update for new MRPG-Lib Version
-
-# 1.0.5 - 1.21.1
-- increase range of spinning slash and slightly increase its damaging duration
-- Fix War Archer Spec A Passive
-- Slightly Nerf Splish Splash Modifier for the Water Whip Spell
-- Better scaling for Poison Skill Nodes from the Deadeye Class
-- Fix Resourcepack not loading for Neoforge
-
-# 1.0.4 - 1.21.1
-- Move to Architectury Enviroment for Multiloader
-- NeoForge Beta!
-- add some missing status effects icons
-- improve some status effect icons
-- add some arrow indicators for buffs & debuffs for status effect icons that look like the spells icons
-
-# 1.0.3 - 1.21.1
-- Increase High Water pressure cooldown duration, nerf stun duration & trigger chance
-- Fix Earthen Blessing not stacking
-- Fix Norse Blood Ritual not working
-
-# 1.0.2 - 1.21.1
-- Fix wrong War Archer Node Connection
-- Change confusing named Disable-Config
-- Nerf Combustive Shot (War-Archer Spell Modifier 4)
-- Add Cooldown to soothing mist
-
-# 1.0.1 - 1.21.1
-- The Skill Tree now still loads, if you do not have all the required classes installed
-
-# 1.0.0 - 1.21.1
-- Initial Release
+- Ported to Minecraft 1.20.1 (Fabric + Forge 47). NeoForge is replaced by Forge on this line, the same Forge jar also loads on NeoForge 1.20.1.
+- Requires the matching 1.20.1 releases of Spell Engine (1.10.5), Spell Power (1.6.0), More RPG Library (2.7.2), Skill Tree (1.6.1), Pufferfish's Skills (0.16.7) and Ranged Weapon API (2.3.4). Combat Roll (1.3.3) stays optional.
+- 1.20.1 has no max absorption attribute, so the Air Bubble, Stone Heart, Bubble Shield, Reckless Rage, Winters Cloak and Warden's Barrier effects no longer carry the +2 absorption cap modifier, the absorption they grant is unchanged.
+- 1.20.1 has no scale attribute, so Last Stand doesn't make you bigger anymore, it still gives the ranged haste and damage reduction. The Eye of the Storm overlay is drawn at normal size.
+- Fixed the Igni and Aard Sweep tier 4 roots overwriting the tier 2 Igni and Aard roots because they shared the same id.

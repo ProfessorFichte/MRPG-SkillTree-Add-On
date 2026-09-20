@@ -5,8 +5,8 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "archers_expansion:venom_cask",
-      "range_add": 1.0
+      "spell_pattern": "archers_expansion:venom_cask_cloud",
+      "spawn_duration_add": 2.0
     }
   ]
 }

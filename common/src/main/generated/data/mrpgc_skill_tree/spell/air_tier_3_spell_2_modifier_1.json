@@ -6,7 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "elemental_wizards_rpg:wind_windfield",
-      "effect_duration_add": 3.0
+      "effect_duration_add": 4.0
     }
   ]
 }

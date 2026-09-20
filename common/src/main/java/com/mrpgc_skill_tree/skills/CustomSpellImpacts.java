@@ -9,7 +9,7 @@ import static com.mrpgc_skill_tree.MRPGCSkillTreeAddOn.MOD_ID;
 public class CustomSpellImpacts {
     public static void registerCustomImpacts(){
         SpellHandlers.registerCustomImpact(
-                Identifier.of(MOD_ID, "reckless_rage"),
+                new Identifier(MOD_ID, "reckless_rage"),
                 new RecklessRageImpact()
         );
     }

@@ -25,7 +25,7 @@ public class RecklessRageImpact implements SpellHandlers.CustomImpact {
             float actual_health_player = playerEntity.getHealth();
             float self_damage_calc = (float) (max_health * 0.05F);
             if(actual_health_player <= 1.0F){
-                playerEntity.removeStatusEffect(MrpgSkillEffects.RECKLESS_RAGE.entry);
+                playerEntity.removeStatusEffect(MrpgSkillEffects.RECKLESS_RAGE.effect);
                 return new SpellHandlers.ImpactResult(false, false);
             }else{
                 if(self_damage_calc > actual_health_player){

@@ -7,7 +7,7 @@
     {
       "spell_pattern": "elemental_wizards_rpg:wind_air_cutter",
       "power_modifier": {
-        "power_multiplier": 0.05
+        "critical_damage_bonus": 0.08
       }
     }
   ]

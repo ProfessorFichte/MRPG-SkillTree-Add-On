@@ -1,10 +1,13 @@
 package com.mrpgc_skill_tree.skills;
 
+import com.mrpgc_skill_tree.attributes.MrpgIds;
+import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.util.Identifier;
 import net.more_rpg_classes.effect.MRPGCEffects;
 import net.spell_engine.api.datagen.SpellBuilder;
+import net.spell_engine.api.entity.SpellEngineAttributes;
 import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.fx.Fx;
@@ -32,12 +35,12 @@ public class TundraHunterSkillSpells {
         return entry;
     }
 
-    public static final MrpgSkillSpells.Entry tundra_hunter_tier_2_spell_1_root = add(MrpgSkillsCommon.lingerRoot(
+    public static final MrpgSkillSpells.Entry tundra_hunter_tier_2_spell_1_root = add(MrpgSkillsCommon.radiusRoot(
             MrpgSkillSpells.Category.TUNDRA_HUNTER, MrpgSkillSpells.tundraHunterSchool,
-            "tundra_hunter_tier_2_spell_1_root", "archers_expansion:frozen_pact", "Frozen Pact", 1F));
+            "tundra_hunter_tier_2_spell_1_root", "archers_expansion:frozen_pact", "Frozen Pact", 2F));
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_2_spell_1_modifier_1 = add(tundra_hunter_tier_2_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry tundra_hunter_tier_2_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_2_spell_1_modifier_1");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_2_spell_1_modifier_1");
         var title = "Arctic Pact";
         var description = "Frozen Pact has a {trigger_chance} chance to freeze targets solid.";
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
@@ -62,11 +65,9 @@ public class TundraHunterSkillSpells {
     }
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_2_spell_1_modifier_2 = add(tundra_hunter_tier_2_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry tundra_hunter_tier_2_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_2_spell_1_modifier_2");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_2_spell_1_modifier_2");
         var title = "Polar Instincts";
         var effect = MrpgSkillEffects.HUNTING_INSTINCTS;
-        // Two modifiers (frost spell power, ranged damage), both +10%. The status effect's modifier
-        // map is unordered, so the attribute is named explicitly rather than read by list position.
         var description = "Frozen Pact increases Frost Power and Ranged Damage by "
                 + TooltipTokens.effect(effect.id, 0, SpellSchools.FROST.id)
                 + " for {effect_duration} secs.";
@@ -85,12 +86,12 @@ public class TundraHunterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.TUNDRA_HUNTER));
     }
-    public static final MrpgSkillSpells.Entry tundra_hunter_tier_2_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+    public static final MrpgSkillSpells.Entry tundra_hunter_tier_2_spell_2_root = add(MrpgSkillsCommon.lingerRoot(
             MrpgSkillSpells.Category.TUNDRA_HUNTER, MrpgSkillSpells.tundraHunterSchool,
-            "tundra_hunter_tier_2_spell_2_root", "archers_expansion:frozen_shot", "Frozen Shot", 0.1F));
+            "tundra_hunter_tier_2_spell_2_root", "archers_expansion:frozen_shot", "Frozen Shot", 2F));
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_2_spell_2_modifier_1 = add(tundra_hunter_tier_2_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry tundra_hunter_tier_2_spell_2_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_2_spell_2_modifier_1");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_2_spell_2_modifier_1");
         var title = "Additional Frozen Shots";
         var description = "You gain {stash_amplifier_add} additional Frozen Shots.";
         var spell = SpellBuilder.createSpellModifier();
@@ -105,15 +106,13 @@ public class TundraHunterSkillSpells {
     }
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_2_spell_2_modifier_2 = add(tundra_hunter_tier_2_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry tundra_hunter_tier_2_spell_2_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_2_spell_2_modifier_2");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_2_spell_2_modifier_2");
         var title = "Frost Stalker";
         var effect = MrpgSkillEffects.HUNTING_FEVER;
-        // Two modifiers (movement speed, ranged haste), both +20%. The status effect's modifier map
-        // is unordered, so the attribute is named explicitly rather than read by list position.
         var description = "Hitting a Frosted target with Frozen Shot grants "
                 + TooltipTokens.effect(effect.id, 0,
-                        Identifier.of(EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString()))
-                + " increased movement speed for {effect_duration} sec.";
+                        new Identifier(MrpgIds.attribute(EntityAttributes.GENERIC_MOVEMENT_SPEED)))
+                + " increased movement speed and ranged haste for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.tundraHunterSchool;
 
@@ -138,7 +137,7 @@ public class TundraHunterSkillSpells {
             "tundra_hunter_tier_3_spell_1_root", "archers_expansion:arctic_volley", "Arctic Volley", 0.05F));
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_3_spell_1_modifier_1 = add(tundra_hunter_tier_3_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry tundra_hunter_tier_3_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_3_spell_1_modifier_1");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_3_spell_1_modifier_1");
         var title = "Extra Arctic Shots";
         var description = "Arctic Volley shoots {extra_launch} additional arctic arrows.";
         var spell = SpellBuilder.createSpellModifier();
@@ -157,7 +156,7 @@ public class TundraHunterSkillSpells {
     }
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_3_spell_1_modifier_2 = add(tundra_hunter_tier_3_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry tundra_hunter_tier_3_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_3_spell_1_modifier_2");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_3_spell_1_modifier_2");
         var title = "Freezing Arrow Tips";
         var description = "Increases the effect duration of Arctic Volley's frost effects by {effect_duration_add} sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -171,12 +170,12 @@ public class TundraHunterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.TUNDRA_HUNTER));
     }
-    public static final MrpgSkillSpells.Entry tundra_hunter_tier_3_spell_2_root = add(MrpgSkillsCommon.radiusRoot(
+    public static final MrpgSkillSpells.Entry tundra_hunter_tier_3_spell_2_root = add(MrpgSkillsCommon.fieldRoot(
             MrpgSkillSpells.Category.TUNDRA_HUNTER, MrpgSkillSpells.tundraHunterSchool,
-            "tundra_hunter_tier_3_spell_2_root", "archers_expansion:frozen_fusillade", "Frozen Fusillade", 1F));
+            "tundra_hunter_tier_3_spell_2_root", "archers_expansion:frozen_fusillade", "Frozen Fusillade", 2F));
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_3_spell_2_modifier_1 = add(tundra_hunter_tier_3_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry tundra_hunter_tier_3_spell_2_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_3_spell_2_modifier_1");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_3_spell_2_modifier_1");
         var title = "Tundric Trap";
         var description = "Frozen Fusillade has {impact_chance} chance to freeze targets solid.";
         var spell = SpellBuilder.createSpellModifier();
@@ -185,7 +184,7 @@ public class TundraHunterSkillSpells {
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:frozen_fusillade";
         var impact = SpellBuilder.Impacts.effectSet(MRPGCEffects.FROZEN_SOLID.id.toString(), 2, 0);
-        impact.chance = 0.3F;
+        impact.chance = 0.15F;
         modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
         modifier.impacts = List.of(impact);
         spell.modifiers = List.of(modifier);
@@ -194,10 +193,14 @@ public class TundraHunterSkillSpells {
     }
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_3_spell_2_modifier_2 = add(tundra_hunter_tier_3_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry tundra_hunter_tier_3_spell_2_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_3_spell_2_modifier_2");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_3_spell_2_modifier_2");
         var title = "Field Advantage";
         var effect = MrpgSkillEffects.FIELD_ADVANTAGE;
-        var description = "Frozen Fusillade grants you Field Advantage, increasing Ranged Haste and reducing incoming damage for {effect_duration} sec.";
+        var description = "Frozen Fusillade grants you Field Advantage, increasing Ranged Haste by "
+                + TooltipTokens.effect(effect.id, 0, EntityAttributes_RangedWeapon.HASTE.id)
+                + " and reducing incoming damage by "
+                + TooltipTokens.effect(effect.id, 0, SpellEngineAttributes.DAMAGE_TAKEN.id, TooltipTokens.Format.ABS)
+                + " for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.tundraHunterSchool;
 
@@ -216,12 +219,9 @@ public class TundraHunterSkillSpells {
             "tundra_hunter_tier_4_spell_1_root", "archers_expansion:enchanted_crystal_arrow", "Enchanted Crystal Arrow", 0.05F));
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_4_spell_1_modifier_1 = add(tundra_hunter_tier_4_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry tundra_hunter_tier_4_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_4_spell_1_modifier_1");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_4_spell_1_modifier_1");
         var title = "Shattering Ice Crystals";
         var bonus = 1.5F;
-        // A compile-time constant of this mod, not anything the spell data carries, so it is baked
-        // into the description (`bakedPercent` doubles the `%`: the lang value goes through
-        // `I18n.translate` -> `String.format`).
         var description = "Increases the area of effect of Enchanted Crystal Arrow by "
                 + TooltipTokens.bakedPercent(bonus) + ".";
         var spell = SpellBuilder.createSpellModifier();
@@ -247,7 +247,7 @@ public class TundraHunterSkillSpells {
     }
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_4_spell_1_modifier_2 = add(tundra_hunter_tier_4_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry tundra_hunter_tier_4_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_4_spell_1_modifier_2");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_4_spell_1_modifier_2");
         var title = "Precise Crystallized Shot";
         var description = "Enchanted Crystal Arrow has {critical_chance_bonus} increased critical strike chance.";
         var spell = SpellBuilder.createSpellModifier();
@@ -264,10 +264,10 @@ public class TundraHunterSkillSpells {
     }
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_4_spell_2_root = add(MrpgSkillsCommon.companionRoot(
             MrpgSkillSpells.Category.TUNDRA_HUNTER, MrpgSkillSpells.tundraHunterSchool,
-            "tundra_hunter_tier_4_spell_2_root", "archers_expansion:bearward", "Polar Bearward", 10));
+            "tundra_hunter_tier_4_spell_2_root", "archers_expansion:bearward", "Polar Bearward", 5));
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_4_spell_2_modifier_1 = add(tundra_hunter_tier_4_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry tundra_hunter_tier_4_spell_2_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_4_spell_2_modifier_1");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_4_spell_2_modifier_1");
         var title = "Savage Ursine";
         var description = "The summoned bear has increased movement and attack speed.";
         var spell = SpellBuilder.createSpellModifier();
@@ -279,12 +279,13 @@ public class TundraHunterSkillSpells {
         var movementSpeed = new AttributeScaling.Entry();
         movementSpeed.attribute_id = "minecraft:generic.movement_speed";
         movementSpeed.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
-                "minecraft:generic.movement_speed", EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE, 0.25, 0.0));
+                "minecraft:generic.movement_speed", EntityAttributeModifier.Operation.MULTIPLY_BASE, 0.15, 0.0));
         var attackSpeed = new AttributeScaling.Entry();
         attackSpeed.attribute_id = "minecraft:generic.attack_speed";
         attackSpeed.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
-                "minecraft:generic.attack_speed", EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE, 0.25, 0.0));
+                MrpgIds.attribute(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE), EntityAttributeModifier.Operation.MULTIPLY_BASE, 0.25, 0.0));
         modifier.summon_attribute_scaling = new AttributeScaling();
+
         modifier.summon_attribute_scaling.entries = List.of(movementSpeed, attackSpeed);
 
         spell.modifiers = List.of(modifier);
@@ -293,7 +294,7 @@ public class TundraHunterSkillSpells {
     }
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_4_spell_2_modifier_2 = add(tundra_hunter_tier_4_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry tundra_hunter_tier_4_spell_2_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_4_spell_2_modifier_2");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_4_spell_2_modifier_2");
         var title = "Pain-resistant Bear";
         var description = "The summoned bear takes reduced damage and has increased health.";
         var spell = SpellBuilder.createSpellModifier();
@@ -305,11 +306,11 @@ public class TundraHunterSkillSpells {
         var damageTaken = new AttributeScaling.Entry();
         damageTaken.attribute_id = "spell_engine:damage_taken";
         damageTaken.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
-                "spell_engine:damage_taken", EntityAttributeModifier.Operation.ADD_MULTIPLIED_TOTAL, -0.25, 0.0));
+                "spell_engine:damage_taken", EntityAttributeModifier.Operation.MULTIPLY_BASE, -0.25, 0.0));
         var maxHealth = new AttributeScaling.Entry();
         maxHealth.attribute_id = "minecraft:generic.max_health";
         maxHealth.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
-                "minecraft:generic.max_health", EntityAttributeModifier.Operation.ADD_MULTIPLIED_BASE, 0.3, 0.0));
+                "minecraft:generic.max_health", EntityAttributeModifier.Operation.MULTIPLY_BASE, 0.3, 0.0));
         modifier.summon_attribute_scaling = new AttributeScaling();
         modifier.summon_attribute_scaling.entries = List.of(damageTaken, maxHealth);
 
@@ -317,10 +318,17 @@ public class TundraHunterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.TUNDRA_HUNTER));
     }
-    ///TUNDRA HUNTER PASSIVES
+    private static AttributeScaling.Entry summonScaling(String targetAttribute, String ownerAttribute,
+                                                        double base, double coefficient) {
+        var entry = new AttributeScaling.Entry();
+        entry.attribute_id = targetAttribute;
+        entry.modifiers = List.of(new AttributeScaling.Entry.OwnerModifier(
+                ownerAttribute, EntityAttributeModifier.Operation.ADDITION, base, coefficient));
+        return entry;
+    }
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_1_passive_1 = add(tundra_hunter_tier_1_passive_1());
     private static MrpgSkillSpells.Entry tundra_hunter_tier_1_passive_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_1_passive_1");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_1_passive_1");
         var title = "Hail";
         var description = "Arrows have a {trigger_chance} chance to launch falling icicles dealing {damage} damage.";
 
@@ -382,7 +390,7 @@ public class TundraHunterSkillSpells {
     }
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_1_passive_2 = add(tundra_hunter_tier_1_passive_2());
     private static MrpgSkillSpells.Entry tundra_hunter_tier_1_passive_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_1_passive_2");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_1_passive_2");
         var title = "Frozen Prey";
         var description = "If the target is frosted, you heal yourself for {heal} hearts.";
 
@@ -405,7 +413,6 @@ public class TundraHunterSkillSpells {
                 ParticleGroupBuilder.of(SpellEngineParticles.area_circle_1)
                         .attached()
                         .scale(0.8F)
-                        // V1 max_age 0.8 (a lifetime multiplier) = playback speed 1 / 0.8
                         .playbackSpeed(1F / 0.8F)
                         .color(Color.FROST)
                         .batch(b -> b.shape(ParticleGroup.Shape.LINE_VERTICAL)
@@ -424,7 +431,7 @@ public class TundraHunterSkillSpells {
     }
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_2_passive_1 = add(tundra_hunter_tier_2_passive_1());
     private static MrpgSkillSpells.Entry tundra_hunter_tier_2_passive_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_2_passive_1");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_2_passive_1");
         var title = "Winter's Cloak";
         var description = "When rolling you have {trigger_chance_1} chance to freeze enemies solid that hit you for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
@@ -462,7 +469,7 @@ public class TundraHunterSkillSpells {
     }
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_2_passive_2 = add(tundra_hunter_tier_2_passive_2());
     private static MrpgSkillSpells.Entry tundra_hunter_tier_2_passive_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_2_passive_2");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_2_passive_2");
         var title = "Terrain Mastery";
         var description = "When rolling you have a {trigger_chance} chance to stay immune from harmful effects for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
@@ -490,7 +497,7 @@ public class TundraHunterSkillSpells {
     }
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_3_passive_1 = add(tundra_hunter_tier_3_passive_1());
     private static MrpgSkillSpells.Entry tundra_hunter_tier_3_passive_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_3_passive_1");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_3_passive_1");
         var title = "Icy Rebirth";
         var description = "When killing targets you have a {trigger_chance_1} chance to spawn icicles on the ground for {cloud_duration}, dealing {damage} damage.";
         var spell = SpellBuilder.createSpellPassive();
@@ -519,8 +526,6 @@ public class TundraHunterSkillSpells {
                 ParticleGroupBuilder.of(SpellEngineParticles.area_effect_293)
                         .scale(3.5F)
                         .color(Color.FROST)
-                        // SPHERE at zero speed = a single motionless particle on the ground,
-                        // exactly as in V1; the entry itself already faces GROUND
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .count(1).speed(0, 0)
                                 .anchor(ParticleGroup.Anchor.GROUND)));
@@ -529,9 +534,6 @@ public class TundraHunterSkillSpells {
         cloud.impact_tick_interval = 10;
         cloud.time_to_live_seconds = 5;
         cloud.client_data = new Spell.Delivery.Cloud.ClientData();
-        // Raw id on purpose: MoreParticles.ICE_TRAP lives in a client-only package of an
-        // undeclared dependency, and this site overrides no appearance field, so the id
-        // resolves through the same registry with the entry's own defaults intact.
         cloud.client_data.particles = List.of(
                 ParticleGroupBuilder.of("more_rpg_classes:ice_trap")
                         .batch(b -> b.shape(ParticleGroup.Shape.PILLAR)
@@ -545,7 +547,6 @@ public class TundraHunterSkillSpells {
         var damage = SpellBuilder.Impacts.damage(0.4F, 0);
         damage.visuals = Fx.Visuals.of(
                 ParticleGroupBuilder.of(SpellEngineParticles.snowflake)
-                        // V1 WIDE_PIPE = PIPE at double the radius
                         .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
                                 .count(25).speed(0.1F, 0.3F)));
         damage.sound = new Sound(SpellEngineSounds.GENERIC_FROST_IMPACT.id());
@@ -555,14 +556,12 @@ public class TundraHunterSkillSpells {
     }
     public static final MrpgSkillSpells.Entry tundra_hunter_tier_3_passive_2 = add(tundra_hunter_tier_3_passive_2());
     private static MrpgSkillSpells.Entry tundra_hunter_tier_3_passive_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_3_passive_2");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "tundra_hunter_tier_3_passive_2");
         var title = "Hunting Fever";
         var effect = MrpgSkillEffects.HUNTING_FEVER;
-        // Two modifiers (movement speed, ranged haste), both +20%. The status effect's modifier map
-        // is unordered, so the attribute is named explicitly rather than read by list position.
         var description = "Arrow hits have a {trigger_chance} chance to apply Hunting Fever, increasing your Movement Speed & Ranged Haste by "
                 + TooltipTokens.effect(effect.id, 0,
-                        Identifier.of(EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString()))
+                        new Identifier(MrpgIds.attribute(EntityAttributes.GENERIC_MOVEMENT_SPEED)))
                 + " for {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();

@@ -21,18 +21,6 @@
           "apply_mode": "ADD"
         }
       }
-    },
-    {
-      "action": {
-        "type": "STATUS_EFFECT",
-        "status_effect": {
-          "effect_id": "minecraft:jump_boost",
-          "duration": 3.0,
-          "amplifier": 1,
-          "amplifier_cap": 1,
-          "apply_mode": "ADD"
-        }
-      }
     }
   ],
   "cost": {

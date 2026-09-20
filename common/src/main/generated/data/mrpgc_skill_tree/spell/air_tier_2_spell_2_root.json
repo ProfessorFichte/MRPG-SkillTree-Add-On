@@ -5,9 +5,9 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "elemental_wizards_rpg:wind_twister",
+      "spell_pattern": "elemental_wizards_rpg:helper/wind_twister_impact",
       "power_modifier": {
-        "power_multiplier": 0.05
+        "power_multiplier": 0.1
       }
     }
   ]

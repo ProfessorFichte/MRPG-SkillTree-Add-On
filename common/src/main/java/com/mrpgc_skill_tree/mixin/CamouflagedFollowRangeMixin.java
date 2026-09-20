@@ -10,7 +10,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
-/// Camouflaged only grants the follow-range evasion of stealth
 @Mixin(TrackTargetGoal.class)
 public class CamouflagedFollowRangeMixin {
     @Shadow
@@ -20,7 +19,7 @@ public class CamouflagedFollowRangeMixin {
     @Inject(method = "getFollowRange", at = @At("HEAD"), cancellable = true)
     private void getFollowRange_HEAD_Camouflaged(CallbackInfoReturnable<Double> cir) {
         var target = mob.getTarget();
-        if (target != null && target.hasStatusEffect(MrpgSkillEffects.CAMOUFLAGED.entry)) {
+        if (target != null && target.hasStatusEffect(MrpgSkillEffects.CAMOUFLAGED.effect)) {
             cir.setReturnValue(1.0);
             cir.cancel();
         }

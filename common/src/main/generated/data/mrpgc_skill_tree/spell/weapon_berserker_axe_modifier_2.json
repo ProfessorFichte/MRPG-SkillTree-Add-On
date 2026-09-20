@@ -34,16 +34,21 @@
               "spell_power_coefficient": 5.0
             }
           },
-          "particles": [
-            {
-              "particle_id": "more_rpg_classes:stone_explosion",
-              "origin": "CENTER",
-              "shape": "SPHERE",
-              "count": 1.0,
-              "min_speed": 0.5,
-              "max_speed": 0.5
-            }
-          ],
+          "visuals": {
+            "particles": [
+              {
+                "id": "more_rpg_classes:stone_explosion",
+                "appearance": {},
+                "batch": {
+                  "count": 1.0,
+                  "shape": "SPHERE",
+                  "anchor": "ENTITY",
+                  "min_speed": 0.5,
+                  "max_speed": 0.5
+                }
+              }
+            ]
+          },
           "sound": {
             "id": "entity.wither.break_block"
           }

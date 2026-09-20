@@ -33,31 +33,15 @@ public class MrpgSkillSpells {
         }
     }
 
-    /// Registers the description values that no declarative `{...}` token can express. Every one of
-    /// this mod's former `SpellTooltip.DescriptionMutator`s became an `{effect|...}` token or a value
-    /// baked into the description at build time; these two are the only survivors, and both read a
-    /// spell's own impact coefficient as a *fraction of max health* — something the built-in
-    /// `{damage}` / `{heal}` tokens can't say, since they estimate an absolute number.
-    ///
-    /// `TooltipTokens` is server-safe; this is called from client init only because the tooltip is a
-    /// client concern.
     public static void registerTooltipTokens() {
-        // Both were written as `{power_multiplier}` — a real built-in token, but one that resolves
-        // only from a `Spell.Modifier.power_modifier`, which neither spell has. With nothing to
-        // replace them they rendered as the literal text `{power_multiplier}`.
         maxHealthPercent(BerserkerSkillSpells.berserker_tier_3_spell_1_modifier_1.id(),
                 Spell.Impact.Action.Type.DAMAGE);
         maxHealthPercent(ForcemasterSkillSpells.forcemaster_tier_4_spell_2_modifier_2.id(),
                 Spell.Impact.Action.Type.HEAL);
     }
 
-    /// Token used by [#maxHealthPercent]. Written into the description as a literal so the datagen'd
-    /// lang value carries it; resolved at render time by the handler below.
     static final String maxHealthPercentToken = "{max_health_percent}";
 
-    /// Resolves [#maxHealthPercentToken] to the spell's own impact coefficient, as a percentage. Read
-    /// off the live registry entry, so a datapack override of the spell is reflected. Uses `percent`,
-    /// not `bakedPercent`: the value is spliced in *after* translation, so `%` must not be doubled.
     private static void maxHealthPercent(Identifier spellId, Spell.Impact.Action.Type type) {
         TooltipTokens.registerCustom(spellId, args -> {
             var spell = args.spellEntry().value();
@@ -124,8 +108,8 @@ public class MrpgSkillSpells {
         impact.target_modifiers = List.of(modifier);
     }
     static final SpellEntityPredicates.Entry HAS_BLEEDING = SpellEntityPredicates.hasEffectOptimized(SpellEngineEffects.BLEED.id);
-    static final SpellEntityPredicates.Entry HAS_FROSTED = SpellEntityPredicates.hasEffectOptimized(Identifier.of("more_rpg_classes", "frosted"));
-    static final SpellEntityPredicates.Entry HAS_RAGE = SpellEntityPredicates.hasEffectOptimized(Identifier.of("berserker_rpg", "rage"));
+    static final SpellEntityPredicates.Entry HAS_FROSTED = SpellEntityPredicates.hasEffectOptimized(new Identifier("more_rpg_classes", "frosted"));
+    static final SpellEntityPredicates.Entry HAS_RAGE = SpellEntityPredicates.hasEffectOptimized(new Identifier("berserker_rpg", "rage"));
 
     public static final SpellSchool airWizardSchool = MoreSpellSchools.AIR;
     public static final SpellSchool earthWizardSchool = MoreSpellSchools.EARTH;

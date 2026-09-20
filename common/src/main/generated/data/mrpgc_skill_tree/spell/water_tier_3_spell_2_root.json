@@ -6,7 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "elemental_wizards_rpg:aqua_hydro_beam",
-      "channel_ticks_add": 1
+      "channel_ticks_add": 2
     }
   ]
 }

@@ -1,6 +1,7 @@
 package com.mrpgc_skill_tree.fabric;
 
 import com.mrpgc_skill_tree.MRPGCSkillTreeAddOn;
+import com.mrpgc_skill_tree.compat.CombatRollCompat;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.ResourcePackActivationType;
@@ -12,6 +13,9 @@ import static com.mrpgc_skill_tree.MRPGCSkillTreeAddOn.MOD_ID;
 public final class FabricMod implements ModInitializer {
     @Override
     public void onInitialize() {
+        if (FabricLoader.getInstance().isModLoaded("combatroll")) {
+            CombatRollCompat.sender = new FabricCombatRollSender();
+        }
         MRPGCSkillTreeAddOn.init();
         registerResourcePack();
         MRPGCSkillTreeAddOn.registerSounds();
@@ -22,7 +26,7 @@ public final class FabricMod implements ModInitializer {
         if (!MRPGCSkillTreeAddOn.tweaksConfig.value.disable_mrpgc_skilltree_changes) {
             FabricLoader.getInstance().getModContainer(MOD_ID).ifPresent(modContainer -> {
                 ResourceManagerHelper.registerBuiltinResourcePack(
-                        Identifier.of(MOD_ID, "mrpgc_skill_tree_changes"),
+                        new Identifier(MOD_ID, "mrpgc_skill_tree_changes"),
                         modContainer,
                         ResourcePackActivationType.ALWAYS_ENABLED
                 );

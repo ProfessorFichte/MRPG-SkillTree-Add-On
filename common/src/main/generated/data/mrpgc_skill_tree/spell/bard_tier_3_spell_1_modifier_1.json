@@ -9,9 +9,8 @@
   "passive": {
     "triggers": [
       {
-        "target_override": "CASTER",
         "type": "SPELL_CAST",
-        "chance": 0.3,
+        "chance": 0.25,
         "spell": {
           "id": "bards_rpg:encore"
         }
@@ -25,6 +24,7 @@
     {
       "action": {
         "type": "STATUS_EFFECT",
+        "apply_to_caster": true,
         "status_effect": {
           "effect_id": "mrpgc_skill_tree:radiant_encore",
           "duration": 4.0,

@@ -8,7 +8,7 @@
       "spell_pattern": "archers_expansion:bearward",
       "summon_behaviour": {
         "lifespan": {
-          "active_seconds_add": 10
+          "active_seconds_add": 5
         }
       }
     }

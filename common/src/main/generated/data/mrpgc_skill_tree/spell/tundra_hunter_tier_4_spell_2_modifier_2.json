@@ -13,7 +13,7 @@
             "modifiers": [
               {
                 "attribute_id": "spell_engine:damage_taken",
-                "operation": "ADD_MULTIPLIED_TOTAL",
+                "operation": "MULTIPLY_BASE",
                 "base": -0.25,
                 "coefficient": 0.0
               }
@@ -24,7 +24,7 @@
             "modifiers": [
               {
                 "attribute_id": "minecraft:generic.max_health",
-                "operation": "ADD_MULTIPLIED_BASE",
+                "operation": "MULTIPLY_BASE",
                 "base": 0.3,
                 "coefficient": 0.0
               }

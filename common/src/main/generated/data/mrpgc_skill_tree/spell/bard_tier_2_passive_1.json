@@ -22,23 +22,55 @@
           }
         },
         "time_to_live_seconds": 6.0,
-        "impact_tick_interval": 20,
+        "impact_tick_interval": 10,
         "client_data": {
           "particles": [
             {
               "id": "spell_engine:magic_spark",
               "appearance": {
-                "color": 4284940287,
-                "motion": "FLOAT"
+                "color": 4294928127,
+                "motion": "STATIC"
               },
               "batch": {
-                "count": 15.0,
-                "shape": "PILLAR",
+                "count": 20.0,
+                "shape": "CIRCLE",
                 "anchor": "ENTITY",
                 "vertical_origin": 0.1,
-                "min_speed": 0.2,
-                "max_speed": 0.4,
+                "min_speed": 0.05,
+                "max_speed": 0.1,
                 "extent": 4.0
+              }
+            },
+            {
+              "id": "spell_engine:smoke_medium",
+              "appearance": {
+                "color": 4294928127,
+                "motion": "STATIC"
+              },
+              "batch": {
+                "count": 20.0,
+                "shape": "CIRCLE",
+                "anchor": "ENTITY",
+                "vertical_origin": 0.1,
+                "min_speed": 0.05,
+                "max_speed": 0.1,
+                "extent": 4.0
+              }
+            },
+            {
+              "id": "spell_engine:smoke_medium",
+              "appearance": {
+                "color": 4294967295,
+                "motion": "STATIC"
+              },
+              "batch": {
+                "count": 20.0,
+                "shape": "CIRCLE",
+                "anchor": "ENTITY",
+                "vertical_origin": 0.1,
+                "min_speed": 0.05,
+                "max_speed": 0.1,
+                "extent": 3.5
               }
             }
           ]

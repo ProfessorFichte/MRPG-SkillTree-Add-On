@@ -6,7 +6,8 @@
   "modifiers": [
     {
       "spell_pattern": "archers_expansion:smoldering_arrow",
-      "knockback_multiply_base": 0.5
+      "effect_amplifier_cap_add": 1,
+      "stash_amplifier_add": 1
     }
   ]
 }

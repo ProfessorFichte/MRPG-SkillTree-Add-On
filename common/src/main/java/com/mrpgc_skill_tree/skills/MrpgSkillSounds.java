@@ -1,11 +1,14 @@
 package com.mrpgc_skill_tree.skills;
 
 import com.mrpgc_skill_tree.MRPGCSkillTreeAddOn;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.util.Identifier;
 import net.spell_engine.fx.SpellEngineSounds;
 
 import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 public class MrpgSkillSounds {
     public static final List<SpellEngineSounds.Entry> entries = new ArrayList<>();
@@ -14,7 +17,7 @@ public class MrpgSkillSounds {
         return entry;
     }
     private static SpellEngineSounds.Entry entry(String name) {
-        return new SpellEngineSounds.Entry(Identifier.of(MRPGCSkillTreeAddOn.MOD_ID, name));
+        return new SpellEngineSounds.Entry(new Identifier(MRPGCSkillTreeAddOn.MOD_ID, name));
     }
 
     public static final SpellEngineSounds.Entry air_impetus_buff = add(entry("air_impetus_buff"));
@@ -48,6 +51,20 @@ public class MrpgSkillSounds {
     public static final SpellEngineSounds.Entry hunting_fever = add(entry("hunting_fever"));
     public static final SpellEngineSounds.Entry winters_cloak_freeze = add(entry("winters_cloak_freeze"));
     public static final SpellEngineSounds.Entry obsidian_skin = add(entry("obsidian_skin"));
+
+    public static Map<Identifier, SoundEvent> soundsToRegister() {
+        var sounds = new LinkedHashMap<Identifier, SoundEvent>();
+        for (var entry : entries) {
+            sounds.put(entry.id(), entry.soundEvent());
+        }
+        return sounds;
+    }
+
+    public static void linkEntries() {
+        for (var entry : entries) {
+            entry.link();
+        }
+    }
 
     public static void register() {
         for (var entry: entries) {

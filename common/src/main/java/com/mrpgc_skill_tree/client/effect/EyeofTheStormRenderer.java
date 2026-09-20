@@ -16,13 +16,13 @@ import static com.mrpgc_skill_tree.MRPGCSkillTreeAddOn.MOD_ID;
 public class EyeofTheStormRenderer implements CustomModelStatusEffect.Renderer{
 
     private static final RenderLayer RENDER_LAYER = CustomLayers.spellEffect(LightEmission.GLOW, true);
-    public static final Identifier modelId = Identifier.of(MOD_ID, "spell_effect/eye_of_the_storm");
+    public static final Identifier modelId = new Identifier(MOD_ID, "spell_effect/eye_of_the_storm");
 
     @Override
     public void renderEffect(long appliedAtWorldTime, int amplifier, LivingEntity livingEntity, float delta, MatrixStack matrixStack, VertexConsumerProvider vertexConsumers, int light) {
         matrixStack.push();
         matrixStack.translate(0, 0.6, 0);
-        float scale = livingEntity.getScale();
+        float scale = 1.0F;
         matrixStack.scale(scale + 0.25F  ,scale  , scale + 0.25F);
         CustomModels.render(RENDER_LAYER, MinecraftClient.getInstance().getItemRenderer(), modelId, matrixStack, vertexConsumers, light, livingEntity.getId());
         matrixStack.pop();

@@ -9,14 +9,14 @@ public class RegenerationStatusEffect extends StatusEffect {
         super(statusEffectCategory, i);
     }
 
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
+    @Override
+    public void applyUpdateEffect(LivingEntity entity, int amplifier) {
         if (entity.getHealth() < entity.getMaxHealth()) {
             entity.heal(1.0F);
         }
-
-        return true;
     }
 
+    @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
         int i = 50 >> amplifier;
         if (i > 0) {

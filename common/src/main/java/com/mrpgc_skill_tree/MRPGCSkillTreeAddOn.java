@@ -14,6 +14,7 @@ import org.slf4j.LoggerFactory;
 public class MRPGCSkillTreeAddOn{
 	public static final String MOD_ID = "mrpgc_skill_tree";
 	public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
+	public static final String CHANGES_PACK_PATH = "resourcepacks/mrpgc_skill_tree_changes";
 	public static ConfigManager<ConfigFile.Effects> effectConfig = new ConfigManager<>
 			("effects_v0", new ConfigFile.Effects())
 			.builder()
@@ -31,7 +32,7 @@ public class MRPGCSkillTreeAddOn{
 	public static void init() {
 		effectConfig.refresh();
 		tweaksConfig.refresh();
-		if (Platform.util().isModLoaded("combat_roll")) {
+		if (Platform.util().isModLoaded("combatroll")) {
 			CombatRollCompat.register();
 		}
 		CustomSpellImpacts.registerCustomImpacts();

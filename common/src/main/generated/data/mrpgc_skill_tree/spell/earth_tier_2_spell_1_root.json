@@ -6,9 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "elemental_wizards_rpg:terra_stone_flesh",
-      "power_modifier": {
-        "power_multiplier": 0.15
-      }
+      "effect_duration_add": 2.0
     }
   ]
 }

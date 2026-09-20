@@ -1,15 +1,18 @@
 package com.mrpgc_skill_tree.skills;
 
+import com.mrpgc_skill_tree.attributes.MrpgIds;
+import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
+import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.util.Identifier;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.effect.SpellEngineEffects;
+import net.spell_engine.api.entity.SpellEngineAttributes;
 import net.spell_engine.api.entity.SpellEntityPredicates;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.fx.Fx;
 import net.spell_engine.api.spell.fx.ParticleGroup;
 import net.spell_engine.api.spell.fx.ParticleGroupBuilder;
 import net.spell_engine.api.spell.fx.Sound;
-import net.spell_engine.api.util.TriState;
 import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.client.util.Color;
 import net.spell_engine.fx.SpellEngineParticles;
@@ -28,19 +31,15 @@ public class WarArcherSkillSpells {
         return entry;
     }
 
-    public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_1_root = add(MrpgSkillsCommon.radiusRoot(
+    public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_1_root = add(MrpgSkillsCommon.cooldownRoot(
             MrpgSkillSpells.Category.WAR_ARCHER, MrpgSkillSpells.warArcherSchool,
-            "war_archer_tier_2_spell_1_root", "archers_expansion:smoldering_arrow", "Smoldering Arrow", 0.5F));
+            "war_archer_tier_2_spell_1_root", "archers_expansion:smoldering_arrow", "Smoldering Arrow", 2.0F));
     public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_1_modifier_1 = add(war_archer_tier_2_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry war_archer_tier_2_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_1_modifier_1");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_1_modifier_1");
         var title = "Expanded Smoldering Arrow";
 
-        var bonus = 0.5F;
-
-        // A compile-time constant of this mod, not anything the spell data carries, so it is baked
-        // into the description (`bakedPercent` doubles the `%`: the lang value goes through
-        // `I18n.translate` -> `String.format`).
+        var bonus = 1.0F;
         var description = "Increases the area of effect of Smoldering Arrow by "
                 + TooltipTokens.bakedPercent(bonus) + ".";
         var spell = SpellBuilder.createSpellModifier();
@@ -49,21 +48,8 @@ public class WarArcherSkillSpells {
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:smoldering_arrow";
         var extendedRadius = 2.0F * (1F + bonus);
-        modifier.replacing_area_impact = new Spell.AreaImpact();
-        Spell.AreaImpact area_impact = new Spell.AreaImpact();
-        area_impact.radius = extendedRadius;
-        area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
-        area_impact.visuals = Fx.Visuals.of(
-                ParticleGroupBuilder.of(SpellEngineParticles.fire_explosion)
-                        .scale(extendedRadius / 2)
-                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
-                                .count(1.0F).speed(0.0F, 0.0F)),
-                ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_b)
-                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
-                                .count(25.0F).speed(0.1F, 0.3F).preTravel(2)),
-                ParticleGroupBuilder.of(SpellEngineParticles.flame_medium_b)
-                        .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
-                                .count(25.0F).speed(0.2F, 0.4F).preTravel(4)));
+        modifier.replacing_area_impact = SpellBuilder.Complex.fireExplosion(extendedRadius);
+
         modifier.replacing_area_impact.sound = new Sound("entity.generic.explode");
 
         spell.modifiers = List.of(modifier);
@@ -72,17 +58,16 @@ public class WarArcherSkillSpells {
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_1_modifier_2 = add(war_archer_tier_2_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry war_archer_tier_2_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_1_modifier_2");
-        var title = "Explosive Push";
-        var description = "Increases the knockback of Smoldering Arrow by {knockback_multiply_base}.";
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_1_modifier_2");
+        var title = "Improved Smoldering Arrow";
+        var description = "Get {stash_amplifier_add} additional Smoldering Arrow stack.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.warArcherSchool;
 
-        var bonus = 0.5F;
-
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:smoldering_arrow";
-        modifier.knockback_multiply_base = bonus;
+        modifier.stash_amplifier_add = 1;
+        modifier.effect_amplifier_cap_add = 1;
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
@@ -92,7 +77,7 @@ public class WarArcherSkillSpells {
             "war_archer_tier_2_spell_2_root", "archers_expansion:dual_shot", "Dual Shot", 0.05F));
     public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_2_modifier_1 = add(war_archer_tier_2_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry war_archer_tier_2_spell_2_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_2_modifier_1");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_2_modifier_1");
         var title = "Instant Reload";
         var description = "Dual Shot has {trigger_chance} chance to reset its own cooldown.";
         var spell = SpellBuilder.createSpellPassive();
@@ -117,7 +102,7 @@ public class WarArcherSkillSpells {
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_2_modifier_2 = add(war_archer_tier_2_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry war_archer_tier_2_spell_2_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_2_modifier_2");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_2_modifier_2");
         var title = "Heavy Arrow Tips";
         var description = "Increases the knockback of Dual Shot by {knockback_multiply_base}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -137,7 +122,7 @@ public class WarArcherSkillSpells {
             "war_archer_tier_3_spell_1_root", "archers_expansion:explosive_barrel", "Explosive Barrel", 2F));
     public static final MrpgSkillSpells.Entry war_archer_tier_3_spell_1_modifier_1 = add(war_archer_tier_3_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry war_archer_tier_3_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_3_spell_1_modifier_1");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "war_archer_tier_3_spell_1_modifier_1");
         var title = "Potent Saltpeter";
         var description = "Increases the range of the Explosive Barrel's explosion by {range_add} blocks.";
         var spell = SpellBuilder.createSpellModifier();
@@ -145,14 +130,14 @@ public class WarArcherSkillSpells {
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:explosive_barrel_explosion";
-        modifier.range_add = 2F;
+        modifier.range_add = 4F;
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_3_spell_1_modifier_2 = add(war_archer_tier_3_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry war_archer_tier_3_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_3_spell_1_modifier_2");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "war_archer_tier_3_spell_1_modifier_2");
         var title = "Barrel Supply";
         var description = "Explosive Barrel has {impact_chance} chance to place 2 additional barrels nearby.";
         var spell = SpellBuilder.createSpellModifier();
@@ -162,7 +147,7 @@ public class WarArcherSkillSpells {
         modifier.spell_pattern = "archers_expansion:explosive_barrel";
 
         var spawnImpact = new Spell.Impact();
-        spawnImpact.chance = 0.5F;
+        spawnImpact.chance = 0.3F;
         spawnImpact.action = new Spell.Impact.Action();
         spawnImpact.action.type = Spell.Impact.Action.Type.SPAWN;
         spawnImpact.action.apply_to_caster = true;
@@ -191,7 +176,7 @@ public class WarArcherSkillSpells {
             "war_archer_tier_3_spell_2_root", "archers_expansion:point_blank_shot", "Point Blank Shot", 0.05F));
     public static final MrpgSkillSpells.Entry war_archer_tier_3_spell_2_modifier_1 = add(war_archer_tier_3_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry war_archer_tier_3_spell_2_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_3_spell_2_modifier_1");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "war_archer_tier_3_spell_2_modifier_1");
         var title = "Stronger Point Blank Shot";
         var description = "Point Blank Shot deals {power_multiplier} more damage.";
         var spell = SpellBuilder.createSpellModifier();
@@ -207,9 +192,9 @@ public class WarArcherSkillSpells {
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_3_spell_2_modifier_2 = add(war_archer_tier_3_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry war_archer_tier_3_spell_2_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_3_spell_2_modifier_2");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "war_archer_tier_3_spell_2_modifier_2");
         var title = "Heavy Point Blank Shot";
-        var description = "Point Blank Shot has {trigger_chance} chance to stun the target.";
+        var description = "Point Blank Shot has {trigger_chance} chance to stun the target for {effect_duration} sec.";
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
         spell.school = MrpgSkillSpells.warArcherSchool;
         spell.range = 0;
@@ -226,9 +211,9 @@ public class WarArcherSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
-    public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_1_root = add(MrpgSkillsCommon.radiusRoot(
+    public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_1_root = add(MrpgSkillsCommon.fieldRoot(
             MrpgSkillSpells.Category.WAR_ARCHER, MrpgSkillSpells.warArcherSchool,
-            "war_archer_tier_4_spell_1_root", "archers_expansion:scorched_earth", "Scorched Earth", 0.5F));
+            "war_archer_tier_4_spell_1_root", "archers_expansion:scorched_earth", "Scorched Earth", 1.0F));
     private static List<Spell.EntityPlacement> scorchedEarthTrailPlacements(float fromOffset, float toOffset) {
         var placements = new ArrayList<Spell.EntityPlacement>();
         for (float offset = fromOffset; offset <= toOffset; offset += 3F) {
@@ -241,7 +226,7 @@ public class WarArcherSkillSpells {
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_1_modifier_1 = add(war_archer_tier_4_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry war_archer_tier_4_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_4_spell_1_modifier_1");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "war_archer_tier_4_spell_1_modifier_1");
         var title = "Wild Flames";
         var description = "Extends the flame trail left behind by Scorched Earth much further.";
         var spell = SpellBuilder.createSpellModifier();
@@ -256,11 +241,10 @@ public class WarArcherSkillSpells {
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_1_modifier_2 = add(war_archer_tier_4_spell_1_modifier_2());
     private static MrpgSkillSpells.Entry war_archer_tier_4_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_4_spell_1_modifier_2");
-        var effect = MrpgSkillEffects.BLOODFLOW;
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "war_archer_tier_4_spell_1_modifier_2");
+        var effect = MrpgSkillEffects.CHARGE_FROM_THE_FLAMES;
         var title = "Charge from the Flames";
-        // Single modifier (attack damage), so the token's blank-attribute fallback is unambiguous.
-        var description = "Casting Scorched Earth grants you and nearby allies Bloodflow, increasing attack damage by "
+        var description = "Casting Scorched Earth grants you and nearby allies a buff, increasing offensive stats by "
                 + TooltipTokens.effect(effect.id)
                 + " for {effect_duration} sec.";
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
@@ -296,12 +280,12 @@ public class WarArcherSkillSpells {
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_2_root = add(MrpgSkillsCommon.lingerRoot(
             MrpgSkillSpells.Category.WAR_ARCHER, MrpgSkillSpells.warArcherSchool,
-            "war_archer_tier_4_spell_2_root", "archers_expansion:pin_down", "Pin Down", 1F));
+            "war_archer_tier_4_spell_2_root", "archers_expansion:pin_down", "Pin Down", 2F));
     public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_2_modifier_1 = add(war_archer_tier_4_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry war_archer_tier_4_spell_2_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_4_spell_2_modifier_1");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "war_archer_tier_4_spell_2_modifier_1");
         var title = "Deep Wounding Shot";
-        var description = "Pin Down additionally inflicts a strong Bleeding effect for {effect_duration} sec.";
+        var description = "Pin Down additionally inflicts a strong Bleeding effect for {effect_duration} sec, stacking up to {effect_amplifier_cap} times.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.warArcherSchool;
 
@@ -319,7 +303,7 @@ public class WarArcherSkillSpells {
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_4_spell_2_modifier_2 = add(war_archer_tier_4_spell_2_modifier_2());
     private static MrpgSkillSpells.Entry war_archer_tier_4_spell_2_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_4_spell_2_modifier_2");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "war_archer_tier_4_spell_2_modifier_2");
         var title = "Increased Pin Down";
         var description = "Increases the effect duration of Pin Down by {effect_duration_add}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -335,7 +319,7 @@ public class WarArcherSkillSpells {
     ///WAR ARCHER PASSIVES
     public static final MrpgSkillSpells.Entry war_archer_tier_1_passive_1 = add(war_archer_tier_1_passive_1());
     private static MrpgSkillSpells.Entry war_archer_tier_1_passive_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_1_passive_1");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "war_archer_tier_1_passive_1");
         var title = "Bombardment";
         var description = "If the target is on fire, create an explosion dealing {damage} damage.";
 
@@ -369,9 +353,15 @@ public class WarArcherSkillSpells {
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_1_passive_2 = add(war_archer_tier_1_passive_2());
     private static MrpgSkillSpells.Entry war_archer_tier_1_passive_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_1_passive_2");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "war_archer_tier_1_passive_2");
         var title = "Protector of the Tower";
-        var description = "Your arrow hits have {trigger_chance} chance to increase your armor and knockback resistance for {effect_duration} sec.";
+        var description = "Your arrow hits have {trigger_chance} chance to increase your armor by "
+                + TooltipTokens.effect(MrpgSkillEffects.TOWER_PROTECTOR.id, 0,
+                        new Identifier(MrpgIds.attribute(EntityAttributes.GENERIC_ARMOR)))
+                + " and knockback resistance by "
+                + TooltipTokens.effect(MrpgSkillEffects.TOWER_PROTECTOR.id, 0,
+                        new Identifier(MrpgIds.attribute(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE)))
+                + ", stacking up to {effect_amplifier_cap} times, for {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.warArcherSchool;
@@ -396,7 +386,7 @@ public class WarArcherSkillSpells {
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_2_passive_1 = add(war_archer_tier_2_passive_1());
     private static MrpgSkillSpells.Entry war_archer_tier_2_passive_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_passive_1");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_passive_1");
         var title = "Reloading";
         var description = "When rolling you recharge Smoldering Arrows, you can now stack up to {effect_amplifier_cap} times.";
         var spell = SpellBuilder.createSpellPassive();
@@ -417,7 +407,7 @@ public class WarArcherSkillSpells {
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_2_passive_2 = add(war_archer_tier_2_passive_2());
     private static MrpgSkillSpells.Entry war_archer_tier_2_passive_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_passive_2");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_passive_2");
         var title = "Reposition";
         var description = "Rolling has {trigger_chance} chance to clear 1 negative effect.";
         var spell = SpellBuilder.createSpellPassive();
@@ -440,7 +430,7 @@ public class WarArcherSkillSpells {
     }
     public static MrpgSkillSpells.Entry war_archer_tier_3_passive_1 = add(war_archer_tier_3_passive_1());
     private static MrpgSkillSpells.Entry war_archer_tier_3_passive_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_3_passive_1");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "war_archer_tier_3_passive_1");
         var title = "Rapid Fire";
         var description = "{trigger_chance} chance to shoot 4 additional arrows.";
         var spell = SpellBuilder.createSpellPassive();
@@ -474,14 +464,16 @@ public class WarArcherSkillSpells {
     }
     public static final MrpgSkillSpells.Entry war_archer_tier_3_passive_2 = add(war_archer_tier_3_passive_2());
     private static MrpgSkillSpells.Entry war_archer_tier_3_passive_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_3_passive_2");
+        var id = new Identifier(MrpgSkillSpells.NAMESPACE, "war_archer_tier_3_passive_2");
         var title = "Last Stand";
         final var healthThreshold = 0.3F;
         var effect = MrpgSkillEffects.LAST_STAND;
-        // The threshold is a compile-time constant of this mod, so it is baked into the description
-        // (`bakedPercent` doubles the `%`: `I18n.translate` feeds the lang value to `String.format`).
         var description = "Upon taking damage below " + TooltipTokens.bakedPercent(healthThreshold)
-                + " health you gain Last Stand effect, increasing your size, ranged haste & decreasing incoming damage for {effect_duration} sec.";
+                + " health you gain Last Stand effect, increasing your ranged haste by "
+                + TooltipTokens.effect(effect.id, 0, EntityAttributes_RangedWeapon.HASTE.id)
+                + " and decreasing incoming damage by "
+                + TooltipTokens.effect(effect.id, 0, SpellEngineAttributes.DAMAGE_TAKEN.id, TooltipTokens.Format.ABS)
+                + " for {effect_duration} sec.";
 
         var spell = SpellBuilder.createSpellPassive();
         spell.school = MrpgSkillSpells.warArcherSchool;

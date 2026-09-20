@@ -33,7 +33,7 @@
         "type": "STATUS_EFFECT",
         "apply_to_caster": true,
         "status_effect": {
-          "effect_id": "mrpgc_skill_tree:bloodflow"
+          "effect_id": "mrpgc_skill_tree:norse_warmonger"
         }
       }
     }

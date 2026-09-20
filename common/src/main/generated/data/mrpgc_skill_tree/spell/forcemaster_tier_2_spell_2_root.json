@@ -7,7 +7,7 @@
     {
       "spell_pattern": "forcemaster_rpg:baraqijal_esna",
       "power_modifier": {
-        "power_multiplier": 0.15
+        "power_multiplier": 0.1
       }
     }
   ]

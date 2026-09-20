@@ -8,7 +8,7 @@
       "spell_pattern": "bards_rpg:magical_ballad",
       "projectile_perks": {
         "ricochet_range": 0.0,
-        "pierce": 2,
+        "pierce": 3,
         "chain_reaction_triggers": 0,
         "chain_reaction_increment": 0
       }

@@ -1,6 +1,7 @@
 package com.mrpgc_skill_tree.effect;
 
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.attribute.AttributeContainer;
 import net.minecraft.entity.effect.StatusEffect;
 import net.minecraft.entity.effect.StatusEffectCategory;
 
@@ -12,16 +13,14 @@ public class AbsorptionEffect extends StatusEffect {
         this.healthPerStack = 2;
     }
 
-    public boolean applyUpdateEffect(LivingEntity entity, int amplifier) {
-        return entity.getAbsorptionAmount() > 0.0F || entity.getWorld().isClient;
-    }
-
+    @Override
     public boolean canApplyUpdateEffect(int duration, int amplifier) {
         return true;
     }
 
-    public void onApplied(LivingEntity entity, int amplifier) {
-        super.onApplied(entity, amplifier);
+    @Override
+    public void onApplied(LivingEntity entity, AttributeContainer attributes, int amplifier) {
+        super.onApplied(entity, attributes, amplifier);
         entity.setAbsorptionAmount(Math.max(entity.getAbsorptionAmount(), (float)(healthPerStack * (1 + amplifier))));
     }
 }

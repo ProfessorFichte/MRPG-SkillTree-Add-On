@@ -6,9 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "bards_rpg:encore",
-      "power_modifier": {
-        "power_multiplier": 0.15
-      }
+      "range_add": 2.0
     }
   ]
 }

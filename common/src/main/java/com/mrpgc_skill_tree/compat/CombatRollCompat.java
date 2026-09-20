@@ -1,34 +1,43 @@
 package com.mrpgc_skill_tree.compat;
 
-import net.combat_roll.Platform;
-import net.combat_roll.api.event.ServerSideRollEvents;
-import net.combat_roll.client.RollEffect;
-import net.combat_roll.network.Packets;
+import com.mrpgc_skill_tree.utils.SpellLookup;
+import net.combatroll.api.event.ServerSideRollEvents;
+import net.combatroll.client.RollEffect;
+import net.combatroll.network.Packets;
+import net.minecraft.network.PacketByteBuf;
+import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.util.Identifier;
-import net.spell_engine.api.spell.registry.SpellRegistry;
+import net.spell_engine.Platform;
 import net.spell_engine.internals.container.SpellContainerSource;
 
+import java.util.ArrayList;
+
 public class CombatRollCompat {
-    public CombatRollCompat() {
+    public interface Sender {
+        boolean canSend(ServerPlayerEntity player, Identifier channel);
+        void send(ServerPlayerEntity player, Identifier channel, PacketByteBuf buf);
     }
+
+    public static Sender sender;
+
+    private static final Identifier SPINNING_SLASH_PASSIVE = new Identifier("mrpgc_skill_tree", "berserker_tier_2_passive_1");
+    private static final Identifier SPINNING_SLASH_ANIMATION = new Identifier("mrpgc_skill_tree", "spinning_slash");
+
     public static void register() {
-        ServerSideRollEvents.PLAYER_START_ROLLING.register((player, roll) -> {
-            if (SpellContainerSource.passiveSpellsOf(player).contains(SpellRegistry.from(player.getServerWorld()).getEntry(Identifier.of("mrpgc_skill_tree", "berserker_spec_a_passive_2")).get())) {
-                Packets.RollAnimation forwardPacket = new Packets.RollAnimation(player.getId(), new RollEffect.Visuals(Identifier.of("mrpgc_skill_tree", "spinning_slash").toString(), RollEffect.Particles.PUFF), roll);
-                Platform.tracking(player).forEach((serverPlayer) -> {
-                    try {
-                        if (Platform.networkS2C_CanSend(serverPlayer, Packets.RollAnimation.PACKET_ID)) {
-                            Platform.networkS2C_Send(serverPlayer, forwardPacket);
-                        }
-                    } catch (Exception var3) {
-                        Exception e = var3;
-                        e.printStackTrace();
-                    }
-
-                });
-                Platform.networkS2C_Send(player, forwardPacket);
+        ServerSideRollEvents.PLAYER_START_ROLLING.register((player, velocity) -> {
+            var passive = SpellLookup.entry(player.getServerWorld(), SPINNING_SLASH_PASSIVE);
+            if (sender == null || passive == null || !SpellContainerSource.getSpellsOf(player).passives().contains(passive)) {
+                return;
             }
-
+            var visuals = new RollEffect.Visuals(SPINNING_SLASH_ANIMATION.toString(), RollEffect.Particles.PUFF);
+            var packet = new Packets.RollAnimation(player.getId(), visuals, velocity);
+            var receivers = new ArrayList<>(Platform.tracking(player));
+            receivers.add(player);
+            for (var receiver : receivers) {
+                if (sender.canSend(receiver, Packets.RollAnimation.ID)) {
+                    sender.send(receiver, Packets.RollAnimation.ID, packet.write());
+                }
+            }
         });
     }
 }

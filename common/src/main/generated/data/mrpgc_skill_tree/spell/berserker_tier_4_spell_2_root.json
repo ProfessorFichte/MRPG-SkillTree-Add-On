@@ -7,7 +7,7 @@
     {
       "spell_pattern": "berserker_rpg:northerners_guillotine",
       "power_modifier": {
-        "critical_damage_bonus": 0.2
+        "power_multiplier": 0.1
       }
     }
   ]

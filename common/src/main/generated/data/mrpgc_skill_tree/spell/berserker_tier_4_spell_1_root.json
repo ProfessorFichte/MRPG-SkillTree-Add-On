@@ -6,9 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "berserker_rpg:blood_reckoning",
-      "power_modifier": {
-        "power_multiplier": 0.15
-      }
+      "cooldown_duration_deduct": 2.0
     }
   ]
 }

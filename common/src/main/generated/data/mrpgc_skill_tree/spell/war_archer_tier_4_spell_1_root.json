@@ -6,7 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "archers_expansion:scorched_earth",
-      "range_add": 0.5
+      "spawn_duration_add": 1.0
     }
   ]
 }

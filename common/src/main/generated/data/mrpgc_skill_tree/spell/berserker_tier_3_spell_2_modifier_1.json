@@ -6,9 +6,7 @@
   "modifiers": [
     {
       "spell_pattern": "berserker_rpg:outrage",
-      "power_modifier": {
-        "critical_damage_bonus": 0.3
-      }
+      "effect_amplifier_add": 1
     }
   ]
 }

@@ -20,46 +20,32 @@ import static net.skill_tree_rpgs.skills.SkillsCommon.MIGHT_COLOR;
 
 public class MRPGCSkillTreeClient {
     public static void init() {
-        // Description values that aren't expressible as declarative `{token}`s. `TooltipTokens` is
-        // server-safe; it is registered here simply because the tooltip is a client concern.
         MrpgSkillSpells.registerTooltipTokens();
 
         for (var entry: MrpgSkillDefinitions.ENTRIES) {
-            var skillId = entry.id();
-            if (entry.spellReward() != null) {
-                var container = entry.spellReward().get(0);
-                var id = Identifier.of(container.spell_ids().getFirst());
-                TranslationUtil.resolvers.put(skillId, () -> TranslationUtil.resolveSpellDetails(id));
-            }
-            else if (entry.attributeReward() != null) {
-                var attribute = entry.attributeReward();
-                TranslationUtil.resolvers.put(skillId, () -> MrpgTranslationUtil.resolveAttributeModifierTooltip(attribute));
-            }
+            registerTooltipResolver(entry);
+        }
+        for (var entry: MrpgSkillDefinitions.WEAPON_ENTRIES) {
+            registerTooltipResolver(entry);
         }
         registerEffectRenderers();
     }
 
-    // MARK: - Shared buff particle shapes
-    //
-    // V1 held these as `ParticleBatch` prototypes and re-coloured `.copy()`s of them per effect.
-    // A `ParticleGroup` is mutable the same way, so each site now gets a freshly built one from a
-    // factory instead — same spec, no shared instance to alias.
-    //
-    // BEHAVIOUR CHANGE, deliberate: the V1 `phaseShiftParticles` prototype was re-coloured WITHOUT
-    // a `.copy()` at three sites (Impetus, Earth Bender, Calming Flow), and `BuffParticleSpawner`
-    // stores the reference it is handed — so all three ended up rendering whichever colour was
-    // assigned last (Calming Flow's blue). Each now renders the colour it was written with.
-    // `barrierParticles`, `groundSeismicParticles` and `speedParticles` all copied correctly and
-    // were never affected.
+    private static void registerTooltipResolver(MrpgSkillDefinitions.Entry entry) {
+        var skillId = entry.id();
+        if (entry.spellReward() != null) {
+            var id = new Identifier(entry.spellReward().get(0).spell_ids().get(0));
+            TranslationUtil.resolvers.put(skillId, () -> TranslationUtil.resolveSpellDetails(id));
+        } else if (entry.attributeReward() != null) {
+            var attribute = entry.attributeReward();
+            TranslationUtil.resolvers.put(skillId, () -> MrpgTranslationUtil.resolveAttributeModifierTooltip(attribute));
+        } else if (entry.conditionalAttributeReward() != null) {
+            var conditional = entry.conditionalAttributeReward();
+            TranslationUtil.resolvers.put(skillId, () -> TranslationUtil.resolveConditionalAttributeTooltip(conditional));
+        }
+    }
 
-    /// V1: the `magic_stripe_float` id, `WIDE_PIPE`, `Origin.FEET`, count `0.3`, speed
-    /// `0.05..0.15`, extent `-0.2`. 1.10 carries the motion as an appearance payload rather than
-    /// baking it into the id, so this has to be built through `ParticleGroupBuilder.magic` —
-    /// `magic_stripe_float` is no longer a registered type. `Batches.casting` is exactly
-    /// `PIPE` + `widthFactor(2)` + `verticalOrigin(FEET)`, i.e. V1's `WIDE_PIPE` from the feet.
-    ///
-    /// The fractional count stays a count: `BuffParticleSpawner` emits per tick and its default
-    /// `Spacing.RANDOM` turns the leftover fraction into a per-tick roll, which is what V1 did.
+
     private static ParticleGroup speedParticles(long color) {
         return ParticleGroupBuilder.magic(SpellEngineParticles.magic_stripe, ParticleGroup.Motion.FLOAT)
                 .color(color)
@@ -67,12 +53,6 @@ public class MRPGCSkillTreeClient {
                         .andThen(b -> b.speed(0.05F, 0.15F).extent(-0.2F)));
     }
 
-    /// V1: an `aura_effect_<n>` id — the upright twin of the `area_effect_<n>` texture. 1.10
-    /// dropped the twins and keeps one entry per texture, orientation chosen at the call site,
-    /// so the `aura_*` look is `area_effect_<n>` + `Facing.CAMERA`.
-    ///
-    /// `LINE` at zero speed is a single billboard placed at the entity's centre, and
-    /// `followEntity(true)` is `Attachment.POSITION`.
     private static ParticleGroup auraEffect(SpellEngineParticles.Entry entry, long color) {
         return ParticleGroupBuilder.of(entry)
                 .facing(ParticleGroup.Facing.CAMERA)
@@ -82,8 +62,6 @@ public class MRPGCSkillTreeClient {
                 .batch(b -> b.shape(ParticleGroup.Shape.LINE).count(1F).speed(0F, 0F));
     }
 
-    /// V1: `area_effect_293`, `SPHERE` at zero speed anchored on the ground, scale `2.5`,
-    /// following the entity. `area_*` entries already default to `Facing.GROUND` in 1.10.
     private static ParticleGroup groundSeismicParticles(long color) {
         return ParticleGroupBuilder.of(SpellEngineParticles.area_effect_293)
                 .color(color)
@@ -93,8 +71,6 @@ public class MRPGCSkillTreeClient {
                         .anchor(ParticleGroup.Anchor.GROUND));
     }
 
-    /// V1: `area_circle_1`, `LINE_VERTICAL` from `Origin.FEET`, count `1`, speed `0.05`,
-    /// scale `0.75`, following the entity.
     private static ParticleGroup circleParticles(long color) {
         return ParticleGroupBuilder.of(SpellEngineParticles.area_circle_1)
                 .color(color)
@@ -162,9 +138,6 @@ public class MRPGCSkillTreeClient {
                                         .count(2F).speed(0F, 0.1F))
                 )
         );
-        // NOTE: this TORRENT registration is immediately superseded by the second one further
-        // below, which registers the same effect again. Ported as authored — the duplicate is a
-        // pre-existing bug, not something to resolve as part of the particle port.
         CustomParticleStatusEffect.register(
                 MrpgSkillEffects.TORRENT.effect,
                 new BuffParticleSpawner(
@@ -229,13 +202,6 @@ public class MRPGCSkillTreeClient {
                                         .count(2F).speed(0.45F, 0.75F))
                 )
         );
-        // NOTE: in V1 `more_rpg_classes:rage_particle` was drawn by a hand-written `RageParticle`
-        // that set its own red tint and its own slow upward velocity in the constructor, ignoring
-        // the batch entirely — so neither the colour nor the `0.45..0.75` speed below did anything.
-        // In 1.10 that id is a generic `SpellParticle` entry and both now apply. The colour lands
-        // close to what V1 hard-coded, but the speed does not: these will be flung outward rather
-        // than drifting up. Ported as authored rather than inventing a replacement speed; worth
-        // re-tuning by eye.
         CustomParticleStatusEffect.register(
                 MrpgSkillEffects.BLIND_WITH_RAGE.effect,
                 new BuffParticleSpawner(

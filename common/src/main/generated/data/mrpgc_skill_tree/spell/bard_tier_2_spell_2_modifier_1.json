@@ -14,6 +14,7 @@
             "status_effect": {
               "effect_id": "mrpgc_skill_tree:dirty_tricks",
               "duration": 5.0,
+              "amplifier_power_multiplier": 0.1,
               "apply_mode": "ADD"
             }
           }

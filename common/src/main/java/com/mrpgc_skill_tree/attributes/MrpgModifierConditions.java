@@ -28,6 +28,6 @@ public class MrpgModifierConditions {
     }
 
     public static final ModifierCondition BERSERKER_AXE = mainhand(
-            TagKey.of(RegistryKeys.ITEM, Identifier.of("berserker_rpg", "berserker_axes")),
+            TagKey.of(RegistryKeys.ITEM, new Identifier("berserker_rpg", "berserker_axes")),
             "berserker_axe", "While holding a Berserker Axe:");
 }
