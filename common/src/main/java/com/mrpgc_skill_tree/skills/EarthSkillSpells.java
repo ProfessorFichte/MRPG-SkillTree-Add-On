@@ -3,7 +3,7 @@ package com.mrpgc_skill_tree.skills;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.util.Identifier;
-import net.more_rpg_classes.client.particle.MoreParticles;
+import com.mrpg_lib.compat.spell_engine.particle.MoreSpellParticles;
 import net.spell_engine.api.effect.SpellEngineEffects;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.entity.SpellEntityPredicates;
@@ -83,12 +83,12 @@ public class EarthSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.EARTH));
     }
-    public static final MrpgSkillSpells.Entry earth_tier_3_spell_1_root = add(MrpgSkillsCommon.companionRoot(
+    public static final MrpgSkillSpells.Entry earth_tier_3_spell_2_root = add(MrpgSkillsCommon.companionRoot(
             MrpgSkillSpells.Category.EARTH, MrpgSkillSpells.earthWizardSchool,
-            "earth_tier_3_spell_1_root", "elemental_wizards_rpg:terra_drip_circle", "Terra Circle", 2));
-    public static final MrpgSkillSpells.Entry earth_tier_3_spell_1_modifier_1 = add(earth_tier_3_spell_1_modifier_1());
-    private static MrpgSkillSpells.Entry earth_tier_3_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_3_spell_1_modifier_1");
+            "earth_tier_3_spell_2_root", "elemental_wizards_rpg:terra_drip_circle", "Terra Circle", 2));
+    public static final MrpgSkillSpells.Entry earth_tier_3_spell_2_modifier_1 = add(earth_tier_3_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry earth_tier_3_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_3_spell_2_modifier_1");
         var title = "Obstacle Dripstones";
         var effect = MrpgSkillEffects.DRIPSTONE_OBSTACLES;
         var description = "Terra Circle applies slowness, reducing movement speed by "
@@ -107,9 +107,9 @@ public class EarthSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.EARTH));
     }
-    public static final MrpgSkillSpells.Entry earth_tier_3_spell_1_modifier_2 = add(earth_tier_3_spell_1_modifier_2());
-    private static MrpgSkillSpells.Entry earth_tier_3_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_3_spell_1_modifier_2");
+    public static final MrpgSkillSpells.Entry earth_tier_3_spell_2_modifier_2 = add(earth_tier_3_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry earth_tier_3_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_3_spell_2_modifier_2");
         var title = "Sharp Dripstones";
         var description = "Terra Circle has {critical_chance_bonus} increased critical strike chance.";
         var spell = SpellBuilder.createSpellModifier();
@@ -186,7 +186,7 @@ public class EarthSkillSpells {
 
         var impact = SpellBuilder.Impacts.effectAdd(effect.id.toString(), 10, 1, 5);
         impact.visuals = Fx.Visuals.of(
-                ParticleGroupBuilder.of(MoreParticles.STONE_PARTICLE)
+                ParticleGroupBuilder.of(MoreSpellParticles.STONE_PARTICLE)
                         .batch(b -> b.shape(ParticleGroup.Shape.PILLAR)
                                 .count(5).speed(0.1F, 0.8F)
                                 .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
@@ -250,7 +250,7 @@ public class EarthSkillSpells {
         cloud.client_data = new Spell.Delivery.Cloud.ClientData();
         cloud.client_data.light_level = 0;
         cloud.client_data.particles = List.of(
-                ParticleGroupBuilder.of(MoreParticles.STONE_TRAP)
+                ParticleGroupBuilder.of(MoreSpellParticles.STONE_TRAP)
                         .batch(b -> b.shape(ParticleGroup.Shape.PILLAR)
                                 .count(2).speed(0F, 0F)
                                 .verticalOrigin(ParticleGroupBuilder.Batches.FEET)));
@@ -294,7 +294,7 @@ public class EarthSkillSpells {
         custom.action.custom = new Spell.Impact.Action.Custom();
         custom.action.type = Spell.Impact.Action.Type.CUSTOM;
         custom.action.custom.intent = SpellTarget.Intent.HARMFUL;
-        custom.action.custom.handler = "more_rpg_classes:knock_up_fixed";
+        custom.action.custom.handler = "mrpg_lib:knock_up_fixed";
         spell.impacts = List.of(impact, custom);
         var areaImpact = new Spell.AreaImpact();
         areaImpact.radius = 2.5F;
@@ -331,7 +331,7 @@ public class EarthSkillSpells {
         impact.action.status_effect.amplifier_power_multiplier = 0.5F;
         impact.visuals = Fx.Visuals.of(
                 SpellBuilder.Particles.popUpSign(SpellEngineParticles.sign_shield.id(), Color.fromRGBA(EARTH_SPELL_COLOR.toRGBA())));
-        impact.sound = Sound.withVolume(Identifier.of("more_rpg_classes:earth_magic_cast1"),0.5F);
+        impact.sound = Sound.withVolume(Identifier.of("mrpg_lib:earth_magic_cast1"),0.5F);
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, duration * 2);
@@ -367,7 +367,7 @@ public class EarthSkillSpells {
                         .appearance(a -> a.scale(radius * 0.8F).color(EARTH_SPELL_COLOR.toRGBA())),
                 SpellBuilder.Particles.area(SpellEngineParticles.area_effect_658.id())
                         .appearance(a -> a.scale(radius).color(EARTH_SPELL_COLOR.toRGBA())));
-        spell.release.sound = Sound.withVolume(Identifier.of("more_rpg_classes:earth_magic_impact1"),0.7F);
+        spell.release.sound = Sound.withVolume(Identifier.of("mrpg_lib:earth_magic_impact1"),0.7F);
 
         var trigger = SpellBuilder.Triggers.damageTaken();
         trigger.chance = 0.25F;
@@ -422,12 +422,12 @@ public class EarthSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.EARTH));
     }
-    public static final MrpgSkillSpells.Entry earth_tier_3_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+    public static final MrpgSkillSpells.Entry earth_tier_3_spell_1_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.EARTH, MrpgSkillSpells.earthWizardSchool,
-            "earth_tier_3_spell_2_root", "elemental_wizards_rpg:terra_shattering_stone", "Shattering Stone", 0.1F));
-    public static final MrpgSkillSpells.Entry earth_tier_3_spell_2_modifier_1 = add(earth_tier_3_spell_2_modifier_1());
-    private static MrpgSkillSpells.Entry earth_tier_3_spell_2_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_3_spell_2_modifier_1");
+            "earth_tier_3_spell_1_root", "elemental_wizards_rpg:terra_shattering_stone", "Shattering Stone", 0.1F));
+    public static final MrpgSkillSpells.Entry earth_tier_3_spell_1_modifier_1 = add(earth_tier_3_spell_1_modifier_1());
+    private static MrpgSkillSpells.Entry earth_tier_3_spell_1_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_3_spell_1_modifier_1");
         var title = "Jagged Fragments";
         var description = "Increases the max stacks of Shattering Stone's bleeding by {effect_amplifier_cap_add}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -440,9 +440,9 @@ public class EarthSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.EARTH));
     }
-    public static final MrpgSkillSpells.Entry earth_tier_3_spell_2_modifier_2 = add(earth_tier_3_spell_2_modifier_2());
-    private static MrpgSkillSpells.Entry earth_tier_3_spell_2_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_3_spell_2_modifier_2");
+    public static final MrpgSkillSpells.Entry earth_tier_3_spell_1_modifier_2 = add(earth_tier_3_spell_1_modifier_2());
+    private static MrpgSkillSpells.Entry earth_tier_3_spell_1_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_3_spell_1_modifier_2");
         var title = "Wide Fracture";
         var description = "Range of Shattering Stone increased by {range_add} blocks.";
         var spell = SpellBuilder.createSpellModifier();

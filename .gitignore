@@ -42,3 +42,6 @@ replay_*.log
 src/main/generated/.cache
 common/src/main/generated/.cache
 neoforge/local-mods
+
+.architectury-transformer
+/.architectury-transformer

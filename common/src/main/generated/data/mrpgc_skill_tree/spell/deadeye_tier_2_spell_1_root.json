@@ -5,10 +5,8 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "archers_expansion:bouncing_arrow",
-      "power_modifier": {
-        "critical_chance_bonus": 0.05
-      }
+      "spell_pattern": "archers_expansion:fast_shot",
+      "effect_duration_add": 2.0
     }
   ]
 }

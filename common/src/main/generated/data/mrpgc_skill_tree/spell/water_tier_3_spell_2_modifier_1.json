@@ -5,46 +5,59 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "elemental_wizards_rpg:aqua_hydro_beam",
+      "spell_pattern": "elemental_wizards_rpg:aqua_springwater",
       "mutate_impacts": "APPEND",
       "impacts": [
         {
           "action": {
-            "type": "FIRE",
-            "fire": {
-              "duration": 4.0
+            "type": "STATUS_EFFECT",
+            "status_effect": {
+              "apply_mode": "REMOVE",
+              "remove": {
+                "id": "!minecraft:trial_omen"
+              }
             }
           },
           "visuals": {
             "particles": [
               {
-                "id": "spell_engine:magic_spark",
+                "id": "spell_engine:magic_spell",
                 "appearance": {
-                  "color": 4278190335,
-                  "motion": "ASCEND"
+                  "color": 4294967295,
+                  "motion": "BURST"
                 },
                 "batch": {
-                  "count": 10.0,
+                  "count": 15.0,
                   "shape": "SPHERE",
                   "anchor": "ENTITY",
-                  "min_speed": 0.1,
-                  "max_speed": 0.2
+                  "min_speed": 0.5,
+                  "max_speed": 0.8
                 }
               }
             ]
           },
           "sound": {
-            "id": "spell_engine:generic_fire_ignite"
+            "id": "spell_engine:generic_dispel_1"
           }
         },
         {
+          "target_modifiers": [
+            {
+              "conditions": [
+                {
+                  "entity_type": "#minecraft:undead"
+                }
+              ],
+              "modifier": {
+                "critical_chance_bonus": 1.0
+              }
+            }
+          ],
           "action": {
-            "type": "STATUS_EFFECT",
-            "status_effect": {
-              "effect_id": "mrpgc_skill_tree:scald",
-              "duration": 6.0,
-              "amplifier_cap": 2,
-              "apply_mode": "ADD"
+            "type": "DAMAGE",
+            "damage": {
+              "spell_power_coefficient": 0.15,
+              "knockback": 0.0
             }
           }
         }

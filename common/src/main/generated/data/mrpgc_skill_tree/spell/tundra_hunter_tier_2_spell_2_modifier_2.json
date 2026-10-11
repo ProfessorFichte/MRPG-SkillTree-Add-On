@@ -13,7 +13,7 @@
             {
               "conditions": [
                 {
-                  "entity_predicate_id": "has_effect_optimized:more_rpg_classes.frosted"
+                  "entity_predicate_id": "has_effect_optimized:mrpg_lib.frosted"
                 }
               ],
               "execute": "ALLOW"

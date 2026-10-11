@@ -30,7 +30,7 @@
       "visuals": {
         "particles": [
           {
-            "id": "more_rpg_classes:music_note",
+            "id": "mrpg_lib:music_note",
             "appearance": {},
             "batch": {
               "count": 6.0,

@@ -5,11 +5,9 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "elemental_wizards_rpg:terra_drip_circle",
-      "summon_behaviour": {
-        "lifespan": {
-          "active_seconds_add": 2
-        }
+      "spell_pattern": "elemental_wizards_rpg:terra_shattering_stone",
+      "power_modifier": {
+        "power_multiplier": 0.1
       }
     }
   ]

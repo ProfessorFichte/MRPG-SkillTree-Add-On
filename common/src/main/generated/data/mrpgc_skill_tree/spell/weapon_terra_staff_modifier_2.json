@@ -14,7 +14,7 @@
         "visuals": {
           "particles": [
             {
-              "id": "more_rpg_classes:stone_explosion",
+              "id": "mrpg_lib:stone_explosion",
               "appearance": {
                 "scale": 2.5
               },

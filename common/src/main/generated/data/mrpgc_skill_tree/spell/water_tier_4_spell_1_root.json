@@ -5,11 +5,9 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "elemental_wizards_rpg:aqua_healing_rain",
-      "summon_behaviour": {
-        "lifespan": {
-          "active_seconds_add": 5
-        }
+      "spell_pattern": "elemental_wizards_rpg:helper/aqua_tidal_wave_impact",
+      "power_modifier": {
+        "power_multiplier": 0.1
       }
     }
   ]

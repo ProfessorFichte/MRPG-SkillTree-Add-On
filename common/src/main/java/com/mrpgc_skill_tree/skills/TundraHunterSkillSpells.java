@@ -4,7 +4,7 @@ import net.fabric_extras.ranged_weapon.api.EntityAttributes_RangedWeapon;
 import net.minecraft.entity.attribute.EntityAttributeModifier;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.util.Identifier;
-import net.more_rpg_classes.effect.MRPGCEffects;
+import com.mrpg_lib.effect.MRPGCEffects;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.entity.SpellEngineAttributes;
 import net.spell_engine.api.render.LightEmission;
@@ -358,7 +358,7 @@ public class TundraHunterSkillSpells {
                         .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE)
                                 .count(3).speed(0, 0)
                                 .alignment(ParticleGroup.Alignment.LOOK)));
-        projectile.client_data.composite_model = SpellBuilder.ProjectileModels.single("more_rpg_classes:spell_projectile/falling_icicle", 0.75F, LightEmission.NONE);
+        projectile.client_data.composite_model = SpellBuilder.ProjectileModels.single("mrpg_lib:spell_projectile/falling_icicle", 0.75F, LightEmission.NONE);
 
         meteor.projectile = projectile;
         spell.deliver.meteor = meteor;
@@ -536,11 +536,11 @@ public class TundraHunterSkillSpells {
         cloud.impact_tick_interval = 10;
         cloud.time_to_live_seconds = 5;
         cloud.client_data = new Spell.Delivery.Cloud.ClientData();
-        // Raw id on purpose: MoreParticles.ICE_TRAP lives in a client-only package of an
+        // Raw id on purpose: MoreSpellParticles.ICE_TRAP lives in a client-only package of an
         // undeclared dependency, and this site overrides no appearance field, so the id
         // resolves through the same registry with the entry's own defaults intact.
         cloud.client_data.particles = List.of(
-                ParticleGroupBuilder.of("more_rpg_classes:ice_trap")
+                ParticleGroupBuilder.of("mrpg_lib:ice_trap")
                         .batch(b -> b.shape(ParticleGroup.Shape.PILLAR)
                                 .count(4).speed(0, 0)
                                 .verticalOrigin(ParticleGroupBuilder.Batches.FEET)));

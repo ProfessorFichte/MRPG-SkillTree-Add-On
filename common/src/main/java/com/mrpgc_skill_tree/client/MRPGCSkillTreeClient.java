@@ -6,7 +6,7 @@ import com.mrpgc_skill_tree.skills.MrpgSkillDefinitions;
 import com.mrpgc_skill_tree.skills.MrpgSkillSpells;
 import com.mrpgc_skill_tree.utils.MrpgTranslationUtil;
 import net.minecraft.util.Identifier;
-import net.more_rpg_classes.client.particle.MoreParticles;
+import com.mrpg_lib.compat.spell_engine.particle.MoreSpellParticles;
 import net.skill_tree_rpgs.utils.TranslationUtil;
 import net.spell_engine.api.effect.CustomModelStatusEffect;
 import net.spell_engine.api.effect.CustomParticleStatusEffect;
@@ -145,7 +145,7 @@ public class MRPGCSkillTreeClient {
         CustomParticleStatusEffect.register(
                 MrpgSkillEffects.PERSISTENT_BUBBLES.effect,
                 new BuffParticleSpawner(
-                        ParticleGroupBuilder.of(MoreParticles.BUBBLE)
+                        ParticleGroupBuilder.of(MoreSpellParticles.BUBBLE)
                                 .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                         .count(2F).speed(0F, 0.1F))
                 )
@@ -220,7 +220,7 @@ public class MRPGCSkillTreeClient {
         CustomParticleStatusEffect.register(
                 MrpgSkillEffects.BLIND_WITH_RAGE.effect,
                 new BuffParticleSpawner(
-                        ParticleGroupBuilder.of(MoreParticles.RAGE_PAR)
+                        ParticleGroupBuilder.of(MoreSpellParticles.RAGE_PAR)
                                 .color(Color.BLOOD.toRGBA())
                                 .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                         .count(0.1F).speed(0.45F, 0.75F))

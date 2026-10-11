@@ -29,7 +29,7 @@
         "type": "CUSTOM",
         "custom": {
           "intent": "HARMFUL",
-          "handler": "more_rpg_classes:knock_up_fixed"
+          "handler": "mrpg_lib:knock_up_fixed"
         }
       },
       "visuals": {

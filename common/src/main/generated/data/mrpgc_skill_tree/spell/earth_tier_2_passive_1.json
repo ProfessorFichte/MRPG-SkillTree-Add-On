@@ -27,7 +27,7 @@
         "client_data": {
           "particles": [
             {
-              "id": "more_rpg_classes:stone_trap",
+              "id": "mrpg_lib:stone_trap",
               "appearance": {},
               "batch": {
                 "count": 2.0,

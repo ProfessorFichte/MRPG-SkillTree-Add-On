@@ -5,8 +5,20 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "archers_expansion:bouncing_arrow",
-      "effect_duration_add": 4.0
+      "spell_pattern": "archers_expansion:fast_shot",
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "action": {
+            "type": "STATUS_EFFECT",
+            "apply_to_caster": true,
+            "status_effect": {
+              "effect_id": "mrpgc_skill_tree:hunting_fever",
+              "duration": 4.0
+            }
+          }
+        }
+      ]
     }
   ]
 }

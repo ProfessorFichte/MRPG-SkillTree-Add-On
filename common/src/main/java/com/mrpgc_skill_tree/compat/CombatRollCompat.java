@@ -14,7 +14,7 @@ public class CombatRollCompat {
     public static void register() {
         ServerSideRollEvents.PLAYER_START_ROLLING.register((player, roll) -> {
             var spinningSlash = SpellRegistry.from(player.getServerWorld())
-                    .getEntry(Identifier.of("mrpgc_skill_tree", "berserker_tier_2_passive_1"));
+                    .getEntry(Identifier.of("mrpgc_skill_tree", "berserker_tier_2_passive_2"));
             if (spinningSlash.isEmpty()) {
                 return;
             }

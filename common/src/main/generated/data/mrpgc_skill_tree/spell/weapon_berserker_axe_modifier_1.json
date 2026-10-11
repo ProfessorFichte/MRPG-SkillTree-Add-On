@@ -17,7 +17,7 @@
           }
         ],
         "spell": {
-          "id": "more_rpg_classes:decapitate"
+          "id": "mrpg_lib:decapitate"
         },
         "impact": {
           "impact_type": "DAMAGE"

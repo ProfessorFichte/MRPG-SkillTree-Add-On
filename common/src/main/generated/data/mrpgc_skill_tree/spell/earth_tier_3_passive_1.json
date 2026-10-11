@@ -50,7 +50,7 @@
         ]
       },
       "sound": {
-        "id": "more_rpg_classes:earth_magic_cast1",
+        "id": "mrpg_lib:earth_magic_cast1",
         "volume": 0.5
       }
     }

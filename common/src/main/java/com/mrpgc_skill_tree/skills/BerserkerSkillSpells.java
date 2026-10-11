@@ -2,7 +2,7 @@ package com.mrpgc_skill_tree.skills;
 
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.util.Identifier;
-import net.more_rpg_classes.effect.MRPGCEffects;
+import com.mrpg_lib.effect.MRPGCEffects;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.effect.SpellEngineEffects;
 import net.spell_engine.api.entity.SpellEngineAttributes;
@@ -363,9 +363,9 @@ public class BerserkerSkillSpells {
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
     ///BERSERKER PASSIVES
-    public static final MrpgSkillSpells.Entry berserker_tier_1_passive_1 = add(berserker_tier_1_passive_1());
-    private static MrpgSkillSpells.Entry berserker_tier_1_passive_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_1_passive_1");
+    public static final MrpgSkillSpells.Entry berserker_tier_1_passive_2 = add(berserker_tier_1_passive_2());
+    private static MrpgSkillSpells.Entry berserker_tier_1_passive_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_1_passive_2");
         var title = "Cleave";
         var description = "Melee hits have {trigger_chance} chance to deal additional damage according to the targets max health..";
         var spell = SpellBuilder.createSpellPassive();
@@ -398,9 +398,9 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_1_passive_2 = add(berserker_tier_1_passive_2());
-    private static MrpgSkillSpells.Entry berserker_tier_1_passive_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_1_passive_2");
+    public static final MrpgSkillSpells.Entry berserker_tier_1_passive_1 = add(berserker_tier_1_passive_1());
+    private static MrpgSkillSpells.Entry berserker_tier_1_passive_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_1_passive_1");
         var effect = MrpgSkillEffects.BLOODFLOW;
         var title = "Bloodfrenzy";
         // Single modifier (attack damage), so the token's blank-attribute fallback is unambiguous.
@@ -432,9 +432,9 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_2_passive_1 = add(berserker_tier_2_passive_1());
-    private static MrpgSkillSpells.Entry berserker_tier_2_passive_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_passive_1");
+    public static final MrpgSkillSpells.Entry berserker_tier_2_passive_2 = add(berserker_tier_2_passive_2());
+    private static MrpgSkillSpells.Entry berserker_tier_2_passive_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_passive_2");
         var title = "Spinning Slash";
         var description = "While rolling, you slash and deal {damage} damage to nearby enemies.";
 
@@ -463,9 +463,9 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_2_passive_2 = add(berserker_tier_2_passive_2());
-    private static MrpgSkillSpells.Entry berserker_tier_2_passive_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_passive_2");
+    public static final MrpgSkillSpells.Entry berserker_tier_2_passive_1 = add(berserker_tier_2_passive_1());
+    private static MrpgSkillSpells.Entry berserker_tier_2_passive_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_passive_1");
         var title = "Burst of Aggression";
         var effect = MrpgSkillEffects.BURST_OF_AGGRESSION;
         // Two modifiers (movement speed, rage), both +15%. The status effect's modifier map is
@@ -506,9 +506,9 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_3_passive_1 = add(berserker_tier_3_passive_1());
-    private static MrpgSkillSpells.Entry berserker_tier_3_passive_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_3_passive_1");
+    public static final MrpgSkillSpells.Entry berserker_tier_3_passive_2 = add(berserker_tier_3_passive_2());
+    private static MrpgSkillSpells.Entry berserker_tier_3_passive_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_3_passive_2");
         var effect = MrpgSkillEffects.RAGNAROK;
         var title = effect.title;
         // Two modifiers that do NOT share a value: movement speed +30% and tenacity +100%. The status
@@ -550,9 +550,9 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_3_passive_2 = add(berserker_tier_3_passive_2());
-    private static MrpgSkillSpells.Entry berserker_tier_3_passive_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_3_passive_2");
+    public static final MrpgSkillSpells.Entry berserker_tier_3_passive_1 = add(berserker_tier_3_passive_1());
+    private static MrpgSkillSpells.Entry berserker_tier_3_passive_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_3_passive_1");
         var effect = MrpgSkillEffects.UNDYING_RAGE;
         var title = effect.title;
         var description = "When taking damage that would be fatal, you become invulnerable for {effect_duration} sec.";

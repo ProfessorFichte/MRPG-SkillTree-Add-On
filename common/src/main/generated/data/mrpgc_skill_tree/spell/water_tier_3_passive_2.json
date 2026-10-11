@@ -7,62 +7,92 @@
     "triggers": [
       {
         "target_override": "CASTER",
-        "type": "DAMAGE_TAKEN",
-        "caster_conditions": [
-          {
-            "health_percent_above": 0.01,
-            "health_percent_below": 0.3
-          }
-        ]
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "chance": 0.25,
+        "spell": {
+          "school": "water",
+          "type": "ACTIVE"
+        },
+        "impact": {
+          "impact_type": "DAMAGE"
+        }
+      },
+      {
+        "target_override": "CASTER",
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "chance": 0.25,
+        "spell": {
+          "type": "ACTIVE"
+        },
+        "impact": {
+          "impact_type": "HEAL"
+        }
       }
     ]
   },
   "release": {
     "sound": {
-      "id": "mrpgc_skill_tree:torrent"
+      "id": "mrpgc_skill_tree:calming_flow_release"
     }
   },
   "target": {
     "type": "FROM_TRIGGER"
   },
+  "deliver": {
+    "type": "STASH_EFFECT",
+    "stash_effect": {
+      "id": "mrpgc_skill_tree:calming_flow",
+      "duration": 6.0,
+      "triggers": [
+        {
+          "type": "SPELL_CAST",
+          "spell": {
+            "school": "water",
+            "type": "ACTIVE"
+          }
+        }
+      ],
+      "consume": 0
+    }
+  },
   "impacts": [
     {
       "action": {
-        "type": "STATUS_EFFECT",
-        "status_effect": {
-          "effect_id": "mrpgc_skill_tree:torrent"
+        "type": "COOLDOWN",
+        "apply_to_caster": true,
+        "cooldown": {
+          "actives": {
+            "school": "water",
+            "duration_multiplier": 0.8
+          }
         }
       },
       "visuals": {
         "particles": [
           {
-            "id": "spell_engine:magic_stripe",
+            "id": "spell_engine:sign_hourglass",
             "appearance": {
               "color": 1250689023,
-              "motion": "DECELERATE"
+              "scale": 0.8,
+              "attachment": "POSITION"
             },
             "batch": {
-              "count": 30.0,
-              "shape": "PIPE",
-              "anchor": "GROUND",
-              "min_speed": 0.2,
-              "max_speed": 0.8,
-              "extent": 2.0,
-              "width_factor": 2.0,
-              "invert": true
+              "count": 1.0,
+              "shape": "LINE_VERTICAL",
+              "anchor": "ENTITY",
+              "vertical_origin": 0.0,
+              "min_speed": 0.8,
+              "max_speed": 0.8
             }
           }
         ]
-      },
-      "sound": {
-        "id": "mrpgc_skill_tree:torrent"
       }
     }
   ],
   "cost": {
     "durability": 0,
     "cooldown": {
-      "duration": 20.0
+      "duration": 45.0
     }
   }
 }

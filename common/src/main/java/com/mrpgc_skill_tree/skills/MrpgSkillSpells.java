@@ -1,7 +1,7 @@
 package com.mrpgc_skill_tree.skills;
 
 import net.minecraft.util.Identifier;
-import net.more_rpg_classes.custom.MoreSpellSchools;
+import com.mrpg_lib.compat.spell_power.MoreSpellSchools;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.effect.SpellEngineEffects;
 import net.spell_engine.api.entity.SpellEntityPredicates;
@@ -104,7 +104,7 @@ public class MrpgSkillSpells {
         impact.target_modifiers = List.of(modifier);
     }
     static void bleedingDeny(Spell.Impact impact) {
-        var modifier = createImpactModifier("#more_rpg_classes:bleeding_immune");
+        var modifier = createImpactModifier("#mrpg_lib:bleeding_immune");
         modifier.execute = TriState.DENY;
         impact.target_modifiers = List.of(modifier);
     }
@@ -124,7 +124,7 @@ public class MrpgSkillSpells {
         impact.target_modifiers = List.of(modifier);
     }
     static final SpellEntityPredicates.Entry HAS_BLEEDING = SpellEntityPredicates.hasEffectOptimized(SpellEngineEffects.BLEED.id);
-    static final SpellEntityPredicates.Entry HAS_FROSTED = SpellEntityPredicates.hasEffectOptimized(Identifier.of("more_rpg_classes", "frosted"));
+    static final SpellEntityPredicates.Entry HAS_FROSTED = SpellEntityPredicates.hasEffectOptimized(Identifier.of("mrpg_lib", "frosted"));
     static final SpellEntityPredicates.Entry HAS_RAGE = SpellEntityPredicates.hasEffectOptimized(Identifier.of("berserker_rpg", "rage"));
 
     public static final SpellSchool airWizardSchool = MoreSpellSchools.AIR;

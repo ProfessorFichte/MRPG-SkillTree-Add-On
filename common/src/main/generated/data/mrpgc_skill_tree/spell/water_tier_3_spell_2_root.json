@@ -5,8 +5,10 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "elemental_wizards_rpg:aqua_hydro_beam",
-      "channel_ticks_add": 2
+      "spell_pattern": "elemental_wizards_rpg:aqua_springwater",
+      "power_modifier": {
+        "power_multiplier": 0.1
+      }
     }
   ]
 }

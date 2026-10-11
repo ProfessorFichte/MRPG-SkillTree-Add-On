@@ -5,7 +5,7 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "more_rpg_classes:decapitate",
+      "spell_pattern": "mrpg_lib:decapitate",
       "mutate_impacts": "APPEND",
       "impacts": [
         {
@@ -37,7 +37,7 @@
           "visuals": {
             "particles": [
               {
-                "id": "more_rpg_classes:stone_explosion",
+                "id": "mrpg_lib:stone_explosion",
                 "appearance": {},
                 "batch": {
                   "count": 1.0,

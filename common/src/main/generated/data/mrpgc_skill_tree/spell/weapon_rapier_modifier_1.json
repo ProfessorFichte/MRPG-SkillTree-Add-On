@@ -16,7 +16,7 @@
           }
         ],
         "spell": {
-          "id": "more_rpg_classes:puncture"
+          "id": "mrpg_lib:puncture"
         },
         "impact": {
           "impact_type": "DAMAGE"
@@ -34,7 +34,7 @@
         "apply_to_caster": true,
         "cooldown": {
           "actives": {
-            "id": "more_rpg_classes:puncture",
+            "id": "mrpg_lib:puncture",
             "duration_multiplier": 0.0
           }
         }

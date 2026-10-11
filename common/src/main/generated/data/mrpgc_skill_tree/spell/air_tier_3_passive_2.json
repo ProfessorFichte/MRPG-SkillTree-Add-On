@@ -62,7 +62,7 @@
       "visuals": {
         "particles": [
           {
-            "id": "more_rpg_classes:small_gust",
+            "id": "mrpg_lib:small_gust",
             "appearance": {},
             "batch": {
               "count": 10.0,
@@ -75,7 +75,7 @@
         ]
       },
       "sound": {
-        "id": "more_rpg_classes:air_magic_impact3"
+        "id": "mrpg_lib:air_magic_impact3"
       }
     }
   ],

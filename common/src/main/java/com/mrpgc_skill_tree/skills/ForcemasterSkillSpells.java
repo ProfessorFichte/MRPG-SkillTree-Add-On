@@ -118,7 +118,7 @@ public class ForcemasterSkillSpells {
         custom.action.custom = new Spell.Impact.Action.Custom();
         custom.action.type = Spell.Impact.Action.Type.CUSTOM;
         custom.action.custom.intent = SpellTarget.Intent.HARMFUL;
-        custom.action.custom.handler = "more_rpg_classes:knock_up_fixed";
+        custom.action.custom.handler = "mrpg_lib:knock_up_fixed";
         custom.visuals = Fx.Visuals.of(
                 ParticleGroupBuilder.of(SpellEngineParticles.smoke_medium)
                         .color(Color.WHITE)

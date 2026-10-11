@@ -1,3 +1,9 @@
+# 1.3.0 - 1.21.1
+- Adopt Spell Engine 1.10.9 & More RPG Library 2.8.0
+- **BREAKING for modpack/datapack developers:** More RPG Library's namespace was renamed `more_rpg_classes` -> `mrpg_lib` (and its advancement root moved to `mrpg_lib:root`). If you have any data files, loot tables, tags or advancements that reference the old `more_rpg_classes:`/`more_rpg_content:` ids from this mod or MRPGL, update them to `mrpg_lib:`
+- Updated internal advancement parents, mod dependency declarations (fabric.mod.json, neoforge.mods.toml)
+- Fixed Skill Tree layout: some spell modifiers & passives were placed on the wrong side of their class branch (Deadeye Fast Shot / Bouncing Arrow, Earth Shattering Stone / Terra Circle, all Berserker passives, all Water Wizard spell modifiers & passives) and now match their spell book's spell group
+
 # 1.2.0 - 1.21.1
 - ** New Content Update **
 - Added a new layout for Weapon Skills & the Spell Skill Tree (Thanks LeDok!)

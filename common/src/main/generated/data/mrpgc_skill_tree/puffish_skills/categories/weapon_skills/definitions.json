@@ -117,7 +117,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "more_rpg_classes:textures/spell/decapitate.png"
+        "texture": "mrpg_lib:textures/spell/decapitate.png"
       }
     },
     "required_mods": [
@@ -154,7 +154,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "more_rpg_classes:textures/spell/decapitate.png"
+        "texture": "mrpg_lib:textures/spell/decapitate.png"
       }
     },
     "required_mods": [
@@ -334,7 +334,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "more_rpg_classes:textures/spell/burstcrack.png"
+        "texture": "mrpg_lib:textures/spell/burstcrack.png"
       }
     },
     "required_mods": [
@@ -664,7 +664,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "more_rpg_classes:textures/spell/puncture.png"
+        "texture": "mrpg_lib:textures/spell/puncture.png"
       }
     },
     "required_mods": [
@@ -701,7 +701,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "more_rpg_classes:textures/spell/puncture.png"
+        "texture": "mrpg_lib:textures/spell/puncture.png"
       }
     },
     "required_mods": [

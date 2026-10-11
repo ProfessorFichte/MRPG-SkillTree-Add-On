@@ -6,7 +6,7 @@ import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.spell.ExternalSpellSchools;
 import net.spell_engine.api.spell.Spell;
 import net.spell_engine.api.spell.fx.*;
-import net.more_rpg_classes.client.particle.MoreParticles;
+import com.mrpg_lib.compat.spell_engine.particle.MoreSpellParticles;
 import net.spell_engine.api.spell.tooltip.TooltipTokens;
 import net.spell_engine.fx.SpellEngineParticles;
 import net.spell_power.api.SpellSchools;
@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
 
-import static net.more_rpg_classes.custom.SpellBuilderHelper.ORANGE_COLOR;
+import static com.mrpg_lib.compat.spell_engine.SpellBuilderHelper.ORANGE_COLOR;
 
 public class MrpgWeaponSkills {
     public static final List<MrpgSkillSpells.Entry> all = new ArrayList<>();
@@ -69,10 +69,10 @@ public class MrpgWeaponSkills {
         area_impact.area = new Spell.Target.Area();
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
         area_impact.visuals = Fx.Visuals.of(
-                ParticleGroupBuilder.of(MoreParticles.BIG_SPLASH)
+                ParticleGroupBuilder.of(MoreSpellParticles.BIG_SPLASH)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .count(20F).speed(0.35F, 0.35F)),
-                ParticleGroupBuilder.of(MoreParticles.SPLASH)
+                ParticleGroupBuilder.of(MoreSpellParticles.SPLASH)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .count(20F).speed(0.15F, 0.15F))
         );
@@ -164,7 +164,7 @@ public class MrpgWeaponSkills {
         area_impact.radius = extendedRadius;
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
         area_impact.visuals = Fx.Visuals.of(
-                ParticleGroupBuilder.of(MoreParticles.STONE_EXPLOSION)
+                ParticleGroupBuilder.of(MoreSpellParticles.STONE_EXPLOSION)
                         .scale(extendedRadius / 2)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .count(1.0F).speed(0.0F, 0.0F)));
@@ -188,7 +188,7 @@ public class MrpgWeaponSkills {
         spell.school = MrpgSkillSpells.forcemasterFighterSchool;
 
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "more_rpg_classes:burstcrack";
+        modifier.spell_pattern = "mrpg_lib:burstcrack";
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(),8,0);
         impact.action.apply_to_caster = true;
 
@@ -209,7 +209,7 @@ public class MrpgWeaponSkills {
         spell.school = MrpgSkillSpells.forcemasterFighterSchool;
         spell.range = 4.5F;
 
-        spell.release.animation = PlayerAnimation.of("more_rpg_classes:burstcrack_release");
+        spell.release.animation = PlayerAnimation.of("mrpg_lib:burstcrack_release");
         spell.release.sound = Sound.withVolume(Identifier.of("entity.generic.explode"), 0.4F);
         spell.release.visuals = Fx.Visuals.of(
                 ParticleGroupBuilder.of(SpellEngineParticles.smoke_medium)
@@ -225,7 +225,7 @@ public class MrpgWeaponSkills {
         spell.target.area = new Spell.Target.Area();
         spell.target.area.angle_degrees = 360F;
 
-        var trigger = SpellBuilder.Triggers.specificSpellCast("more_rpg_classes:burstcrack");
+        var trigger = SpellBuilder.Triggers.specificSpellCast("mrpg_lib:burstcrack");
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         spell.passive.triggers = List.of(trigger);
 
@@ -252,11 +252,11 @@ public class MrpgWeaponSkills {
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
-        var trigger = SpellBuilder.Triggers.specificSpellHit("more_rpg_classes:puncture");
+        var trigger = SpellBuilder.Triggers.specificSpellHit("mrpg_lib:puncture");
         trigger.target_conditions = List.of(SpellBuilder.TargetConditions.dead());
         spell.passive.triggers = List.of(trigger);
 
-        var reset = SpellBuilder.Impacts.resetCooldownActive("more_rpg_classes:puncture");
+        var reset = SpellBuilder.Impacts.resetCooldownActive("mrpg_lib:puncture");
         reset.action.apply_to_caster = true;
         spell.impacts = List.of(reset);
 
@@ -275,7 +275,7 @@ public class MrpgWeaponSkills {
         spell.school = ExternalSpellSchools.PHYSICAL_MELEE;
 
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "more_rpg_classes:puncture";
+        modifier.spell_pattern = "mrpg_lib:puncture";
         var impact = SpellBuilder.Impacts.effectSet(effect.id.toString(), 8, 0);
         impact.action.apply_to_caster = true;
 
@@ -378,7 +378,7 @@ public class MrpgWeaponSkills {
         spell.school = MrpgSkillSpells.berserkerSchool;
 
         spell.target.type = Spell.Target.Type.FROM_TRIGGER;
-        var trigger = SpellBuilder.Triggers.specificSpellHit("more_rpg_classes:decapitate");
+        var trigger = SpellBuilder.Triggers.specificSpellHit("mrpg_lib:decapitate");
         trigger.target_conditions = List.of(SpellBuilder.TargetConditions.dead());
         trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
         spell.passive.triggers = List.of(trigger);
@@ -402,7 +402,7 @@ public class MrpgWeaponSkills {
         spell.school = MrpgSkillSpells.berserkerSchool;
 
         var modifier = new Spell.Modifier();
-        modifier.spell_pattern = "more_rpg_classes:decapitate";
+        modifier.spell_pattern = "mrpg_lib:decapitate";
 
         var execute = new Spell.Impact();
         execute.chance = 0.15F;
@@ -426,7 +426,7 @@ public class MrpgWeaponSkills {
 
         execute.target_modifiers = List.of(healthModifier, bossModifier);
         execute.visuals = Fx.Visuals.of(
-                ParticleGroupBuilder.of("more_rpg_classes:stone_explosion")
+                ParticleGroupBuilder.of("mrpg_lib:stone_explosion")
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .verticalOrigin(ParticleGroupBuilder.Batches.CENTER)
                                 .count(1.0F).speed(0.5F, 0.5F)));
@@ -485,7 +485,7 @@ public class MrpgWeaponSkills {
         var damage = SpellBuilder.Impacts.damage(0.3F);
         damage.school = SpellSchools.ARCANE;
         damage.visuals = Fx.Visuals.of(
-                ParticleGroupBuilder.of("more_rpg_classes:music_note")
+                ParticleGroupBuilder.of("mrpg_lib:music_note")
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .verticalOrigin(ParticleGroupBuilder.Batches.CENTER)
                                 .count(6).speed(0.1F, 0.2F)));

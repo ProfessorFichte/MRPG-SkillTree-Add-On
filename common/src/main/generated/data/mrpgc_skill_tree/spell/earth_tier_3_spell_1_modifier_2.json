@@ -5,10 +5,8 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "elemental_wizards_rpg:terra_drip_circle",
-      "power_modifier": {
-        "critical_chance_bonus": 0.1
-      }
+      "spell_pattern": "elemental_wizards_rpg:terra_shattering_stone",
+      "range_add": 8.0
     }
   ]
 }

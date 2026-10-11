@@ -28,7 +28,7 @@
       "action": {
         "type": "STATUS_EFFECT",
         "status_effect": {
-          "effect_id": "more_rpg_classes:frozen_solid",
+          "effect_id": "mrpg_lib:frozen_solid",
           "duration": 2.0
         }
       }

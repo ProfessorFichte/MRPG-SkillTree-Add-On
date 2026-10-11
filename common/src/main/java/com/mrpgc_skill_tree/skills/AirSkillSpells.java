@@ -2,8 +2,8 @@ package com.mrpgc_skill_tree.skills;
 
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.util.Identifier;
-import net.more_rpg_classes.client.particle.MoreParticles;
-import net.more_rpg_classes.custom.MoreSpellSchools;
+import com.mrpg_lib.compat.spell_engine.particle.MoreSpellParticles;
+import com.mrpg_lib.compat.spell_power.MoreSpellSchools;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.Spell;
@@ -80,7 +80,7 @@ public class AirSkillSpells {
         area_impact.area = new Spell.Target.Area();
         area_impact.area.distance_dropoff = Spell.Target.Area.DropoffCurve.SQUARED;
         area_impact.visuals = Fx.Visuals.of(
-                ParticleGroupBuilder.of(MoreParticles.SMALL_GUST)
+                ParticleGroupBuilder.of(MoreSpellParticles.SMALL_GUST)
                         .batch(b -> b.shape(ParticleGroup.Shape.PIPE).widthFactor(2F)
                                 .count(25).speed(0.2F, 1.0F)
                                 .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
@@ -259,7 +259,7 @@ public class AirSkillSpells {
                                 .count(20).speed(0.3F, 0.6F)
                                 .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
                                 .extent(3.5F)),
-                ParticleGroupBuilder.of(MoreParticles.SMALL_GUST)
+                ParticleGroupBuilder.of(MoreSpellParticles.SMALL_GUST)
                         .batch(b -> b.shape(ParticleGroup.Shape.PILLAR)
                                 .count(15).speed(0.1F, 0.3F)
                                 .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
@@ -306,7 +306,7 @@ public class AirSkillSpells {
         twister.time_to_live_seconds = 7;
         twister.placement.apply_yaw = true;
         spawn.action.spawns = List.of(twister);
-        spawn.sound = Sound.withVolume(Identifier.of("more_rpg_classes:air_magic_cast1"), 0.5F);
+        spawn.sound = Sound.withVolume(Identifier.of("mrpg_lib:air_magic_cast1"), 0.5F);
         spawn.visuals = Fx.Visuals.of(
                 ParticleGroupBuilder.of(SpellEngineParticles.smoke_medium)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
@@ -358,7 +358,7 @@ public class AirSkillSpells {
                 ParticleGroupBuilder.of(SpellEngineParticles.smoke_medium)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .count(10).speed(0.2F, 0.2F)));
-        damage.sound = new Sound( "more_rpg_classes:air_magic_impact2");
+        damage.sound = new Sound( "mrpg_lib:air_magic_impact2");
         spell.impacts = List.of(damage);
 
         SpellBuilder.Cost.cooldown(spell, duration * 2);
@@ -404,10 +404,10 @@ public class AirSkillSpells {
 
         var impact = SpellBuilder.Impacts.damage(0.3F, 0F);
         impact.visuals = Fx.Visuals.of(
-                ParticleGroupBuilder.of(MoreParticles.SMALL_GUST)
+                ParticleGroupBuilder.of(MoreSpellParticles.SMALL_GUST)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .count(10).speed(0.2F, 0.2F)));
-        impact.sound = new Sound("more_rpg_classes:air_magic_impact3");
+        impact.sound = new Sound("mrpg_lib:air_magic_impact3");
         spell.impacts = List.of(impact);
 
         SpellBuilder.Cost.cooldown(spell, 20F);

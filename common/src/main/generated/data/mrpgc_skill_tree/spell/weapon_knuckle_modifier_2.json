@@ -12,14 +12,14 @@
         "target_override": "CASTER",
         "type": "SPELL_CAST",
         "spell": {
-          "id": "more_rpg_classes:burstcrack"
+          "id": "mrpg_lib:burstcrack"
         }
       }
     ]
   },
   "release": {
     "animation": {
-      "id": "more_rpg_classes:burstcrack_release"
+      "id": "mrpg_lib:burstcrack_release"
     },
     "visuals": {
       "particles": [

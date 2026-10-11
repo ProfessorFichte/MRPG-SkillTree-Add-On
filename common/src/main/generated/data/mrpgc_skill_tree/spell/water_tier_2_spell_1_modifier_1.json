@@ -5,24 +5,15 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "elemental_wizards_rpg:aqua_bubble_beam",
-      "mutate_impacts": "APPEND",
-      "impacts": [
-        {
-          "action": {
-            "type": "STATUS_EFFECT",
-            "status_effect": {
-              "effect_id": "mrpgc_skill_tree:bubble_shield",
-              "duration": 6.0
-            }
-          }
-        }
-      ],
+      "spell_pattern": "elemental_wizards_rpg:aqua_waterball",
       "impact_filters": [
         {
           "type": "HEAL"
         }
-      ]
+      ],
+      "power_modifier": {
+        "power_multiplier": 0.2
+      }
     }
   ]
 }

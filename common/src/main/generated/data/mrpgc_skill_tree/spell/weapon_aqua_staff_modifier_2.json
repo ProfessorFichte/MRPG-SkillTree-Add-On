@@ -28,7 +28,7 @@
         "visuals": {
           "particles": [
             {
-              "id": "more_rpg_classes:big_splash",
+              "id": "mrpg_lib:big_splash",
               "appearance": {},
               "batch": {
                 "count": 20.0,
@@ -39,7 +39,7 @@
               }
             },
             {
-              "id": "more_rpg_classes:splash",
+              "id": "mrpg_lib:splash",
               "appearance": {},
               "batch": {
                 "count": 20.0,

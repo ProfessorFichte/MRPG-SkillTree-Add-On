@@ -5,7 +5,7 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "more_rpg_classes:burstcrack",
+      "spell_pattern": "mrpg_lib:burstcrack",
       "mutate_impacts": "APPEND",
       "impacts": [
         {

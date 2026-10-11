@@ -42,7 +42,7 @@ ordering = "AFTER"
 side = "BOTH"
 
 [[dependencies.mrpgc_skill_tree]]
-modId = "more_rpg_classes"
+modId = "mrpg_lib"
 type = "required"
 versionRange = "[${more_rpg_library_version},)"
 ordering = "AFTER"

@@ -32,6 +32,7 @@
 		"fabricloader": ">=${fabric_loader_compat_version}",
 		"spell_engine": ">=${spell_engine_version}",
 		"spell_power": ">=${spell_power_version}",
+		"mrpg_lib": ">=${more_rpg_library_version}",
 		"puffish_skills": ">=${pufferfish_skills_version}",
 		"skill_tree_rpgs": ">=${skill_tree_version}",
 		"ranged_weapon_api": ">=${ranged_weapon_api_version}"

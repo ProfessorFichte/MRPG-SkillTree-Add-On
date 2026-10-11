@@ -51,7 +51,7 @@
         {
           "conditions": [
             {
-              "entity_type": "#more_rpg_classes:bleeding_immune"
+              "entity_type": "#mrpg_lib:bleeding_immune"
             }
           ],
           "execute": "DENY"

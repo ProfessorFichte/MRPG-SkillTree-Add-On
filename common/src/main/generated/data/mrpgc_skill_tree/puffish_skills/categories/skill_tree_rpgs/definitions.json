@@ -1906,7 +1906,7 @@
       {
         "type": "puffish_skills:attribute",
         "data": {
-          "attribute": "more_rpg_classes:rage_modifier",
+          "attribute": "mrpg_lib:rage_modifier",
           "operation": "multiply_base",
           "value": 0.01
         }
@@ -1936,7 +1936,7 @@
       {
         "type": "puffish_skills:attribute",
         "data": {
-          "attribute": "more_rpg_classes:rage_modifier",
+          "attribute": "mrpg_lib:rage_modifier",
           "operation": "multiply_base",
           "value": 0.01
         }
@@ -3046,7 +3046,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "archers_expansion:textures/spell/bouncing_arrow.png"
+        "texture": "archers_expansion:textures/spell/fast_shot.png"
       }
     },
     "required_mods": [
@@ -3083,7 +3083,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "archers_expansion:textures/spell/bouncing_arrow.png"
+        "texture": "archers_expansion:textures/spell/fast_shot.png"
       }
     },
     "required_mods": [
@@ -3120,7 +3120,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "archers_expansion:textures/spell/bouncing_arrow.png"
+        "texture": "archers_expansion:textures/spell/fast_shot.png"
       }
     },
     "required_mods": [
@@ -3157,7 +3157,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "archers_expansion:textures/spell/fast_shot.png"
+        "texture": "archers_expansion:textures/spell/bouncing_arrow.png"
       }
     },
     "required_mods": [
@@ -3194,7 +3194,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "archers_expansion:textures/spell/fast_shot.png"
+        "texture": "archers_expansion:textures/spell/bouncing_arrow.png"
       }
     },
     "required_mods": [
@@ -3231,7 +3231,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "archers_expansion:textures/spell/fast_shot.png"
+        "texture": "archers_expansion:textures/spell/bouncing_arrow.png"
       }
     },
     "required_mods": [
@@ -4287,7 +4287,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/terra_drip_circle.png"
+        "texture": "elemental_wizards_rpg:textures/spell/terra_shattering_stone.png"
       }
     },
     "required_mods": [
@@ -4324,7 +4324,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/terra_drip_circle.png"
+        "texture": "elemental_wizards_rpg:textures/spell/terra_shattering_stone.png"
       }
     },
     "required_mods": [
@@ -4361,7 +4361,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/terra_drip_circle.png"
+        "texture": "elemental_wizards_rpg:textures/spell/terra_shattering_stone.png"
       }
     },
     "required_mods": [
@@ -4398,7 +4398,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/terra_shattering_stone.png"
+        "texture": "elemental_wizards_rpg:textures/spell/terra_drip_circle.png"
       }
     },
     "required_mods": [
@@ -4435,7 +4435,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/terra_shattering_stone.png"
+        "texture": "elemental_wizards_rpg:textures/spell/terra_drip_circle.png"
       }
     },
     "required_mods": [
@@ -4472,7 +4472,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/terra_shattering_stone.png"
+        "texture": "elemental_wizards_rpg:textures/spell/terra_drip_circle.png"
       }
     },
     "required_mods": [
@@ -5686,7 +5686,7 @@
       {
         "type": "puffish_skills:attribute",
         "data": {
-          "attribute": "more_rpg_classes:arcane_fuse_modifier",
+          "attribute": "mrpg_lib:arcane_fuse_modifier",
           "operation": "multiply_base",
           "value": 0.01
         }
@@ -5716,7 +5716,7 @@
       {
         "type": "puffish_skills:attribute",
         "data": {
-          "attribute": "more_rpg_classes:arcane_fuse_modifier",
+          "attribute": "mrpg_lib:arcane_fuse_modifier",
           "operation": "multiply_base",
           "value": 0.01
         }
@@ -9661,7 +9661,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/aqua_bubble_beam.png"
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_waterball.png"
       }
     },
     "required_mods": [
@@ -9698,7 +9698,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/aqua_bubble_beam.png"
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_waterball.png"
       }
     },
     "required_mods": [
@@ -9710,7 +9710,7 @@
         "data": {
           "containers": [
             {
-              "access": "MAGIC",
+              "access": "NONE",
               "access_param": "",
               "extra_tier_binding": 0,
               "max_spell_count": 0,
@@ -9735,7 +9735,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/aqua_bubble_beam.png"
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_waterball.png"
       }
     },
     "required_mods": [
@@ -9772,7 +9772,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/aqua_waterball.png"
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_bubble_beam.png"
       }
     },
     "required_mods": [
@@ -9809,7 +9809,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/aqua_waterball.png"
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_bubble_beam.png"
       }
     },
     "required_mods": [
@@ -9821,7 +9821,7 @@
         "data": {
           "containers": [
             {
-              "access": "NONE",
+              "access": "MAGIC",
               "access_param": "",
               "extra_tier_binding": 0,
               "max_spell_count": 0,
@@ -9846,7 +9846,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/aqua_waterball.png"
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_bubble_beam.png"
       }
     },
     "required_mods": [
@@ -9957,7 +9957,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/aqua_springwater.png"
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_hydro_beam.png"
       }
     },
     "required_mods": [
@@ -9994,7 +9994,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/aqua_springwater.png"
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_hydro_beam.png"
       }
     },
     "required_mods": [
@@ -10031,7 +10031,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/aqua_springwater.png"
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_hydro_beam.png"
       }
     },
     "required_mods": [
@@ -10068,7 +10068,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/aqua_hydro_beam.png"
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_springwater.png"
       }
     },
     "required_mods": [
@@ -10105,7 +10105,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/aqua_hydro_beam.png"
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_springwater.png"
       }
     },
     "required_mods": [
@@ -10142,7 +10142,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/aqua_hydro_beam.png"
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_springwater.png"
       }
     },
     "required_mods": [
@@ -10179,7 +10179,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/aqua_healing_rain.png"
+        "texture": "elemental_wizards_rpg:textures/spell/helper/aqua_tidal_wave_impact.png"
       }
     },
     "required_mods": [
@@ -10216,7 +10216,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/helper/aqua_healing_rain_impact.png"
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_tidal_wave.png"
       }
     },
     "required_mods": [
@@ -10253,7 +10253,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/aqua_healing_rain.png"
+        "texture": "elemental_wizards_rpg:textures/spell/helper/aqua_tidal_wave_impact.png"
       }
     },
     "required_mods": [
@@ -10290,7 +10290,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/helper/aqua_tidal_wave_impact.png"
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_healing_rain.png"
       }
     },
     "required_mods": [
@@ -10327,7 +10327,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/aqua_tidal_wave.png"
+        "texture": "elemental_wizards_rpg:textures/spell/helper/aqua_healing_rain_impact.png"
       }
     },
     "required_mods": [
@@ -10364,7 +10364,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "elemental_wizards_rpg:textures/spell/helper/aqua_tidal_wave_impact.png"
+        "texture": "elemental_wizards_rpg:textures/spell/aqua_healing_rain.png"
       }
     },
     "required_mods": [

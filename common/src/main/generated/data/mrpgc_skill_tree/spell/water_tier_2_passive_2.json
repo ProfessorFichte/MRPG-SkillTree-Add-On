@@ -1,85 +1,86 @@
 {
   "school": "spell_power:water",
-  "range": 3.0,
+  "range": 0.0,
   "tier": 1,
   "type": "PASSIVE",
   "passive": {
     "triggers": [
       {
-        "type": "ROLL"
+        "type": "ROLL",
+        "chance": 0.5
       }
     ]
   },
-  "release": {
-    "visuals": {
-      "particles": [
-        {
-          "id": "spell_engine:zone/effect_480",
-          "appearance": {
-            "color": 1250688959,
-            "scale_with": "RANGE"
-          },
-          "batch": {
-            "count": 1.0,
-            "shape": "SPHERE",
-            "anchor": "GROUND"
-          }
-        }
-      ]
-    }
-  },
-  "target": {
-    "type": "FROM_TRIGGER"
-  },
   "deliver": {
-    "type": "STASH_EFFECT",
-    "stash_effect": {
-      "id": "mrpgc_skill_tree:splashdown",
-      "duration": 0.5,
-      "triggers": [
-        {
-          "type": "EFFECT_TICK",
-          "effect": {
-            "id": "mrpgc_skill_tree:splashdown"
+    "type": "CLOUD",
+    "delay": 5,
+    "clouds": [
+      {
+        "volume": {
+          "radius": 2.5,
+          "area": {
+            "vertical_range_multiplier": 0.3
           }
+        },
+        "time_to_live_seconds": 5.0,
+        "impact_tick_interval": 20,
+        "client_data": {
+          "particles": [
+            {
+              "id": "mrpg_lib:water_mist",
+              "appearance": {},
+              "batch": {
+                "count": 20.0,
+                "shape": "PILLAR",
+                "anchor": "GROUND"
+              }
+            }
+          ]
         }
-      ],
-      "consume": 0
-    }
+      }
+    ]
   },
   "impacts": [
     {
       "action": {
-        "type": "DAMAGE",
-        "damage": {
-          "spell_power_coefficient": 0.0,
-          "knockback": 2.5
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "apply_mode": "REMOVE",
+          "remove": {
+            "id": "!minecraft:trial_omen"
+          }
         }
       },
       "visuals": {
         "particles": [
           {
-            "id": "more_rpg_classes:splash",
-            "appearance": {},
+            "id": "spell_engine:area_circle_1",
+            "appearance": {
+              "playback_speed": 1.25,
+              "color": 4294967295,
+              "scale": 0.8,
+              "attachment": "POSITION"
+            },
             "batch": {
-              "count": 20.0,
-              "shape": "PILLAR",
+              "count": 1.0,
+              "shape": "LINE_VERTICAL",
               "anchor": "ENTITY",
-              "vertical_origin": 0.1
+              "vertical_origin": 0.1,
+              "min_speed": 0.15,
+              "max_speed": 0.16
             }
           }
         ]
+      },
+      "sound": {
+        "id": "mrpgc_skill_tree:soothing_mist_cleanse"
       }
     }
   ],
-  "area_impact": {
-    "force_indirect": true,
-    "radius": 2.5,
-    "sound": {
-      "id": "mrpgc_skill_tree:splashdown"
-    }
-  },
   "cost": {
-    "durability": 0
+    "durability": 0,
+    "cooldown": {
+      "duration": 20.0
+    }
   }
 }

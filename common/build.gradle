@@ -33,7 +33,9 @@ repositories {
         url = 'https://maven.puffish.net'
     }
 
-    mavenLocal()
+    mavenLocal {
+        content { excludeModule('maven.modrinth', 'more-rpg-library') }
+    }
 }
 
 dependencies {

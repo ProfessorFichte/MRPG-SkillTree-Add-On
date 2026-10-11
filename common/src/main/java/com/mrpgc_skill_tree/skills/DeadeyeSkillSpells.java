@@ -30,12 +30,12 @@ public class DeadeyeSkillSpells {
         return entry;
     }
 
-    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_1_root = add(MrpgSkillsCommon.critRoot(
+    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_2_root = add(MrpgSkillsCommon.critRoot(
             MrpgSkillSpells.Category.DEADEYE, MrpgSkillSpells.deadeyeSchool,
-            "deadeye_tier_2_spell_1_root", "archers_expansion:bouncing_arrow", "Bouncing Arrow", 0.05F));
-    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_1_modifier_1 = add(deadeye_tier_2_spell_1_modifier_1());
-    private static MrpgSkillSpells.Entry deadeye_tier_2_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_2_spell_1_modifier_1");
+            "deadeye_tier_2_spell_2_root", "archers_expansion:bouncing_arrow", "Bouncing Arrow", 0.05F));
+    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_2_modifier_1 = add(deadeye_tier_2_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry deadeye_tier_2_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_2_spell_2_modifier_1");
         var title = "Barbed Bouncing Arrows";
         var description = "Bouncing Arrow's bleeding effect lasts {effect_duration_add} sec longer.";
         var spell = SpellBuilder.createSpellModifier();
@@ -48,9 +48,9 @@ public class DeadeyeSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
     }
-    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_1_modifier_2 = add(deadeye_tier_2_spell_1_modifier_2());
-    private static MrpgSkillSpells.Entry deadeye_tier_2_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_2_spell_1_modifier_2");
+    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_2_modifier_2 = add(deadeye_tier_2_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry deadeye_tier_2_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_2_spell_2_modifier_2");
         var title = "Bouncing Bouncing Arrows";
         var description = "Bouncing Arrow now ricochets {ricochet} more times.";
         var spell = SpellBuilder.createSpellModifier();
@@ -64,12 +64,12 @@ public class DeadeyeSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
     }
-    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_2_root = add(MrpgSkillsCommon.lingerRoot(
+    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_1_root = add(MrpgSkillsCommon.lingerRoot(
             MrpgSkillSpells.Category.DEADEYE, MrpgSkillSpells.deadeyeSchool,
-            "deadeye_tier_2_spell_2_root", "archers_expansion:fast_shot", "Fast Shot", 2F));
-    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_2_modifier_1 = add(deadeye_tier_2_spell_2_modifier_1());
-    private static MrpgSkillSpells.Entry deadeye_tier_2_spell_2_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_2_spell_2_modifier_1");
+            "deadeye_tier_2_spell_1_root", "archers_expansion:fast_shot", "Fast Shot", 2F));
+    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_1_modifier_1 = add(deadeye_tier_2_spell_1_modifier_1());
+    private static MrpgSkillSpells.Entry deadeye_tier_2_spell_1_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_2_spell_1_modifier_1");
         var title = "Swift Shots";
         var effect = MrpgSkillEffects.HUNTING_FEVER;
         // Two modifiers (movement speed, ranged haste), both +20%. The status effect's modifier map
@@ -93,9 +93,9 @@ public class DeadeyeSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
     }
-    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_2_modifier_2 = add(deadeye_tier_2_spell_2_modifier_2());
-    private static MrpgSkillSpells.Entry deadeye_tier_2_spell_2_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_2_spell_2_modifier_2");
+    public static final MrpgSkillSpells.Entry deadeye_tier_2_spell_1_modifier_2 = add(deadeye_tier_2_spell_1_modifier_2());
+    private static MrpgSkillSpells.Entry deadeye_tier_2_spell_1_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_2_spell_1_modifier_2");
         var title = "Fast Hands";
         var description = "Fast Shot applies {effect_amplifier_cap_add} additional Fast Shot stack.";
         var spell = SpellBuilder.createSpellModifier();
@@ -555,7 +555,7 @@ public class DeadeyeSkillSpells {
         custom.action.custom = new Spell.Impact.Action.Custom();
         custom.action.type = Spell.Impact.Action.Type.CUSTOM;
         custom.action.custom.intent = SpellTarget.Intent.HARMFUL;
-        custom.action.custom.handler = "more_rpg_classes:damage_according_to_missing_health";
+        custom.action.custom.handler = "mrpg_lib:damage_according_to_missing_health";
         custom.visuals = Fx.Visuals.of(
                 ParticleGroupBuilder.of(SpellEngineParticles.dripping_blood)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)

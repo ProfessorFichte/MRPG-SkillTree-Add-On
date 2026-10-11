@@ -2,8 +2,8 @@ package com.mrpgc_skill_tree.skills;
 
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.util.Identifier;
-import net.more_rpg_classes.client.particle.MoreParticles;
-import net.more_rpg_classes.custom.MoreSpellSchools;
+import com.mrpg_lib.compat.spell_engine.particle.MoreSpellParticles;
+import com.mrpg_lib.compat.spell_power.MoreSpellSchools;
 import net.spell_engine.api.datagen.SpellBuilder;
 import net.spell_engine.api.render.LightEmission;
 import net.spell_engine.api.spell.Spell;
@@ -31,12 +31,12 @@ public class WaterSkillSpells {
     }
 
     public static final Color WATER_SPELL_COLOR = Color.from(0x4a8bff);
-    public static final MrpgSkillSpells.Entry water_tier_2_spell_1_root = add(MrpgSkillsCommon.powerRoot(
+    public static final MrpgSkillSpells.Entry water_tier_2_spell_2_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.WATER, MrpgSkillSpells.waterWizardSchool,
-            "water_tier_2_spell_1_root", "elemental_wizards_rpg:aqua_bubble_beam", "Bubble Beam", 0.1F));
-    public static final MrpgSkillSpells.Entry water_tier_2_spell_1_modifier_1 = add(water_tier_2_spell_1_modifier_1());
-    private static MrpgSkillSpells.Entry water_tier_2_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_2_spell_1_modifier_1");
+            "water_tier_2_spell_2_root", "elemental_wizards_rpg:aqua_bubble_beam", "Bubble Beam", 0.1F));
+    public static final MrpgSkillSpells.Entry water_tier_2_spell_2_modifier_1 = add(water_tier_2_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry water_tier_2_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_2_spell_2_modifier_1");
         var effect = MrpgSkillEffects.BUBBLE_SHIELD;
         var title = "Protecting Bubbles";
         var description = "Bubble Beam grants allies " + effect.title + ", absorbing "
@@ -58,9 +58,9 @@ public class WaterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
-    public static final MrpgSkillSpells.Entry water_tier_2_spell_1_modifier_2 = add(water_tier_2_spell_1_modifier_2());
-    private static MrpgSkillSpells.Entry water_tier_2_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_2_spell_1_modifier_2");
+    public static final MrpgSkillSpells.Entry water_tier_2_spell_2_modifier_2 = add(water_tier_2_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry water_tier_2_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_2_spell_2_modifier_2");
         var title = "Persistent Bubbles";
         var effect = MrpgSkillEffects.PERSISTENT_BUBBLES;
         var description = "Bubble Beam hits have {trigger_chance} chance to decrease movement speed and attack speed by "
@@ -86,12 +86,12 @@ public class WaterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
-    public static final MrpgSkillSpells.Entry water_tier_3_spell_1_root = add(MrpgSkillsCommon.powerRoot(
+    public static final MrpgSkillSpells.Entry water_tier_3_spell_2_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.WATER, MrpgSkillSpells.waterWizardSchool,
-            "water_tier_3_spell_1_root", "elemental_wizards_rpg:aqua_springwater", "Springwater", 0.1F));
-    public static final MrpgSkillSpells.Entry water_tier_3_spell_1_modifier_1 = add(water_tier_3_spell_1_modifier_1());
-    private static MrpgSkillSpells.Entry water_tier_3_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_spell_1_modifier_1");
+            "water_tier_3_spell_2_root", "elemental_wizards_rpg:aqua_springwater", "Springwater", 0.1F));
+    public static final MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_1 = add(water_tier_3_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_spell_2_modifier_1");
         var title = "Holy Water Spring";
         var description = "Springwater removes {effect_amplifier} negative effect from allies and deals extra {damage} damage to undead.";
         var spell = SpellBuilder.createSpellModifier();
@@ -128,9 +128,9 @@ public class WaterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
-    public static final MrpgSkillSpells.Entry water_tier_3_spell_1_modifier_2 = add(water_tier_3_spell_1_modifier_2());
-    private static MrpgSkillSpells.Entry water_tier_3_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_spell_1_modifier_2");
+    public static final MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_2 = add(water_tier_3_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_spell_2_modifier_2");
         var title = "Bubbling Spring";
         var description = "Springwater leaves a bubbling area behind, dealing {damage} damage to enemies, for {cloud_duration} sec.";
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
@@ -148,7 +148,7 @@ public class WaterSkillSpells {
         cloud.impact_tick_interval = 10;
         cloud.time_to_live_seconds = 3;
         cloud.client_data.particles = List.of(
-                ParticleGroupBuilder.of(MoreParticles.BUBBLE)
+                ParticleGroupBuilder.of(MoreSpellParticles.BUBBLE)
                         .batch(b -> b.shape(ParticleGroup.Shape.PILLAR)
                                 .count(10).speed(0.05F, 0.1F)
                                 .anchor(ParticleGroup.Anchor.GROUND)));
@@ -159,7 +159,7 @@ public class WaterSkillSpells {
                 ParticleGroupBuilder.of("minecraft:bubble_pop")
                         .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE)
                                 .count(10).speed(0.1F, 0.2F)),
-                ParticleGroupBuilder.of(MoreParticles.BUBBLE)
+                ParticleGroupBuilder.of(MoreSpellParticles.BUBBLE)
                         .batch(b -> b.shape(ParticleGroup.Shape.SPHERE)
                                 .count(5).speed(0.1F, 0.2F)));
         spell.impacts = List.of(impact);
@@ -168,12 +168,12 @@ public class WaterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
-    public static final MrpgSkillSpells.Entry water_tier_3_spell_2_root = add(MrpgSkillsCommon.channelRoot(
+    public static final MrpgSkillSpells.Entry water_tier_3_spell_1_root = add(MrpgSkillsCommon.channelRoot(
             MrpgSkillSpells.Category.WATER, MrpgSkillSpells.waterWizardSchool,
-            "water_tier_3_spell_2_root", "elemental_wizards_rpg:aqua_hydro_beam", "Hydro Beam", 2));
-    public static final MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_1 = add(water_tier_3_spell_2_modifier_1());
-    private static MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_spell_2_modifier_1");
+            "water_tier_3_spell_1_root", "elemental_wizards_rpg:aqua_hydro_beam", "Hydro Beam", 2));
+    public static final MrpgSkillSpells.Entry water_tier_3_spell_1_modifier_1 = add(water_tier_3_spell_1_modifier_1());
+    private static MrpgSkillSpells.Entry water_tier_3_spell_1_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_spell_1_modifier_1");
         var title = "Scald";
         var description = "Hydro Beam scalds enemies, setting them ablaze, and applies " + MrpgSkillEffects.SCALD.title
                 + ", stacking up to {effect_amplifier_cap} times, each stack lowering spell power, attack damage and ranged weapon damage by "
@@ -207,9 +207,9 @@ public class WaterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
-    public static final MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_2 = add(water_tier_3_spell_2_modifier_2());
-    private static MrpgSkillSpells.Entry water_tier_3_spell_2_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_spell_2_modifier_2");
+    public static final MrpgSkillSpells.Entry water_tier_3_spell_1_modifier_2 = add(water_tier_3_spell_1_modifier_2());
+    private static MrpgSkillSpells.Entry water_tier_3_spell_1_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_spell_1_modifier_2");
         var title = "High Water Pressure";
         var description = "Hydro Beam has {trigger_chance} chance to stun the target for {effect_duration} sec.";
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
@@ -229,9 +229,9 @@ public class WaterSkillSpells {
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
     ///WATER PASSIVES
-    public static final MrpgSkillSpells.Entry water_tier_1_passive_1 = add(water_tier_1_passive_1());
-    private static MrpgSkillSpells.Entry water_tier_1_passive_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_1_passive_1");
+    public static final MrpgSkillSpells.Entry water_tier_1_passive_2 = add(water_tier_1_passive_2());
+    private static MrpgSkillSpells.Entry water_tier_1_passive_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_1_passive_2");
         var effect = MrpgSkillEffects.HYDRATION;
         var title = "Hydration";
         var description = "Healing spells applies Hydration regenerating health for {effect_duration} sec, stacking up to {effect_amplifier_cap} times.";
@@ -268,9 +268,9 @@ public class WaterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
-    public static final MrpgSkillSpells.Entry water_tier_1_passive_2 = add(water_tier_1_passive_2());
-    private static MrpgSkillSpells.Entry water_tier_1_passive_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_1_passive_2");
+    public static final MrpgSkillSpells.Entry water_tier_1_passive_1 = add(water_tier_1_passive_1());
+    private static MrpgSkillSpells.Entry water_tier_1_passive_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_1_passive_1");
         var title = "Second Wave";
         var description = "Casting a Water spell sends a wave rushing along the ground, dealing {damage} damage and knocking back every target it passes through.";
 
@@ -304,7 +304,7 @@ public class WaterSkillSpells {
 
         var impact = SpellBuilder.Impacts.damage(0.3F, 1.5F);
         impact.visuals = Fx.Visuals.of(
-                ParticleGroupBuilder.of(MoreParticles.SPLASH)
+                ParticleGroupBuilder.of(MoreSpellParticles.SPLASH)
                         .batch(b -> b.shape(ParticleGroup.Shape.CIRCLE)
                                 .count(30).speed(0.1F, 0.3F)
                                 .verticalOrigin(ParticleGroupBuilder.Batches.FEET)
@@ -315,9 +315,9 @@ public class WaterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
-    public static final MrpgSkillSpells.Entry water_tier_2_passive_1 = add(water_tier_2_passive_1());
-    private static MrpgSkillSpells.Entry water_tier_2_passive_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_2_passive_1");
+    public static final MrpgSkillSpells.Entry water_tier_2_passive_2 = add(water_tier_2_passive_2());
+    private static MrpgSkillSpells.Entry water_tier_2_passive_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_2_passive_2");
         var title = "Soothing Mist";
         var description = "{trigger_chance} chance upon rolling to leave Soothing Mist behind for {cloud_duration} sec, cleansing negative conditions.";
 
@@ -339,7 +339,7 @@ public class WaterSkillSpells {
         cloud.client_data = new Spell.Delivery.Cloud.ClientData();
         cloud.client_data.light_level = 0;
         cloud.client_data.particles = List.of(
-                ParticleGroupBuilder.of(MoreParticles.WATER_MIST)
+                ParticleGroupBuilder.of(MoreSpellParticles.WATER_MIST)
                         .batch(b -> b.shape(ParticleGroup.Shape.PILLAR)
                                 .count(20F).speed(0.0F, 0.0F)
                                 .anchor(ParticleGroup.Anchor.GROUND)));
@@ -359,9 +359,9 @@ public class WaterSkillSpells {
         SpellBuilder.Cost.cooldown(spell, 20F);
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
-    public static final MrpgSkillSpells.Entry water_tier_2_passive_2 = add(water_tier_2_passive_2());
-    private static MrpgSkillSpells.Entry water_tier_2_passive_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_2_passive_2");
+    public static final MrpgSkillSpells.Entry water_tier_2_passive_1 = add(water_tier_2_passive_1());
+    private static MrpgSkillSpells.Entry water_tier_2_passive_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_2_passive_1");
         var title = "Splashdown";
         var description = "While rolling, you knockback nearby enemies.";
 
@@ -389,7 +389,7 @@ public class WaterSkillSpells {
 
         var impact = SpellBuilder.Impacts.damage(0.0F, 2.5F);
         impact.visuals = Fx.Visuals.of(
-                ParticleGroupBuilder.of(MoreParticles.SPLASH)
+                ParticleGroupBuilder.of(MoreSpellParticles.SPLASH)
                         .batch(b -> b.shape(ParticleGroup.Shape.PILLAR)
                                 .count(20).speed(0F, 0F)
                                 .verticalOrigin(ParticleGroupBuilder.Batches.FEET)));
@@ -402,9 +402,9 @@ public class WaterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
-    public static final MrpgSkillSpells.Entry water_tier_3_passive_1 = add(water_tier_3_passive_1());
-    private static MrpgSkillSpells.Entry water_tier_3_passive_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_passive_1");
+    public static final MrpgSkillSpells.Entry water_tier_3_passive_2 = add(water_tier_3_passive_2());
+    private static MrpgSkillSpells.Entry water_tier_3_passive_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_passive_2");
         var effect = MrpgSkillEffects.CALMING_FLOW;
         var title = "Calming Flow";
         var description = "Water Spell Hits and heals have {trigger_chance_1} chance to enter a calming flow, reducing active water spell cooldowns by "
@@ -443,9 +443,9 @@ public class WaterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
-    public static final MrpgSkillSpells.Entry water_tier_3_passive_2 = add(water_tier_3_passive_2());
-    private static MrpgSkillSpells.Entry water_tier_3_passive_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_passive_2");
+    public static final MrpgSkillSpells.Entry water_tier_3_passive_1 = add(water_tier_3_passive_1());
+    private static MrpgSkillSpells.Entry water_tier_3_passive_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_3_passive_1");
         var effect = MrpgSkillEffects.TORRENT;
         var title = effect.title;
         var healthThreshold = 0.3F;
@@ -483,12 +483,12 @@ public class WaterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
-    public static final MrpgSkillSpells.Entry water_tier_2_spell_2_root = add(MrpgSkillsCommon.reachRoot(
+    public static final MrpgSkillSpells.Entry water_tier_2_spell_1_root = add(MrpgSkillsCommon.reachRoot(
             MrpgSkillSpells.Category.WATER, MrpgSkillSpells.waterWizardSchool,
-            "water_tier_2_spell_2_root", "elemental_wizards_rpg:aqua_waterball", "Waterballs", 5F));
-    public static final MrpgSkillSpells.Entry water_tier_2_spell_2_modifier_1 = add(water_tier_2_spell_2_modifier_1());
-    private static MrpgSkillSpells.Entry water_tier_2_spell_2_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_2_spell_2_modifier_1");
+            "water_tier_2_spell_1_root", "elemental_wizards_rpg:aqua_waterball", "Waterballs", 5F));
+    public static final MrpgSkillSpells.Entry water_tier_2_spell_1_modifier_1 = add(water_tier_2_spell_1_modifier_1());
+    private static MrpgSkillSpells.Entry water_tier_2_spell_1_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_2_spell_1_modifier_1");
         var title = "Soothing Balls";
         var description = "Increases the healing of Waterballs by {power_multiplier}.";
         var spell = SpellBuilder.createSpellModifier();
@@ -505,9 +505,9 @@ public class WaterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
-    public static final MrpgSkillSpells.Entry water_tier_2_spell_2_modifier_2 = add(water_tier_2_spell_2_modifier_2());
-    private static MrpgSkillSpells.Entry water_tier_2_spell_2_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_2_spell_2_modifier_2");
+    public static final MrpgSkillSpells.Entry water_tier_2_spell_1_modifier_2 = add(water_tier_2_spell_1_modifier_2());
+    private static MrpgSkillSpells.Entry water_tier_2_spell_1_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_2_spell_1_modifier_2");
         var title = "Rapid Currents";
         var description = "Shoots {extra_launch_count} Waterballs..";
         var spell = SpellBuilder.createSpellModifier();
@@ -521,12 +521,12 @@ public class WaterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
-    public static final MrpgSkillSpells.Entry water_tier_4_spell_1_root = add(MrpgSkillsCommon.companionRoot(
+    public static final MrpgSkillSpells.Entry water_tier_4_spell_2_root = add(MrpgSkillsCommon.companionRoot(
             MrpgSkillSpells.Category.WATER, MrpgSkillSpells.waterWizardSchool,
-            "water_tier_4_spell_1_root", "elemental_wizards_rpg:aqua_healing_rain", "Healing Rain", 5));
-    public static final MrpgSkillSpells.Entry water_tier_4_spell_1_modifier_1 = add(water_tier_4_spell_1_modifier_1());
-    private static MrpgSkillSpells.Entry water_tier_4_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_4_spell_1_modifier_1");
+            "water_tier_4_spell_2_root", "elemental_wizards_rpg:aqua_healing_rain", "Healing Rain", 5));
+    public static final MrpgSkillSpells.Entry water_tier_4_spell_2_modifier_1 = add(water_tier_4_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry water_tier_4_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_4_spell_2_modifier_1");
         var title = "Persistent Downpour";
         var description = "Healing Rain's cloud lasts {spawn_duration_add} sec longer.";
         var spell = SpellBuilder.createSpellModifier();
@@ -539,9 +539,9 @@ public class WaterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
-    public static final MrpgSkillSpells.Entry water_tier_4_spell_1_modifier_2 = add(water_tier_4_spell_1_modifier_2());
-    private static MrpgSkillSpells.Entry water_tier_4_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_4_spell_1_modifier_2");
+    public static final MrpgSkillSpells.Entry water_tier_4_spell_2_modifier_2 = add(water_tier_4_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry water_tier_4_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_4_spell_2_modifier_2");
         var title = "Cleansing Storm";
         var description = "Healing Rain impacts have a {impact_chance} chance to remove one harmful effect.";
         var spell = SpellBuilder.createSpellModifier();
@@ -557,12 +557,12 @@ public class WaterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
-    public static final MrpgSkillSpells.Entry water_tier_4_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+    public static final MrpgSkillSpells.Entry water_tier_4_spell_1_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.WATER, MrpgSkillSpells.waterWizardSchool,
-            "water_tier_4_spell_2_root", "elemental_wizards_rpg:helper/aqua_tidal_wave_impact", "Tidal Wave", 0.1F));
-    public static final MrpgSkillSpells.Entry water_tier_4_spell_2_modifier_1 = add(water_tier_4_spell_2_modifier_1());
-    private static MrpgSkillSpells.Entry water_tier_4_spell_2_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_4_spell_2_modifier_1");
+            "water_tier_4_spell_1_root", "elemental_wizards_rpg:helper/aqua_tidal_wave_impact", "Tidal Wave", 0.1F));
+    public static final MrpgSkillSpells.Entry water_tier_4_spell_1_modifier_1 = add(water_tier_4_spell_1_modifier_1());
+    private static MrpgSkillSpells.Entry water_tier_4_spell_1_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_4_spell_1_modifier_1");
         var title = "Endless Tide";
         var description = "Tidal Wave impacts reduce its cooldown by 1 sec.";
         var spell = SpellBuilder.createSpellModifier();
@@ -586,9 +586,9 @@ public class WaterSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
-    public static final MrpgSkillSpells.Entry water_tier_4_spell_2_modifier_2 = add(water_tier_4_spell_2_modifier_2());
-    private static MrpgSkillSpells.Entry water_tier_4_spell_2_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_4_spell_2_modifier_2");
+    public static final MrpgSkillSpells.Entry water_tier_4_spell_1_modifier_2 = add(water_tier_4_spell_1_modifier_2());
+    private static MrpgSkillSpells.Entry water_tier_4_spell_1_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_4_spell_1_modifier_2");
         var title = "Rising Tide";
         var description = "Tidal Wave travels {range_add} blocks further.";
         var spell = SpellBuilder.createSpellModifier();

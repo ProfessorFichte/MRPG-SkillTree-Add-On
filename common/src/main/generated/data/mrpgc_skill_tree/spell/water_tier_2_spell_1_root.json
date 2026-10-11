@@ -5,10 +5,8 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "elemental_wizards_rpg:aqua_bubble_beam",
-      "power_modifier": {
-        "power_multiplier": 0.1
-      }
+      "spell_pattern": "elemental_wizards_rpg:aqua_waterball",
+      "range_add": 5.0
     }
   ]
 }
