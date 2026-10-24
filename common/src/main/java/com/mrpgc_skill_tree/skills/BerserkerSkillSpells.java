@@ -34,12 +34,12 @@ public class BerserkerSkillSpells {
         return entry;
     }
 
-    public static final MrpgSkillSpells.Entry berserker_tier_2_spell_1_root = add(MrpgSkillsCommon.cooldownRoot(
+    public static final MrpgSkillSpells.Entry berserker_tier_2_spell_2_root = add(MrpgSkillsCommon.cooldownRoot(
             MrpgSkillSpells.Category.BERSERKER, MrpgSkillSpells.berserkerSchool,
-            "berserker_tier_2_spell_1_root", "berserker_rpg:wild_rage", "Wild Rage", 2F));
-    public static final MrpgSkillSpells.Entry berserker_tier_2_spell_1_modifier_1 = add(berserker_tier_2_spell_1_modifier_1());
-    private static MrpgSkillSpells.Entry berserker_tier_2_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_spell_1_modifier_1");
+            "berserker_tier_2_spell_2_root", "berserker_rpg:wild_rage", "Wild Rage", 2F));
+    public static final MrpgSkillSpells.Entry berserker_tier_2_spell_2_modifier_1 = add(berserker_tier_2_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry berserker_tier_2_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_spell_2_modifier_1");
         var title = "Raging Slashes";
         var description = "While enraged, melee hits have {trigger_chance} chance to inflict Bleeding for {effect_duration} sec.";
         var spell = SpellBuilder.createSpellPassive();
@@ -69,9 +69,9 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_2_spell_1_modifier_2 = add(berserker_tier_2_spell_1_modifier_2());
-    private static MrpgSkillSpells.Entry berserker_tier_2_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_spell_1_modifier_2");
+    public static final MrpgSkillSpells.Entry berserker_tier_2_spell_2_modifier_2 = add(berserker_tier_2_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry berserker_tier_2_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_spell_2_modifier_2");
         var title = "Blind with Rage";
         var effect = MrpgSkillEffects.BLIND_WITH_RAGE;
         var description = "Melee Hits with Wild Rage reduce incoming damage by "
@@ -91,12 +91,12 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_2_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+    public static final MrpgSkillSpells.Entry berserker_tier_2_spell_1_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.BERSERKER, MrpgSkillSpells.berserkerSchool,
-            "berserker_tier_2_spell_2_root", "berserker_rpg:apprehend", "Apprehend", 0.1F));
-    public static final MrpgSkillSpells.Entry berserker_tier_2_spell_2_modifier_1 = add(berserker_tier_2_spell_2_modifier_1());
-    private static MrpgSkillSpells.Entry berserker_tier_2_spell_2_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_spell_2_modifier_1");
+            "berserker_tier_2_spell_1_root", "berserker_rpg:apprehend", "Apprehend", 0.1F));
+    public static final MrpgSkillSpells.Entry berserker_tier_2_spell_1_modifier_1 = add(berserker_tier_2_spell_1_modifier_1());
+    private static MrpgSkillSpells.Entry berserker_tier_2_spell_1_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_spell_1_modifier_1");
         var title = "Extended Arm";
         var description = "Increases the range of Apprehend by {range_add} blocks.";
         var spell = SpellBuilder.createSpellModifier();
@@ -109,9 +109,9 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_2_spell_2_modifier_2 = add(berserker_tier_2_spell_2_modifier_2());
-    private static MrpgSkillSpells.Entry berserker_tier_2_spell_2_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_spell_2_modifier_2");
+    public static final MrpgSkillSpells.Entry berserker_tier_2_spell_1_modifier_2 = add(berserker_tier_2_spell_1_modifier_2());
+    private static MrpgSkillSpells.Entry berserker_tier_2_spell_1_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_spell_1_modifier_2");
         var title = "Weakening Grasp";
         var effect = MRPGCEffects.GRIEVOUS_WOUNDS;
         var description = "Apprehend also inflicts Grievous Wounds, increasing damage taken by "
@@ -133,12 +133,12 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_3_spell_1_root = add(MrpgSkillsCommon.powerRoot(
+    public static final MrpgSkillSpells.Entry berserker_tier_3_spell_2_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.BERSERKER, MrpgSkillSpells.berserkerSchool,
-            "berserker_tier_3_spell_1_root", "berserker_rpg:bloody_strike", "Bloody Strike", 0.1F));
-    public static final MrpgSkillSpells.Entry berserker_tier_3_spell_1_modifier_1 = add(berserker_tier_3_spell_1_modifier_1());
-    private static MrpgSkillSpells.Entry berserker_tier_3_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_3_spell_1_modifier_1");
+            "berserker_tier_3_spell_2_root", "berserker_rpg:bloody_strike", "Bloody Strike", 0.1F));
+    public static final MrpgSkillSpells.Entry berserker_tier_3_spell_2_modifier_1 = add(berserker_tier_3_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry berserker_tier_3_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_3_spell_2_modifier_1");
         var title = "Deadly Precision";
         var description = "Bloody Strike deals an additional " + MrpgSkillSpells.maxHealthPercentToken
                 + " of the target's max health as damage.";
@@ -157,9 +157,9 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_3_spell_1_modifier_2 = add(berserker_tier_3_spell_1_modifier_2());
-    private static MrpgSkillSpells.Entry berserker_tier_3_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_3_spell_1_modifier_2");
+    public static final MrpgSkillSpells.Entry berserker_tier_3_spell_2_modifier_2 = add(berserker_tier_3_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry berserker_tier_3_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_3_spell_2_modifier_2");
         var title = "Slicing Maelstorm";
         var description = "Bloody Strike inflicts bleeding around the target for {effect_duration} seconds.";
         var spell = SpellBuilder.createSpellModifier();
@@ -194,12 +194,12 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_3_spell_2_root = add(MrpgSkillsCommon.cooldownRoot(
+    public static final MrpgSkillSpells.Entry berserker_tier_3_spell_1_root = add(MrpgSkillsCommon.cooldownRoot(
             MrpgSkillSpells.Category.BERSERKER, MrpgSkillSpells.berserkerSchool,
-            "berserker_tier_3_spell_2_root", "berserker_rpg:outrage", "Outrage", 2F));
-    public static final MrpgSkillSpells.Entry berserker_tier_3_spell_2_modifier_1 = add(berserker_tier_3_spell_2_modifier_1());
-    private static MrpgSkillSpells.Entry berserker_tier_3_spell_2_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_3_spell_2_modifier_1");
+            "berserker_tier_3_spell_1_root", "berserker_rpg:outrage", "Outrage", 2F));
+    public static final MrpgSkillSpells.Entry berserker_tier_3_spell_1_modifier_1 = add(berserker_tier_3_spell_1_modifier_1());
+    private static MrpgSkillSpells.Entry berserker_tier_3_spell_1_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_3_spell_1_modifier_1");
         var title = "Savage Outrage";
         var description = "Outrage gives {effect_amplifier_add} stronger effect amplifier.";
         var spell = SpellBuilder.createSpellModifier();
@@ -212,9 +212,9 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_3_spell_2_modifier_2 = add(berserker_tier_3_spell_2_modifier_2());
-    private static MrpgSkillSpells.Entry berserker_tier_3_spell_2_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_3_spell_2_modifier_2");
+    public static final MrpgSkillSpells.Entry berserker_tier_3_spell_1_modifier_2 = add(berserker_tier_3_spell_1_modifier_2());
+    private static MrpgSkillSpells.Entry berserker_tier_3_spell_1_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_3_spell_1_modifier_2");
         var title = "Reckless Outrage";
         var description = "Melee Hits grant Absorption in trade for reducing the player's health.";
         var effect = MrpgSkillEffects.RECKLESS_RAGE;
@@ -252,12 +252,12 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_4_spell_1_root = add(MrpgSkillsCommon.cooldownRoot(
+    public static final MrpgSkillSpells.Entry berserker_tier_4_spell_2_root = add(MrpgSkillsCommon.cooldownRoot(
             MrpgSkillSpells.Category.BERSERKER, MrpgSkillSpells.berserkerSchool,
-            "berserker_tier_4_spell_1_root", "berserker_rpg:blood_reckoning", "Blood Reckoning", 2F));
-    public static final MrpgSkillSpells.Entry berserker_tier_4_spell_1_modifier_1 = add(berserker_tier_4_spell_1_modifier_1());
-    private static MrpgSkillSpells.Entry berserker_tier_4_spell_1_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_4_spell_1_modifier_1");
+            "berserker_tier_4_spell_2_root", "berserker_rpg:blood_reckoning", "Blood Reckoning", 2F));
+    public static final MrpgSkillSpells.Entry berserker_tier_4_spell_2_modifier_1 = add(berserker_tier_4_spell_2_modifier_1());
+    private static MrpgSkillSpells.Entry berserker_tier_4_spell_2_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_4_spell_2_modifier_1");
         var title = "Pain Transmission";
         var description = "Taking damage has {trigger_chance} chance to reflect {damage} damage and bleeding back to the attacker.";
         var spell = SpellBuilder.createSpellPassive();
@@ -288,9 +288,9 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_4_spell_1_modifier_2 = add(berserker_tier_4_spell_1_modifier_2());
-    private static MrpgSkillSpells.Entry berserker_tier_4_spell_1_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_4_spell_1_modifier_2");
+    public static final MrpgSkillSpells.Entry berserker_tier_4_spell_2_modifier_2 = add(berserker_tier_4_spell_2_modifier_2());
+    private static MrpgSkillSpells.Entry berserker_tier_4_spell_2_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_4_spell_2_modifier_2");
         var title = "Norse Blood Ritual";
         var effect = MRPGCEffects.GRIEVOUS_WOUNDS;
         var description = "Bleeding targets near the caster receive Grievous Wounds, increasing damage taken by "
@@ -317,12 +317,12 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_4_spell_2_root = add(MrpgSkillsCommon.powerRoot(
+    public static final MrpgSkillSpells.Entry berserker_tier_4_spell_1_root = add(MrpgSkillsCommon.powerRoot(
             MrpgSkillSpells.Category.BERSERKER, MrpgSkillSpells.berserkerSchool,
-            "berserker_tier_4_spell_2_root", "berserker_rpg:northerners_guillotine", "Northerners Guillotine", 0.1F));
-    public static final MrpgSkillSpells.Entry berserker_tier_4_spell_2_modifier_1 = add(berserker_tier_4_spell_2_modifier_1());
-    private static MrpgSkillSpells.Entry berserker_tier_4_spell_2_modifier_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_4_spell_2_modifier_1");
+            "berserker_tier_4_spell_1_root", "berserker_rpg:northerners_guillotine", "Northerners Guillotine", 0.1F));
+    public static final MrpgSkillSpells.Entry berserker_tier_4_spell_1_modifier_1 = add(berserker_tier_4_spell_1_modifier_1());
+    private static MrpgSkillSpells.Entry berserker_tier_4_spell_1_modifier_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_4_spell_1_modifier_1");
         var effect = MrpgSkillEffects.NORSE_WARMONGER;
         var title = "Norse Warmonger";
         var description = "Killing a target with Northerners Guillotine grants you Bloodflow, increasing attack damage by "
@@ -342,9 +342,9 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_4_spell_2_modifier_2 = add(berserker_tier_4_spell_2_modifier_2());
-    private static MrpgSkillSpells.Entry berserker_tier_4_spell_2_modifier_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_4_spell_2_modifier_2");
+    public static final MrpgSkillSpells.Entry berserker_tier_4_spell_1_modifier_2 = add(berserker_tier_4_spell_1_modifier_2());
+    private static MrpgSkillSpells.Entry berserker_tier_4_spell_1_modifier_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_4_spell_1_modifier_2");
         var title = "Guillotine Ecstasy";
         var description = "Killing a target with Northerners Guillotine resets its cooldown.";
         var spell = MrpgSkillSpells.createModifierAlikePassiveSpell();
@@ -363,9 +363,9 @@ public class BerserkerSkillSpells {
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
     ///BERSERKER PASSIVES
-    public static final MrpgSkillSpells.Entry berserker_tier_1_passive_2 = add(berserker_tier_1_passive_2());
-    private static MrpgSkillSpells.Entry berserker_tier_1_passive_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_1_passive_2");
+    public static final MrpgSkillSpells.Entry berserker_tier_1_passive_1 = add(berserker_tier_1_passive_1());
+    private static MrpgSkillSpells.Entry berserker_tier_1_passive_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_1_passive_1");
         var title = "Cleave";
         var description = "Melee hits have {trigger_chance} chance to deal additional damage according to the targets max health..";
         var spell = SpellBuilder.createSpellPassive();
@@ -398,12 +398,12 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_1_passive_1 = add(berserker_tier_1_passive_1());
-    private static MrpgSkillSpells.Entry berserker_tier_1_passive_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_1_passive_1");
+    public static final MrpgSkillSpells.Entry berserker_tier_1_passive_2 = add(berserker_tier_1_passive_2());
+    private static MrpgSkillSpells.Entry berserker_tier_1_passive_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_1_passive_2");
         var effect = MrpgSkillEffects.BLOODFLOW;
         var title = "Bloodfrenzy";
-        // Single modifier (attack damage), so the token's blank-attribute fallback is unambiguous.
+
         var description = "Melee hits against Bleeding targets grant you Bloodflow, increasing attack damage by "
                 + TooltipTokens.effect(effect.id)
                 + " for {effect_duration} sec.";
@@ -432,9 +432,9 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_2_passive_2 = add(berserker_tier_2_passive_2());
-    private static MrpgSkillSpells.Entry berserker_tier_2_passive_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_passive_2");
+    public static final MrpgSkillSpells.Entry berserker_tier_2_passive_1 = add(berserker_tier_2_passive_1());
+    private static MrpgSkillSpells.Entry berserker_tier_2_passive_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_passive_1");
         var title = "Spinning Slash";
         var description = "While rolling, you slash and deal {damage} damage to nearby enemies.";
 
@@ -463,13 +463,11 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_2_passive_1 = add(berserker_tier_2_passive_1());
-    private static MrpgSkillSpells.Entry berserker_tier_2_passive_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_passive_1");
+    public static final MrpgSkillSpells.Entry berserker_tier_2_passive_2 = add(berserker_tier_2_passive_2());
+    private static MrpgSkillSpells.Entry berserker_tier_2_passive_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_2_passive_2");
         var title = "Burst of Aggression";
         var effect = MrpgSkillEffects.BURST_OF_AGGRESSION;
-        // Two modifiers (movement speed, rage), both +15%. The status effect's modifier map is
-        // unordered, so the attribute is named explicitly rather than read by list position.
         var description = "When the player is in rage and is rolling, you gain "
                 + TooltipTokens.effect(effect.id, 0,
                         Identifier.of(EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString()))
@@ -506,14 +504,11 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_3_passive_2 = add(berserker_tier_3_passive_2());
-    private static MrpgSkillSpells.Entry berserker_tier_3_passive_2() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_3_passive_2");
+    public static final MrpgSkillSpells.Entry berserker_tier_3_passive_1 = add(berserker_tier_3_passive_1());
+    private static MrpgSkillSpells.Entry berserker_tier_3_passive_1() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_3_passive_1");
         var effect = MrpgSkillEffects.RAGNAROK;
         var title = effect.title;
-        // Two modifiers that do NOT share a value: movement speed +30% and tenacity +100%. The status
-        // effect's modifier map is unordered, so the attribute is named explicitly here - picking the
-        // wrong one would print "100%".
         var description = "Taking damage with a harmful effect grants you immunity to harmful effects and "
                 + TooltipTokens.effect(effect.id, 0,
                         Identifier.of(EntityAttributes.GENERIC_MOVEMENT_SPEED.getIdAsString()))
@@ -550,9 +545,9 @@ public class BerserkerSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.BERSERKER));
     }
-    public static final MrpgSkillSpells.Entry berserker_tier_3_passive_1 = add(berserker_tier_3_passive_1());
-    private static MrpgSkillSpells.Entry berserker_tier_3_passive_1() {
-        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_3_passive_1");
+    public static final MrpgSkillSpells.Entry berserker_tier_3_passive_2 = add(berserker_tier_3_passive_2());
+    private static MrpgSkillSpells.Entry berserker_tier_3_passive_2() {
+        var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "berserker_tier_3_passive_2");
         var effect = MrpgSkillEffects.UNDYING_RAGE;
         var title = effect.title;
         var description = "When taking damage that would be fatal, you become invulnerable for {effect_duration} sec.";

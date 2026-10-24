@@ -9520,43 +9520,6 @@
       "translate": "skill.mrpgc_skill_tree.berserker_root.title"
     }
   },
-  "berserker_tier_1_passive_1": {
-    "description": {
-      "skill_definition_id": "berserker_tier_1_passive_1"
-    },
-    "icon": {
-      "type": "texture",
-      "data": {
-        "texture": "mrpgc_skill_tree:textures/spell/berserker_tier_1_passive_1.png"
-      }
-    },
-    "required_mods": [
-      "berserker_rpg"
-    ],
-    "rewards": [
-      {
-        "type": "skill_tree_rpgs:spell",
-        "data": {
-          "containers": [
-            {
-              "access": "MAGIC",
-              "access_param": "",
-              "extra_tier_binding": 0,
-              "max_spell_count": 0,
-              "pool": "",
-              "slot": "",
-              "spell_ids": [
-                "mrpgc_skill_tree:berserker_tier_1_passive_1"
-              ]
-            }
-          ]
-        }
-      }
-    ],
-    "title": {
-      "translate": "skill.mrpgc_skill_tree.berserker_tier_1_passive_1.title"
-    }
-  },
   "berserker_tier_1_passive_2": {
     "description": {
       "skill_definition_id": "berserker_tier_1_passive_2"
@@ -9594,14 +9557,14 @@
       "translate": "skill.mrpgc_skill_tree.berserker_tier_1_passive_2.title"
     }
   },
-  "berserker_tier_2_passive_1": {
+  "berserker_tier_1_passive_1": {
     "description": {
-      "skill_definition_id": "berserker_tier_2_passive_1"
+      "skill_definition_id": "berserker_tier_1_passive_1"
     },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "mrpgc_skill_tree:textures/spell/berserker_tier_2_passive_1.png"
+        "texture": "mrpgc_skill_tree:textures/spell/berserker_tier_1_passive_1.png"
       }
     },
     "required_mods": [
@@ -9620,7 +9583,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "mrpgc_skill_tree:berserker_tier_2_passive_1"
+                "mrpgc_skill_tree:berserker_tier_1_passive_1"
               ]
             }
           ]
@@ -9628,7 +9591,7 @@
       }
     ],
     "title": {
-      "translate": "skill.mrpgc_skill_tree.berserker_tier_2_passive_1.title"
+      "translate": "skill.mrpgc_skill_tree.berserker_tier_1_passive_1.title"
     }
   },
   "berserker_tier_2_passive_2": {
@@ -9668,14 +9631,14 @@
       "translate": "skill.mrpgc_skill_tree.berserker_tier_2_passive_2.title"
     }
   },
-  "berserker_tier_2_spell_1_modifier_1": {
+  "berserker_tier_2_passive_1": {
     "description": {
-      "skill_definition_id": "berserker_tier_2_spell_1_modifier_1"
+      "skill_definition_id": "berserker_tier_2_passive_1"
     },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/wild_rage.png"
+        "texture": "mrpgc_skill_tree:textures/spell/berserker_tier_2_passive_1.png"
       }
     },
     "required_mods": [
@@ -9694,7 +9657,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "mrpgc_skill_tree:berserker_tier_2_spell_1_modifier_1"
+                "mrpgc_skill_tree:berserker_tier_2_passive_1"
               ]
             }
           ]
@@ -9702,81 +9665,7 @@
       }
     ],
     "title": {
-      "translate": "skill.mrpgc_skill_tree.berserker_tier_2_spell_1_modifier_1.title"
-    }
-  },
-  "berserker_tier_2_spell_1_modifier_2": {
-    "description": {
-      "skill_definition_id": "berserker_tier_2_spell_1_modifier_2"
-    },
-    "icon": {
-      "type": "texture",
-      "data": {
-        "texture": "berserker_rpg:textures/spell/wild_rage.png"
-      }
-    },
-    "required_mods": [
-      "berserker_rpg"
-    ],
-    "rewards": [
-      {
-        "type": "skill_tree_rpgs:spell",
-        "data": {
-          "containers": [
-            {
-              "access": "NONE",
-              "access_param": "",
-              "extra_tier_binding": 0,
-              "max_spell_count": 0,
-              "pool": "",
-              "slot": "",
-              "spell_ids": [
-                "mrpgc_skill_tree:berserker_tier_2_spell_1_modifier_2"
-              ]
-            }
-          ]
-        }
-      }
-    ],
-    "title": {
-      "translate": "skill.mrpgc_skill_tree.berserker_tier_2_spell_1_modifier_2.title"
-    }
-  },
-  "berserker_tier_2_spell_1_root": {
-    "description": {
-      "skill_definition_id": "berserker_tier_2_spell_1_root"
-    },
-    "icon": {
-      "type": "texture",
-      "data": {
-        "texture": "berserker_rpg:textures/spell/wild_rage.png"
-      }
-    },
-    "required_mods": [
-      "berserker_rpg"
-    ],
-    "rewards": [
-      {
-        "type": "skill_tree_rpgs:spell",
-        "data": {
-          "containers": [
-            {
-              "access": "NONE",
-              "access_param": "",
-              "extra_tier_binding": 0,
-              "max_spell_count": 0,
-              "pool": "",
-              "slot": "",
-              "spell_ids": [
-                "mrpgc_skill_tree:berserker_tier_2_spell_1_root"
-              ]
-            }
-          ]
-        }
-      }
-    ],
-    "title": {
-      "translate": "skill.mrpgc_skill_tree.berserker_tier_2_spell_1_root.title"
+      "translate": "skill.mrpgc_skill_tree.berserker_tier_2_passive_1.title"
     }
   },
   "berserker_tier_2_spell_2_modifier_1": {
@@ -9786,7 +9675,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/apprehend.png"
+        "texture": "berserker_rpg:textures/spell/wild_rage.png"
       }
     },
     "required_mods": [
@@ -9798,7 +9687,7 @@
         "data": {
           "containers": [
             {
-              "access": "NONE",
+              "access": "MAGIC",
               "access_param": "",
               "extra_tier_binding": 0,
               "max_spell_count": 0,
@@ -9823,7 +9712,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/apprehend.png"
+        "texture": "berserker_rpg:textures/spell/wild_rage.png"
       }
     },
     "required_mods": [
@@ -9860,7 +9749,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/apprehend.png"
+        "texture": "berserker_rpg:textures/spell/wild_rage.png"
       }
     },
     "required_mods": [
@@ -9890,14 +9779,14 @@
       "translate": "skill.mrpgc_skill_tree.berserker_tier_2_spell_2_root.title"
     }
   },
-  "berserker_tier_3_passive_1": {
+  "berserker_tier_2_spell_1_modifier_1": {
     "description": {
-      "skill_definition_id": "berserker_tier_3_passive_1"
+      "skill_definition_id": "berserker_tier_2_spell_1_modifier_1"
     },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "mrpgc_skill_tree:textures/spell/berserker_tier_3_passive_1.png"
+        "texture": "berserker_rpg:textures/spell/apprehend.png"
       }
     },
     "required_mods": [
@@ -9909,14 +9798,14 @@
         "data": {
           "containers": [
             {
-              "access": "MAGIC",
+              "access": "NONE",
               "access_param": "",
               "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "mrpgc_skill_tree:berserker_tier_3_passive_1"
+                "mrpgc_skill_tree:berserker_tier_2_spell_1_modifier_1"
               ]
             }
           ]
@@ -9924,7 +9813,81 @@
       }
     ],
     "title": {
-      "translate": "skill.mrpgc_skill_tree.berserker_tier_3_passive_1.title"
+      "translate": "skill.mrpgc_skill_tree.berserker_tier_2_spell_1_modifier_1.title"
+    }
+  },
+  "berserker_tier_2_spell_1_modifier_2": {
+    "description": {
+      "skill_definition_id": "berserker_tier_2_spell_1_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "berserker_rpg:textures/spell/apprehend.png"
+      }
+    },
+    "required_mods": [
+      "berserker_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:berserker_tier_2_spell_1_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.berserker_tier_2_spell_1_modifier_2.title"
+    }
+  },
+  "berserker_tier_2_spell_1_root": {
+    "description": {
+      "skill_definition_id": "berserker_tier_2_spell_1_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "berserker_rpg:textures/spell/apprehend.png"
+      }
+    },
+    "required_mods": [
+      "berserker_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:berserker_tier_2_spell_1_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.berserker_tier_2_spell_1_root.title"
     }
   },
   "berserker_tier_3_passive_2": {
@@ -9964,14 +9927,14 @@
       "translate": "skill.mrpgc_skill_tree.berserker_tier_3_passive_2.title"
     }
   },
-  "berserker_tier_3_spell_1_modifier_1": {
+  "berserker_tier_3_passive_1": {
     "description": {
-      "skill_definition_id": "berserker_tier_3_spell_1_modifier_1"
+      "skill_definition_id": "berserker_tier_3_passive_1"
     },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/bloody_strike.png"
+        "texture": "mrpgc_skill_tree:textures/spell/berserker_tier_3_passive_1.png"
       }
     },
     "required_mods": [
@@ -9983,14 +9946,14 @@
         "data": {
           "containers": [
             {
-              "access": "NONE",
+              "access": "MAGIC",
               "access_param": "",
               "extra_tier_binding": 0,
               "max_spell_count": 0,
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "mrpgc_skill_tree:berserker_tier_3_spell_1_modifier_1"
+                "mrpgc_skill_tree:berserker_tier_3_passive_1"
               ]
             }
           ]
@@ -9998,81 +9961,7 @@
       }
     ],
     "title": {
-      "translate": "skill.mrpgc_skill_tree.berserker_tier_3_spell_1_modifier_1.title"
-    }
-  },
-  "berserker_tier_3_spell_1_modifier_2": {
-    "description": {
-      "skill_definition_id": "berserker_tier_3_spell_1_modifier_2"
-    },
-    "icon": {
-      "type": "texture",
-      "data": {
-        "texture": "berserker_rpg:textures/spell/bloody_strike.png"
-      }
-    },
-    "required_mods": [
-      "berserker_rpg"
-    ],
-    "rewards": [
-      {
-        "type": "skill_tree_rpgs:spell",
-        "data": {
-          "containers": [
-            {
-              "access": "NONE",
-              "access_param": "",
-              "extra_tier_binding": 0,
-              "max_spell_count": 0,
-              "pool": "",
-              "slot": "",
-              "spell_ids": [
-                "mrpgc_skill_tree:berserker_tier_3_spell_1_modifier_2"
-              ]
-            }
-          ]
-        }
-      }
-    ],
-    "title": {
-      "translate": "skill.mrpgc_skill_tree.berserker_tier_3_spell_1_modifier_2.title"
-    }
-  },
-  "berserker_tier_3_spell_1_root": {
-    "description": {
-      "skill_definition_id": "berserker_tier_3_spell_1_root"
-    },
-    "icon": {
-      "type": "texture",
-      "data": {
-        "texture": "berserker_rpg:textures/spell/bloody_strike.png"
-      }
-    },
-    "required_mods": [
-      "berserker_rpg"
-    ],
-    "rewards": [
-      {
-        "type": "skill_tree_rpgs:spell",
-        "data": {
-          "containers": [
-            {
-              "access": "NONE",
-              "access_param": "",
-              "extra_tier_binding": 0,
-              "max_spell_count": 0,
-              "pool": "",
-              "slot": "",
-              "spell_ids": [
-                "mrpgc_skill_tree:berserker_tier_3_spell_1_root"
-              ]
-            }
-          ]
-        }
-      }
-    ],
-    "title": {
-      "translate": "skill.mrpgc_skill_tree.berserker_tier_3_spell_1_root.title"
+      "translate": "skill.mrpgc_skill_tree.berserker_tier_3_passive_1.title"
     }
   },
   "berserker_tier_3_spell_2_modifier_1": {
@@ -10082,7 +9971,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/outrage.png"
+        "texture": "berserker_rpg:textures/spell/bloody_strike.png"
       }
     },
     "required_mods": [
@@ -10119,7 +10008,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/outrage.png"
+        "texture": "berserker_rpg:textures/spell/bloody_strike.png"
       }
     },
     "required_mods": [
@@ -10131,7 +10020,7 @@
         "data": {
           "containers": [
             {
-              "access": "MAGIC",
+              "access": "NONE",
               "access_param": "",
               "extra_tier_binding": 0,
               "max_spell_count": 0,
@@ -10156,7 +10045,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/outrage.png"
+        "texture": "berserker_rpg:textures/spell/bloody_strike.png"
       }
     },
     "required_mods": [
@@ -10186,88 +10075,14 @@
       "translate": "skill.mrpgc_skill_tree.berserker_tier_3_spell_2_root.title"
     }
   },
-  "berserker_tier_4_spell_1_modifier_1": {
+  "berserker_tier_3_spell_1_modifier_1": {
     "description": {
-      "skill_definition_id": "berserker_tier_4_spell_1_modifier_1"
+      "skill_definition_id": "berserker_tier_3_spell_1_modifier_1"
     },
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/blood_reckoning.png"
-      }
-    },
-    "required_mods": [
-      "berserker_rpg"
-    ],
-    "rewards": [
-      {
-        "type": "skill_tree_rpgs:spell",
-        "data": {
-          "containers": [
-            {
-              "access": "MAGIC",
-              "access_param": "",
-              "extra_tier_binding": 0,
-              "max_spell_count": 0,
-              "pool": "",
-              "slot": "",
-              "spell_ids": [
-                "mrpgc_skill_tree:berserker_tier_4_spell_1_modifier_1"
-              ]
-            }
-          ]
-        }
-      }
-    ],
-    "title": {
-      "translate": "skill.mrpgc_skill_tree.berserker_tier_4_spell_1_modifier_1.title"
-    }
-  },
-  "berserker_tier_4_spell_1_modifier_2": {
-    "description": {
-      "skill_definition_id": "berserker_tier_4_spell_1_modifier_2"
-    },
-    "icon": {
-      "type": "texture",
-      "data": {
-        "texture": "berserker_rpg:textures/spell/blood_reckoning.png"
-      }
-    },
-    "required_mods": [
-      "berserker_rpg"
-    ],
-    "rewards": [
-      {
-        "type": "skill_tree_rpgs:spell",
-        "data": {
-          "containers": [
-            {
-              "access": "MAGIC",
-              "access_param": "",
-              "extra_tier_binding": 0,
-              "max_spell_count": 0,
-              "pool": "",
-              "slot": "",
-              "spell_ids": [
-                "mrpgc_skill_tree:berserker_tier_4_spell_1_modifier_2"
-              ]
-            }
-          ]
-        }
-      }
-    ],
-    "title": {
-      "translate": "skill.mrpgc_skill_tree.berserker_tier_4_spell_1_modifier_2.title"
-    }
-  },
-  "berserker_tier_4_spell_1_root": {
-    "description": {
-      "skill_definition_id": "berserker_tier_4_spell_1_root"
-    },
-    "icon": {
-      "type": "texture",
-      "data": {
-        "texture": "berserker_rpg:textures/spell/blood_reckoning.png"
+        "texture": "berserker_rpg:textures/spell/outrage.png"
       }
     },
     "required_mods": [
@@ -10286,7 +10101,7 @@
               "pool": "",
               "slot": "",
               "spell_ids": [
-                "mrpgc_skill_tree:berserker_tier_4_spell_1_root"
+                "mrpgc_skill_tree:berserker_tier_3_spell_1_modifier_1"
               ]
             }
           ]
@@ -10294,7 +10109,81 @@
       }
     ],
     "title": {
-      "translate": "skill.mrpgc_skill_tree.berserker_tier_4_spell_1_root.title"
+      "translate": "skill.mrpgc_skill_tree.berserker_tier_3_spell_1_modifier_1.title"
+    }
+  },
+  "berserker_tier_3_spell_1_modifier_2": {
+    "description": {
+      "skill_definition_id": "berserker_tier_3_spell_1_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "berserker_rpg:textures/spell/outrage.png"
+      }
+    },
+    "required_mods": [
+      "berserker_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:berserker_tier_3_spell_1_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.berserker_tier_3_spell_1_modifier_2.title"
+    }
+  },
+  "berserker_tier_3_spell_1_root": {
+    "description": {
+      "skill_definition_id": "berserker_tier_3_spell_1_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "berserker_rpg:textures/spell/outrage.png"
+      }
+    },
+    "required_mods": [
+      "berserker_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:berserker_tier_3_spell_1_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.berserker_tier_3_spell_1_root.title"
     }
   },
   "berserker_tier_4_spell_2_modifier_1": {
@@ -10304,7 +10193,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/northerners_guillotine.png"
+        "texture": "berserker_rpg:textures/spell/blood_reckoning.png"
       }
     },
     "required_mods": [
@@ -10341,7 +10230,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/northerners_guillotine.png"
+        "texture": "berserker_rpg:textures/spell/blood_reckoning.png"
       }
     },
     "required_mods": [
@@ -10378,7 +10267,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/northerners_guillotine.png"
+        "texture": "berserker_rpg:textures/spell/blood_reckoning.png"
       }
     },
     "required_mods": [
@@ -10406,6 +10295,117 @@
     ],
     "title": {
       "translate": "skill.mrpgc_skill_tree.berserker_tier_4_spell_2_root.title"
+    }
+  },
+  "berserker_tier_4_spell_1_modifier_1": {
+    "description": {
+      "skill_definition_id": "berserker_tier_4_spell_1_modifier_1"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "berserker_rpg:textures/spell/northerners_guillotine.png"
+      }
+    },
+    "required_mods": [
+      "berserker_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:berserker_tier_4_spell_1_modifier_1"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.berserker_tier_4_spell_1_modifier_1.title"
+    }
+  },
+  "berserker_tier_4_spell_1_modifier_2": {
+    "description": {
+      "skill_definition_id": "berserker_tier_4_spell_1_modifier_2"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "berserker_rpg:textures/spell/northerners_guillotine.png"
+      }
+    },
+    "required_mods": [
+      "berserker_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "MAGIC",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:berserker_tier_4_spell_1_modifier_2"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.berserker_tier_4_spell_1_modifier_2.title"
+    }
+  },
+  "berserker_tier_4_spell_1_root": {
+    "description": {
+      "skill_definition_id": "berserker_tier_4_spell_1_root"
+    },
+    "icon": {
+      "type": "texture",
+      "data": {
+        "texture": "berserker_rpg:textures/spell/northerners_guillotine.png"
+      }
+    },
+    "required_mods": [
+      "berserker_rpg"
+    ],
+    "rewards": [
+      {
+        "type": "skill_tree_rpgs:spell",
+        "data": {
+          "containers": [
+            {
+              "access": "NONE",
+              "access_param": "",
+              "extra_tier_binding": 0,
+              "max_spell_count": 0,
+              "pool": "",
+              "slot": "",
+              "spell_ids": [
+                "mrpgc_skill_tree:berserker_tier_4_spell_1_root"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "title": {
+      "translate": "skill.mrpgc_skill_tree.berserker_tier_4_spell_1_root.title"
     }
   },
   "deadeye_boost": {

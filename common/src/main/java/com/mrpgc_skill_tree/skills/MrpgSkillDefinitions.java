@@ -292,36 +292,36 @@ public class MrpgSkillDefinitions {
                     Icon.item("berserker_rpg:iron_berserker_axe"),
                     BERSERKER_ROOT.attributeReward()).require(BERSERKER)
     );
-    public static final Entry BERSERKER_TIER_2_SPELL_1_ROOT = add(modifierSpell(BerserkerSkillSpells.berserker_tier_2_spell_1_root).require(BERSERKER));
-    public static final Entry BERSERKER_TIER_2_SPELL_1_MODIFIER_1 = add(passiveSpell(BerserkerSkillSpells.berserker_tier_2_spell_1_modifier_1)
-            .withIcon(Icon.spell(Identifier.of("berserker_rpg", "wild_rage"))).require(BERSERKER));
-    public static final Entry BERSERKER_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(BerserkerSkillSpells.berserker_tier_2_spell_1_modifier_2).require(BERSERKER));
     public static final Entry BERSERKER_TIER_2_SPELL_2_ROOT = add(modifierSpell(BerserkerSkillSpells.berserker_tier_2_spell_2_root).require(BERSERKER));
-    public static final Entry BERSERKER_TIER_2_SPELL_2_MODIFIER_1 = add(modifierSpell(BerserkerSkillSpells.berserker_tier_2_spell_2_modifier_1).require(BERSERKER));
+    public static final Entry BERSERKER_TIER_2_SPELL_2_MODIFIER_1 = add(passiveSpell(BerserkerSkillSpells.berserker_tier_2_spell_2_modifier_1)
+            .withIcon(Icon.spell(Identifier.of("berserker_rpg", "wild_rage"))).require(BERSERKER));
     public static final Entry BERSERKER_TIER_2_SPELL_2_MODIFIER_2 = add(modifierSpell(BerserkerSkillSpells.berserker_tier_2_spell_2_modifier_2).require(BERSERKER));
-    public static final Entry BERSERKER_TIER_3_SPELL_1_ROOT = add(modifierSpell(BerserkerSkillSpells.berserker_tier_3_spell_1_root).require(BERSERKER));
-    public static final Entry BERSERKER_TIER_3_SPELL_1_MODIFIER_1 = add(modifierSpell(BerserkerSkillSpells.berserker_tier_3_spell_1_modifier_1).require(BERSERKER));
-    public static final Entry BERSERKER_TIER_3_SPELL_1_MODIFIER_2 = add(modifierSpell(BerserkerSkillSpells.berserker_tier_3_spell_1_modifier_2).require(BERSERKER));
+    public static final Entry BERSERKER_TIER_2_SPELL_1_ROOT = add(modifierSpell(BerserkerSkillSpells.berserker_tier_2_spell_1_root).require(BERSERKER));
+    public static final Entry BERSERKER_TIER_2_SPELL_1_MODIFIER_1 = add(modifierSpell(BerserkerSkillSpells.berserker_tier_2_spell_1_modifier_1).require(BERSERKER));
+    public static final Entry BERSERKER_TIER_2_SPELL_1_MODIFIER_2 = add(modifierSpell(BerserkerSkillSpells.berserker_tier_2_spell_1_modifier_2).require(BERSERKER));
     public static final Entry BERSERKER_TIER_3_SPELL_2_ROOT = add(modifierSpell(BerserkerSkillSpells.berserker_tier_3_spell_2_root).require(BERSERKER));
     public static final Entry BERSERKER_TIER_3_SPELL_2_MODIFIER_1 = add(modifierSpell(BerserkerSkillSpells.berserker_tier_3_spell_2_modifier_1).require(BERSERKER));
-    public static final Entry BERSERKER_TIER_3_SPELL_2_MODIFIER_2 = add(passiveSpell(BerserkerSkillSpells.berserker_tier_3_spell_2_modifier_2)
+    public static final Entry BERSERKER_TIER_3_SPELL_2_MODIFIER_2 = add(modifierSpell(BerserkerSkillSpells.berserker_tier_3_spell_2_modifier_2).require(BERSERKER));
+    public static final Entry BERSERKER_TIER_3_SPELL_1_ROOT = add(modifierSpell(BerserkerSkillSpells.berserker_tier_3_spell_1_root).require(BERSERKER));
+    public static final Entry BERSERKER_TIER_3_SPELL_1_MODIFIER_1 = add(modifierSpell(BerserkerSkillSpells.berserker_tier_3_spell_1_modifier_1).require(BERSERKER));
+    public static final Entry BERSERKER_TIER_3_SPELL_1_MODIFIER_2 = add(passiveSpell(BerserkerSkillSpells.berserker_tier_3_spell_1_modifier_2)
             .withIcon(Icon.spell(Identifier.of("berserker_rpg", "outrage"))).require(BERSERKER));
-    public static final Entry BERSERKER_TIER_4_SPELL_1_ROOT = add(modifierSpell(BerserkerSkillSpells.berserker_tier_4_spell_1_root).require(BERSERKER));
-    public static final Entry BERSERKER_TIER_4_SPELL_1_MODIFIER_1 = add(passiveSpell(BerserkerSkillSpells.berserker_tier_4_spell_1_modifier_1)
-            .withIcon(Icon.spell(Identifier.of("berserker_rpg", "blood_reckoning"))).require(BERSERKER));
-    public static final Entry BERSERKER_TIER_4_SPELL_1_MODIFIER_2 = add(passiveSpell(BerserkerSkillSpells.berserker_tier_4_spell_1_modifier_2)
-            .withIcon(Icon.spell(Identifier.of("berserker_rpg", "blood_reckoning"))).require(BERSERKER));
     public static final Entry BERSERKER_TIER_4_SPELL_2_ROOT = add(modifierSpell(BerserkerSkillSpells.berserker_tier_4_spell_2_root).require(BERSERKER));
     public static final Entry BERSERKER_TIER_4_SPELL_2_MODIFIER_1 = add(passiveSpell(BerserkerSkillSpells.berserker_tier_4_spell_2_modifier_1)
-            .withIcon(Icon.spell(Identifier.of("berserker_rpg", "northerners_guillotine"))).require(BERSERKER));
+            .withIcon(Icon.spell(Identifier.of("berserker_rpg", "blood_reckoning"))).require(BERSERKER));
     public static final Entry BERSERKER_TIER_4_SPELL_2_MODIFIER_2 = add(passiveSpell(BerserkerSkillSpells.berserker_tier_4_spell_2_modifier_2)
+            .withIcon(Icon.spell(Identifier.of("berserker_rpg", "blood_reckoning"))).require(BERSERKER));
+    public static final Entry BERSERKER_TIER_4_SPELL_1_ROOT = add(modifierSpell(BerserkerSkillSpells.berserker_tier_4_spell_1_root).require(BERSERKER));
+    public static final Entry BERSERKER_TIER_4_SPELL_1_MODIFIER_1 = add(passiveSpell(BerserkerSkillSpells.berserker_tier_4_spell_1_modifier_1)
             .withIcon(Icon.spell(Identifier.of("berserker_rpg", "northerners_guillotine"))).require(BERSERKER));
-    public static final Entry BERSERKER_TIER_1_PASSIVE_2 = add(passiveSpell(BerserkerSkillSpells.berserker_tier_1_passive_2).require(BERSERKER));
+    public static final Entry BERSERKER_TIER_4_SPELL_1_MODIFIER_2 = add(passiveSpell(BerserkerSkillSpells.berserker_tier_4_spell_1_modifier_2)
+            .withIcon(Icon.spell(Identifier.of("berserker_rpg", "northerners_guillotine"))).require(BERSERKER));
     public static final Entry BERSERKER_TIER_1_PASSIVE_1 = add(passiveSpell(BerserkerSkillSpells.berserker_tier_1_passive_1).require(BERSERKER));
-    public static final Entry BERSERKER_TIER_2_PASSIVE_2 = add(passiveSpell(BerserkerSkillSpells.berserker_tier_2_passive_2).require(BERSERKER));
+    public static final Entry BERSERKER_TIER_1_PASSIVE_2 = add(passiveSpell(BerserkerSkillSpells.berserker_tier_1_passive_2).require(BERSERKER));
     public static final Entry BERSERKER_TIER_2_PASSIVE_1 = add(passiveSpell(BerserkerSkillSpells.berserker_tier_2_passive_1).require(BERSERKER));
-    public static final Entry BERSERKER_TIER_3_PASSIVE_2 = add(passiveSpell(BerserkerSkillSpells.berserker_tier_3_passive_2).require(BERSERKER));
+    public static final Entry BERSERKER_TIER_2_PASSIVE_2 = add(passiveSpell(BerserkerSkillSpells.berserker_tier_2_passive_2).require(BERSERKER));
     public static final Entry BERSERKER_TIER_3_PASSIVE_1 = add(passiveSpell(BerserkerSkillSpells.berserker_tier_3_passive_1).require(BERSERKER));
+    public static final Entry BERSERKER_TIER_3_PASSIVE_2 = add(passiveSpell(BerserkerSkillSpells.berserker_tier_3_passive_2).require(BERSERKER));
 
     ///FORCEMASTER
     public static final Entry FORCEMASTER_ROOT = add(

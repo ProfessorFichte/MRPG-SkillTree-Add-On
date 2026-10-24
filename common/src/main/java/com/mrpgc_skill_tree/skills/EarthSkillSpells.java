@@ -83,9 +83,9 @@ public class EarthSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.EARTH));
     }
-    public static final MrpgSkillSpells.Entry earth_tier_3_spell_2_root = add(MrpgSkillsCommon.companionRoot(
+    public static final MrpgSkillSpells.Entry earth_tier_3_spell_2_root = add(MrpgSkillsCommon.fieldRoot(
             MrpgSkillSpells.Category.EARTH, MrpgSkillSpells.earthWizardSchool,
-            "earth_tier_3_spell_2_root", "elemental_wizards_rpg:terra_drip_circle", "Terra Circle", 2));
+            "earth_tier_3_spell_2_root", "elemental_wizards_rpg:terra_drip_circle", "Terra Circle", 2F));
     public static final MrpgSkillSpells.Entry earth_tier_3_spell_2_modifier_1 = add(earth_tier_3_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry earth_tier_3_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "earth_tier_3_spell_2_modifier_1");

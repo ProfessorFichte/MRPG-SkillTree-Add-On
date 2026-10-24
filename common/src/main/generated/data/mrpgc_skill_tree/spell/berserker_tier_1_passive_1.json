@@ -7,11 +7,7 @@
     "triggers": [
       {
         "type": "MELEE_IMPACT",
-        "target_conditions": [
-          {
-            "entity_predicate_id": "has_effect_optimized:spell_engine.bleed"
-          }
-        ]
+        "chance": 0.15
       }
     ]
   },
@@ -20,21 +16,20 @@
   },
   "impacts": [
     {
+      "attribute_from_target": true,
+      "attribute": "minecraft:generic.max_health",
       "action": {
-        "type": "STATUS_EFFECT",
-        "apply_to_caster": true,
-        "status_effect": {
-          "effect_id": "mrpgc_skill_tree:bloodflow",
-          "duration": 8.0
+        "type": "DAMAGE",
+        "damage": {
+          "spell_power_coefficient": 0.02
         }
       },
       "visuals": {
         "particles": [
           {
-            "id": "spell_engine:magic_heal",
+            "id": "spell_engine:dripping_blood",
             "appearance": {
-              "color": 3208659199,
-              "motion": "DECELERATE"
+              "color": 3003121919
             },
             "batch": {
               "count": 10.0,
@@ -43,18 +38,31 @@
               "min_speed": 0.01,
               "max_speed": 0.1
             }
+          },
+          {
+            "id": "spell_engine:area_effect_409",
+            "appearance": {
+              "color": 3208659199,
+              "facing": "CAMERA",
+              "attachment": "POSITION"
+            },
+            "batch": {
+              "count": 1.0,
+              "shape": "LINE",
+              "anchor": "ENTITY"
+            }
           }
         ]
       },
       "sound": {
-        "id": "mrpgc_skill_tree:blood_frenzy_heal"
+        "id": "mrpgc_skill_tree:cleave_impact"
       }
     }
   ],
   "cost": {
     "durability": 0,
     "cooldown": {
-      "duration": 2.0
+      "duration": 5.0
     }
   }
 }

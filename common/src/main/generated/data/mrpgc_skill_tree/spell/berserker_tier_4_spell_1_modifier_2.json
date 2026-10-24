@@ -1,6 +1,6 @@
 {
   "school": "spell_power:rage_melee",
-  "range": 6.0,
+  "range": 0.0,
   "tier": 1,
   "tooltip": {
     "show_activation": false
@@ -9,37 +9,38 @@
   "passive": {
     "triggers": [
       {
-        "type": "SPELL_CAST",
+        "type": "SPELL_IMPACT_SPECIFIC",
+        "target_conditions": [
+          {
+            "health_percent_below": 0.0
+          }
+        ],
         "spell": {
-          "id": "berserker_rpg:blood_reckoning"
+          "id": "berserker_rpg:northerners_guillotine"
+        },
+        "impact": {
+          "impact_type": "DAMAGE"
         }
       }
     ]
   },
   "target": {
-    "type": "AREA",
-    "area": {
-      "distance_dropoff": "SQUARED"
-    }
+    "type": "FROM_TRIGGER"
   },
   "impacts": [
     {
-      "target_modifiers": [
-        {
-          "conditions": [
-            {
-              "entity_predicate_id": "has_effect_optimized:spell_engine.bleed"
-            }
-          ],
-          "execute": "ALLOW"
-        }
-      ],
       "action": {
-        "type": "STATUS_EFFECT",
-        "status_effect": {
-          "effect_id": "mrpg_lib:grievous_wounds",
-          "duration": 6.0
+        "type": "COOLDOWN",
+        "apply_to_caster": true,
+        "cooldown": {
+          "actives": {
+            "id": "berserker_rpg:northerners_guillotine",
+            "duration_multiplier": 0.0
+          }
         }
+      },
+      "sound": {
+        "id": "spell_engine:spell_cooldown_impact"
       }
     }
   ],

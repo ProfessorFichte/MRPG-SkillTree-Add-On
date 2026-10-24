@@ -129,9 +129,9 @@ public class AirSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.AIR));
     }
-    public static final MrpgSkillSpells.Entry air_tier_4_spell_1_root = add(MrpgSkillsCommon.companionRoot(
+    public static final MrpgSkillSpells.Entry air_tier_4_spell_1_root = add(MrpgSkillsCommon.fieldRoot(
             MrpgSkillSpells.Category.AIR, MrpgSkillSpells.airWizardSchool,
-            "air_tier_4_spell_1_root", "elemental_wizards_rpg:wind_tornado", "Tornado", 5));
+            "air_tier_4_spell_1_root", "elemental_wizards_rpg:wind_tornado", "Tornado", 5F));
     public static final MrpgSkillSpells.Entry air_tier_4_spell_1_modifier_1 = add(air_tier_4_spell_1_modifier_1());
     private static MrpgSkillSpells.Entry air_tier_4_spell_1_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "air_tier_4_spell_1_modifier_1");

@@ -45,7 +45,7 @@ public class MrpgSkillSpells {
         // Both were written as `{power_multiplier}` — a real built-in token, but one that resolves
         // only from a `Spell.Modifier.power_modifier`, which neither spell has. With nothing to
         // replace them they rendered as the literal text `{power_multiplier}`.
-        maxHealthPercent(BerserkerSkillSpells.berserker_tier_3_spell_1_modifier_1.id(),
+        maxHealthPercent(BerserkerSkillSpells.berserker_tier_3_spell_2_modifier_1.id(),
                 Spell.Impact.Action.Type.DAMAGE);
         maxHealthPercent(ForcemasterSkillSpells.forcemaster_tier_4_spell_2_modifier_2.id(),
                 Spell.Impact.Action.Type.HEAL);

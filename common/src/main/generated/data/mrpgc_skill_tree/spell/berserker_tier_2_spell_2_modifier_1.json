@@ -2,11 +2,68 @@
   "school": "spell_power:rage_melee",
   "range": 0.0,
   "tier": 1,
-  "type": "MODIFIER",
-  "modifiers": [
+  "type": "PASSIVE",
+  "passive": {
+    "triggers": [
+      {
+        "type": "MELEE_IMPACT",
+        "chance": 0.25,
+        "caster_conditions": [
+          {
+            "entity_predicate_id": "spell_engine:has_effect",
+            "entity_predicate_param": "berserker_rpg:rage"
+          }
+        ]
+      }
+    ]
+  },
+  "target": {
+    "type": "FROM_TRIGGER"
+  },
+  "impacts": [
     {
-      "spell_pattern": "berserker_rpg:apprehend",
-      "range_add": 1.5
+      "target_modifiers": [
+        {
+          "conditions": [
+            {
+              "entity_type": "#mrpg_lib:bleeding_immune"
+            }
+          ],
+          "execute": "DENY"
+        }
+      ],
+      "action": {
+        "type": "STATUS_EFFECT",
+        "status_effect": {
+          "effect_id": "spell_engine:bleed",
+          "duration": 6.0,
+          "amplifier_cap": 3,
+          "apply_mode": "ADD"
+        }
+      },
+      "visuals": {
+        "particles": [
+          {
+            "id": "spell_engine:dripping_blood",
+            "appearance": {
+              "color": 3003121919
+            },
+            "batch": {
+              "count": 10.0,
+              "shape": "SPHERE",
+              "anchor": "ENTITY",
+              "min_speed": 0.01,
+              "max_speed": 0.1
+            }
+          }
+        ]
+      }
     }
-  ]
+  ],
+  "cost": {
+    "durability": 0,
+    "cooldown": {
+      "duration": 1.0
+    }
+  }
 }

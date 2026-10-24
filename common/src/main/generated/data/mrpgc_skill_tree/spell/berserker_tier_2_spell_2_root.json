@@ -5,10 +5,8 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "berserker_rpg:apprehend",
-      "power_modifier": {
-        "power_multiplier": 0.1
-      }
+      "spell_pattern": "berserker_rpg:wild_rage",
+      "cooldown_duration_deduct": 2.0
     }
   ]
 }

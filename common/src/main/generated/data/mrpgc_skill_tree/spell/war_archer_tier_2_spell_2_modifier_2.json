@@ -6,7 +6,21 @@
   "modifiers": [
     {
       "spell_pattern": "archers_expansion:dual_shot",
-      "knockback_multiply_base": 1.0
+      "mutate_impacts": "APPEND",
+      "impacts": [
+        {
+          "action": {
+            "type": "VELOCITY",
+            "velocity": {
+              "push": {
+                "x": 0.0,
+                "y": 0.1,
+                "z": 0.6
+              }
+            }
+          }
+        }
+      ]
     }
   ]
 }

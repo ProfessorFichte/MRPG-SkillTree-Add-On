@@ -5,14 +5,15 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "berserker_rpg:wild_rage",
+      "spell_pattern": "berserker_rpg:apprehend",
       "mutate_impacts": "APPEND",
       "impacts": [
         {
           "action": {
             "type": "STATUS_EFFECT",
             "status_effect": {
-              "effect_id": "mrpgc_skill_tree:blind_with_rage"
+              "effect_id": "mrpg_lib:grievous_wounds",
+              "duration": 6.0
             }
           }
         }

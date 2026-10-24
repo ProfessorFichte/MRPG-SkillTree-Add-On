@@ -7,7 +7,9 @@
     {
       "spell_pattern": "elemental_wizards_rpg:aqua_waterball",
       "projectile_launch": {
-        "extra_launch_count": 2
+        "velocity": 0.0,
+        "extra_launch_count": 2,
+        "extra_launch_delay": 0
       }
     }
   ]

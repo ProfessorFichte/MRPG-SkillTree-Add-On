@@ -534,13 +534,13 @@
 		"root": false
 	},
 	"6vs1geyejxs2wurg": {
-		"definition": "berserker_tier_1_passive_1",
+		"definition": "berserker_tier_1_passive_2",
 		"x": -99.6204653139365,
 		"y": 227.1117850104542,
 		"root": false
 	},
 	"fswtdxps6frobqu6": {
-		"definition": "berserker_tier_1_passive_2",
+		"definition": "berserker_tier_1_passive_1",
 		"x": -135.64314321436186,
 		"y": 207.61728660910708,
 		"root": false
@@ -1488,133 +1488,133 @@
 		"root": false
 	},
 	"7e8g8jdp0lvsnujz": {
-		"definition": "berserker_tier_2_passive_1",
+		"definition": "berserker_tier_2_passive_2",
 		"x": -154.81317576324204,
 		"y": 372.0777883858421,
 		"root": false
 	},
 	"a7tz0yncxll4zklo": {
-		"definition": "berserker_tier_2_passive_2",
+		"definition": "berserker_tier_2_passive_1",
 		"x": -226.8162704058974,
 		"y": 333.11166217825337,
 		"root": false
 	},
 	"okep7y6wktakpuxq": {
-		"definition": "berserker_tier_2_spell_1_root",
+		"definition": "berserker_tier_2_spell_2_root",
 		"x": -119.81474248066027,
 		"y": 285.9098240429892,
 		"root": false
 	},
 	"phr62gdswm31yiha": {
-		"definition": "berserker_tier_2_spell_1_modifier_1",
+		"definition": "berserker_tier_2_spell_2_modifier_1",
 		"x": -125.14911717046552,
 		"y": 317.2045057552825,
 		"root": false
 	},
 	"ir4cowgzrixa11dp": {
-		"definition": "berserker_tier_2_spell_1_modifier_2",
+		"definition": "berserker_tier_2_spell_2_modifier_2",
 		"x": -158.76083400466234,
 		"y": 336.42086377949875,
 		"root": false
 	},
 	"g8sbi4q2y9v86wzs": {
-		"definition": "berserker_tier_2_spell_2_root",
+		"definition": "berserker_tier_2_spell_1_root",
 		"x": -173.82166777901864,
 		"y": 256.6827376558861,
 		"root": false
 	},
 	"3t60rjiw1swjckjl": {
-		"definition": "berserker_tier_2_spell_2_modifier_1",
+		"definition": "berserker_tier_2_spell_1_modifier_1",
 		"x": -197.10289984512227,
 		"y": 278.26506585024947,
 		"root": false
 	},
 	"teiyzcotohp6vz41": {
-		"definition": "berserker_tier_2_spell_2_modifier_2",
+		"definition": "berserker_tier_2_spell_1_modifier_2",
 		"x": -194.8063240034907,
 		"y": 316.9140200878576,
 		"root": false
 	},
 	"nam148p0tvhhpbmy": {
-		"definition": "berserker_tier_3_passive_1",
+		"definition": "berserker_tier_3_passive_2",
 		"x": -238.14125100699357,
 		"y": 504.63129566924806,
 		"root": false
 	},
 	"ofqewaouaxeqbnhl": {
-		"definition": "berserker_tier_3_passive_2",
+		"definition": "berserker_tier_3_passive_1",
 		"x": -292.20948600523616,
 		"y": 475.37103013178626,
 		"root": false
 	},
 	"1n13jcat9mx2x18h": {
-		"definition": "berserker_tier_3_spell_1_root",
+		"definition": "berserker_tier_3_spell_2_root",
 		"x": -184.4385317736655,
 		"y": 426.85762028710997,
 		"root": false
 	},
 	"afeyuhz1gv0e38da": {
-		"definition": "berserker_tier_3_spell_1_modifier_1",
+		"definition": "berserker_tier_3_spell_2_modifier_1",
 		"x": -180.29995339965978,
 		"y": 462.06917967343423,
 		"root": false
 	},
 	"ly8ozcywd14ve92m": {
-		"definition": "berserker_tier_3_spell_1_modifier_2",
+		"definition": "berserker_tier_3_spell_2_modifier_2",
 		"x": -217.84150806829587,
 		"y": 445.6019270184214,
 		"root": false
 	},
 	"pnsm43d8w3zp08j3": {
-		"definition": "berserker_tier_3_spell_2_root",
+		"definition": "berserker_tier_3_spell_1_root",
 		"x": -256.4725754548728,
 		"y": 387.87474529742786,
 		"root": false
 	},
 	"trp0j43d5iqvnb4g": {
-		"definition": "berserker_tier_3_spell_2_modifier_1",
+		"definition": "berserker_tier_3_spell_1_modifier_1",
 		"x": -253.89498434844234,
 		"y": 426.0907613674629,
 		"root": false
 	},
 	"h2m5zja8dzr1yxr2": {
-		"definition": "berserker_tier_3_spell_2_modifier_2",
+		"definition": "berserker_tier_3_spell_1_modifier_2",
 		"x": -288.2141004393616,
 		"y": 403.66896376601653,
 		"root": false
 	},
 	"dhylurtp0lzjjege": {
-		"definition": "berserker_tier_4_spell_1_root",
+		"definition": "berserker_tier_4_spell_2_root",
 		"x": -258.4047535070803,
 		"y": 563.5840517304805,
 		"root": false
 	},
 	"t1ghr09skdgigatj": {
-		"definition": "berserker_tier_4_spell_1_modifier_1",
+		"definition": "berserker_tier_4_spell_2_modifier_1",
 		"x": -244.97740113804122,
 		"y": 603.1476377568357,
 		"root": false
 	},
 	"9tze5r5uqpgb7r3o": {
-		"definition": "berserker_tier_4_spell_1_modifier_2",
+		"definition": "berserker_tier_4_spell_2_modifier_2",
 		"x": -291.6592053169399,
 		"y": 582.0102301110273,
 		"root": false
 	},
 	"cwbfuk9e1v2isqp4": {
-		"definition": "berserker_tier_4_spell_2_root",
+		"definition": "berserker_tier_4_spell_1_root",
 		"x": -330.47967181135635,
 		"y": 524.5790565009798,
 		"root": false
 	},
 	"9kwv08hhxfgcaqvk": {
-		"definition": "berserker_tier_4_spell_2_modifier_1",
+		"definition": "berserker_tier_4_spell_1_modifier_1",
 		"x": -327.71698950726216,
 		"y": 562.4967331356663,
 		"root": false
 	},
 	"izzqy72wx7ptx63c": {
-		"definition": "berserker_tier_4_spell_2_modifier_2",
+		"definition": "berserker_tier_4_spell_1_modifier_2",
 		"x": -370.94504543918356,
 		"y": 534.9773577116343,
 		"root": false

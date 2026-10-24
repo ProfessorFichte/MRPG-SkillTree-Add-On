@@ -5,8 +5,10 @@
   "type": "MODIFIER",
   "modifiers": [
     {
-      "spell_pattern": "berserker_rpg:outrage",
-      "cooldown_duration_deduct": 2.0
+      "spell_pattern": "berserker_rpg:bloody_strike",
+      "power_modifier": {
+        "power_multiplier": 0.1
+      }
     }
   ]
 }

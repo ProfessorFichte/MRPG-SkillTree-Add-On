@@ -71,31 +71,32 @@ public class WarArcherSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
-    public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_2_root = add(MrpgSkillsCommon.critRoot(
+    public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_2_root = add(MrpgSkillsCommon.spellRoot(
             MrpgSkillSpells.Category.WAR_ARCHER, MrpgSkillSpells.warArcherSchool,
-            "war_archer_tier_2_spell_2_root", "archers_expansion:dual_shot", "Dual Shot", 0.05F));
+            "war_archer_tier_2_spell_2_root", "archers_expansion:dual_shot", "Dual Shot",
+            "Dual Shot arrows deal 8%% more damage.",
+            modifier -> {
+                modifier.arrow_perks = new Spell.ArrowPerks();
+                modifier.arrow_perks.damage_multiplier = 1.08F;
+            }));
     public static final MrpgSkillSpells.Entry war_archer_tier_2_spell_2_modifier_1 = add(war_archer_tier_2_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry war_archer_tier_2_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_2_modifier_1");
         var title = "Instant Reload";
-        var description = "Dual Shot has {trigger_chance} chance to reset its own cooldown.";
-        var spell = SpellBuilder.createSpellPassive();
+        var description = "Dual Shot arrows have {impact_chance} chance to reset its cooldown on hit.";
+        var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.warArcherSchool;
-        spell.range = 0;
-
-        spell.target.type = Spell.Target.Type.FROM_TRIGGER;
-
-        var trigger = SpellBuilder.Triggers.specificSpellHit("archers_expansion:dual_shot");
-        trigger.chance = 0.25F;
-        trigger.target_override = Spell.Trigger.TargetSelector.CASTER;
-        spell.passive.triggers = List.of(trigger);
 
         var reset = SpellBuilder.Impacts.resetCooldownActive("archers_expansion:dual_shot");
+        reset.chance = 0.15F;
         reset.action.apply_to_caster = true;
         reset.sound = new Sound(SpellEngineSounds.SPELL_COOLDOWN_IMPACT.id());
-        spell.impacts = List.of(reset);
 
-        SpellBuilder.Cost.cooldown(spell, 5F);
+        var modifier = new Spell.Modifier();
+        modifier.spell_pattern = "archers_expansion:dual_shot";
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(reset);
+        spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));
     }
@@ -103,15 +104,14 @@ public class WarArcherSkillSpells {
     private static MrpgSkillSpells.Entry war_archer_tier_2_spell_2_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "war_archer_tier_2_spell_2_modifier_2");
         var title = "Heavy Arrow Tips";
-        var description = "Increases the knockback of Dual Shot by {knockback_multiply_base}.";
+        var description = "Dual Shot arrows push their target away on hit.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.warArcherSchool;
 
-        var bonus = 1.0F;
-
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "archers_expansion:dual_shot";
-        modifier.knockback_multiply_base = bonus;
+        modifier.mutate_impacts = Spell.Modifier.ImpactListModifier.APPEND;
+        modifier.impacts = List.of(SpellBuilder.Impacts.knockback(0.6F, 0.1F));
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WAR_ARCHER));

@@ -509,21 +509,21 @@ public class WaterSkillSpells {
     private static MrpgSkillSpells.Entry water_tier_2_spell_1_modifier_2() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_2_spell_1_modifier_2");
         var title = "Rapid Currents";
-        var description = "Shoots {extra_launch_count} Waterballs..";
+        var description = "Shoots {extra_launch_count} additional Waterballs.";
         var spell = SpellBuilder.createSpellModifier();
         spell.school = MrpgSkillSpells.waterWizardSchool;
 
         var modifier = new Spell.Modifier();
         modifier.spell_pattern = "elemental_wizards_rpg:aqua_waterball";
-        modifier.projectile_launch = new Spell.LaunchProperties();
+        modifier.projectile_launch = Spell.LaunchProperties.EMPTY();
         modifier.projectile_launch.extra_launch_count = 2;
         spell.modifiers = List.of(modifier);
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.WATER));
     }
-    public static final MrpgSkillSpells.Entry water_tier_4_spell_2_root = add(MrpgSkillsCommon.companionRoot(
+    public static final MrpgSkillSpells.Entry water_tier_4_spell_2_root = add(MrpgSkillsCommon.fieldRoot(
             MrpgSkillSpells.Category.WATER, MrpgSkillSpells.waterWizardSchool,
-            "water_tier_4_spell_2_root", "elemental_wizards_rpg:aqua_healing_rain", "Healing Rain", 5));
+            "water_tier_4_spell_2_root", "elemental_wizards_rpg:aqua_healing_rain", "Healing Rain", 5F));
     public static final MrpgSkillSpells.Entry water_tier_4_spell_2_modifier_1 = add(water_tier_4_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry water_tier_4_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "water_tier_4_spell_2_modifier_1");

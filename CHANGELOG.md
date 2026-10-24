@@ -1,3 +1,11 @@
+# 1.3.1 - 1.21.1
+- Fixed the "lasts N sec longer" nodes not doing anything for Tornado, Healing Rain, Alter Ego and Terra Circle, they now extend how long those stay out
+- Reworked the Dual Shot nodes, so they actually work: Improved Dual Shot is now +8% arrow damage instead of crit chance, Instant Reload gives each arrow a 15% chance to reset Dual Shot's cooldown, and Heavy Arrow Tips pushes targets away on hit
+- Fixed Rapid Currents adding hidden launch speed and delay to Waterballs
+- Renamed the Berserker spell and passive ids so spell_1 is the brute group and spell_2 is the fanatic group, like for the other classes (e.g. berserker_tier_2_spell_1_root is now Apprehend, Wild Rage is spell_2). 
+- Datapacks that reference the old berserker spell ids need updating.
+- Fixed Modifiers & Passives that check for specific status effects (Thx LeDok)
+
 # 1.3.0 - 1.21.1
 - Adopt Spell Engine 1.10.9 & More RPG Library 2.8.0
 - **BREAKING for modpack/datapack developers:** More RPG Library's namespace was renamed `more_rpg_classes` -> `mrpg_lib` (and its advancement root moved to `mrpg_lib:root`). If you have any data files, loot tables, tags or advancements that reference the old `more_rpg_classes:`/`more_rpg_content:` ids from this mod or MRPGL, update them to `mrpg_lib:`

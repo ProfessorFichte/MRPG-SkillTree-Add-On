@@ -6,8 +6,8 @@
   "modifiers": [
     {
       "spell_pattern": "archers_expansion:dual_shot",
-      "power_modifier": {
-        "critical_chance_bonus": 0.05
+      "arrow_perks": {
+        "damage_multiplier": 1.08
       }
     }
   ]

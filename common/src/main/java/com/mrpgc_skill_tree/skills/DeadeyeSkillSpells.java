@@ -278,9 +278,9 @@ public class DeadeyeSkillSpells {
 
         return new MrpgSkillSpells.Entry(id, spell, title, description, EnumSet.of(MrpgSkillSpells.Category.DEADEYE));
     }
-    public static final MrpgSkillSpells.Entry deadeye_tier_4_spell_2_root = add(MrpgSkillsCommon.companionRoot(
+    public static final MrpgSkillSpells.Entry deadeye_tier_4_spell_2_root = add(MrpgSkillsCommon.fieldRoot(
             MrpgSkillSpells.Category.DEADEYE, MrpgSkillSpells.deadeyeSchool,
-            "deadeye_tier_4_spell_2_root", "archers_expansion:alter_ego", "Alter Ego", 5));
+            "deadeye_tier_4_spell_2_root", "archers_expansion:alter_ego", "Alter Ego", 5F));
     public static final MrpgSkillSpells.Entry deadeye_tier_4_spell_2_modifier_1 = add(deadeye_tier_4_spell_2_modifier_1());
     private static MrpgSkillSpells.Entry deadeye_tier_4_spell_2_modifier_1() {
         var id = Identifier.of(MrpgSkillSpells.NAMESPACE, "deadeye_tier_4_spell_2_modifier_1");

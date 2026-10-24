@@ -2101,7 +2101,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/wild_rage.png"
+        "texture": "berserker_rpg:textures/spell/apprehend.png"
       }
     },
     "required_mods": [
@@ -2113,7 +2113,7 @@
         "data": {
           "containers": [
             {
-              "access": "MAGIC",
+              "access": "NONE",
               "access_param": "",
               "extra_tier_binding": 0,
               "max_spell_count": 0,
@@ -2138,7 +2138,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/wild_rage.png"
+        "texture": "berserker_rpg:textures/spell/apprehend.png"
       }
     },
     "required_mods": [
@@ -2175,7 +2175,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/wild_rage.png"
+        "texture": "berserker_rpg:textures/spell/apprehend.png"
       }
     },
     "required_mods": [
@@ -2212,7 +2212,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/apprehend.png"
+        "texture": "berserker_rpg:textures/spell/wild_rage.png"
       }
     },
     "required_mods": [
@@ -2224,7 +2224,7 @@
         "data": {
           "containers": [
             {
-              "access": "NONE",
+              "access": "MAGIC",
               "access_param": "",
               "extra_tier_binding": 0,
               "max_spell_count": 0,
@@ -2249,7 +2249,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/apprehend.png"
+        "texture": "berserker_rpg:textures/spell/wild_rage.png"
       }
     },
     "required_mods": [
@@ -2286,7 +2286,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/apprehend.png"
+        "texture": "berserker_rpg:textures/spell/wild_rage.png"
       }
     },
     "required_mods": [
@@ -2397,7 +2397,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/bloody_strike.png"
+        "texture": "berserker_rpg:textures/spell/outrage.png"
       }
     },
     "required_mods": [
@@ -2434,7 +2434,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/bloody_strike.png"
+        "texture": "berserker_rpg:textures/spell/outrage.png"
       }
     },
     "required_mods": [
@@ -2446,7 +2446,7 @@
         "data": {
           "containers": [
             {
-              "access": "NONE",
+              "access": "MAGIC",
               "access_param": "",
               "extra_tier_binding": 0,
               "max_spell_count": 0,
@@ -2471,7 +2471,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/bloody_strike.png"
+        "texture": "berserker_rpg:textures/spell/outrage.png"
       }
     },
     "required_mods": [
@@ -2508,7 +2508,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/outrage.png"
+        "texture": "berserker_rpg:textures/spell/bloody_strike.png"
       }
     },
     "required_mods": [
@@ -2545,7 +2545,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/outrage.png"
+        "texture": "berserker_rpg:textures/spell/bloody_strike.png"
       }
     },
     "required_mods": [
@@ -2557,7 +2557,7 @@
         "data": {
           "containers": [
             {
-              "access": "MAGIC",
+              "access": "NONE",
               "access_param": "",
               "extra_tier_binding": 0,
               "max_spell_count": 0,
@@ -2582,7 +2582,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/outrage.png"
+        "texture": "berserker_rpg:textures/spell/bloody_strike.png"
       }
     },
     "required_mods": [
@@ -2619,7 +2619,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/blood_reckoning.png"
+        "texture": "berserker_rpg:textures/spell/northerners_guillotine.png"
       }
     },
     "required_mods": [
@@ -2656,7 +2656,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/blood_reckoning.png"
+        "texture": "berserker_rpg:textures/spell/northerners_guillotine.png"
       }
     },
     "required_mods": [
@@ -2693,7 +2693,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/blood_reckoning.png"
+        "texture": "berserker_rpg:textures/spell/northerners_guillotine.png"
       }
     },
     "required_mods": [
@@ -2730,7 +2730,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/northerners_guillotine.png"
+        "texture": "berserker_rpg:textures/spell/blood_reckoning.png"
       }
     },
     "required_mods": [
@@ -2767,7 +2767,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/northerners_guillotine.png"
+        "texture": "berserker_rpg:textures/spell/blood_reckoning.png"
       }
     },
     "required_mods": [
@@ -2804,7 +2804,7 @@
     "icon": {
       "type": "texture",
       "data": {
-        "texture": "berserker_rpg:textures/spell/northerners_guillotine.png"
+        "texture": "berserker_rpg:textures/spell/blood_reckoning.png"
       }
     },
     "required_mods": [
